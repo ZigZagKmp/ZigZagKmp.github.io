@@ -3,9 +3,18 @@
   <entry>
     <title>Algorithm Design Note 1</title>
     <url>/2023/10/05/Algorithm-Design-Note-1/</url>
-    <content><![CDATA[<p>[2023 秋] 算法设计 第一课课堂笔记</p>
-<p>[2023 Fall] Algorithm Design Lecture 1 Notes</p>
+    <content><![CDATA[<center>
+
+[2023 秋] 算法设计 第一课课堂笔记
+</center>
+<center>
+[2023 Fall] Algorithm Design Lecture 1 Notes
+</center>
+
+
 <span id="more"></span>
+<div class="note info"><h4 id="有关语言"><a href="#有关语言" class="headerlink" title="有关语言"></a>有关语言</h4><p>课程是英文授课，因此笔记中大部分内容为英文。<br>可能会在较难理解<del>老师用中文讲</del>的地方使用中文。</p>
+</div>
 <h2 id="Chapter-0-Logistics"><a href="#Chapter-0-Logistics" class="headerlink" title="Chapter 0 Logistics"></a>Chapter 0 Logistics</h2><p><strong>Content</strong> : discrete(combinatorial) algorithm  ,  Theoretical </p>
 <ul>
 <li>[minority] Complexity , NP-Completeness</li>
@@ -147,7 +156,8 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Lecture Notes</category>
+        <category>课程笔记</category>
+        <category>算法设计</category>
       </categories>
       <tags>
         <tag>算法</tag>
@@ -158,7 +168,9 @@
   <entry>
     <title>Hello World</title>
     <url>/2023/10/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <content><![CDATA[<p>这只是预留的测试文档。</p>
+<span id="more"></span>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
