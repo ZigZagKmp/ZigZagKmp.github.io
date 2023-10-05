@@ -13,7 +13,7 @@
 
 
 <span id="more"></span>
-<div class="note info"><h4 id="有关语言"><a href="#有关语言" class="headerlink" title="有关语言"></a>有关语言</h4><p>课程是英文授课，因此笔记中大部分内容为英文。<br>可能会在较难理解<del>老师用中文讲</del>的地方使用中文。</p>
+<div class="note info"><p><strong>有关语言</strong><br>课程是英文授课，因此笔记中大部分内容为<strong>英文</strong>。<br>可能会在<strong>较难理解</strong> <del>老师用中文讲</del> 的地方使用中文。</p>
 </div>
 <h2 id="Chapter-0-Logistics"><a href="#Chapter-0-Logistics" class="headerlink" title="Chapter 0 Logistics"></a>Chapter 0 Logistics</h2><p><strong>Content</strong> : discrete(combinatorial) algorithm  ,  Theoretical </p>
 <ul>
