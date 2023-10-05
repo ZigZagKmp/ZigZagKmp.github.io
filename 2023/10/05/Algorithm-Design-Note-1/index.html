@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zigzagkmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="[2023 秋] 算法设计 第一课课堂笔记 [2023 Fall] Algorithm Design Lecture 1 Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm Design Note 1">
+<meta property="og:url" content="https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/index.html">
+<meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
+<meta property="og:description" content="[2023 秋] 算法设计 第一课课堂笔记 [2023 Fall] Algorithm Design Lecture 1 Notes">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-05T10:14:22.000Z">
+<meta property="article:modified_time" content="2023-10-05T13:53:26.915Z">
+<meta property="article:author" content="ZigZagKmp">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="算法 - 匹配">
+<meta property="article:tag" content="算法 - 搜索">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/","path":"2023/10/05/Algorithm-Design-Note-1/","title":"Algorithm Design Note 1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Algorithm Design Note 1 | ZigZagKmp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZigZagKmp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Mainly for study materials</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-0-Logistics"><span class="nav-number">1.</span> <span class="nav-text">Chapter 0 Logistics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1"><span class="nav-number">2.</span> <span class="nav-text">Chapter 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Stable-matching"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 Stable matching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-BFS-amp-DFS"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 BFS &amp; DFS</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZigZagKmp"
+      src="/images/avatar/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ZigZagKmp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ZigZagKmp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ZigZagKmp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zigzagkmp@qq.com" title="E-Mail → mailto:zigzagkmp@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.jpg">
+      <meta itemprop="name" content="ZigZagKmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZigZagKmp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Algorithm Design Note 1 | ZigZagKmp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Algorithm Design Note 1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-10-05 18:14:22 / 修改时间：21:53:26" itemprop="dateCreated datePublished" datetime="2023-10-05T18:14:22+08:00">2023-10-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Lecture-Notes/" itemprop="url" rel="index"><span itemprop="name">Lecture Notes</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>[2023 秋] 算法设计 第一课课堂笔记</p>
+<p>[2023 Fall] Algorithm Design Lecture 1 Notes</p>
+<span id="more"></span>
+<h2 id="Chapter-0-Logistics"><a href="#Chapter-0-Logistics" class="headerlink" title="Chapter 0 Logistics"></a>Chapter 0 Logistics</h2><p><strong>Content</strong> : discrete(combinatorial) algorithm  ,  Theoretical </p>
+<ul>
+<li>[minority] Complexity , NP-Completeness</li>
+<li>Basic Graph Algorithm , DFS / BFS</li>
+<li>Greedy</li>
+<li>Dynamic Programming</li>
+<li>Divide and Conquer</li>
+<li>NP-completeness Theory</li>
+<li>Approximation Algorithm</li>
+<li>Randomized Algorithm (Probability Analysis)</li>
+<li><ul>
+<li>Computational Geometry</li>
+</ul>
+</li>
+<li><ul>
+<li>Streaming Algorithm (online)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Textbook</strong> : [Kleinberg&amp;Tardos] Algorithm Design </p>
+<p><strong>Reference Book</strong> : [CLRS] Intro to Algorithm</p>
+<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="1-1-Stable-matching"><a href="#1-1-Stable-matching" class="headerlink" title="1.1 Stable matching"></a>1.1 Stable matching</h3><ol>
+<li><p>Def</p>
+<ul>
+<li><p>Input : $boys=\{B_1,\cdots,B_n\} , girls=\{G_1,\cdots,G_n\}$</p>
+<p>Preference List : $BP_i$ : a permutation of $girls$ , $GP_i$ : a permutation of $boys$</p>
+</li>
+<li><p>output : a stable matching </p>
+</li>
+<li><p>stable matching : no unstable pairs</p>
+</li>
+<li><p>unstable pair : $(B_i,G_j)$ s.t.  $M(B_i)$ after $G_j$ in $BP_i$ and $M(G_j)$ after $B_i$ in $GP_j$</p>
+</li>
+</ul>
+</li>
+<li><p>Efficient Algorithm : Gale &amp; Shapley Algorithm ( propose-reject )</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( exists sb. single )&#123;</span><br><span class="line">    A &lt;- an arbitrary single boy</span><br><span class="line">    X &lt;- <span class="function">first girl A has <span class="keyword">not</span> proposed yet</span></span><br><span class="line"><span class="function">    <span class="title">if</span> <span class="params">( X is single )</span></span></span><br><span class="line"><span class="function">        A-X engage</span></span><br><span class="line"><span class="function">    <span class="keyword">else</span></span></span><br><span class="line"><span class="function">        <span class="title">if</span> <span class="params">( A is better than M(X) )</span></span></span><br><span class="line"><span class="function">            A-X engage</span></span><br><span class="line"><span class="function">        <span class="keyword">else</span></span></span><br><span class="line"><span class="function">            X reject A</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Analysis</p>
+<ol>
+<li><p>Proof of Termination </p>
+<ol>
+<li>For girl : once engaged , engaged forever </li>
+<li>For one boy : If used all preference list : then all girls must be engaged</li>
+</ol>
+</li>
+<li><p>Proof of Correctness</p>
+<p>Prove by Contradiction</p>
+<p>$(B_i,G_j)$ : an unstable pair</p>
+<p>$B_i$ preference list : $\cdots G_j \cdots M(B_i)$</p>
+<p>$G_j$ preference list : $\cdots B_i \cdots Z=M(G_j)$</p>
+<p>$\therefore$ $G_j$ rejected $B_i$ , but $G_j$ should not reject $B_i$ compared with $Z$</p>
+</li>
+<li><p>Running Time : $\mathcal O(n^2)$ ( All boys used up their preference list)</p>
+</li>
+</ol>
+</li>
+<li><p>Random ver.</p>
+<ol>
+<li><p>def : $BP_i$ , $GP_i$ are all random permutations (uniformly distributed) </p>
+</li>
+<li><p>How to get a uniformly distributed random permutation ?</p>
+<p>draw-likely process</p>
+</li>
+<li><p>THM : $\mathbb E[T]\le n\cdot H_n$  ($\mathbb E[T]=\mathcal O(n\log n)$)</p>
+</li>
+<li><p>Proof </p>
+<ol>
+<li><p>key observation : </p>
+<p>G-S’ : each time a boy propose to a random girl not proposed yet</p>
+<p><strong>This is equivalent as generate a uniformly distributed random permutation</strong></p>
+<p>G-S’’ : each time a boy propose to a random girl (can be proposed yet)</p>
+<p>$\therefore $ $T(G-S)=T(G-S’)\le T(G-S’’)$</p>
+</li>
+<li><p>Coupon Collector Problem ( Bins-Balls ) </p>
+<p>$n$ bins , each time throw a ball to a random bin . </p>
+<p>Q : $\mathbb E[\text{balls}]$ s.t. every bin is nonempty .</p>
+<p>A : $\mathbb E[\text{balls}]=n\cdot H_n$</p>
+<p>Construct Sequence $a_i\in \{0,1\}$ , $a_i=1\Leftrightarrow$ a ball falls in an empty bin</p>
+<p>Exactly $n$ number of $1$s . -&gt; $n$ segments like $0\cdots 01$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb E[T]&=\mathbb E\left[\sum_{i=1}^n \text{len of i-th segment}\right]\\
+&=\sum_{i=1}^n\mathbb E\left[ \text{len of i-th segment}\right]\\
+&=\sum_{i=1}^n \frac{1}{\Pr\{\text{in i-th seg , choosed empty bin}\}}\\
+&=\sum_{i=1}^n \frac{n}{n-i+1}\\
+&=n\cdot H_n
+\end{aligned}</script></li>
+<li><p>Consider boy -&gt; ball , girl -&gt; bin</p>
+<p>G-S’’ -&gt; Bins-Balls Problem</p>
+</li>
+<li><ul>
+<li><p>Concentration inequality for Coupon Collection Running Time</p>
+<p>Same as Chernoff Bound</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-2-BFS-amp-DFS"><a href="#1-2-BFS-amp-DFS" class="headerlink" title="1.2 BFS &amp; DFS"></a>1.2 BFS &amp; DFS</h3><ol>
+<li><p>BFS</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bfs</span></span><br><span class="line">q.<span class="built_in">clear</span>();</span><br><span class="line"><span class="keyword">for</span>(u in Vertices)&#123;</span><br><span class="line">    dep[u]=inf;</span><br><span class="line">    prev[u]=<span class="literal">NULL</span>;</span><br><span class="line">    col[u]=white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dep[s]=<span class="number">0</span>;</span><br><span class="line">prev[s]=<span class="literal">NULL</span>;</span><br><span class="line">col[s]=grey;</span><br><span class="line">q.<span class="built_in">push</span>(s);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">    u=q.<span class="built_in">front</span>();q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            dep[v]=dep[u]+<span class="number">1</span>;</span><br><span class="line">            prev[v]=u;</span><br><span class="line">            col[v]=grey;</span><br><span class="line">            q.<span class="built_in">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[v]=black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>BFS Tree Property : no edges with depth difference $\ge 2$ .</p>
+</li>
+<li><p>DFS</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>DFS Tree Properties</p>
+<p>Time stamp intervals</p>
+<ol>
+<li>non-crossing : only non-intersect / totally include</li>
+<li>Tree Structure $\Leftrightarrow$ Time stamp intervals Structure </li>
+</ol>
+</li>
+<li><p>Connectivity</p>
+<ol>
+<li><p>undirected graph : connected component</p>
+</li>
+<li><p>directed graph : strongly connected component (SCC)</p>
+<p>every vertex can reach other vertex</p>
+</li>
+<li><p>directed acyclic graph (DAG)</p>
+<p>i.e. no directed cycle</p>
+<p>i.e. no SCC has $\ge 2$ vertices</p>
+<ul>
+<li>DAG has a topological order</li>
+</ul>
+</li>
+<li><p>A useful view of directed graph : a DAG of SCC</p>
+<p>a.k.a. 缩点</p>
+</li>
+<li><p>DAG has a topological order</p>
+<p>get topological order : use bfs/dfs starting from $in_deg=0$ </p>
+</li>
+</ol>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8C%B9%E9%85%8D/" rel="tag"># 算法 - 匹配</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E6%90%9C%E7%B4%A2/" rel="tag"># 算法 - 搜索</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/10/05/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-angle-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZigZagKmp</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/ZigZagKmp" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
