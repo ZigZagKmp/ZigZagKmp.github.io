@@ -3,9 +3,7 @@
   <entry>
     <title>Algorithm Design Note 1</title>
     <url>/2023/10/05/Algorithm-Design-Note-1/</url>
-    <content><![CDATA[<p>[2023 秋] 算法设计 第一课课堂笔记<br>[2023 Fall] Algorithm Design Lecture 1 Notes</p>
-<span id="more"></span>
-<h2 id="Chapter-0-Logistics"><a href="#Chapter-0-Logistics" class="headerlink" title="Chapter 0 Logistics"></a>Chapter 0 Logistics</h2><p><strong>Content</strong> : discrete(combinatorial) algorithm  ,  Theoretical </p>
+    <content><![CDATA[<h2 id="Chapter-0-Logistics"><a href="#Chapter-0-Logistics" class="headerlink" title="Chapter 0 Logistics"></a>Chapter 0 Logistics</h2><p><strong>Content</strong> : discrete(combinatorial) algorithm  ,  Theoretical </p>
 <ul>
 <li>[minority] Complexity , NP-Completeness</li>
 <li>Basic Graph Algorithm , DFS / BFS</li>
@@ -139,7 +137,7 @@
 <p>a.k.a. 缩点</p>
 </li>
 <li><p>DAG has a topological order</p>
-<p>get topological order : use bfs/dfs starting from $in_deg=0$ </p>
+<p>get topological order : use bfs/dfs starting from $InDeg=0$ </p>
 </li>
 </ol>
 </li>
@@ -158,9 +156,7 @@
   <entry>
     <title>Hello World</title>
     <url>/2023/10/05/hello-world/</url>
-    <content><![CDATA[<p>这只是预留的测试文档。</p>
-<span id="more"></span>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
@@ -170,5 +166,11 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+      <categories>
+        <category>测试文档</category>
+      </categories>
+      <tags>
+        <tag>测试文档</tag>
+      </tags>
   </entry>
 </search>
