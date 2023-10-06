@@ -1,125 +1,840 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Zero-Knowledge Proof and Secure Multi-Party Computation 1</title>
+    <url>/2023/10/06/Zero-Knowledge-Proof-and-Secure-Multi-Party-Computation-1/</url>
+    <content><![CDATA[<h2 id="lec01-basic-definitions-and-examples-of-zkp">Lec01 Basic
+Definitions and Examples of ZKP</h2>
+<h3 id="basic-notations">1 Basic Notations</h3>
+<ol type="1">
+<li><p>Complexity</p>
+<ol type="1">
+<li><p>Efficient Algorithm : poly-time algorithm .</p></li>
+<li><p>NP class : class of problems that are easy to verify a solution
+(but may be hard to solve it)</p>
+<p>Formal def : <span class="math inline">\(\forall L\in NP ,\exists
+\text{efficient algorithm } \mathcal A_L , \mathcal
+A(x)=\begin{cases}1&amp;x\in L\\0&amp;x\notin
+L\end{cases}\)</span></p></li>
+</ol></li>
+<li><p>Proof</p>
+<ol type="1">
+<li><p>Def : a static sequence of rules</p></li>
+<li><p>E.g.1 : Prove that <span
+class="math inline">\(f(x,y)=x^2y^3-5xy+4=0\)</span> has a solution
+.</p>
+<p>Proof 1 [Explicit Proof] : <span
+class="math inline">\(f(1,1)=0\)</span></p>
+<p>Proof 2 [Implicit Proof] : <span
+class="math inline">\(f(2,1)&lt;0,f(2,2)&gt;0\)</span> .</p>
+<p>( <span class="math inline">\(f(2,x)\)</span> is continuous , so
+<span class="math inline">\(\exists x_0\in (1,2) , f(2,x_0)=0\)</span>
+)</p></li>
+</ol></li>
+</ol>
+<h3 id="interactive-proof">2 Interactive Proof</h3>
+<ol type="1">
+<li><p>Interactive Proof</p>
+<ol type="1">
+<li><p>A Prover and a Verifier , Prover needs to convince Verifier some
+proposition .</p>
+<p>Usually , Prover needs to convince Verifier that some proposition is
+<strong>true</strong> . <span class="math inline">\((x\in
+L)\)</span></p></li>
+<li><p>Prover : with unbounded computation sources</p>
+<p>Verifier : Only efficient algorithm</p></li>
+<li><p>Complexity Class : IP : class of problems that are easy to
+determine with an interactive proof</p>
+<ul>
+<li><span class="math inline">\(NP\subsetneq IP\)</span></li>
+</ul></li>
+<li><p>Transcript</p>
+<p>Prover sends <span class="math inline">\(m_1\)</span> to Verifier ,
+Verifier receives <span class="math inline">\(m_1\)</span> and sends
+<span class="math inline">\(m_2\)</span> to Prover , ... <span
+class="math display">\[
+\begin{aligned}
+P(x,r_p)\to m_1\quad \quad &amp;\\
+V(x,r_v,m_1,\cdots,m_{i-1})\to m_i\quad&amp; \text{for odd }i\\
+P(x,r_p,m_1,\cdots,m_{i-1})\to m_i\quad&amp; \text{for even }i\\
+V(x,r_v,m_1,\cdots,m_k)\to y\in \{0,1\}&amp;
+\end{aligned}
+\]</span></p>
+<ol type="1">
+<li>Def : transcript : <span
+class="math inline">\(\tau=\{m_1,\cdots,m_k\}\)</span></li>
+<li>Def : <span class="math inline">\(\braket{P,V}(x):=y\)</span></li>
+</ol></li>
+</ol></li>
+<li><p>IP Criteria</p>
+<ol type="1">
+<li><p>Completeness : If Prover is honest , Verifier accepts the proof
+.</p>
+<p><span class="math inline">\(\forall x\in L ,
+\Pr\{\left&lt;P,V\right&gt;(x)=1\}=1\)</span></p></li>
+<li><p>Soundness : If Prover is dishonest , Verifier rejects the proof
+(with high probability) .</p></li>
+<li><p>Zero-Knowledge : If Prover is honest , Verifier cannot know more
+than "knowing the proposition is true"</p></li>
+</ol></li>
+<li><p>Definition (somewhat formal (?) )</p>
+<p>A pair of randomized algorithms <span
+class="math inline">\((P,V)\)</span> is an interactive proof for <span
+class="math inline">\(L\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(V\)</span> runs in poly-time</p></li>
+<li><p>Completeness : <span class="math inline">\(\forall x\in L ,
+\Pr\{\braket{P,V}(x)=1\}=1\)</span></p></li>
+<li><p>Soundness : <span class="math inline">\(\forall x\notin L,\forall
+P^*,\Pr\{\braket{P^*,V}(x)=1\}&lt; \epsilon\)</span></p></li>
+<li><p>Zero-Knowledge (Optimal)</p>
+<p><span class="math inline">\(\forall x\in L\)</span> , <span
+class="math inline">\(V\)</span> can generate everything itself with
+bounded computation time without interaction</p>
+<p><strong>gain sth. cannot gain by PPT <span
+class="math inline">\(\Rightarrow\)</span> gain
+knowledge</strong></p></li>
+</ol></li>
+</ol>
+<h3 id="ip-examples">3 IP Examples</h3>
+<ol type="1">
+<li><p>Graph non-Isomorphism</p>
+<ol type="1">
+<li><p>Description</p>
+<p>Prover and Verifier know graphs <span
+class="math inline">\(G_0,G_1\)</span> .</p>
+<p>Prover wants to convince verifier that <span
+class="math inline">\(G_0\)</span> is not isomorphic with <span
+class="math inline">\(G_1\)</span> . <span class="math display">\[
+\begin{aligned}
+&amp;G_0=(V,E_0) , G_1=(V,E_1)\\
+\not\exists \pi\in S_{|V|}&amp;\ ,\ \{(\pi(u),\pi(v)):(u,v)\in E_0\}=E_1
+\end{aligned}
+\]</span></p></li>
+<li><p>Protocol</p>
+<p>Global : Prover and Verifier already know <span
+class="math inline">\(G_0,G_1\)</span> .</p>
+<table>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 13%" />
+<col style="width: 49%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Prover</th>
+<th style="text-align: center;"></th>
+<th>Verifier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td><span class="math inline">\(b\leftarrow \{0,1\}\)</span> , <span
+class="math inline">\(\pi\leftarrow S_{|V|}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">&lt;- <span class="math inline">\(\tilde
+G\)</span> --</td>
+<td><span class="math inline">\(\tilde G:=\pi(G_b)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Find $b $ , <span
+class="math inline">\(G_{\tilde b}\sim \tilde G\)</span></td>
+<td style="text-align: center;">-- <span class="math inline">\(\tilde
+b\)</span> -&gt;</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td><span class="math inline">\(y=\begin{cases}1&amp; \text{if }b=\tilde
+b\\0&amp;\text{otherwise}\end{cases}\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Analysis</p>
+<ol type="1">
+<li><p>Completeness : When <span class="math inline">\(G_0\not\sim
+G_1\)</span> , <span class="math inline">\(G_{\tilde b}\sim \tilde G\sim
+G_b\)</span> , so <span class="math inline">\(b=\tilde b\)</span> .
+Always accept .</p></li>
+<li><p>Soundness : When <span class="math inline">\(G_0\sim G_1\)</span>
+, any prover can only guess <span class="math inline">\(\tilde
+b\)</span> randomly since <span class="math inline">\(G_0\sim G_1\sim
+\tilde G\)</span> . <span class="math inline">\(\Pr\{V\text{
+accept}\}\le \frac{1}{2}\)</span> .</p>
+<p>Proof : <span class="math inline">\(P^*\)</span> knows <span
+class="math inline">\(\tilde G\)</span> and wants to guess <span
+class="math inline">\(b\)</span> , we need to prove that <span
+class="math display">\[
+\forall P^* , \Pr\{P^*(\tilde G)=b\}\le \frac{1}{2}
+\]</span> Since <span class="math inline">\(\forall \tilde G\sim G_0\sim
+G_1\)</span> , <span class="math display">\[
+\begin{aligned}
+\Pr\{\pi(G_0)=\tilde G\}&amp;=\Pr\{\pi(G_1)=\tilde G\}\\
+\Rightarrow \Pr\{\pi(G_b)=\tilde G|b=0\}&amp;=\Pr\{\pi(G_b)=\tilde
+G|b=1\}\\
+\Rightarrow \Pr\{b=0|\pi(G_b)=\tilde G\}&amp;=\Pr\{b=1|\pi(G_b)=\tilde
+G\}\\
+\end{aligned}
+\]</span> Therefore , <span class="math display">\[
+\forall P^* , \Pr\{P^*(\tilde G)=b|\pi(G_b)=\tilde G\}\le\frac{1}{2}
+\]</span> Therefore , <span class="math display">\[
+\begin{aligned}
+\Pr\{P^*(\tilde G)=b\}&amp;=\sum_{\tilde G}\Pr\{P^*(\tilde
+G)=b|\pi(G_b)=\tilde G\}\Pr\{\pi(G_b)=\tilde G\}\\
+&amp;\le \frac{1}{2}\sum_{\tilde G}\Pr\{\pi(G_b)=\tilde G\}\\
+&amp;=\frac{1}{2}
+\end{aligned}
+\]</span> <span class="math inline">\(k\)</span> rounds : <span
+class="math inline">\(\Pr\{V\text{ accepts}\}\le \frac{1}{2^k}\)</span>
+.</p></li>
+<li><p>Zero-Knowledge</p>
+<p>Verifier itself knows <span class="math inline">\(b,\pi,\tilde
+G\)</span> . Prover tells Verifier <span class="math inline">\(\tilde
+b\)</span> .</p>
+<p>Only consider <span class="math inline">\(G_0\not\sim G_1\)</span> ,
+then <span class="math inline">\(\tilde b\)</span> must be <span
+class="math inline">\(b\)</span> . Verifier itself can generate the
+transcript .</p>
+<blockquote>
+<p>注意：因为 zero-knowledge 是对 Prover 的保护，我们只需要保护诚实
+Prover 的隐私，因此只要考虑命题成立的情况（即 <span
+class="math inline">\(G_0\not\sim G_1\)</span>）。</p>
+</blockquote></li>
+</ol></li>
+<li><p>Notes</p>
+<blockquote>
+<p>Given <span class="math inline">\(G_0\not\sim G_1\)</span> , Verifier
+can generate the proof itself</p>
+<p>Due to Verifier's randomness , Prover cannot generate the proof
+itself</p>
+</blockquote>
+<blockquote>
+<p>Graph non-isomorphism Problem is not <span
+class="math inline">\(NP\)</span> , but can be solved by <span
+class="math inline">\(IP\)</span> .</p>
+</blockquote></li>
+</ol></li>
+<li><p>Collision Problem</p>
+<ol type="1">
+<li><p>Definition</p>
+<ol type="1">
+<li>Given <span class="math inline">\(h:\{0,1\}^n\to\{0,1\}^n\)</span> ,
+either <span class="math inline">\(h\)</span> is a permutation or <span
+class="math inline">\(|Im(h)|\le 2^{n-1}\)</span> .</li>
+<li>Prover wants to convince Verifier that <span
+class="math inline">\(h\)</span> is a permutation .</li>
+</ol></li>
+<li><p>Protocol 1</p>
+<p>Global : Prover and Verifier already know <span
+class="math inline">\(h\)</span> . <span class="math inline">\(\forall
+x\in \{0,1\}^n\)</span> , Verifier can get <span
+class="math inline">\(h(x)\)</span> in poly-time .</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 14%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Prover</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Verifier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(x\leftarrow
+\{0,1\}^n\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">&lt;- <span
+class="math inline">\(y\)</span> --</td>
+<td style="text-align: center;"><span
+class="math inline">\(y:=h(x)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Find <span class="math inline">\(\tilde
+x\)</span> , <span class="math inline">\(h(\tilde x)=y\)</span></td>
+<td style="text-align: center;">-- <span class="math inline">\(\tilde
+x\)</span> -&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{cases}1&amp;x=\tilde
+x\\0&amp;\text{otherwise}\end{cases}\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Analysis 1</p>
+<ol type="1">
+<li><p>Completeness : When <span class="math inline">\(h\)</span> is a
+permutation , <span class="math inline">\(h\)</span> is a injection ,
+<span class="math inline">\(x=\tilde x\)</span> .</p></li>
+<li><p>Soundness : When <span class="math inline">\(h\)</span> is not a
+permutation , then <span class="math inline">\(|Im(h)|\le
+2^{n-1}\)</span> . <span class="math display">\[
+\forall x , P^*\ ,\ \Pr\{P^*(h(x))=x\}=\frac{1}{|h^{-1}(h(x))|}
+\]</span> Therefore , <span class="math display">\[
+\begin{aligned}
+\Pr\{V\text{ accepts}\}&amp;=\sum_{y\in Im(h)}\Pr\{y=f(x)|x\in
+\{0,1\}^n\}\Pr\{P^*(h(x))=x\}\\
+&amp;=\sum_{y\in Im(h)}\frac{|h^{-1}(y)|}{2^n}\frac{1}{|h^{-1}(y)|}\\
+&amp;=\frac{|Im(h)|}{2^n}\\
+&amp;\le \frac{1}{2}
+\end{aligned}
+\]</span> <span class="math inline">\(k\)</span> rounds : <span
+class="math inline">\(\Pr\{V \text{ accepts}\}\le\frac{1}{2^k}\)</span>
+.</p></li>
+<li><p>Zero-knowledge :</p>
+<p>Verifier itself knows <span class="math inline">\(x,y\)</span> .
+Prover tells Verifier <span class="math inline">\(\tilde x\)</span>
+.</p>
+<p>When <span class="math inline">\(h\)</span> is a permutation , <span
+class="math inline">\(\tilde x=x\)</span> , so Verifier can generate
+<span class="math inline">\(\tilde x\)</span> itself .</p></li>
+</ol></li>
+<li><p>Protocol 2</p>
+<p>Global : Prover and Verifier already know <span
+class="math inline">\(h\)</span> . <span class="math inline">\(\forall
+x\in \{0,1\}^n\)</span> , Verifier can get <span
+class="math inline">\(h(x)\)</span> in poly-time .</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 10%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Prover</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Verifier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">&lt;- <span
+class="math inline">\(y\)</span> --</td>
+<td style="text-align: center;"><span class="math inline">\(y\leftarrow
+\{0,1\}^n\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Find <span
+class="math inline">\(x\)</span> , <span
+class="math inline">\(h(x)=y\)</span></td>
+<td style="text-align: center;">-- <span
+class="math inline">\(x\)</span> -&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{cases}1&amp;h(x)=y\\0&amp;\text{otherwise}\end{cases}\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Analysis 2</p>
+<ol type="1">
+<li><p>Completeness : When <span class="math inline">\(h\)</span> is a
+permutation , <span class="math inline">\(h\)</span> is a bijection ,
+<span class="math inline">\(x\)</span> always exists and unique . Always
+accept .</p></li>
+<li><p>Soundness : When <span class="math inline">\(h\)</span> is not a
+permutation , <span class="math inline">\(|Im(h)|\le 2^{n-1}\)</span> .
+<span class="math display">\[
+\Pr\{h^{-1}(y)=\varnothing|y\leftarrow
+\{0,1\}^n\}=1-\frac{|Im(h)|}{2^n}\ge \frac{1}{2}
+\]</span> When <span
+class="math inline">\(h^{-1}(y)=\varnothing\)</span> , any Prover cannot
+convince verifier , so <span class="math display">\[
+\Pr\{V\text{ accepts}\}\le 1-\Pr\{h^{-1}(y)=\varnothing|y\leftarrow
+\{0,1\}^n\}\le \frac{1}{2}
+\]</span> <span class="math inline">\(k\)</span> rounds : <span
+class="math inline">\(\Pr\{V \text{ accepts}\}\le\frac{1}{2^k}\)</span>
+.</p></li>
+<li><p>Zero-knowledge : NOT zero-knowledge</p>
+<p><span class="math inline">\(V\)</span> knows <span
+class="math inline">\(h^{-1}(y)\)</span> , which cannot be computed in
+poly-time by itself .</p></li>
+</ol></li>
+<li><p>Notes</p>
+<blockquote>
+<p>In Protocol 1 , when <span class="math inline">\(h\)</span> is a
+permutation , Verifier can always generate a valid proof</p>
+</blockquote>
+<blockquote>
+<p>In both Protocols , Prover must have the ability to solve <span
+class="math inline">\(h^{-1}\)</span> . This may lead Verifier knowing
+something more .</p>
+</blockquote></li>
+</ol></li>
+</ol>
+<h3 id="formularize-zero-knowledge-ip">4 Formularize zero-knowledge
+IP</h3>
+<ol type="1">
+<li><p>Security Parameter : <span
+class="math inline">\(\kappa\)</span></p>
+<ol type="1">
+<li>For efficiency : usually <span
+class="math inline">\(|x|=poly(\kappa)\)</span> , PPT should run in
+<span class="math inline">\(poly(\kappa)\)</span> .</li>
+<li>For security : negligible function</li>
+</ol></li>
+<li><p>Negligible function : <span
+class="math inline">\(\epsilon\)</span></p>
+<ol type="1">
+<li><p>Def : negligible function <span
+class="math inline">\(\epsilon:\mathbb Z^*\to \mathbb R^*\)</span></p>
+<p>For all polynomial <span class="math inline">\(p\)</span> , <span
+class="math inline">\(\exists c\in \mathbb Z^* , \forall
+k&gt;c,\epsilon(k)&lt;\frac{1}{p(k)}\)</span> .</p></li>
+<li><p>Propositions :</p>
+<ol type="1">
+<li><span class="math inline">\(\epsilon , \delta\)</span> negligible
+<span class="math inline">\(\to\)</span> <span
+class="math inline">\(\epsilon+\delta , \epsilon\delta\)</span>
+negligible</li>
+<li><span class="math inline">\(\epsilon\)</span> negligible <span
+class="math inline">\(\to\)</span> For all polynomial <span
+class="math inline">\(p\)</span> , <span
+class="math inline">\(p\epsilon\)</span> negligible</li>
+</ol></li>
+<li><p>Conventions :</p>
+<ol type="1">
+<li><p><span class="math inline">\(\epsilon\)</span> noticeable : <span
+class="math inline">\(\exists\)</span> polynomial <span
+class="math inline">\(p\)</span> , <span class="math inline">\(\exists
+c\in \mathbb Z^*,\forall k&gt;c,\epsilon(k)\ge
+\frac{1}{p(k)}\)</span></p></li>
+<li><p><span class="math inline">\(A\)</span> happens with overwhelming
+probability : <span class="math display">\[
+\Pr\{A\}\ge 1-\epsilon \quad\quad \epsilon \text{ is negligible}
+\]</span></p></li>
+</ol></li>
+</ol>
+<blockquote>
+<p>There exists function that is neither negligible nor noticeable</p>
+</blockquote></li>
+<li><p>View of Verifier <span class="math display">\[
+View_V^P(x):=(x,r,\tau)
+\]</span></p></li>
+<li><p>Honest-Verifier Zero-knowledge</p>
+<ol type="1">
+<li><p>Perfect honest-verifier zero-knowledge <span
+class="math display">\[
+\exists M\in PPT\ ,\ \forall x\in L\ ,\ View_V^P(x)\equiv M(x)
+\]</span></p></li>
+<li><p>Statistical honest-verifier zero-knowledge</p>
+<p>The statistical distance between <span
+class="math inline">\(View_V^P(x)\)</span> and <span
+class="math inline">\(M(x)\)</span> is negligible</p>
+<p><span class="math inline">\(\exists M\in PPT\ ,\ \forall x\in
+L\)</span> , <span class="math display">\[
+SD(View_V^P(x),M(x))=\frac{1}{2}\sum_{s}\left|\Pr\{View_V^P(x)=s\}-\Pr\{M(x)=s\}\right|&lt;\epsilon
+\]</span></p></li>
+<li><p>Computational honest-verifier zero-knowledge</p>
+<p><span class="math inline">\(\exists M\in PPT\ ,\ \forall x\in L\ , \
+\forall\)</span> distinguisher <span class="math inline">\(D\in
+PPT\)</span> , <span class="math display">\[
+\left|\Pr\{D(View_V^P(x))=1\}-\Pr\{D(M(x))=1\}\right|&lt;\epsilon
+\]</span></p></li>
+</ol></li>
+<li><p>Dishonest Verifier</p>
+<p><span class="math inline">\(\braket{P,V}\)</span> achieves
+perfect/statistical/computational dishonest-verifier zero-knowledge if
+:</p>
+<p><span class="math inline">\(\forall V^*\in PPT\ , \ \exists\)</span>
+expected poly-time randomized algorithm <span
+class="math inline">\(M^*\)</span> , <span class="math inline">\(\forall
+x\in L\)</span> , <span class="math inline">\(View_{V^*}^P(x)\)</span>
+and <span class="math inline">\(M^*(x)\)</span> are
+perfectly/statistically/computationally indistinguishable .</p></li>
+<li><p>Graph Isomorphism IP with dishonest-verifier zero-knowledge</p>
+<ol type="1">
+<li><p>Definition</p>
+<p>Prover and Verifier know graph <span
+class="math inline">\(G_0,G_1\)</span> .</p>
+<p>Prover wants to convince Verifier that <span
+class="math inline">\(G_0\sim G_1\)</span> , i.e. <span
+class="math inline">\(\exists \pi,\pi(G_0)=G_1\)</span> .</p></li>
+<li><p>Protocol</p>
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 12%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Prover</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Verifier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(\pi_r\leftarrow S_n\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\tilde
+G:=\pi_r(G_0)\)</span></td>
+<td style="text-align: center;">--<span class="math inline">\(\tilde
+G\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">&lt;-<span
+class="math inline">\(b\)</span>--</td>
+<td style="text-align: center;"><span class="math inline">\(b\leftarrow
+\{0,1\}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">find <span
+class="math inline">\(\pi_b\)</span> , s.t. <span
+class="math inline">\(\tilde G=\pi_b(G_b)\)</span></td>
+<td style="text-align: center;">--<span
+class="math inline">\(\pi_b\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{cases}1&amp;\tilde
+G=\pi_b(G_b)\\0&amp;\text{otherwise}\end{cases}\)</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note : If Prover knows <span class="math inline">\(\pi\)</span> that
+<span class="math inline">\(\pi(G_0)=G_1\)</span> , then <span
+class="math inline">\(\pi_b\)</span> can be constructed : <span
+class="math display">\[
+\pi_b=\begin{cases}\pi_r&amp;b=0\\\pi_r\circ\pi^{-1}&amp;b=1\end{cases}
+\]</span></p>
+</blockquote></li>
+<li><p>Analysis</p>
+<ol type="1">
+<li><p>Completeness : If <span class="math inline">\(G_0\sim
+G_1\)</span> , <span class="math inline">\(\pi_b\)</span> can be
+constructed as above . Always Accept .</p></li>
+<li><p>Soundness : If <span class="math inline">\(G_0\not\sim
+G_1\)</span> , <span class="math inline">\(\exists b^*\in
+\{0,1\},G_{b^*}\not\sim\tilde G\)</span></p>
+<p><span class="math inline">\(\Pr\{V \text{ rejects}\}\ge \Pr\{V\text{
+chooses }b^*\}=\frac{1}{2}\)</span></p>
+<blockquote>
+<p>Note : we cannot let Verifier just choose <span
+class="math inline">\(b=1\)</span> , since a malicious Prover can
+violate the protocol , <span class="math inline">\(\pi_r\)</span> may
+not be a permutation , and <span class="math inline">\(\tilde G\)</span>
+may not isomorphic to <span class="math inline">\(G_0\)</span> .</p>
+</blockquote></li>
+<li><p>honest-verifier zero-knowledge :</p>
+<p>Verifier itself knows : <span
+class="math inline">\(G_0,G_1,b\)</span> , <span
+class="math inline">\(r\)</span> : randomness generating <span
+class="math inline">\(b\)</span> . Prover tells verifier <span
+class="math inline">\(\tilde G,\pi_b\)</span> .</p>
+<p><span class="math inline">\(View_V^P=(G_0,G_1,r,b,\tilde
+G,\pi_b)\)</span> .</p>
+<p><span class="math inline">\(M_V\)</span> :</p>
+<ol type="1">
+<li>sample <span class="math inline">\(b\leftarrow \{0,1\}\)</span></li>
+<li>choose <span class="math inline">\(\pi_b\leftarrow S_n\)</span></li>
+<li><span class="math inline">\(\tilde G:=\pi_b(G_b)\)</span></li>
+</ol>
+<p>Since Prover and Verifier are honest , <span
+class="math inline">\(b\)</span> is independent of $G $ , and <span
+class="math inline">\(\pi_b\)</span> is generated by a uniformly random
+<span class="math inline">\(\pi_r\)</span> hence is also uniformly
+random .</p></li>
+<li><p>dishonest-verifier zero-knowledge :</p>
+<p>Malicious Verifier can choose <span class="math inline">\(b\)</span>
+based on <span class="math inline">\(\tilde G\)</span> to gain more
+knowledge .</p>
+<p><span class="math inline">\(M^*\)</span> : should perform as Prover
+:</p>
+<ol type="1">
+<li>guess <span class="math inline">\(b^*\in \{0,1\}\)</span></li>
+<li>compute <span class="math inline">\(\pi_r\leftarrow S_n\)</span> ,
+<span class="math inline">\(\tilde G:=\pi_r(G_{b^*})\)</span></li>
+<li>use Verifier to receive <span class="math inline">\(b\)</span></li>
+<li>If <span class="math inline">\(b\neq b^*\)</span> , go back to
+1.</li>
+<li>If <span class="math inline">\(b=b^*\)</span> , then let <span
+class="math inline">\(\pi_b=\pi_r\)</span> , get the view</li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol>
+]]></content>
+      <categories>
+        <category>课程笔记</category>
+        <category>零知识证明和多方安全计算</category>
+      </categories>
+      <tags>
+        <tag>密码学</tag>
+        <tag>密码学-零知识证明</tag>
+        <tag>密码学-交互式证明</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Algorithm Design 2</title>
     <url>/2023/10/06/Algorithm-Design-Note-2/</url>
-    <content><![CDATA[<h3 id="1-3-dfs-application"><a href="#1-3-dfs-application" class="headerlink" title="1.3 dfs application"></a>1.3 dfs application</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
+    <content><![CDATA[<h3 id="dfs-application">1.3 dfs application</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol type="1">
 <li><p>THM parenthesis</p>
-<p>on dfs tree , if $u$ is one ancestor of $v$ , then $[v.d,v.f]\subset[u.d,u.f]$</p>
-<p>on dfs tree , otherwise , then $[u.d,u.f]\cap [v.d,v.f]=\varnothing$</p>
-</li>
+<p>on dfs tree , if <span class="math inline">\(u\)</span> is one
+ancestor of <span class="math inline">\(v\)</span> , then <span
+class="math inline">\([v.d,v.f]\subset[u.d,u.f]\)</span></p>
+<p>on dfs tree , otherwise , then <span
+class="math inline">\([u.d,u.f]\cap
+[v.d,v.f]=\varnothing\)</span></p></li>
 <li><p>THM white-path</p>
-<p>on dfs tree ,  at the time when $u$ is discovered , </p>
-<p> $u$ is one ancestor of $v$  $\Leftrightarrow$ $\exists$ white path from $u$ to $v$ </p>
-<p>即： $v$ 是 $u$ 的后代$\Leftrightarrow$在 $u$ 刚访问到的时候一定存在一条完全没有被访问过的路径 $u\to v$ .</p>
+<p>on dfs tree , at the time when <span class="math inline">\(u\)</span>
+is discovered ,</p>
+<p><span class="math inline">\(u\)</span> is one ancestor of <span
+class="math inline">\(v\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(\exists\)</span> white path from <span
+class="math inline">\(u\)</span> to <span
+class="math inline">\(v\)</span></p>
+<p>即： <span class="math inline">\(v\)</span> 是 <span
+class="math inline">\(u\)</span> 的后代<span
+class="math inline">\(\Leftrightarrow\)</span>在 <span
+class="math inline">\(u\)</span>
+刚访问到的时候一定存在一条完全没有被访问过的路径 <span
+class="math inline">\(u\to v\)</span> .</p>
 <ul>
 <li>Proof : use parenthesis THM</li>
 </ul>
-<p>$\Rightarrow$ trivial</p>
-<p>$\Leftarrow$  proof by contradiction </p>
-<p>Consider a white path $x_1=u,x_2,\cdots,x_m=v$ , and $x_k$ is the last vertex that is a descendent of $u$ (including $u$ itself) .</p>
-<p>We need to prove that $x_{k+1}$ is also a descendent of $u$ , leading to contradiction . </p>
-<p>Therefore , $u.d&lt;x_k.d&lt;x_k.f&lt;u.f$ , </p>
-<p>Case 1 : $x_k.d<x_{k+1}.d<x_{k+1}.f<x_k.f$ -> $x_{k+1}$ is also a descendent of $u$ .</p>
-<p>Case 2 : $x_k.d&lt;x_k.f&lt;x_{k+1}.d&lt;x_{k+1}.f$ : Impossible .</p>
-</li>
+<p><span class="math inline">\(\Rightarrow\)</span> trivial</p>
+<p><span class="math inline">\(\Leftarrow\)</span> proof by
+contradiction</p>
+<p>Consider a white path <span
+class="math inline">\(x_1=u,x_2,\cdots,x_m=v\)</span> , and <span
+class="math inline">\(x_k\)</span> is the last vertex that is a
+descendent of <span class="math inline">\(u\)</span> (including <span
+class="math inline">\(u\)</span> itself) .</p>
+<p>We need to prove that <span class="math inline">\(x_{k+1}\)</span> is
+also a descendent of <span class="math inline">\(u\)</span> , leading to
+contradiction .</p>
+<p>Therefore , <span
+class="math inline">\(u.d&lt;x_k.d&lt;x_k.f&lt;u.f\)</span> ,</p>
+<p>Case 1 : <span
+class="math inline">\(x_k.d&lt;x_{k+1}.d&lt;x_{k+1}.f&lt;x_k.f\)</span>
+-&gt; <span class="math inline">\(x_{k+1}\)</span> is also a descendent
+of <span class="math inline">\(u\)</span> .</p>
+<p>Case 2 : <span
+class="math inline">\(x_k.d&lt;x_k.f&lt;x_{k+1}.d&lt;x_{k+1}.f\)</span>
+: Impossible .</p></li>
 <li><p>Strongly Connected Components (SCC)</p>
-<ol>
-<li><p>View : any directed graph can be viewed as a DAG of SCC</p>
-</li>
-<li><p>Find SCC ?  Kosaraju’s Algorithm</p>
-<ol>
+<ol type="1">
+<li><p>View : any directed graph can be viewed as a DAG of SCC</p></li>
+<li><p>Find SCC ? Kosaraju's Algorithm</p>
+<ol type="1">
 <li><p>Algorithm</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dfs1</span>(G);<span class="comment">// compute the finishing time u.f</span></span><br><span class="line">G_=<span class="built_in">reverse_edge</span>(G);</span><br><span class="line"><span class="built_in">dfs2</span>(G_); <span class="comment">// In main loop , consider vertices in decreasing order of u.f</span></span><br><span class="line">Claim : Each dfs-<span class="function">tree in <span class="title">dfs2</span><span class="params">(G_)</span> is a SCC</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dfs1</span>(G);<span class="comment">// compute the finishing time u.f</span></span><br><span class="line">G_=<span class="built_in">reverse_edge</span>(G);</span><br><span class="line"><span class="built_in">dfs2</span>(G_); <span class="comment">// In main loop , consider vertices in decreasing order of u.f</span></span><br><span class="line">Claim : Each dfs-<span class="function">tree in <span class="title">dfs2</span><span class="params">(G_)</span> is a SCC</span></span><br></pre></td></tr></table></figure></li>
 <li><p>Proof</p>
-<p>Intuition : find and “delete” sink components in dfs2 , like a-topological order in $G_$ ( i.e. topological order in $G$ ) </p>
-<ol>
-<li><p>Lemma : If we start DFS at a node in a sink component , we will visit precisely all vertices in this component .</p>
-<p>Trivial .</p>
-</li>
-<li><p>Lemma (key) : node with largest $u.f$ belongs to a start component in $G$ (i.e. a sink component in $G_$)</p>
-<p>Only need to prove the following lemma .</p>
-</li>
-<li><p>Lemma ( for proving key Lemma ) : $C,D$ are two SCC , $D$ is reachable from $C$ , </p>
-<p>Then for $v\in C$ , which is the firstly visited vertex in $C$ , then $\forall u\in D,v.f&gt;u.f$</p>
-<p>Proof : </p>
-<p>Case 1 : $v$ is also the firstly visited vertex in $C\cup D$ , then by white-path THM , all nodes in $C\cup D$ are descendent of $v$ , so $\forall u\in C\cup D\backslash \{v\} , v.f&gt;u.f$ .</p>
-<p>Case 2 : $\exists y\in D$ , $y$ is the firstly visited vertex in $C\cup D$ , so $v$ is not a descendent of $y$ since $C$ is not reachable from $D$ .</p>
-<p>Therefore , by parenthesis THM , $y.d\le u.d&lt;u.f\le y.f&lt;v.d&lt;v.f$ for all $u\in D$ .</p>
-</li>
+<p>Intuition : find and "delete" sink components in dfs2 , like
+a-topological order in <span class="math inline">\(G\_\)</span> ( i.e.
+topological order in <span class="math inline">\(G\)</span> )</p>
+<ol type="1">
+<li><p>Lemma : If we start DFS at a node in a sink component , we will
+visit precisely all vertices in this component .</p>
+<p>Trivial .</p></li>
+<li><p>Lemma (key) : node with largest <span
+class="math inline">\(u.f\)</span> belongs to a start component in <span
+class="math inline">\(G\)</span> (i.e. a sink component in <span
+class="math inline">\(G\_\)</span>)</p>
+<p>Only need to prove the following lemma .</p></li>
+<li><p>Lemma ( for proving key Lemma ) : <span
+class="math inline">\(C,D\)</span> are two SCC , <span
+class="math inline">\(D\)</span> is reachable from <span
+class="math inline">\(C\)</span> ,</p>
+<p>Then for <span class="math inline">\(v\in C\)</span> , which is the
+firstly visited vertex in <span class="math inline">\(C\)</span> , then
+<span class="math inline">\(\forall u\in D,v.f&gt;u.f\)</span></p>
+<p>Proof :</p>
+<p>Case 1 : <span class="math inline">\(v\)</span> is also the firstly
+visited vertex in <span class="math inline">\(C\cup D\)</span> , then by
+white-path THM , all nodes in <span class="math inline">\(C\cup
+D\)</span> are descendent of <span class="math inline">\(v\)</span> , so
+<span class="math inline">\(\forall u\in C\cup D\backslash \{v\} ,
+v.f&gt;u.f\)</span> .</p>
+<p>Case 2 : <span class="math inline">\(\exists y\in D\)</span> , <span
+class="math inline">\(y\)</span> is the firstly visited vertex in <span
+class="math inline">\(C\cup D\)</span> , so <span
+class="math inline">\(v\)</span> is not a descendent of <span
+class="math inline">\(y\)</span> since <span
+class="math inline">\(C\)</span> is not reachable from <span
+class="math inline">\(D\)</span> .</p>
+<p>Therefore , by parenthesis THM , <span class="math inline">\(y.d\le
+u.d&lt;u.f\le y.f&lt;v.d&lt;v.f\)</span> for all <span
+class="math inline">\(u\in D\)</span> .</p></li>
+</ol></li>
+</ol></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="Chapter-2-Greedy-Algorithm"><a href="#Chapter-2-Greedy-Algorithm" class="headerlink" title="Chapter 2 : Greedy Algorithm"></a>Chapter 2 : Greedy Algorithm</h2><h3 id="2-1-Interval-Scheduling"><a href="#2-1-Interval-Scheduling" class="headerlink" title="2.1 Interval Scheduling"></a>2.1 Interval Scheduling</h3><ol>
-<li><p>Description </p>
-<p>Input : $n$ jobs $s_i,f_i$</p>
-<p>Goal : maximize the #jobs , s.t. at most one job at a time .</p>
-</li>
+<h2 id="chapter-2-greedy-algorithm">Chapter 2 : Greedy Algorithm</h2>
+<h3 id="interval-scheduling">2.1 Interval Scheduling</h3>
+<ol type="1">
+<li><p>Description</p>
+<p>Input : <span class="math inline">\(n\)</span> jobs <span
+class="math inline">\(s_i,f_i\)</span></p>
+<p>Goal : maximize the #jobs , s.t. at most one job at a time .</p></li>
 <li><p>Another view</p>
-<p>Connect all jobs pairs $[s_i,f_i],[s_j,f_j]$ if $[s_i,f_i]\cap [s_j,f_j]\neq \varnothing$ .</p>
-<p>Goal $\Leftrightarrow$ maximum independent set .</p>
-<p>In general graph : NP-hard for general graph .</p>
-</li>
+<p>Connect all jobs pairs <span
+class="math inline">\([s_i,f_i],[s_j,f_j]\)</span> if <span
+class="math inline">\([s_i,f_i]\cap [s_j,f_j]\neq \varnothing\)</span>
+.</p>
+<p>Goal <span class="math inline">\(\Leftrightarrow\)</span> maximum
+independent set .</p>
+<p>In general graph : NP-hard for general graph .</p></li>
 <li><p>Algorithm</p>
-<p>Repeat : Select the available jobs that finishes first .</p>
-</li>
+<p>Repeat : Select the available jobs that finishes first .</p></li>
 <li><p>Proof of optimality :</p>
-<p>Method : [Exchange Argument] : Compare our solution and the optimal solution .</p>
-<p>SOL : $i_1,i_2,\cdots ,i_m$ , OPT : $j_1,j_2,\cdots,j_k$ .</p>
-<ol>
-<li>Claim : If $f_{i_1}\le f_{j_1}$ , then $f_{i_r}\le f_{j_r}$ for all $r\ge 1$ .</li>
+<p>Method : [Exchange Argument] : Compare our solution and the optimal
+solution .</p>
+<p>SOL : <span class="math inline">\(i_1,i_2,\cdots ,i_m\)</span> , OPT
+: <span class="math inline">\(j_1,j_2,\cdots,j_k\)</span> .</p>
+<ol type="1">
+<li>Claim : If <span class="math inline">\(f_{i_1}\le f_{j_1}\)</span> ,
+then <span class="math inline">\(f_{i_r}\le f_{j_r}\)</span> for all
+<span class="math inline">\(r\ge 1\)</span> .</li>
 </ol>
 <p>Proof : [Induction]</p>
-<p>If the claim is true for $r-1$ , suppose the claim is not true for $r$ , i.e. $f_{i_r}&gt;f_{j_r}$ . Since $f_{i_{r-1}}\le f_{j_{r-1}}$ , and $s_{j_r}&gt;f_{j_{r-1}}$ , then $f_{i_{r-1}}&lt;s_{j_r}$ , so $j_r$ is also available , but has earlier finish time , contradict .</p>
-<ol>
-<li>If $m&lt;k$ , then $f_{i_m}&lt;f_{j_m}$ . We can use $j_{m+1},\cdots,j_k$ after  $i_m$ .</li>
+<p>If the claim is true for <span class="math inline">\(r-1\)</span> ,
+suppose the claim is not true for <span class="math inline">\(r\)</span>
+, i.e. <span class="math inline">\(f_{i_r}&gt;f_{j_r}\)</span> . Since
+<span class="math inline">\(f_{i_{r-1}}\le f_{j_{r-1}}\)</span> , and
+<span class="math inline">\(s_{j_r}&gt;f_{j_{r-1}}\)</span> , then <span
+class="math inline">\(f_{i_{r-1}}&lt;s_{j_r}\)</span> , so <span
+class="math inline">\(j_r\)</span> is also available , but has earlier
+finish time , contradict .</p>
+<ol start="2" type="1">
+<li>If <span class="math inline">\(m&lt;k\)</span> , then <span
+class="math inline">\(f_{i_m}&lt;f_{j_m}\)</span> . We can use <span
+class="math inline">\(j_{m+1},\cdots,j_k\)</span> after <span
+class="math inline">\(i_m\)</span> .</li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<h3 id="2-2-Scheduling-to-minimize-lateness"><a href="#2-2-Scheduling-to-minimize-lateness" class="headerlink" title="2.2. Scheduling to minimize lateness"></a>2.2. Scheduling to minimize lateness</h3><ol>
+<h3 id="scheduling-to-minimize-lateness">2.2. Scheduling to minimize
+lateness</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : $n$ jobs , each job $i$ has ddl $d_i$ and length $t_i$ . Def lateness : $l_i:=\max\{0,f_i-d_i\}$</p>
-<p>Goal : find a schedule of all $n$ jobs , and minimize the maximal lateness .</p>
-</li>
+<p>Input : <span class="math inline">\(n\)</span> jobs , each job <span
+class="math inline">\(i\)</span> has ddl <span
+class="math inline">\(d_i\)</span> and length <span
+class="math inline">\(t_i\)</span> . Def lateness : <span
+class="math inline">\(l_i:=\max\{0,f_i-d_i\}\)</span></p>
+<p>Goal : find a schedule of all <span class="math inline">\(n\)</span>
+jobs , and minimize the maximal lateness .</p></li>
 <li><p>Equal formularization</p>
-<p>Goal : find a permutation $\{p_i\}\in S_n$ , then $f_i=\sum_{j=1}^i t_{p_j}$ , $l_i:=\max\{0,f_i-d_{p_i}\}$ . Minimize $\max\{l_i\}$ .</p>
-<p>$\Leftrightarrow$ $l_i:=f_i-d_{p_i}$ , Minimize $\max\{0,\max\{l_i\}\}$ .</p>
-</li>
+<p>Goal : find a permutation <span class="math inline">\(\{p_i\}\in
+S_n\)</span> , then <span class="math inline">\(f_i=\sum_{j=1}^i
+t_{p_j}\)</span> , <span
+class="math inline">\(l_i:=\max\{0,f_i-d_{p_i}\}\)</span> . Minimize
+<span class="math inline">\(\max\{l_i\}\)</span> .</p>
+<p><span class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(l_i:=f_i-d_{p_i}\)</span> , Minimize <span
+class="math inline">\(\max\{0,\max\{l_i\}\}\)</span> .</p></li>
 <li><p>Algorithm</p>
-<p>Schedule the job in increasing order of $d_i$ .</p>
-</li>
+<p>Schedule the job in increasing order of <span
+class="math inline">\(d_i\)</span> .</p></li>
 <li><p>Proof of optimality</p>
-<ol>
-<li><p>Def (Inversion) : Consider a schedule $A’$ , $(i,j)$ is an inversion if $i$ is scheduled before $j$ but $d_i&gt;d_j$ .</p>
-</li>
-<li><p>If OPT$\neq $ SOL , there must be an inversion , then there must be an adjacent inversion . Suppose $(i,i+1)$ is an inversion , then $d_{p_i}&gt;d_{p_{i+1}}$ .</p>
-<p>Let $f=\sum_{j=1}^{i-1}t_{p_j}$ , so $f_i=f+t_{p_i}$ , $f_{i+1}=f+t_{p_i}+t_{p_{i+1}}$ , so $l_i=f+t_{p_i}-d_{p_i}$ , $l_{i+1}=f+t_{p_i}+t_{p_{i+1}}-d_{p_{i+1}}$ .</p>
-<p>If swap $(i,i+1)$ , then $f_{i+1}’=f+t_{p_{i+1}}$ , $f_{i}’=f+t_{p_{i+1}}+t_{p_i}$ , so $l_{i+1}’=f+t_{p_{i+1}}-d_{p_{i+1}}$ , $l_i’=f+t_{p_{i+1}}+t_{p_i}-d_{p_i}$ .</p>
-<p>Therefore , obviously , $l_{i+1}’<l_{i+1}$ . Since $d_{p_i}>d_{p_{i+1}}$ , then $l_i’&lt;l_i$ . Therefore , swap can lead to better solution , so OPT is not optimal . </p>
-</li>
+<ol type="1">
+<li><p>Def (Inversion) : Consider a schedule <span
+class="math inline">\(A&#39;\)</span> , <span
+class="math inline">\((i,j)\)</span> is an inversion if <span
+class="math inline">\(i\)</span> is scheduled before <span
+class="math inline">\(j\)</span> but <span
+class="math inline">\(d_i&gt;d_j\)</span> .</p></li>
+<li><p>If OPT$$ SOL , there must be an inversion , then there must be an
+adjacent inversion . Suppose <span
+class="math inline">\((i,i+1)\)</span> is an inversion , then <span
+class="math inline">\(d_{p_i}&gt;d_{p_{i+1}}\)</span> .</p>
+<p>Let <span class="math inline">\(f=\sum_{j=1}^{i-1}t_{p_j}\)</span> ,
+so <span class="math inline">\(f_i=f+t_{p_i}\)</span> , <span
+class="math inline">\(f_{i+1}=f+t_{p_i}+t_{p_{i+1}}\)</span> , so <span
+class="math inline">\(l_i=f+t_{p_i}-d_{p_i}\)</span> , <span
+class="math inline">\(l_{i+1}=f+t_{p_i}+t_{p_{i+1}}-d_{p_{i+1}}\)</span>
+.</p>
+<p>If swap <span class="math inline">\((i,i+1)\)</span> , then <span
+class="math inline">\(f_{i+1}&#39;=f+t_{p_{i+1}}\)</span> , <span
+class="math inline">\(f_{i}&#39;=f+t_{p_{i+1}}+t_{p_i}\)</span> , so
+<span
+class="math inline">\(l_{i+1}&#39;=f+t_{p_{i+1}}-d_{p_{i+1}}\)</span> ,
+<span
+class="math inline">\(l_i&#39;=f+t_{p_{i+1}}+t_{p_i}-d_{p_i}\)</span>
+.</p>
+<p>Therefore , obviously , <span
+class="math inline">\(l_{i+1}&#39;&lt;l_{i+1}\)</span> . Since <span
+class="math inline">\(d_{p_i}&gt;d_{p_{i+1}}\)</span> , then <span
+class="math inline">\(l_i&#39;&lt;l_i\)</span> . Therefore , swap can
+lead to better solution , so OPT is not optimal .</p></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<h3 id="2-3-Shortest-Path-without-w-lt-0"><a href="#2-3-Shortest-Path-without-w-lt-0" class="headerlink" title="2.3. Shortest Path (without $w&lt;0$)"></a>2.3. Shortest Path (without $w&lt;0$)</h3><ol>
+<h3 id="shortest-path-without-w0">2.3. Shortest Path (without <span
+class="math inline">\(w&lt;0\)</span>)</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : weighted graph $G=(V,E)$ , start vertex $s$ .</p>
-<p>Output : $d(u)$ for all $u\in V$ , where $d(u)=\min_{p\text{ is a path }s\to u}\{\sum_{e\in p}l(e)\}$  .</p>
-</li>
+<p>Input : weighted graph <span class="math inline">\(G=(V,E)\)</span> ,
+start vertex <span class="math inline">\(s\)</span> .</p>
+<p>Output : <span class="math inline">\(d(u)\)</span> for all <span
+class="math inline">\(u\in V\)</span> , where <span
+class="math inline">\(d(u)=\min_{p\text{ is a path }s\to u}\{\sum_{e\in
+p}l(e)\}\)</span> .</p></li>
 <li><p>Algorithm [Dijkstra 1959]</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Init</span></span><br><span class="line"><span class="keyword">for</span>(u in V)&#123;</span><br><span class="line">    d[u]=+inf;</span><br><span class="line">&#125;</span><br><span class="line">d[s]=<span class="number">0</span>; S.<span class="built_in">insert</span>(s);</span><br><span class="line"><span class="comment">// Main Algorithm</span></span><br><span class="line"><span class="keyword">while</span>(S != V)&#123;</span><br><span class="line">    v=<span class="built_in">argmin</span>(d[u]+<span class="built_in">l</span>(e) |v: v in V\S , e=(u,v) , u in S );</span><br><span class="line">    d[v]=d[u]+<span class="built_in">l</span>(e);</span><br><span class="line">    S.<span class="built_in">insert</span>(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Init</span></span><br><span class="line"><span class="keyword">for</span>(u in V)&#123;</span><br><span class="line">    d[u]=+inf;</span><br><span class="line">&#125;</span><br><span class="line">d[s]=<span class="number">0</span>; S.<span class="built_in">insert</span>(s);</span><br><span class="line"><span class="comment">// Main Algorithm</span></span><br><span class="line"><span class="keyword">while</span>(S != V)&#123;</span><br><span class="line">    v=<span class="built_in">argmin</span>(d[u]+<span class="built_in">l</span>(e) |v: v in V\S , e=(u,v) , u in S );</span><br><span class="line">    d[v]=d[u]+<span class="built_in">l</span>(e);</span><br><span class="line">    S.<span class="built_in">insert</span>(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>Proof</p>
-<p>Prove by induction on $S$ . $\forall v\in S , d(v)=\min dist(s,v)$ ,</p>
-<p>Suppose we grow $S$ by adding $v$ , suppose the proposition does not hold . Then $d(u)+l_e$ is not the shortest distance to $v$ . Let $p$ be the shortest path from $s$ to $v$ .</p>
-<p>Let $w$ be the last vertex that is in $S$ , then by induction , all vertices on $p$ from $s$ to $w$ are all in $S$ . Let $p’=path(s,u)+e$ .</p>
-<p>$p’: s\to w\to u\to v$ , $p:s\to w\to x\to v$ . ($x\notin S$) . Since $d(u)+l_e$ is minimal , $d(u)+l_e\le d(w)+l_{w,x}$ , but $dist(p)=d(w)+l_{w,x}+dist(x,v)$ , where $dist(x,v)\ge 0$ , and $dist(p)&lt;dist(p’)=d(u)+l_e$ , so $d(w)+l_{w,x}\le dist(p)&lt;d(u)+l_e$ , contradict .</p>
-</li>
+<p>Prove by induction on <span class="math inline">\(S\)</span> . <span
+class="math inline">\(\forall v\in S , d(v)=\min dist(s,v)\)</span>
+,</p>
+<p>Suppose we grow <span class="math inline">\(S\)</span> by adding
+<span class="math inline">\(v\)</span> , suppose the proposition does
+not hold . Then <span class="math inline">\(d(u)+l_e\)</span> is not the
+shortest distance to <span class="math inline">\(v\)</span> . Let <span
+class="math inline">\(p\)</span> be the shortest path from <span
+class="math inline">\(s\)</span> to <span
+class="math inline">\(v\)</span> .</p>
+<p>Let <span class="math inline">\(w\)</span> be the last vertex that is
+in <span class="math inline">\(S\)</span> , then by induction , all
+vertices on <span class="math inline">\(p\)</span> from <span
+class="math inline">\(s\)</span> to <span
+class="math inline">\(w\)</span> are all in <span
+class="math inline">\(S\)</span> . Let <span
+class="math inline">\(p&#39;=path(s,u)+e\)</span> .</p>
+<p><span class="math inline">\(p&#39;: s\to w\to u\to v\)</span> , <span
+class="math inline">\(p:s\to w\to x\to v\)</span> . (<span
+class="math inline">\(x\notin S\)</span>) . Since <span
+class="math inline">\(d(u)+l_e\)</span> is minimal , <span
+class="math inline">\(d(u)+l_e\le d(w)+l_{w,x}\)</span> , but <span
+class="math inline">\(dist(p)=d(w)+l_{w,x}+dist(x,v)\)</span> , where
+<span class="math inline">\(dist(x,v)\ge 0\)</span> , and <span
+class="math inline">\(dist(p)&lt;dist(p&#39;)=d(u)+l_e\)</span> , so
+<span class="math inline">\(d(w)+l_{w,x}\le dist(p)&lt;d(u)+l_e\)</span>
+, contradict .</p></li>
 </ol>
 ]]></content>
       <categories>
@@ -136,7 +851,9 @@
   <entry>
     <title>Algorithm Design 1</title>
     <url>/2023/10/05/Algorithm-Design-Note-1/</url>
-    <content><![CDATA[<h2 id="Chapter-0-Logistics"><a href="#Chapter-0-Logistics" class="headerlink" title="Chapter 0 Logistics"></a>Chapter 0 Logistics</h2><p><strong>Content</strong> : discrete(combinatorial) algorithm  ,  Theoretical </p>
+    <content><![CDATA[<h2 id="chapter-0-logistics">Chapter 0 Logistics</h2>
+<p><strong>Content</strong> : discrete(combinatorial) algorithm ,
+Theoretical</p>
 <ul>
 <li>[minority] Complexity , NP-Completeness</li>
 <li>Basic Graph Algorithm , DFS / BFS</li>
@@ -148,132 +865,149 @@
 <li>Randomized Algorithm (Probability Analysis)</li>
 <li><ul>
 <li>Computational Geometry</li>
-</ul>
-</li>
+</ul></li>
 <li><ul>
 <li>Streaming Algorithm (online)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><strong>Textbook</strong> : [Kleinberg&amp;Tardos] Algorithm Design </p>
+<p><strong>Textbook</strong> : [Kleinberg&amp;Tardos] Algorithm
+Design</p>
 <p><strong>Reference Book</strong> : [CLRS] Intro to Algorithm</p>
-<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="1-1-Stable-matching"><a href="#1-1-Stable-matching" class="headerlink" title="1.1 Stable matching"></a>1.1 Stable matching</h3><ol>
+<h2 id="chapter-1">Chapter 1</h2>
+<h3 id="stable-matching">1.1 Stable matching</h3>
+<ol type="1">
 <li><p>Def</p>
 <ul>
-<li><p>Input : $boys=\{B_1,\cdots,B_n\} , girls=\{G_1,\cdots,G_n\}$</p>
-<p>Preference List : $BP_i$ : a permutation of $girls$ , $GP_i$ : a permutation of $boys$</p>
-</li>
-<li><p>output : a stable matching </p>
-</li>
-<li><p>stable matching : no unstable pairs</p>
-</li>
-<li><p>unstable pair : $(B_i,G_j)$ s.t.  $M(B_i)$ after $G_j$ in $BP_i$ and $M(G_j)$ after $B_i$ in $GP_j$</p>
-</li>
-</ul>
-</li>
-<li><p>Efficient Algorithm : Gale &amp; Shapley Algorithm ( propose-reject )</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>( exists sb. single )&#123;</span><br><span class="line">    A &lt;- an arbitrary single boy</span><br><span class="line">    X &lt;- <span class="function">first girl A has <span class="keyword">not</span> proposed yet</span></span><br><span class="line"><span class="function">    <span class="title">if</span> <span class="params">( X is single )</span></span></span><br><span class="line"><span class="function">        A-X engage</span></span><br><span class="line"><span class="function">    <span class="keyword">else</span></span></span><br><span class="line"><span class="function">        <span class="title">if</span> <span class="params">( A is better than M(X) )</span></span></span><br><span class="line"><span class="function">            A-X engage</span></span><br><span class="line"><span class="function">        <span class="keyword">else</span></span></span><br><span class="line"><span class="function">            X reject A</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
+<li><p>Input : <span class="math inline">\(boys=\{B_1,\cdots,B_n\} ,
+girls=\{G_1,\cdots,G_n\}\)</span></p>
+<p>Preference List : <span class="math inline">\(BP_i\)</span> : a
+permutation of <span class="math inline">\(girls\)</span> , <span
+class="math inline">\(GP_i\)</span> : a permutation of <span
+class="math inline">\(boys\)</span></p></li>
+<li><p>output : a stable matching</p></li>
+<li><p>stable matching : no unstable pairs</p></li>
+<li><p>unstable pair : <span class="math inline">\((B_i,G_j)\)</span>
+s.t. <span class="math inline">\(M(B_i)\)</span> after <span
+class="math inline">\(G_j\)</span> in <span
+class="math inline">\(BP_i\)</span> and <span
+class="math inline">\(M(G_j)\)</span> after <span
+class="math inline">\(B_i\)</span> in <span
+class="math inline">\(GP_j\)</span></p></li>
+</ul></li>
+<li><p>Efficient Algorithm : Gale &amp; Shapley Algorithm (
+propose-reject )</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>( exists sb. single )&#123;</span><br><span class="line">    A &lt;- an arbitrary single boy</span><br><span class="line">    X &lt;- <span class="function">first girl A has <span class="keyword">not</span> proposed yet</span></span><br><span class="line"><span class="function">    <span class="title">if</span> <span class="params">( X is single )</span></span></span><br><span class="line"><span class="function">        A-X engage</span></span><br><span class="line"><span class="function">    <span class="keyword">else</span></span></span><br><span class="line"><span class="function">        <span class="title">if</span> <span class="params">( A is better than M(X) )</span></span></span><br><span class="line"><span class="function">            A-X engage</span></span><br><span class="line"><span class="function">        <span class="keyword">else</span></span></span><br><span class="line"><span class="function">            X reject A</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>Analysis</p>
-<ol>
-<li><p>Proof of Termination </p>
-<ol>
-<li>For girl : once engaged , engaged forever </li>
-<li>For one boy : If used all preference list : then all girls must be engaged</li>
-</ol>
-</li>
+<ol type="1">
+<li><p>Proof of Termination</p>
+<ol type="1">
+<li>For girl : once engaged , engaged forever</li>
+<li>For one boy : If used all preference list : then all girls must be
+engaged</li>
+</ol></li>
 <li><p>Proof of Correctness</p>
 <p>Prove by Contradiction</p>
-<p>$(B_i,G_j)$ : an unstable pair</p>
-<p>$B_i$ preference list : $\cdots G_j \cdots M(B_i)$</p>
-<p>$G_j$ preference list : $\cdots B_i \cdots Z=M(G_j)$</p>
-<p>$\therefore$ $G_j$ rejected $B_i$ , but $G_j$ should not reject $B_i$ compared with $Z$</p>
-</li>
-<li><p>Running Time : $\mathcal O(n^2)$ ( All boys used up their preference list)</p>
-</li>
-</ol>
-</li>
+<p><span class="math inline">\((B_i,G_j)\)</span> : an unstable pair</p>
+<p><span class="math inline">\(B_i\)</span> preference list : <span
+class="math inline">\(\cdots G_j \cdots M(B_i)\)</span></p>
+<p><span class="math inline">\(G_j\)</span> preference list : <span
+class="math inline">\(\cdots B_i \cdots Z=M(G_j)\)</span></p>
+<p><span class="math inline">\(\therefore\)</span> <span
+class="math inline">\(G_j\)</span> rejected <span
+class="math inline">\(B_i\)</span> , but <span
+class="math inline">\(G_j\)</span> should not reject <span
+class="math inline">\(B_i\)</span> compared with <span
+class="math inline">\(Z\)</span></p></li>
+<li><p>Running Time : <span class="math inline">\(\mathcal
+O(n^2)\)</span> ( All boys used up their preference list)</p></li>
+</ol></li>
 <li><p>Random ver.</p>
-<ol>
-<li><p>def : $BP_i$ , $GP_i$ are all random permutations (uniformly distributed) </p>
-</li>
+<ol type="1">
+<li><p>def : <span class="math inline">\(BP_i\)</span> , <span
+class="math inline">\(GP_i\)</span> are all random permutations
+(uniformly distributed)</p></li>
 <li><p>How to get a uniformly distributed random permutation ?</p>
-<p>draw-likely process</p>
-</li>
-<li><p>THM : $\mathbb E[T]\le n\cdot H_n$  ($\mathbb E[T]=\mathcal O(n\log n)$)</p>
-</li>
-<li><p>Proof </p>
-<ol>
-<li><p>key observation : </p>
-<p>G-S’ : each time a boy propose to a random girl not proposed yet</p>
-<p><strong>This is equivalent as generate a uniformly distributed random permutation</strong></p>
-<p>G-S’’ : each time a boy propose to a random girl (can be proposed yet)</p>
-<p>$\therefore $ $T(G-S)=T(G-S’)\le T(G-S’’)$</p>
-</li>
-<li><p>Coupon Collector Problem ( Bins-Balls ) </p>
-<p>$n$ bins , each time throw a ball to a random bin . </p>
-<p>Q : $\mathbb E[\text{balls}]$ s.t. every bin is nonempty .</p>
-<p>A : $\mathbb E[\text{balls}]=n\cdot H_n$</p>
-<p>Construct Sequence $a_i\in \{0,1\}$ , $a_i=1\Leftrightarrow$ a ball falls in an empty bin</p>
-<p>Exactly $n$ number of $1$s . -&gt; $n$ segments like $0\cdots 01$</p>
-<script type="math/tex; mode=display">
+<p>draw-likely process</p></li>
+<li><p>THM : <span class="math inline">\(\mathbb E[T]\le n\cdot
+H_n\)</span> (<span class="math inline">\(\mathbb E[T]=\mathcal O(n\log
+n)\)</span>)</p></li>
+<li><p>Proof</p>
+<ol type="1">
+<li><p>key observation :</p>
+<p>G-S' : each time a boy propose to a random girl not proposed yet</p>
+<p><strong>This is equivalent as generate a uniformly distributed random
+permutation</strong></p>
+<p>G-S'' : each time a boy propose to a random girl (can be proposed
+yet)</p>
+<p>$$ <span class="math inline">\(T(G-S)=T(G-S&#39;)\le
+T(G-S&#39;&#39;)\)</span></p></li>
+<li><p>Coupon Collector Problem ( Bins-Balls )</p>
+<p><span class="math inline">\(n\)</span> bins , each time throw a ball
+to a random bin .</p>
+<p>Q : <span class="math inline">\(\mathbb E[\text{balls}]\)</span> s.t.
+every bin is nonempty .</p>
+<p>A : <span class="math inline">\(\mathbb E[\text{balls}]=n\cdot
+H_n\)</span></p>
+<p>Construct Sequence <span class="math inline">\(a_i\in
+\{0,1\}\)</span> , <span
+class="math inline">\(a_i=1\Leftrightarrow\)</span> a ball falls in an
+empty bin</p>
+<p>Exactly <span class="math inline">\(n\)</span> number of <span
+class="math inline">\(1\)</span>s . -&gt; <span
+class="math inline">\(n\)</span> segments like <span
+class="math inline">\(0\cdots 01\)</span> <span class="math display">\[
 \begin{aligned}
-\mathbb E[T]&=\mathbb E\left[\sum_{i=1}^n \text{len of i-th segment}\right]\\
-&=\sum_{i=1}^n\mathbb E\left[ \text{len of i-th segment}\right]\\
-&=\sum_{i=1}^n \frac{1}{\Pr\{\text{in i-th seg , choosed empty bin}\}}\\
-&=\sum_{i=1}^n \frac{n}{n-i+1}\\
-&=n\cdot H_n
-\end{aligned}</script></li>
+\mathbb E[T]&amp;=\mathbb E\left[\sum_{i=1}^n \text{len of i-th
+segment}\right]\\
+&amp;=\sum_{i=1}^n\mathbb E\left[ \text{len of i-th segment}\right]\\
+&amp;=\sum_{i=1}^n \frac{1}{\Pr\{\text{in i-th seg , choosed empty
+bin}\}}\\
+&amp;=\sum_{i=1}^n \frac{n}{n-i+1}\\
+&amp;=n\cdot H_n
+\end{aligned}
+\]</span></p></li>
 <li><p>Consider boy -&gt; ball , girl -&gt; bin</p>
-<p>G-S’’ -&gt; Bins-Balls Problem</p>
-</li>
+<p>G-S'' -&gt; Bins-Balls Problem</p></li>
 <li><ul>
 <li><p>Concentration inequality for Coupon Collection Running Time</p>
-<p>Same as Chernoff Bound</p>
-</li>
-</ul>
-</li>
+<p>Same as Chernoff Bound</p></li>
+</ul></li>
+</ol></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="1-2-BFS-amp-DFS"><a href="#1-2-BFS-amp-DFS" class="headerlink" title="1.2 BFS &amp; DFS"></a>1.2 BFS &amp; DFS</h3><ol>
+<h3 id="bfs-dfs">1.2 BFS &amp; DFS</h3>
+<ol type="1">
 <li><p>BFS</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bfs</span></span><br><span class="line">q.<span class="built_in">clear</span>();</span><br><span class="line"><span class="keyword">for</span>(u in Vertices)&#123;</span><br><span class="line">    dep[u]=inf;</span><br><span class="line">    prev[u]=<span class="literal">NULL</span>;</span><br><span class="line">    col[u]=white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dep[s]=<span class="number">0</span>;</span><br><span class="line">prev[s]=<span class="literal">NULL</span>;</span><br><span class="line">col[s]=grey;</span><br><span class="line">q.<span class="built_in">push</span>(s);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">    u=q.<span class="built_in">front</span>();q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            dep[v]=dep[u]+<span class="number">1</span>;</span><br><span class="line">            prev[v]=u;</span><br><span class="line">            col[v]=grey;</span><br><span class="line">            q.<span class="built_in">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[v]=black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>BFS Tree Property : no edges with depth difference $\ge 2$ .</p>
-</li>
+<p>BFS Tree Property : no edges with depth difference <span
+class="math inline">\(\ge 2\)</span> .</p></li>
 <li><p>DFS</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>DFS Tree Properties</p>
 <p>Time stamp intervals</p>
-<ol>
+<ol type="1">
 <li>non-crossing : only non-intersect / totally include</li>
-<li>Tree Structure $\Leftrightarrow$ Time stamp intervals Structure </li>
-</ol>
-</li>
+<li>Tree Structure <span class="math inline">\(\Leftrightarrow\)</span>
+Time stamp intervals Structure</li>
+</ol></li>
 <li><p>Connectivity</p>
-<ol>
-<li><p>undirected graph : connected component</p>
-</li>
+<ol type="1">
+<li><p>undirected graph : connected component</p></li>
 <li><p>directed graph : strongly connected component (SCC)</p>
-<p>every vertex can reach other vertex</p>
-</li>
+<p>every vertex can reach other vertex</p></li>
 <li><p>directed acyclic graph (DAG)</p>
 <p>i.e. no directed cycle</p>
-<p>i.e. no SCC has $\ge 2$ vertices</p>
+<p>i.e. no SCC has <span class="math inline">\(\ge 2\)</span>
+vertices</p>
 <ul>
 <li>DAG has a topological order</li>
-</ul>
-</li>
+</ul></li>
 <li><p>A useful view of directed graph : a DAG of SCC</p>
-<p>a.k.a. 缩点</p>
-</li>
+<p>a.k.a. 缩点</p></li>
 <li><p>DAG has a topological order</p>
-<p>get topological order : use bfs/dfs starting from $InDeg=0$ </p>
-</li>
-</ol>
-</li>
+<p>get topological order : use bfs/dfs starting from <span
+class="math inline">\(InDeg=0\)</span></p></li>
+</ol></li>
 </ol>
 ]]></content>
       <categories>
@@ -289,15 +1023,29 @@
   <entry>
     <title>Hello World</title>
     <url>/2023/10/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
       <categories>
         <category>测试文档</category>
