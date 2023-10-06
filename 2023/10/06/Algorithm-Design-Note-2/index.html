@@ -20,27 +20,28 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zigzagkmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default","show_result":true},"fold":{"enable":true,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="article">
-<meta property="og:title" content="Algorithm Design 1">
-<meta property="og:url" content="https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/index.html">
+<meta property="og:title" content="Algorithm Design 2">
+<meta property="og:url" content="https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-Note-2/index.html">
 <meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-05T10:14:22.000Z">
-<meta property="article:modified_time" content="2023-10-06T08:37:33.122Z">
+<meta property="article:published_time" content="2023-10-06T08:33:54.000Z">
+<meta property="article:modified_time" content="2023-10-06T08:37:24.958Z">
 <meta property="article:author" content="ZigZagKmp">
 <meta property="article:tag" content="算法">
-<meta property="article:tag" content="算法-匹配">
 <meta property="article:tag" content="算法-搜索">
+<meta property="article:tag" content="算法-强连通分量(SCC)">
+<meta property="article:tag" content="算法-贪心">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/">
+<link rel="canonical" href="https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-Note-2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/","path":"2023/10/05/Algorithm-Design-Note-1/","title":"Algorithm Design 1"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-Note-2/","path":"2023/10/06/Algorithm-Design-Note-2/","title":"Algorithm Design 2"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Algorithm Design 1 | ZigZagKmp's Blog</title>
+<title>Algorithm Design 2 | ZigZagKmp's Blog</title>
   
 
 
@@ -140,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-0-Logistics"><span class="nav-number">1.</span> <span class="nav-text">Chapter 0 Logistics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1"><span class="nav-number">2.</span> <span class="nav-text">Chapter 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Stable-matching"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 Stable matching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-BFS-amp-DFS"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 BFS &amp; DFS</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-dfs-application"><span class="nav-number">1.</span> <span class="nav-text">1.3 dfs application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Greedy-Algorithm"><span class="nav-number"></span> <span class="nav-text">Chapter 2 : Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Interval-Scheduling"><span class="nav-number">1.</span> <span class="nav-text">2.1 Interval Scheduling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Scheduling-to-minimize-lateness"><span class="nav-number">2.</span> <span class="nav-text">2.2. Scheduling to minimize lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Shortest-Path-without-w-lt-0"><span class="nav-number">3.</span> <span class="nav-text">2.3. Shortest Path (without $w&lt;0$)</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -229,7 +230,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/">
+    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-Note-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar.jpg">
@@ -242,12 +243,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Algorithm Design 1 | ZigZagKmp's Blog">
-      <meta itemprop="description" content="[2023 秋] 算法设计 第一课课堂笔记 / [2023 Fall] Algorithm Design Lecture 1 Notes">
+      <meta itemprop="name" content="Algorithm Design 2 | ZigZagKmp's Blog">
+      <meta itemprop="description" content="[2023 秋] 算法设计 第二课课堂笔记 / [2023 Fall] Algorithm Design Lecture 2 Notes">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Algorithm Design 1
+          Algorithm Design 2
         </h1>
 
         <div class="post-meta-container">
@@ -257,15 +258,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-10-05 18:14:22" itemprop="dateCreated datePublished" datetime="2023-10-05T18:14:22+08:00">2023-10-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-06 16:37:33" itemprop="dateModified" datetime="2023-10-06T16:37:33+08:00">2023-10-06</time>
+      <time title="创建时间：2023-10-06 16:33:54 / 修改时间：16:37:24" itemprop="dateCreated datePublished" datetime="2023-10-06T16:33:54+08:00">2023-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,161 +290,140 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>675</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
-            <div class="post-description">[2023 秋] 算法设计 第一课课堂笔记 / [2023 Fall] Algorithm Design Lecture 1 Notes</div>
+            <div class="post-description">[2023 秋] 算法设计 第二课课堂笔记 / [2023 Fall] Algorithm Design Lecture 2 Notes</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-0-Logistics"><a href="#Chapter-0-Logistics" class="headerlink" title="Chapter 0 Logistics"></a>Chapter 0 Logistics</h2><p><strong>Content</strong> : discrete(combinatorial) algorithm  ,  Theoretical </p>
+    <div class="post-body" itemprop="articleBody"><h3 id="1-3-dfs-application"><a href="#1-3-dfs-application" class="headerlink" title="1.3 dfs application"></a>1.3 dfs application</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>THM parenthesis</p>
+<p>on dfs tree , if $u$ is one ancestor of $v$ , then $[v.d,v.f]\subset[u.d,u.f]$</p>
+<p>on dfs tree , otherwise , then $[u.d,u.f]\cap [v.d,v.f]=\varnothing$</p>
+</li>
+<li><p>THM white-path</p>
+<p>on dfs tree ,  at the time when $u$ is discovered , </p>
+<p> $u$ is one ancestor of $v$  $\Leftrightarrow$ $\exists$ white path from $u$ to $v$ </p>
+<p>即： $v$ 是 $u$ 的后代$\Leftrightarrow$在 $u$ 刚访问到的时候一定存在一条完全没有被访问过的路径 $u\to v$ .</p>
 <ul>
-<li>[minority] Complexity , NP-Completeness</li>
-<li>Basic Graph Algorithm , DFS / BFS</li>
-<li>Greedy</li>
-<li>Dynamic Programming</li>
-<li>Divide and Conquer</li>
-<li>NP-completeness Theory</li>
-<li>Approximation Algorithm</li>
-<li>Randomized Algorithm (Probability Analysis)</li>
-<li><ul>
-<li>Computational Geometry</li>
+<li>Proof : use parenthesis THM</li>
 </ul>
+<p>$\Rightarrow$ trivial</p>
+<p>$\Leftarrow$  proof by contradiction </p>
+<p>Consider a white path $x_1=u,x_2,\cdots,x_m=v$ , and $x_k$ is the last vertex that is a descendent of $u$ (including $u$ itself) .</p>
+<p>We need to prove that $x_{k+1}$ is also a descendent of $u$ , leading to contradiction . </p>
+<p>Therefore , $u.d&lt;x_k.d&lt;x_k.f&lt;u.f$ , </p>
+<p>Case 1 : $x_k.d<x_{k+1}.d<x_{k+1}.f<x_k.f$ -> $x_{k+1}$ is also a descendent of $u$ .</p>
+<p>Case 2 : $x_k.d&lt;x_k.f&lt;x_{k+1}.d&lt;x_{k+1}.f$ : Impossible .</p>
 </li>
-<li><ul>
-<li>Streaming Algorithm (online)</li>
-</ul>
-</li>
-</ul>
-<p><strong>Textbook</strong> : [Kleinberg&amp;Tardos] Algorithm Design </p>
-<p><strong>Reference Book</strong> : [CLRS] Intro to Algorithm</p>
-<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="1-1-Stable-matching"><a href="#1-1-Stable-matching" class="headerlink" title="1.1 Stable matching"></a>1.1 Stable matching</h3><ol>
-<li><p>Def</p>
-<ul>
-<li><p>Input : $boys=\{B_1,\cdots,B_n\} , girls=\{G_1,\cdots,G_n\}$</p>
-<p>Preference List : $BP_i$ : a permutation of $girls$ , $GP_i$ : a permutation of $boys$</p>
-</li>
-<li><p>output : a stable matching </p>
-</li>
-<li><p>stable matching : no unstable pairs</p>
-</li>
-<li><p>unstable pair : $(B_i,G_j)$ s.t.  $M(B_i)$ after $G_j$ in $BP_i$ and $M(G_j)$ after $B_i$ in $GP_j$</p>
-</li>
-</ul>
-</li>
-<li><p>Efficient Algorithm : Gale &amp; Shapley Algorithm ( propose-reject )</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( exists sb. single )&#123;</span><br><span class="line">    A &lt;- an arbitrary single boy</span><br><span class="line">    X &lt;- <span class="function">first girl A has <span class="keyword">not</span> proposed yet</span></span><br><span class="line"><span class="function">    <span class="title">if</span> <span class="params">( X is single )</span></span></span><br><span class="line"><span class="function">        A-X engage</span></span><br><span class="line"><span class="function">    <span class="keyword">else</span></span></span><br><span class="line"><span class="function">        <span class="title">if</span> <span class="params">( A is better than M(X) )</span></span></span><br><span class="line"><span class="function">            A-X engage</span></span><br><span class="line"><span class="function">        <span class="keyword">else</span></span></span><br><span class="line"><span class="function">            X reject A</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Analysis</p>
+<li><p>Strongly Connected Components (SCC)</p>
 <ol>
-<li><p>Proof of Termination </p>
+<li><p>View : any directed graph can be viewed as a DAG of SCC</p>
+</li>
+<li><p>Find SCC ?  Kosaraju’s Algorithm</p>
 <ol>
-<li>For girl : once engaged , engaged forever </li>
-<li>For one boy : If used all preference list : then all girls must be engaged</li>
-</ol>
+<li><p>Algorithm</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dfs1</span>(G);<span class="comment">// compute the finishing time u.f</span></span><br><span class="line">G_=<span class="built_in">reverse_edge</span>(G);</span><br><span class="line"><span class="built_in">dfs2</span>(G_); <span class="comment">// In main loop , consider vertices in decreasing order of u.f</span></span><br><span class="line">Claim : Each dfs-<span class="function">tree in <span class="title">dfs2</span><span class="params">(G_)</span> is a SCC</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>Proof of Correctness</p>
-<p>Prove by Contradiction</p>
-<p>$(B_i,G_j)$ : an unstable pair</p>
-<p>$B_i$ preference list : $\cdots G_j \cdots M(B_i)$</p>
-<p>$G_j$ preference list : $\cdots B_i \cdots Z=M(G_j)$</p>
-<p>$\therefore$ $G_j$ rejected $B_i$ , but $G_j$ should not reject $B_i$ compared with $Z$</p>
-</li>
-<li><p>Running Time : $\mathcal O(n^2)$ ( All boys used up their preference list)</p>
-</li>
-</ol>
-</li>
-<li><p>Random ver.</p>
+<li><p>Proof</p>
+<p>Intuition : find and “delete” sink components in dfs2 , like a-topological order in $G_$ ( i.e. topological order in $G$ ) </p>
 <ol>
-<li><p>def : $BP_i$ , $GP_i$ are all random permutations (uniformly distributed) </p>
+<li><p>Lemma : If we start DFS at a node in a sink component , we will visit precisely all vertices in this component .</p>
+<p>Trivial .</p>
 </li>
-<li><p>How to get a uniformly distributed random permutation ?</p>
-<p>draw-likely process</p>
+<li><p>Lemma (key) : node with largest $u.f$ belongs to a start component in $G$ (i.e. a sink component in $G_$)</p>
+<p>Only need to prove the following lemma .</p>
 </li>
-<li><p>THM : $\mathbb E[T]\le n\cdot H_n$  ($\mathbb E[T]=\mathcal O(n\log n)$)</p>
+<li><p>Lemma ( for proving key Lemma ) : $C,D$ are two SCC , $D$ is reachable from $C$ , </p>
+<p>Then for $v\in C$ , which is the firstly visited vertex in $C$ , then $\forall u\in D,v.f&gt;u.f$</p>
+<p>Proof : </p>
+<p>Case 1 : $v$ is also the firstly visited vertex in $C\cup D$ , then by white-path THM , all nodes in $C\cup D$ are descendent of $v$ , so $\forall u\in C\cup D\backslash \{v\} , v.f&gt;u.f$ .</p>
+<p>Case 2 : $\exists y\in D$ , $y$ is the firstly visited vertex in $C\cup D$ , so $v$ is not a descendent of $y$ since $C$ is not reachable from $D$ .</p>
+<p>Therefore , by parenthesis THM , $y.d\le u.d&lt;u.f\le y.f&lt;v.d&lt;v.f$ for all $u\in D$ .</p>
 </li>
-<li><p>Proof </p>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Chapter-2-Greedy-Algorithm"><a href="#Chapter-2-Greedy-Algorithm" class="headerlink" title="Chapter 2 : Greedy Algorithm"></a>Chapter 2 : Greedy Algorithm</h2><h3 id="2-1-Interval-Scheduling"><a href="#2-1-Interval-Scheduling" class="headerlink" title="2.1 Interval Scheduling"></a>2.1 Interval Scheduling</h3><ol>
+<li><p>Description </p>
+<p>Input : $n$ jobs $s_i,f_i$</p>
+<p>Goal : maximize the #jobs , s.t. at most one job at a time .</p>
+</li>
+<li><p>Another view</p>
+<p>Connect all jobs pairs $[s_i,f_i],[s_j,f_j]$ if $[s_i,f_i]\cap [s_j,f_j]\neq \varnothing$ .</p>
+<p>Goal $\Leftrightarrow$ maximum independent set .</p>
+<p>In general graph : NP-hard for general graph .</p>
+</li>
+<li><p>Algorithm</p>
+<p>Repeat : Select the available jobs that finishes first .</p>
+</li>
+<li><p>Proof of optimality :</p>
+<p>Method : [Exchange Argument] : Compare our solution and the optimal solution .</p>
+<p>SOL : $i_1,i_2,\cdots ,i_m$ , OPT : $j_1,j_2,\cdots,j_k$ .</p>
 <ol>
-<li><p>key observation : </p>
-<p>G-S’ : each time a boy propose to a random girl not proposed yet</p>
-<p><strong>This is equivalent as generate a uniformly distributed random permutation</strong></p>
-<p>G-S’’ : each time a boy propose to a random girl (can be proposed yet)</p>
-<p>$\therefore $ $T(G-S)=T(G-S’)\le T(G-S’’)$</p>
-</li>
-<li><p>Coupon Collector Problem ( Bins-Balls ) </p>
-<p>$n$ bins , each time throw a ball to a random bin . </p>
-<p>Q : $\mathbb E[\text{balls}]$ s.t. every bin is nonempty .</p>
-<p>A : $\mathbb E[\text{balls}]=n\cdot H_n$</p>
-<p>Construct Sequence $a_i\in \{0,1\}$ , $a_i=1\Leftrightarrow$ a ball falls in an empty bin</p>
-<p>Exactly $n$ number of $1$s . -&gt; $n$ segments like $0\cdots 01$</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb E[T]&=\mathbb E\left[\sum_{i=1}^n \text{len of i-th segment}\right]\\
-&=\sum_{i=1}^n\mathbb E\left[ \text{len of i-th segment}\right]\\
-&=\sum_{i=1}^n \frac{1}{\Pr\{\text{in i-th seg , choosed empty bin}\}}\\
-&=\sum_{i=1}^n \frac{n}{n-i+1}\\
-&=n\cdot H_n
-\end{aligned}</script></li>
-<li><p>Consider boy -&gt; ball , girl -&gt; bin</p>
-<p>G-S’’ -&gt; Bins-Balls Problem</p>
-</li>
-<li><ul>
-<li><p>Concentration inequality for Coupon Collection Running Time</p>
-<p>Same as Chernoff Bound</p>
-</li>
-</ul>
-</li>
+<li>Claim : If $f_{i_1}\le f_{j_1}$ , then $f_{i_r}\le f_{j_r}$ for all $r\ge 1$ .</li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="1-2-BFS-amp-DFS"><a href="#1-2-BFS-amp-DFS" class="headerlink" title="1.2 BFS &amp; DFS"></a>1.2 BFS &amp; DFS</h3><ol>
-<li><p>BFS</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bfs</span></span><br><span class="line">q.<span class="built_in">clear</span>();</span><br><span class="line"><span class="keyword">for</span>(u in Vertices)&#123;</span><br><span class="line">    dep[u]=inf;</span><br><span class="line">    prev[u]=<span class="literal">NULL</span>;</span><br><span class="line">    col[u]=white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dep[s]=<span class="number">0</span>;</span><br><span class="line">prev[s]=<span class="literal">NULL</span>;</span><br><span class="line">col[s]=grey;</span><br><span class="line">q.<span class="built_in">push</span>(s);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">    u=q.<span class="built_in">front</span>();q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            dep[v]=dep[u]+<span class="number">1</span>;</span><br><span class="line">            prev[v]=u;</span><br><span class="line">            col[v]=grey;</span><br><span class="line">            q.<span class="built_in">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[v]=black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>BFS Tree Property : no edges with depth difference $\ge 2$ .</p>
-</li>
-<li><p>DFS</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>DFS Tree Properties</p>
-<p>Time stamp intervals</p>
+<p>Proof : [Induction]</p>
+<p>If the claim is true for $r-1$ , suppose the claim is not true for $r$ , i.e. $f_{i_r}&gt;f_{j_r}$ . Since $f_{i_{r-1}}\le f_{j_{r-1}}$ , and $s_{j_r}&gt;f_{j_{r-1}}$ , then $f_{i_{r-1}}&lt;s_{j_r}$ , so $j_r$ is also available , but has earlier finish time , contradict .</p>
 <ol>
-<li>non-crossing : only non-intersect / totally include</li>
-<li>Tree Structure $\Leftrightarrow$ Time stamp intervals Structure </li>
+<li>If $m&lt;k$ , then $f_{i_m}&lt;f_{j_m}$ . We can use $j_{m+1},\cdots,j_k$ after  $i_m$ .</li>
 </ol>
 </li>
-<li><p>Connectivity</p>
+</ol>
+<h3 id="2-2-Scheduling-to-minimize-lateness"><a href="#2-2-Scheduling-to-minimize-lateness" class="headerlink" title="2.2. Scheduling to minimize lateness"></a>2.2. Scheduling to minimize lateness</h3><ol>
+<li><p>Description</p>
+<p>Input : $n$ jobs , each job $i$ has ddl $d_i$ and length $t_i$ . Def lateness : $l_i:=\max\{0,f_i-d_i\}$</p>
+<p>Goal : find a schedule of all $n$ jobs , and minimize the maximal lateness .</p>
+</li>
+<li><p>Equal formularization</p>
+<p>Goal : find a permutation $\{p_i\}\in S_n$ , then $f_i=\sum_{j=1}^i t_{p_j}$ , $l_i:=\max\{0,f_i-d_{p_i}\}$ . Minimize $\max\{l_i\}$ .</p>
+<p>$\Leftrightarrow$ $l_i:=f_i-d_{p_i}$ , Minimize $\max\{0,\max\{l_i\}\}$ .</p>
+</li>
+<li><p>Algorithm</p>
+<p>Schedule the job in increasing order of $d_i$ .</p>
+</li>
+<li><p>Proof of optimality</p>
 <ol>
-<li><p>undirected graph : connected component</p>
+<li><p>Def (Inversion) : Consider a schedule $A’$ , $(i,j)$ is an inversion if $i$ is scheduled before $j$ but $d_i&gt;d_j$ .</p>
 </li>
-<li><p>directed graph : strongly connected component (SCC)</p>
-<p>every vertex can reach other vertex</p>
-</li>
-<li><p>directed acyclic graph (DAG)</p>
-<p>i.e. no directed cycle</p>
-<p>i.e. no SCC has $\ge 2$ vertices</p>
-<ul>
-<li>DAG has a topological order</li>
-</ul>
-</li>
-<li><p>A useful view of directed graph : a DAG of SCC</p>
-<p>a.k.a. 缩点</p>
-</li>
-<li><p>DAG has a topological order</p>
-<p>get topological order : use bfs/dfs starting from $InDeg=0$ </p>
+<li><p>If OPT$\neq $ SOL , there must be an inversion , then there must be an adjacent inversion . Suppose $(i,i+1)$ is an inversion , then $d_{p_i}&gt;d_{p_{i+1}}$ .</p>
+<p>Let $f=\sum_{j=1}^{i-1}t_{p_j}$ , so $f_i=f+t_{p_i}$ , $f_{i+1}=f+t_{p_i}+t_{p_{i+1}}$ , so $l_i=f+t_{p_i}-d_{p_i}$ , $l_{i+1}=f+t_{p_i}+t_{p_{i+1}}-d_{p_{i+1}}$ .</p>
+<p>If swap $(i,i+1)$ , then $f_{i+1}’=f+t_{p_{i+1}}$ , $f_{i}’=f+t_{p_{i+1}}+t_{p_i}$ , so $l_{i+1}’=f+t_{p_{i+1}}-d_{p_{i+1}}$ , $l_i’=f+t_{p_{i+1}}+t_{p_i}-d_{p_i}$ .</p>
+<p>Therefore , obviously , $l_{i+1}’<l_{i+1}$ . Since $d_{p_i}>d_{p_{i+1}}$ , then $l_i’&lt;l_i$ . Therefore , swap can lead to better solution , so OPT is not optimal . </p>
 </li>
 </ol>
+</li>
+</ol>
+<h3 id="2-3-Shortest-Path-without-w-lt-0"><a href="#2-3-Shortest-Path-without-w-lt-0" class="headerlink" title="2.3. Shortest Path (without $w&lt;0$)"></a>2.3. Shortest Path (without $w&lt;0$)</h3><ol>
+<li><p>Description</p>
+<p>Input : weighted graph $G=(V,E)$ , start vertex $s$ .</p>
+<p>Output : $d(u)$ for all $u\in V$ , where $d(u)=\min_{p\text{ is a path }s\to u}\{\sum_{e\in p}l(e)\}$  .</p>
+</li>
+<li><p>Algorithm [Dijkstra 1959]</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Init</span></span><br><span class="line"><span class="keyword">for</span>(u in V)&#123;</span><br><span class="line">    d[u]=+inf;</span><br><span class="line">&#125;</span><br><span class="line">d[s]=<span class="number">0</span>; S.<span class="built_in">insert</span>(s);</span><br><span class="line"><span class="comment">// Main Algorithm</span></span><br><span class="line"><span class="keyword">while</span>(S != V)&#123;</span><br><span class="line">    v=<span class="built_in">argmin</span>(d[u]+<span class="built_in">l</span>(e) |v: v in V\S , e=(u,v) , u in S );</span><br><span class="line">    d[v]=d[u]+<span class="built_in">l</span>(e);</span><br><span class="line">    S.<span class="built_in">insert</span>(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Proof</p>
+<p>Prove by induction on $S$ . $\forall v\in S , d(v)=\min dist(s,v)$ ,</p>
+<p>Suppose we grow $S$ by adding $v$ , suppose the proposition does not hold . Then $d(u)+l_e$ is not the shortest distance to $v$ . Let $p$ be the shortest path from $s$ to $v$ .</p>
+<p>Let $w$ be the last vertex that is in $S$ , then by induction , all vertices on $p$ from $s$ to $w$ are all in $S$ . Let $p’=path(s,u)+e$ .</p>
+<p>$p’: s\to w\to u\to v$ , $p:s\to w\to x\to v$ . ($x\notin S$) . Since $d(u)+l_e$ is minimal , $d(u)+l_e\le d(w)+l_{w,x}$ , but $dist(p)=d(w)+l_{w,x}+dist(x,v)$ , where $dist(x,v)\ge 0$ , and $dist(p)&lt;dist(p’)=d(u)+l_e$ , so $d(w)+l_{w,x}\le dist(p)&lt;d(u)+l_e$ , contradict .</p>
 </li>
 </ol>
 
@@ -469,7 +443,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/" title="Algorithm Design 1">https://zigzagkmp.github.io/2023/10/05/Algorithm-Design-Note-1/</a>
+      <a href="https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-Note-2/" title="Algorithm Design 2">https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-Note-2/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -506,22 +480,20 @@
 
           <div class="post-tags">
               <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
-              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8C%B9%E9%85%8D/" rel="tag"># 算法-匹配</a>
               <a href="/tags/%E7%AE%97%E6%B3%95-%E6%90%9C%E7%B4%A2/" rel="tag"># 算法-搜索</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-SCC/" rel="tag"># 算法-强连通分量(SCC)</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83/" rel="tag"># 算法-贪心</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/10/05/hello-world/" rel="prev" title="Hello World">
-                  <i class="fa fa-angle-left"></i> Hello World
+                <a href="/2023/10/05/Algorithm-Design-Note-1/" rel="prev" title="Algorithm Design 1">
+                  <i class="fa fa-angle-left"></i> Algorithm Design 1
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/10/06/Algorithm-Design-Note-2/" rel="next" title="Algorithm Design 2">
-                  Algorithm Design 2 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
