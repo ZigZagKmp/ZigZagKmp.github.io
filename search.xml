@@ -1,6 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>答疑坊 微积分 趣题若干</title>
+    <url>/2023/10/07/%E7%AD%94%E7%96%91%E5%9D%8A-%E5%BE%AE%E7%A7%AF%E5%88%86-%E8%B6%A3%E9%A2%98%E8%8B%A5%E5%B9%B2/</url>
+    <content><![CDATA[<h3 id="p1">P1</h3>
+<p>类型：极限存在性</p>
+<h4 id="题目">题目</h4>
+<p>证明下面的极限存在： <span class="math display">\[
+\lim_{n\to
++\infty}(1+\frac{1}{2^2})(1+\frac{1}{3^2})\cdots(1+\frac{1}{n^2})
+\]</span></p>
+<h4 id="解答">解答</h4>
+<p>显然上述数列单调增，因此只需要证明有上界 <span
+class="math display">\[
+\begin{aligned}
+&amp;\quad \prod_{k=2}^n (1+\frac{1}{k^2})\\
+&amp;=\exp\left(\sum_{k=2}^n \ln (1+\frac{1}{k^2})\right)\\
+&amp;\le \exp\left(\sum_{k=2}^n \frac{1}{k^2}\right)\\
+&amp;\le \exp\left(\sum_{k=2}^n \frac{1}{k(k-1)}\right)\\
+&amp;=\exp\left(\sum_{k=1}^n \frac{1}{k-1}-\frac{1}{k}\right)\\
+&amp;=\exp(1-\frac{1}{n})\\
+&amp;\le e
+\end{aligned}
+\]</span> 其中第 <span class="math inline">\(3\)</span> 行使用常见不等式
+<span class="math inline">\(\ln(1+x)\le x\)</span> ，第 <span
+class="math inline">\(4\sim 6\)</span> 行为裂项。</p>
+<hr />
+<h3 id="p2">P2</h3>
+<p>类型：<span class="math inline">\(e\)</span> 相关极限不等式</p>
+<h4 id="题目-1">题目</h4>
+<p>证明，对任意正整数 <span class="math inline">\(n\ge 2\)</span> ，
+<span class="math display">\[
+\sum_{k=0}^n
+\frac{1}{k!}-\frac{3}{2n}&lt;(1+\frac{1}{n})^n&lt;\sum_{k=0}^n
+\frac{1}{k!}
+\]</span></p>
+<h4 id="解答-1">解答</h4>
+<p>使用二项式定理 <span class="math display">\[
+\begin{aligned}
+(1+\frac{1}{n})^n&amp;=\sum_{k=0}^n \frac{n!}{k!(n-k)!}\frac{1}{n^k}\\
+&amp;=\sum_{k=0}^n \frac{1}{k!}\prod_{j=0}^{k-1}(1-\frac{j}{n})
+\end{aligned}
+\]</span> 显然对 <span class="math inline">\(n\ge 2\)</span> , <span
+class="math inline">\(\prod_{j=0}^{k-1}(1-\frac{j}{n})&lt; 1\)</span>
+，故右侧不等式成立。</p>
+<p>考虑 Bernoulli 不等式： <span class="math display">\[
+\forall a_1,\cdots,a_n&gt;-1,且a_i 同号，则\prod_{k=1}^n
+(1+a_k)&gt;1+\sum_{k=1}^n a_k
+\]</span> 故 <span class="math display">\[
+\begin{aligned}
+(1+\frac{1}{n})^n&amp;&gt;\sum_{k=0}^n\left(
+\frac{1}{k!}-\frac{1}{k!}\sum_{j=1}^{k-1}\frac{j}{n}\right)\\
+&amp;=\sum_{k=0}^n \frac{1}{k!}-\sum_{k=0}^n
+\frac{1}{k!}\frac{k(k-1)}{2n}\\
+&amp;=\sum_{k=0}^n \frac{1}{k!}-\sum_{k=2}^n
+\frac{1}{(k-2)!}\frac{1}{2n}\\
+&amp;\ge \sum_{k=0}^n \frac{1}{k!}-\frac{1}{2n}\left(2+\sum_{k=2}^{n-2}
+\frac{1}{k(k-1)}\right)\\
+&amp;=\sum_{k=0}^n \frac{1}{k!}-\frac{1}{2n}(3-\frac{1}{n-2})\\
+&amp;&gt;\sum_{k=0}^n \frac{1}{k!}-\frac{3}{2n}
+\end{aligned}
+\]</span></p>
+<hr />
+]]></content>
+      <categories>
+        <category>答疑坊</category>
+        <category>微积分</category>
+      </categories>
+      <tags>
+        <tag>答疑坊</tag>
+        <tag>微积分</tag>
+        <tag>多元微积分</tag>
+        <tag>级数</tag>
+        <tag>微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>答疑坊 程设/离散/DSA 趣题若干</title>
+    <url>/2023/10/07/%E7%AD%94%E7%96%91%E5%9D%8A-%E7%A8%8B%E8%AE%BE-DSA-%E8%B6%A3%E9%A2%98%E8%8B%A5%E5%B9%B2/</url>
+    <content><![CDATA[<h3 id="p1">P1</h3>
+<h4 id="问题描述">问题描述</h4>
+<p>输入 <span class="math inline">\(3n-1\)</span> 个数，其中 <span
+class="math inline">\(n-1\)</span> 个数出现恰好 <span
+class="math inline">\(3\)</span> 次，<span
+class="math inline">\(1\)</span> 个数恰好出现 <span
+class="math inline">\(2\)</span> 次。求这个出现 <span
+class="math inline">\(2\)</span> 次的数。</p>
+<p>要求，时间复杂度 <span class="math inline">\(\tilde {\mathcal
+O}(n)\)</span> , 空间复杂度 <span class="math inline">\(\mathcal
+O(1)\)</span> .</p>
+<h4 id="算法分析">算法分析</h4>
+<p>考虑使用三进制不进位加法，显然满足交换律、结合律，且 <span
+class="math inline">\(a\oplus a\oplus a=0\)</span> ，出现 <span
+class="math inline">\(3\)</span> 次的数都抵消掉，只剩下恰好出现 <span
+class="math inline">\(2\)</span> 次的那个数 <span
+class="math inline">\(a\)</span> 的 "2倍"。</p>
+<p>对最后结果 <span class="math inline">\(sum\)</span> 求 <span
+class="math inline">\(sum\oplus sum\)</span> 。因 <span
+class="math inline">\(sum=a\oplus a\)</span> , 故 <span
+class="math inline">\(sum\oplus sum=a\oplus a\oplus a\oplus a=a\)</span>
+。</p>
+]]></content>
+      <categories>
+        <category>答疑坊</category>
+        <category>程设/离散/DSA</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>答疑坊</tag>
+        <tag>程序设计</tag>
+        <tag>离散数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Algorithm Design 3</title>
     <url>/2023/10/07/Algorithm-Design-3/</url>
     <content><![CDATA[<h2 id="chapter-2-greedy-algorithm">Chapter 2 Greedy Algorithm</h2>
@@ -43,34 +155,33 @@ then <span class="math inline">\(T\cap E(A,B)\neq
 </blockquote></li>
 </ol></li>
 <li><p>Lemma : Assumption : weights are distinct</p>
-<p>​ Suppose <span class="math inline">\(e=(u,v),u\in A,v\in B\)</span>
-is the edge with minimum weight in <span
+<p>Suppose <span class="math inline">\(e=(u,v),u\in A,v\in B\)</span> is
+the edge with minimum weight in <span
 class="math inline">\((A,B)\)</span>-cut , then every MST must contain
 <span class="math inline">\(e\)</span> .</p>
 <p>Proof : [Exchange Argument , Prove by contradiction]</p>
-<p>​ Suppose <span class="math inline">\(T\)</span> is a MST but <span
+<p>Suppose <span class="math inline">\(T\)</span> is a MST but <span
 class="math inline">\(e\notin T\)</span> . By the observation , there
 exists <span class="math inline">\(e&#39;\in T,e&#39;\in E(A,B)\)</span>
 .</p>
-<p>​ Let <span class="math inline">\(T&#39;=T-e&#39;+e\)</span> , then
+<p>Let <span class="math inline">\(T&#39;=T-e&#39;+e\)</span> , then
 <span class="math inline">\(T\)</span> is still connected , with smaller
-weight .</p>
-<p>​ <div class="note warning"><p>​ Problem : <span class="math inline">\(T\)</span> can have cycle
-!</p>
-<p>​</p>
-</div></p>
-<p>​ <div class="note success"><p>​ Correction :</p>
-<p>​ Choose one specific <span class="math inline">\(e&#39;\)</span> :
-<span class="math inline">\(e\notin T\)</span> , then <span
+weight .</p></li>
+</ol></li>
+</ol>
+<div class="note warning"><p>Problem : <span class="math inline">\(T\)</span> can have cycle !</p>
+</div>
+<div class="note success"><p>Correction :<br />
+Choose one specific <span class="math inline">\(e&#39;\)</span> : <span
+class="math inline">\(e\notin T\)</span> , then <span
 class="math inline">\(e\)</span> and some edges in <span
 class="math inline">\(T\)</span> can form a cycle ( the path from <span
 class="math inline">\(u\)</span> to <span
 class="math inline">\(v\)</span> on <span
 class="math inline">\(T\)</span> ). This cycle must contain an edge
 <span class="math inline">\(e&#39;\in E(A,B)\)</span> .</p>
-<p>​</p>
-</div></p></li>
-</ol></li>
+</div>
+<ol start="3" type="1">
 <li><p>Kruskal's Algorithm</p>
 <ol type="1">
 <li><p>Algorithm</p>
@@ -916,7 +1027,7 @@ class="math inline">\(\pi_b=\pi_r\)</span> , get the view</li>
   </entry>
   <entry>
     <title>Algorithm Design 2</title>
-    <url>/2023/10/06/Algorithm-Design-Note-2/</url>
+    <url>/2023/10/06/Algorithm-Design-2/</url>
     <content><![CDATA[<h3 id="dfs-application">1.3 dfs application</h3>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol type="1">
@@ -1167,7 +1278,7 @@ class="math inline">\(dist(p)&lt;dist(p&#39;)=d(u)+l_e\)</span> , so
   </entry>
   <entry>
     <title>Algorithm Design 1</title>
-    <url>/2023/10/05/Algorithm-Design-Note-1/</url>
+    <url>/2023/10/05/Algorithm-Design-1/</url>
     <content><![CDATA[<h2 id="chapter-0-logistics">Chapter 0 Logistics</h2>
 <p><strong>Content</strong> : discrete(combinatorial) algorithm ,
 Theoretical</p>
