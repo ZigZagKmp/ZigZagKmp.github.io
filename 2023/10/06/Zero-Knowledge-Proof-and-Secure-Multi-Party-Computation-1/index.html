@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-06T13:27:23.000Z">
-<meta property="article:modified_time" content="2023-10-06T13:47:28.949Z">
+<meta property="article:modified_time" content="2023-10-08T12:48:25.265Z">
 <meta property="article:author" content="ZigZagKmp">
 <meta property="article:tag" content="密码学">
 <meta property="article:tag" content="密码学-零知识证明">
@@ -280,9 +280,15 @@ IP</span></a></li></ol></li></ol></div>
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-10-06 21:27:23 / 修改时间：21:47:28" itemprop="dateCreated datePublished" datetime="2023-10-06T21:27:23+08:00">2023-10-06</time>
+      <time title="创建时间：2023-10-06 21:27:23" itemprop="dateCreated datePublished" datetime="2023-10-06T21:27:23+08:00">2023-10-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-10-08 20:48:25" itemprop="dateModified" datetime="2023-10-08T20:48:25+08:00">2023-10-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -312,7 +318,7 @@ IP</span></a></li></ol></li></ol></div>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -339,10 +345,23 @@ Definitions and Examples of ZKP</h2>
 <li><p>Efficient Algorithm : poly-time algorithm .</p></li>
 <li><p>NP class : class of problems that are easy to verify a solution
 (but may be hard to solve it)</p>
-<p>Formal def : <span class="math inline">\(\forall L\in NP ,\exists
-\text{efficient algorithm } \mathcal A_L , \mathcal
-A(x)=\begin{cases}1&amp;x\in L\\0&amp;x\notin
-L\end{cases}\)</span></p></li>
+<p>Formal def : Suppose <span class="math inline">\(L\subset
+\{0,1\}^*\)</span> is a language . <span class="math inline">\(L\in
+NP\)</span> if there exists a poly-time algorithm <span
+class="math inline">\(\mathcal A\)</span> :</p>
+<ul>
+<li>If <span class="math inline">\(x\in L\)</span> , <span
+class="math inline">\(\exists w\in \{0,1\}^{poly(|x|)}\)</span> , <span
+class="math inline">\(\mathcal A(x,w)=1\)</span></li>
+<li>If <span class="math inline">\(x\notin L\)</span> , <span
+class="math inline">\(\forall w\in \{0,1\}^{poly(|x|)}\)</span> , <span
+class="math inline">\(\mathcal A(x,w)=0\)</span></li>
+</ul>
+<p><span class="math inline">\(w\)</span> that makes <span
+class="math inline">\(\mathcal A(x,w)=1\)</span> is called the proof of
+<span class="math inline">\(x\in L\)</span> , and <span
+class="math inline">\(\mathcal A\)</span> is called the verification
+algorithm .</p></li>
 </ol></li>
 <li><p>Proof</p>
 <ol type="1">
