@@ -1,6 +1,517 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Probability and Statistics 1</title>
+    <url>/2023/10/08/Probability-and-Statistics-1/</url>
+    <content><![CDATA[<h2 id="chapter-0">Chapter 0</h2>
+<ol type="1">
+<li><p>Categories</p>
+<ol type="1">
+<li><p>Background in Probability</p>
+<ul>
+<li><p>what is probability <span class="math inline">\(\to\)</span>
+measure theory</p></li>
+<li><p>what is integration $$ Riemann / Lebesgue Integration</p></li>
+<li><p>Expectation &amp; its properties</p></li>
+</ul></li>
+<li><p>Probability foundations of Asymptotic Statistics</p>
+<ul>
+<li>weak law of large numbers</li>
+<li>strong law of large numbers (proof by Kolmoguor)</li>
+<li>central limit theorem</li>
+<li>characteristic function</li>
+</ul></li>
+<li><p>Estimation inference &amp; testing</p>
+<ul>
+<li>hypothesis testing</li>
+<li>regression analysis</li>
+<li>frontiers of statistical research (e.g. distribution of free
+test)</li>
+</ul></li>
+</ol></li>
+<li><p>Textbook</p>
+<p>[Durrett] Probability Theory &amp; Examples (or PTE)</p></li>
+</ol>
+<h2 id="chapter-1-background-in-probability">Chapter 1 Background in
+Probability</h2>
+<h3 id="probability-space">1.1 Probability Space</h3>
+<ol type="1">
+<li><p>Probability Space</p>
+<ol type="1">
+<li><p>Def : <span class="math inline">\((\Omega,\mathcal
+F,P)\)</span></p>
+<p><span class="math inline">\(\Omega\)</span> : set of "outcomes"</p>
+<p><span class="math inline">\(\mathcal F\)</span> : set of "events" ,
+like subset of <span class="math inline">\(\Omega\)</span></p>
+<p><span class="math inline">\(P\)</span> : function : <span
+class="math inline">\(\mathcal F\to [0,1]\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal F\)</span> should be a <span
+class="math inline">\(\sigma\)</span>-field</p>
+<ol type="1">
+<li><p>Def : [<span class="math inline">\(\sigma\)</span>-field] A
+nonempty collection of subsets of <span
+class="math inline">\(\Omega\)</span> that</p>
+<ul>
+<li>补封闭：If <span class="math inline">\(A\in \mathcal F\)</span> ,
+then <span class="math inline">\(A^c\in \mathcal F\)</span></li>
+<li>可数无穷并封闭：If <span class="math inline">\(A_i\in \mathcal
+F\)</span> , <span class="math inline">\(A_i\)</span> is a countable
+sequence , then <span class="math inline">\(\cup_i A_i\in \mathcal
+F\)</span></li>
+</ul></li>
+<li><p>Prop :</p>
+<ul>
+<li><span class="math inline">\(\varnothing \in \mathcal F,\Omega\in
+\mathcal F\)</span></li>
+</ul>
+<blockquote>
+<p>Proof : <span class="math inline">\(A\in\mathcal F\)</span> $$ <span
+class="math inline">\(A^c\in \mathcal F\)</span> <span
+class="math inline">\(\to\)</span> <span class="math inline">\(A\cup
+A^c\in \mathcal F\)</span> <span class="math inline">\(\to\)</span>
+<span class="math inline">\(\Omega\in \mathcal F\)</span> <span
+class="math inline">\(\to\)</span> <span
+class="math inline">\(\varnothing\in \mathcal F\)</span></p>
+</blockquote>
+<ul>
+<li>可数无穷交封闭：If <span class="math inline">\(A_i\in \mathcal
+F\)</span> , , <span class="math inline">\(A_i\)</span> is a countable
+sequence , then <span class="math inline">\(\cap_i A_i\in \mathcal
+F\)</span></li>
+</ul>
+<blockquote>
+<p>Proof : <span class="math inline">\(A\cap B=(A^c\cup
+B^c)^c\)</span></p>
+</blockquote></li>
+</ol></li>
+</ol></li>
+<li><p>Measurable Space</p>
+<ol type="1">
+<li><p>Def : [measure] : non-negative , countably additive , set
+function</p>
+<p>A function <span class="math inline">\(\mu:\mathcal F\to \mathbb
+R\)</span> with :</p>
+<ul>
+<li><p><span class="math inline">\(\forall A\in \mathcal F\)</span> ,
+<span class="math inline">\(\mu(A)\ge
+\mu(\varnothing)=0\)</span></p></li>
+<li><p>If <span class="math inline">\(A_i\in \mathcal F\)</span> , <span
+class="math inline">\(A_i\)</span> countable <strong>disjoint</strong>
+sequence , then <span class="math display">\[
+\mu(\cup_i A_i)=\sum_{i}\mu(A_i)
+\]</span></p></li>
+</ul></li>
+<li><p>Def : [probability measure] : a measure <span
+class="math inline">\(\mu\)</span> with <span
+class="math inline">\(\mu(\Omega)=1\)</span></p></li>
+<li><p>Thm : a measure <span class="math inline">\(\mu\)</span> on <span
+class="math inline">\((\Omega,\mathcal F)\)</span> satisfies</p>
+<ul>
+<li><p>monotonicity : <span class="math inline">\(A\sub B\Rightarrow
+\mu(A)\le \mu(B)\)</span></p></li>
+<li><p>subadditivity : <span class="math inline">\(A\sub
+\cup_{i=1}^{\infty} A_i\Rightarrow \mu(A)\le
+\sum_{i=1}^{\infty}A_i\)</span></p></li>
+<li><p>continuity :</p>
+<blockquote>
+<p>Def : [<span class="math inline">\(A_i\uparrow A\)</span> ]</p>
+<p>For set <span class="math inline">\(A\)</span> : <span
+class="math inline">\(A_1\sub A_2\sub\cdots , \cup_i A_i=A\)</span></p>
+<p>For real number <span class="math inline">\(A\)</span> : <span
+class="math inline">\(A_1\le A_2\le
+\cdots,\lim_{n\to\infty}A_n=A\)</span></p>
+</blockquote>
+<p>If <span class="math inline">\(A_i\uparrow A\)</span> , then <span
+class="math inline">\(\mu(A_i)\uparrow \mu(A)\)</span></p>
+<p>If <span class="math inline">\(A_i\downarrow A\)</span> , then <span
+class="math inline">\(\mu(A_i)\downarrow \mu(A)\)</span></p></li>
+</ul>
+<blockquote>
+<p>Proof :</p>
+<ol type="i">
+<li>: Let <span class="math inline">\(B-A=B\cap A^c\)</span> , so if
+<span class="math inline">\(A\sub B\)</span> , then <span
+class="math inline">\(B=A+(B-A)\)</span> , and <span
+class="math inline">\(A,B-A\)</span> are disjoint <span
+class="math display">\[
+\mu(B)=\mu(A+(B-A))=\mu(A)+\mu(B-A)\ge \mu(A)
+\]</span></li>
+<li>: Let <span class="math inline">\(A_n&#39;:=A_n\cap A\)</span> , so
+<span class="math inline">\(A=\cup_{i=1}^{\infty} A&#39;_i\)</span> .
+Let <span
+class="math inline">\(B_n=\begin{cases}A_1&#39;&amp;n=1\\A_n&#39;-\cup_{i=1}^{n-1}
+A_i&#39;&amp;n\ge 2\end{cases}\)</span></li>
+</ol>
+Therefore , <span class="math inline">\(B_n\)</span> are disjoint , and
+<span class="math inline">\(\cup_{i=1}^{\infty} B_i=\cup_{i=1}^{\infty}
+A_i&#39;=A\)</span> <span class="math display">\[
+\mu(A)=\mu(\cup_{i} B_i)=\sum_{i}\mu(B_i)\le \sum_{i} \mu(A_i)
+\]</span>
+<ol start="3" type="i">
+<li>: Let <span class="math inline">\(B_n=A_n-A_{n-1}\)</span> , so
+<span class="math inline">\(B_n\)</span> are disjoint , <span
+class="math inline">\(\cup_{i=1}^{n} B_i=A_n\)</span> , <span
+class="math inline">\(\cup_{i=1}^{\infty}B_i=A\)</span> <span
+class="math display">\[
+\mu(A)=\sum_{i=1}^{\infty} \mu(B_i)=\lim_{n\to\infty}\sum_{i=1}^n
+\mu(B_i)=\lim_{n\to \infty}\mu(A_n)
+\]</span></li>
+</ol>
+</blockquote></li>
+<li><p>E.g.1 Discrete Probability Space</p>
+<p><span class="math inline">\(\Omega\)</span> : countable set , <span
+class="math inline">\(\mathcal F\)</span> : the set of all subsets of
+<span class="math inline">\(\Omega\)</span> , <span
+class="math inline">\(p: \Omega\to[0,1]\)</span> , where <span
+class="math inline">\(\sum_{\omega\in \Omega}p(\omega)=1\)</span> .
+<span class="math display">\[
+P(A):=\sum_{\omega\in A}p(\omega)
+\]</span></p></li>
+</ol></li>
+<li><p>Measure on real line</p>
+<ol type="1">
+<li><p>Def : [generate] <span class="math inline">\(\mathcal A\)</span>
+is a set of some subsets of <span class="math inline">\(\Omega\)</span>.
+A <span class="math inline">\(\sigma\)</span>-field is generated by
+<span class="math inline">\(\mathcal A\)</span> if it is the smallest
+<span class="math inline">\(\sigma\)</span>-field containing <span
+class="math inline">\(\mathcal A\)</span> : <span
+class="math display">\[
+\sigma(\mathcal A):=\bigcap_{\mathcal A\subset\mathcal F,\mathcal
+F\text{ is }\sigma\text{-field}}\mathcal F
+\]</span></p></li>
+<li><p>Def : [Borel Set]</p>
+<p>Let <span class="math inline">\(\mathcal A\)</span> be the open
+subsets of <span class="math inline">\(\mathbb R^d\)</span> , Borel set
+is <span class="math inline">\(\sigma(\mathcal A)\)</span> , denoted as
+<span class="math inline">\(\mathcal R^d\)</span> .</p></li>
+<li><p>measure for <span class="math inline">\(d=1\)</span></p>
+<ol type="1">
+<li><p>Def : [Stieltjes measure function] <span
+class="math inline">\(F:\mathbb R\to\mathbb R\)</span> satisfies :</p>
+<ul>
+<li>non-decreasing : <span class="math inline">\(\forall x\ge y ,
+F(x)\ge F(y)\)</span></li>
+<li>right-continuous : <span class="math inline">\(\lim_{y\downarrow
+x}F(y)=\lim_{y\to x^+}F(y)=F(x)\)</span></li>
+</ul></li>
+<li><p>Thm : For all Stieltjes measure function <span
+class="math inline">\(F\)</span> , there is a unique measure <span
+class="math inline">\(\mu\)</span> on <span
+class="math inline">\((\mathbb R,\mathcal R)\)</span> , with <span
+class="math display">\[
+\mu((a,b])=F(b)-F(a)
+\]</span></p></li>
+<li><blockquote>
+<p>When <span class="math inline">\(F(x)=x\)</span> , <span
+class="math inline">\(\mu\)</span> is Lebesgue measure</p>
+</blockquote>
+<blockquote>
+<p>right-continuous : If <span class="math inline">\(b_n\downarrow
+b\)</span> , then <span
+class="math inline">\(\cup_{n}(a,b_n]=(a,b_n]\)</span>
+（可以保持右闭）</p>
+</blockquote></li>
+<li><p>Def [CDF] : For probability measure : <span
+class="math inline">\(\lim\limits_{x\to
+-\infty}F(x)=0,\lim\limits_{x\to+\infty}F(x)=1\)</span></p>
+<p><span class="math inline">\(F\)</span> : Cumulative Distribution
+Function [CDF] .</p></li>
+</ol></li>
+</ol></li>
+<li><p>(*) semi-algebra , algebra , <span
+class="math inline">\(\sigma\)</span>-algebra</p>
+<ol type="1">
+<li><p>Def : [semi-algebra , algebra , <span
+class="math inline">\(\sigma\)</span>-algebra]</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 43%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>structure</th>
+<th>complement</th>
+<th>intersection/union</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>semi-algebra</td>
+<td><span class="math inline">\(S^c\)</span> is a finite , disjoint
+union of sets in <span class="math inline">\(\mathcal S\)</span></td>
+<td><span class="math inline">\(S,T\in \mathcal S\)</span> , then <span
+class="math inline">\(S\cap T\in\mathcal S\)</span></td>
+</tr>
+<tr class="even">
+<td>algebra</td>
+<td><span class="math inline">\(A\in \mathcal A\)</span> , then <span
+class="math inline">\(A^c\in \mathcal A\)</span></td>
+<td><span class="math inline">\(S,T\in \mathcal A\)</span> , then <span
+class="math inline">\(S\cap T,S\cup T\in \mathcal A\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sigma\)</span>-algebra</td>
+<td><span class="math inline">\(A\in \mathcal F\)</span> , then <span
+class="math inline">\(A^c\in \mathcal F\)</span></td>
+<td><span class="math inline">\(A_i\in \mathcal F\)</span> , countable
+sequence , then <span class="math inline">\(\cup_i A_i\in \mathcal
+F\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>E.g. [algebra but not <span
+class="math inline">\(\sigma\)</span>-algebra]</p>
+<p><span class="math inline">\(\Omega=\mathbb Z\)</span> , <span
+class="math inline">\(\mathcal A=\{A\sub \Omega | A\text{ or }A^c\text{
+is finite}\}\)</span></p>
+<p><span class="math inline">\(\mathcal A\)</span> is obviously algebra
+but not <span class="math inline">\(\sigma\)</span>-algebra</p></li>
+<li><p>Lemma</p>
+<p>If <span class="math inline">\(\mathcal S\)</span> is a semi-algebra
+, then <span class="math inline">\(\bar{\mathcal S}=\{\text{finite
+disjoint union of sets in }\mathcal S\}\)</span> is algebra .</p>
+<p><span class="math inline">\(\bar{\mathcal S}\)</span> is called the
+algebra generated by <span class="math inline">\(\mathcal S\)</span>
+.</p>
+<blockquote>
+<p>Proof : easy to check two properties of algebra</p>
+</blockquote>
+<blockquote>
+<p>Question : Is this generation the smallest generation ?</p>
+</blockquote></li>
+<li><p>Def : [measure for algebra] a measure <span
+class="math inline">\(\mu\)</span> on an algebra <span
+class="math inline">\(\mathcal A\)</span> satisfies :</p>
+<ul>
+<li><p><span class="math inline">\(\forall A\in \mathcal A , \mu(A)\ge
+\mu(\varnothing)=0\)</span></p></li>
+<li><p>If <span class="math inline">\(A_i\in \mathcal A\)</span> is a
+disjoint sequence , and <span class="math inline">\(\cup_i A_i\in
+\mathcal A\)</span> , then <span class="math display">\[
+\mu(\cup_i A_i)=\sum_{i}\mu(A_i)
+\]</span></p></li>
+</ul>
+<p>Def : [<span class="math inline">\(\sigma\)</span>-finite] If there
+exists a sequence of sets $A_nA $ , $(A_n)&lt;$ , <span
+class="math inline">\(\cup_n A_n=\Omega\)</span> .</p>
+<blockquote>
+<p>We can let <span class="math inline">\(A_n&#39;=\cup_{i=1}^n
+A_i\)</span> , then <span class="math inline">\(A_n&#39;\uparrow
+\Omega\)</span> .</p>
+<p>We can let <span
+class="math inline">\(A_n&#39;=A_n\cap(\cap_{i=1}^{n-1}A_i^c)\)</span> ,
+then <span class="math inline">\(A_n&#39;\)</span> are disjoint .</p>
+<p>即，在构造这样的 <span class="math inline">\(A_n\)</span>
+的时候，我们可以直接考虑 <span class="math inline">\(A_n\uparrow
+\Omega\)</span> 或 <span class="math inline">\(A_n\)</span> 不交</p>
+</blockquote></li>
+<li><p>Thm : <span class="math inline">\(\mathcal S\)</span> is a
+semi-algebra , <span class="math inline">\(\mu\)</span> defined on <span
+class="math inline">\(\mathcal S\)</span> with <span
+class="math inline">\(\mu(\varnothing)=0\)</span></p>
+<ol type="i">
+<li>. If <span class="math inline">\(\mu\)</span> satisfies :</li>
+</ol>
+<ul>
+<li>If <span class="math inline">\(S\in \mathcal S\)</span> is a finite
+disjoint union of sets <span class="math inline">\(S_i\in \mathcal
+S\)</span> , then <span
+class="math inline">\(\mu(S)=\sum_{i}\mu(S_i)\)</span></li>
+<li>If <span class="math inline">\(S_i,S\in \mathcal S\)</span> , <span
+class="math inline">\(S=+_{i\ge 1} S_i\)</span> , then <span
+class="math inline">\(\mu(S)\le \sum_{i\ge 1} \mu(S_i)\)</span></li>
+</ul>
+<p>Then <span class="math inline">\(\mu\)</span> has a unique extension
+<span class="math inline">\(\bar \mu\)</span> that is a measure on <span
+class="math inline">\(\bar{\mathcal S}\)</span> .</p>
+<ol start="2" type="i">
+<li>. If <span class="math inline">\(\bar\mu\)</span> is <span
+class="math inline">\(\sigma\)</span>-finite , then there is a unique
+extension <span class="math inline">\(\hat \mu\)</span> that is a
+measure on <span class="math inline">\(\sigma(\mathcal S)\)</span>
+.</li>
+</ol></li>
+<li><p>Lemma : If <span class="math inline">\(\mathcal S\)</span> is a
+semi-algebra , <span class="math inline">\(\mu\)</span> defined on <span
+class="math inline">\(\mathcal S\)</span> with <span
+class="math inline">\(\mu(\varnothing)=0\)</span> . If <span
+class="math inline">\(S\in \mathcal S\)</span> is a finite disjoint
+union of sets <span class="math inline">\(S_i\in \mathcal S\)</span> ,
+then <span class="math inline">\(\mu(S)=\sum_{i}\mu(S_i)\)</span> . Then
+,</p>
+<ul>
+<li>If <span class="math inline">\(A,B_i\in \bar{\mathcal S}\)</span> ,
+<span class="math inline">\(A=+_{i=1}^n B_i\)</span> , then <span
+class="math inline">\(\bar \mu(A)=\sum_{i=1}^n
+\bar\mu(B_i)\)</span></li>
+<li>If <span class="math inline">\(A,B_i\in \bar{\mathcal S}\)</span> ,
+<span class="math inline">\(A\sub \cup_{i=1}^n B_i\)</span> , then <span
+class="math inline">\(\bar \mu(A)\le \sum_{i=1}^n
+\bar\mu(B_i)\)</span></li>
+</ul>
+<blockquote>
+<p>相当于，上面 (i) 中如果第一个条件成立，对于有限情况下的 第二个条件
+一定成立，并可以直接扩展到 <span class="math inline">\(\bar{\mathcal
+S}\)</span> 和 <span class="math inline">\(\bar \mu\)</span> 上 。</p>
+</blockquote></li>
+<li><p>可以借助 Thm , 证明 Stieltjes measure function 对应的 measure
+存在，且证明过程需要左开。</p></li>
+</ol></li>
+<li><p>(*) measure on <span class="math inline">\(\mathbb
+R^d\)</span></p>
+<ol type="1">
+<li><p>直接采用类似 Stieltjes measure function 的条件构造 measure
+是不够的</p>
+<p>Restrictions :</p>
+<ul>
+<li>non-decreasing : If <span class="math inline">\(\vec x\le \vec
+y\)</span> ( <span class="math inline">\(\forall i\in [d] , x_i\le
+y_i\)</span>) , then <span class="math inline">\(F(\vec x)\le F(\vec
+y)\)</span></li>
+<li>right-continuous : Define <span class="math inline">\(\vec
+y\downarrow \vec x\)</span> as <span class="math inline">\(\forall i\in
+[d] , y_i\downarrow x_i\)</span> , then <span
+class="math inline">\(\lim_{\vec y\downarrow \vec x}F(\vec y)=F(\vec
+x)\)</span></li>
+<li>(probability measure) <span class="math inline">\(\lim\limits_{\vec
+x\downarrow -\infty}F(\vec x)=0\)</span> , <span
+class="math inline">\(\lim_{\vec x\uparrow +\infty}F(\vec
+x)=1\)</span></li>
+</ul>
+<p>Problem : <span class="math display">\[
+F(x_1,x_2)=\begin{cases}
+1&amp;x_1\ge 1,x_2\ge 1\\
+\frac{2}{3}&amp;x_1\ge 1,x_2\in [0,1)\\
+\frac{2}{3}&amp;x_1\in [0,1),x_2\ge 1\\
+0&amp;\text{otherwise}
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+\mu((a_1,b_1]\times(a_2,b_2])=F(b_1,b_2)-F(a_1,b_2)-F(b_1,a_2)+F(a_1,a_2)
+\]</span></p>
+<p>Let $a_1,a_2=1-$ , <span class="math inline">\(b_1,b_2=1\)</span> ,
+<span class="math inline">\(\epsilon \to 0\)</span> , then <span
+class="math display">\[
+\mu(\{1\}\times\{1\})=-\frac{1}{3}&lt;0
+\]</span></p></li>
+<li><p>Def : [ <span class="math inline">\(\mathbb R^d\)</span> measure
+]</p>
+<p>Consider finite rectangles <span
+class="math inline">\(A=(a_1,b_1]\times\cdots\times(a_d,b_d]\)</span> ,
+<span
+class="math inline">\(V=\{a_1,b_1\}\times\cdots\times\{a_d,b_d\}\)</span></p>
+<p>If <span class="math inline">\(v\in V\)</span> , define <span
+class="math display">\[
+sgn(v)=(-1)^{|\{i\in [d]|v_i=a_i\}|}\\
+\Delta_A F:=\sum_{v\in V}sgn(v)F(v)
+\]</span> let <span class="math inline">\(\mu(A)=\Delta_A F\)</span>
+.</p>
+<blockquote>
+<p>此处相当于 <span class="math inline">\(d\)</span>
+维前缀和与差分，<span class="math inline">\(V\)</span> 相当于 <span
+class="math inline">\(d\)</span> 维矩形 <span
+class="math inline">\(A\)</span> 的所有顶点，<span
+class="math inline">\(sgn(v)\)</span> 相当于顶点 <span
+class="math inline">\(v\)</span> 有多少维是左顶点，然后容斥求差分。</p>
+</blockquote></li>
+<li><p>Thm : [<span class="math inline">\(\mathbb R^d\)</span> measure ]
+If <span class="math inline">\(F:\mathbb R^d\to [0,1]\)</span> ,
+satisfies the <span class="math inline">\(3\)</span> restrictions above
+, and for all rectangles <span class="math inline">\(A\)</span> , <span
+class="math inline">\(\Delta_A F\ge 0\)</span> . Then there is a unique
+probability measure <span class="math inline">\(\mu\)</span> on <span
+class="math inline">\((\mathbb R^d,\mathcal R^d)\)</span> that <span
+class="math inline">\(\mu(A)=\Delta_A F\)</span> for all finite
+rectangles .</p></li>
+<li><blockquote>
+<p>If <span class="math inline">\(F(\vec x)=\prod_{i=1}^d
+F_i(x_i)\)</span> , <span class="math inline">\(F_i\)</span> are all
+Stieltjes measure function , then <span class="math display">\[
+\Delta_A F=\prod_{i=1}^d (F_i(b_i)-F_i(a_i))
+\]</span> When <span class="math inline">\(F_i(x)=x\)</span> for all
+<span class="math inline">\(i\in [d]\)</span> , <span
+class="math inline">\(F\)</span> is Lebesgue measure on <span
+class="math inline">\(\mathbb R^d\)</span> .</p>
+</blockquote></li>
+</ol></li>
+</ol>
+<h3 id="random-variables">1.2 Random Variables</h3>
+<ol type="1">
+<li><p>measurable map</p>
+<ol type="1">
+<li><p>Def : [measurable map] <span class="math inline">\(X:\Omega\to
+S\)</span> is a measurable map from <span
+class="math inline">\((\Omega,\mathcal F)\)</span> to <span
+class="math inline">\((S,\mathcal S)\)</span> if <span
+class="math display">\[
+\forall B\in \mathcal S , X^{-1}(B):=\{w\in \Omega|X(w)\in B\}\in
+\mathcal F
+\]</span> Def : [random vector] When <span
+class="math inline">\((S,\mathcal S)=(\mathbb R^d,\mathcal R^d)\)</span>
+, <span class="math inline">\(X\)</span> is random vector .</p>
+<p>Def : [random variable] When <span class="math inline">\((S,\mathcal
+S)=(\mathbb R,\mathcal R)\)</span> , <span
+class="math inline">\(X\)</span> is a random variable .</p></li>
+<li><blockquote>
+<p>虽然 measurable map 写作 from <span
+class="math inline">\((\Omega,\mathcal F)\)</span> to <span
+class="math inline">\((S,\mathcal S)\)</span> ，但 <span
+class="math inline">\(X\)</span> 本身并不实现 <span
+class="math inline">\(\mathcal F\to\mathcal S\)</span> 的映射，只有
+<span class="math inline">\(\Omega\to S\)</span> 的映射。 <span
+class="math inline">\(\mathcal F,\mathcal S\)</span> 是表明 measurable
+的"范围"</p>
+</blockquote>
+<blockquote>
+<p>Random variable is not a variable but a (measurable) map</p>
+<p>这也很好解释了 <span class="math inline">\(E(X^2)\)</span>
+这种类型的记号的实际含义</p>
+</blockquote></li>
+<li><p>Thm [a sufficient condition for measurable map]</p>
+<p><span class="math inline">\(X:\Omega\to S\)</span> , $A $ : a
+collection of some subsets of <span class="math inline">\(S\)</span> ,
+If</p>
+<ul>
+<li><span class="math inline">\(\forall A\in \mathcal A , X^{-1}(A)\in
+\mathcal F\)</span></li>
+<li><span class="math inline">\(\mathcal A\)</span> generates <span
+class="math inline">\(\mathcal S\)</span></li>
+</ul>
+<p>Then <span class="math inline">\(X\)</span> is a measurable map from
+<span class="math inline">\((\Omega,\mathcal F)\)</span> to <span
+class="math inline">\((S,\mathcal S)\)</span> .</p>
+<blockquote>
+<p>Proof : Prove <span class="math inline">\(\mathcal B=\{B\sub
+S|X^{-1}(B)\in \mathcal F\}\)</span> is a <span
+class="math inline">\(\sigma\)</span>-field , and obviously <span
+class="math inline">\(\mathcal A\sub \mathcal B\)</span> . Consider
+generation is the smallest , <span class="math inline">\(\mathcal S\sub
+\mathcal B\)</span> .</p>
+</blockquote></li>
+<li><p>E.g. <span class="math inline">\(f:\mathbb R^d\to \mathbb
+R\)</span> : <span class="math inline">\(f(x_1,\cdots,x_d)=\sum_{i=1}^d
+x_i\)</span> is a measurable map from <span
+class="math inline">\((\mathbb R^d,\mathcal R^d)\)</span> to <span
+class="math inline">\((\mathbb R,\mathcal R)\)</span> .</p></li>
+</ol></li>
+</ol>
+]]></content>
+      <categories>
+        <category>课程笔记</category>
+        <category>概率与统计</category>
+      </categories>
+      <tags>
+        <tag>概率论-概率空间</tag>
+        <tag>实分析-测度</tag>
+        <tag>实分析-代数空间</tag>
+        <tag>实分析-测度-可测映射</tag>
+        <tag>概率论-随机变量</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>答疑坊 微积分 趣题若干</title>
     <url>/2023/10/07/%E7%AD%94%E7%96%91%E5%9D%8A-%E5%BE%AE%E7%A7%AF%E5%88%86-%E8%B6%A3%E9%A2%98%E8%8B%A5%E5%B9%B2/</url>
     <content><![CDATA[<h3 id="p1">P1</h3>
