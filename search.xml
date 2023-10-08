@@ -338,7 +338,7 @@ children</p></li>
 <tr class="even">
 <td><code>increase_key</code></td>
 <td><span class="math inline">\(\mathcal O(\log n)\)</span></td>
-<td><span class="math inline">\(\mathcal O(\log n)\)</span></td>
+<td><span class="math inline">\(\mathcal O(1)\)</span></td>
 </tr>
 </tbody>
 </table>
