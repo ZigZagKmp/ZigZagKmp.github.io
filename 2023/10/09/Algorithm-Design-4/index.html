@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar/avatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zigzagkmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm Design 4">
+<meta property="og:url" content="https://zigzagkmp.github.io/2023/10/09/Algorithm-Design-4/index.html">
+<meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zigzagkmp.github.io/images/posts/AD4_fig1.jpg">
+<meta property="article:published_time" content="2023-10-09T13:53:29.000Z">
+<meta property="article:modified_time" content="2023-10-09T13:58:40.994Z">
+<meta property="article:author" content="ZigZagKmp">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="算法-贪心">
+<meta property="article:tag" content="算法-贪心-最优缓存">
+<meta property="article:tag" content="算法-图论-最小树形图">
+<meta property="article:tag" content="算法-动态规划">
+<meta property="article:tag" content="算法-动态规划-线性DP">
+<meta property="article:tag" content="算法-动态规划-背包">
+<meta property="article:tag" content="算法-动态规划-区间DP">
+<meta property="article:tag" content="算法-动态规划-树形DP">
+<meta property="article:tag" content="算法-图论-树分解">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zigzagkmp.github.io/images/posts/AD4_fig1.jpg">
+
+
+<link rel="canonical" href="https://zigzagkmp.github.io/2023/10/09/Algorithm-Design-4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/10/09/Algorithm-Design-4/","path":"2023/10/09/Algorithm-Design-4/","title":"Algorithm Design 4"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Algorithm Design 4 | ZigZagKmp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZigZagKmp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Mainly for study materials</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-2-greedy-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2 Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#optimal-caching"><span class="nav-number">1.1.</span> <span class="nav-text">2.7 Optimal Caching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minimum-cost-arborescence"><span class="nav-number">1.2.</span> <span class="nav-text">2.8 Minimum Cost Arborescence</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-3-dynamic-programming"><span class="nav-number">2.</span> <span class="nav-text">Chapter 3 Dynamic
+Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#weighted-interval-scheduling-problem"><span class="nav-number">2.1.</span> <span class="nav-text">3.1 weighted interval
+scheduling problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subset-sum-knapsack"><span class="nav-number">2.2.</span> <span class="nav-text">3.2 Subset Sum &#x2F; Knapsack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rna-secondary-structure"><span class="nav-number">2.3.</span> <span class="nav-text">3.3 RNA secondary structure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dp-on-tree-and-tree-like-graph"><span class="nav-number">2.4.</span> <span class="nav-text">3.4 DP on tree and tree-like
+graph</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#maximum-independent-set-on-tree"><span class="nav-number">2.4.1.</span> <span class="nav-text">3.4.1 maximum independent set
+on tree</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#treewidth"><span class="nav-number">2.5.</span> <span class="nav-text">3.4.2 treewidth</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZigZagKmp"
+      src="/images/avatar/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ZigZagKmp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ZigZagKmp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ZigZagKmp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zigzagkmp@qq.com" title="E-Mail → mailto:zigzagkmp@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com" rel="noopener" target="_blank">Github</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;www.tsinghua.edu.cn" rel="noopener" target="_blank">THU</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://iiis.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;iiis.tsinghua.edu.cn" rel="noopener" target="_blank">IIIS</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.luogu.com.cn/" title="https:&#x2F;&#x2F;www.luogu.com.cn" rel="noopener" target="_blank">Luogu</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/07/Algorithm-Design-3/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-07</time>
+        <br>
+      Algorithm Design 3
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/06/Algorithm-Design-2/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-06</time>
+        <br>
+      Algorithm Design 2
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/05/Algorithm-Design-1/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-05</time>
+        <br>
+      Algorithm Design 1
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/10/09/Algorithm-Design-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.jpg">
+      <meta itemprop="name" content="ZigZagKmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZigZagKmp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Algorithm Design 4 | ZigZagKmp's Blog">
+      <meta itemprop="description" content="[2023 秋] 算法设计 第四课课堂笔记 / [2023 Fall] Algorithm Design Lecture 4 Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Algorithm Design 4
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-10-09 21:53:29 / 修改时间：21:58:40" itemprop="dateCreated datePublished" datetime="2023-10-09T21:53:29+08:00">2023-10-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">算法设计</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">[2023 秋] 算法设计 第四课课堂笔记 / [2023 Fall] Algorithm Design Lecture 4 Notes</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-2-greedy-algorithm">Chapter 2 Greedy Algorithm</h2>
+<h3 id="optimal-caching">2.7 Optimal Caching</h3>
+<ol type="1">
+<li><p>Description</p>
+<ul>
+<li><p>U : <span class="math inline">\(n\)</span> pieces of distinct
+elements stored in main memory</p></li>
+<li><p>cache : can hold <span class="math inline">\(k&lt;n\)</span>
+pieces</p>
+<p>init : cache holds <span class="math inline">\(k\)</span>
+elements</p></li>
+<li><p>need to process a sequence of elements <span
+class="math inline">\(d_1,\cdots,d_m\)</span> ( <span
+class="math inline">\(m\)</span> can <span class="math inline">\(\ge
+n\)</span> , not distinct)</p></li>
+<li><p>when processing <span class="math inline">\(d_i\)</span> :</p>
+<ul>
+<li>If <span class="math inline">\(d_i\)</span> already in cache : cache
+hit , do nothing to the cache</li>
+<li>If <span class="math inline">\(d_i\)</span> not in cache : cache
+miss , evict some other element from the cache</li>
+</ul></li>
+<li><p>Goal : minimize # of cache miss .</p></li>
+</ul></li>
+<li><p>Greedy Algorithm</p>
+<ol type="1">
+<li><p>FF Strategy : evict the element that will be used the furthest in
+the future .</p></li>
+<li><p>Proof [Exchange Argument] :</p>
+<p>See BOOK</p>
+<blockquote>
+<p>Suppose our solution <span class="math inline">\(S_{FF}\)</span>
+differs with the optimal solution <span class="math inline">\(S\)</span>
+firstly at <span class="math inline">\(d_i\)</span> , which is a cache
+miss , and our solution evicts <span class="math inline">\(a\)</span>
+and the optimal solution evicts <span class="math inline">\(b\)</span> ,
+where the future used time : <span
+class="math inline">\(t(a)&gt;t(b)\)</span> . Let's prove that we can
+construct a new solution <span class="math inline">\(S&#39;\)</span>
+that is same with our solution at <span
+class="math inline">\(d_i\)</span> as well , and is not worse than the
+optimal solution <span class="math inline">\(S\)</span>.</p>
+<p>We do not need to care about other caches and other elements . We
+only need to care about <span class="math inline">\(a,b\)</span> . <span
+class="math inline">\(S=S&#39;\)</span> except the following cases :</p>
+<p>Case 0 : At <span class="math inline">\(d_i\)</span> , <span
+class="math inline">\(S&#39;\)</span> should evict <span
+class="math inline">\(a\)</span> rather than <span
+class="math inline">\(b\)</span></p>
+<p>Case 1 : <span class="math inline">\(d_j\)</span> let <span
+class="math inline">\(a\)</span> evicted in <span
+class="math inline">\(S\)</span> before the first future used time <span
+class="math inline">\(t(a)\)</span> . Then let <span
+class="math inline">\(S&#39;\)</span> evicts <span
+class="math inline">\(b\)</span> at the same time , <span
+class="math inline">\(S\)</span> is the same as <span
+class="math inline">\(S&#39;\)</span> .</p>
+<p>Case 2 : At <span class="math inline">\(t(b)\)</span> . If at this
+time , <span class="math inline">\(S\)</span> evicts <span
+class="math inline">\(a\)</span> , then <span
+class="math inline">\(S&#39;\)</span> can do nothing and save one cache
+miss . If at this time , <span class="math inline">\(S\)</span> evicts
+<span class="math inline">\(c\neq a\)</span> , then we can let <span
+class="math inline">\(S&#39;\)</span> evicts <span
+class="math inline">\(c\)</span> as well , and then let <span
+class="math inline">\(a\)</span> "waiting" until it is used at <span
+class="math inline">\(t(a)\)</span> or evicted later .</p>
+</blockquote></li>
+</ol></li>
+<li><p>In reality : we cannot know the sequence ahead</p>
+<p>LRU : least recently used</p>
+<p>using locality of reference</p>
+<p>[ Slater , Tarjan ] : LRU is the earliest online solution (elements
+come one by one)</p>
+<p><span class="math inline">\(LRU\le k(FF+1)\)</span> , <span
+class="math inline">\(k\)</span> is the cache size .</p></li>
+</ol>
+<h3 id="minimum-cost-arborescence">2.8 Minimum Cost Arborescence</h3>
+<p>a.k.a 最小树形图</p>
+<ol type="1">
+<li><p>Description</p>
+<p>Find a min-cost directed spanning tree rooted at <span
+class="math inline">\(r\)</span> in a directed graph <span
+class="math inline">\(G\)</span> .</p>
+<p>Assumption : <span class="math inline">\(\forall e\in E,w(e)\ge
+0\)</span></p></li>
+<li><p>Algorithm</p>
+<ul>
+<li><p>For <span class="math inline">\(v\in V\backslash \{r\}\)</span> ,
+choose the in-edge with minimum weight <span
+class="math inline">\(e_v\)</span> .</p>
+<p>Let <span class="math inline">\(F^*\)</span> be the set of chosen
+edge , so <span class="math inline">\(cost(F^*)\le OPT\)</span> .</p>
+<p>If <span class="math inline">\(F^*\)</span> is already a tree , we
+get the optimal solution .</p></li>
+<li><p>Otherwise , for all <span class="math inline">\(v\in
+V\backslash\{r\}\)</span> , let <span
+class="math inline">\(w&#39;(e=(u,v))=w(u,v)-w(e_v)\)</span> , and then
+contract zero-cost cycles to get a new graph <span
+class="math inline">\(G&#39;\)</span> .</p></li>
+<li><p>Process <span class="math inline">\(G&#39;\)</span> as above
+.</p></li>
+</ul></li>
+<li><p>Extension : matrix-tree theorem</p>
+<p>count # of spanning tree in a graph (either directed or
+undirected)</p>
+<p><span class="math inline">\(Det(L_{00})\)</span></p>
+<p>variant : count # of spanning tree in a graph with given total
+weight</p></li>
+</ol>
+<h2 id="chapter-3-dynamic-programming">Chapter 3 Dynamic
+Programming</h2>
+<h3 id="weighted-interval-scheduling-problem">3.1 weighted interval
+scheduling problem</h3>
+<ol type="1">
+<li><p>Description</p>
+<p>Input : <span class="math inline">\(n\)</span> intervals <span
+class="math inline">\([l_i,r_i]\)</span> with weight <span
+class="math inline">\(w_i\)</span></p>
+<p>Goal : maximize the total weight s.t. the chosen intervals are
+distinct</p></li>
+<li><p>key : Dynamic Programming recursion</p>
+<ol type="1">
+<li>sort the jobs according to <span class="math inline">\(r_i\)</span>
+(like greedy algorithm)</li>
+<li>define <span class="math inline">\(opt(j)\)</span> : the optimal
+value for the first <span class="math inline">\(j\)</span>
+intervals</li>
+</ol>
+<p><span class="math display">\[
+opt(i)=\max\{opt(i-1),opt(p(i))+w_i\}
+\]</span></p>
+<p>where <span class="math inline">\(p(i)=\max\{j|r_j&lt;l_i\}\)</span>
+.</p>
+<ol start="3" type="1">
+<li><p>If we don't use interval <span class="math inline">\(i\)</span> ,
+it is <span class="math inline">\(opt(i-1)\)</span> .</p>
+<p>If we use interval <span class="math inline">\(i\)</span> , since
+<span class="math inline">\(\{r_i\}\)</span> non-decreasing , <span
+class="math inline">\(opt(p(i))\)</span> contains all valid optimal
+solutions before .</p></li>
+</ol></li>
+<li><p>Implementation</p>
+<p>naive :</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">compute_opt</span><span class="params">(<span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(i==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">compute_opt</span>(i<span class="number">-1</span>),w[i]+<span class="built_in">compute_opt</span>(<span class="built_in">p</span>(i)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Problem : can be exponential time !</p>
+<p>Key : many redundant computation <span
+class="math inline">\(\to\)</span> store them</p>
+</blockquote>
+<p>memorization / filling out the DP table :</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> opt[]=&#123;<span class="number">-1</span>&#125;;</span><br><span class="line"><span class="comment">// recursive implementation </span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">compute_opt</span><span class="params">(<span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(opt[i]!=<span class="number">-1</span>)<span class="keyword">return</span> opt[i];</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> opt[i]=<span class="built_in">max</span>(<span class="built_in">compute_opt</span>(i<span class="number">-1</span>),w[i]+<span class="built_in">compute_opt</span>(<span class="built_in">p</span>(i)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// non-recursive implementation</span></span><br><span class="line">&#123;</span><br><span class="line">    opt[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        opt[i]=<span class="built_in">max</span>(opt[i<span class="number">-1</span>],w[i]+opt[<span class="built_in">p</span>(i)]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="subset-sum-knapsack">3.2 Subset Sum / Knapsack</h3>
+<ol type="1">
+<li><p>Description</p>
+<p>Input : <span class="math inline">\(n\)</span> items , item <span
+class="math inline">\(i\)</span> has weight <span
+class="math inline">\(w_i\)</span> and value <span
+class="math inline">\(v_i\)</span> ; Weight limit <span
+class="math inline">\(W\)</span></p>
+<p>Goal : find a subset of items <span class="math inline">\(S\)</span>
+s.t. <span class="math inline">\(\sum_{i\in S}w_i\le W\)</span> and
+maximize <span class="math inline">\(\sum_{i\in S}v_i\)</span>
+.</p></li>
+<li><p>DP Algorithm</p>
+<ol type="1">
+<li><p>pseudo-poly time / poly time</p>
+<p>pseudo-poly time : <span class="math inline">\(poly(n,W)\)</span></p>
+<p>poly time : <span class="math inline">\(poly(n,\log W)\)</span> (
+<span class="math inline">\(\log W\)</span> is the least number of bits
+to input <span class="math inline">\(W\)</span> )</p>
+<blockquote>
+<p>Knapsack : NP-Hard : hard to find poly time algorithm</p>
+<p>But finding a pseudo-poly time algorithm is easy !</p>
+</blockquote></li>
+<li><p><span class="math inline">\(opt(i,w)\)</span> : the optimal
+solution for first <span class="math inline">\(i\)</span> items and
+weight <span class="math inline">\(= w\)</span> <span
+class="math display">\[
+opt(i,w)=\max\begin{cases}opt(i-1,w)&amp;\text{not using i-th item}\\
+opt(i-1,w-w_i)+v_i&amp;\text{using i-th item}
+\end{cases}
+\]</span></p></li>
+<li><p>Time Complexity : <span class="math inline">\(\mathcal
+O(nW)\)</span> .</p></li>
+</ol></li>
+<li><p>Implementation</p>
+<p><span class="math inline">\(opt(w)\)</span> : at <span
+class="math inline">\(i\)</span>-th iteration : the optimal solution for
+first <span class="math inline">\(i\)</span> items and weight <span
+class="math inline">\(= w\)</span> <span class="math display">\[
+opt(w)=\max\{opt(w),opt(w-w_i)+v_i\}
+\]</span> iterate <span class="math inline">\(w\)</span>
+decreasingly</p>
+<p><img src="\images\posts\AD4_fig1.jpg" /></p>
+<p>Memory Complexity : <span class="math inline">\(\mathcal
+O(n+W)\)</span></p></li>
+</ol>
+<h3 id="rna-secondary-structure">3.3 RNA secondary structure</h3>
+<ol type="1">
+<li><p>Description</p>
+<p>Input : <span class="math inline">\(\{A,C,G,U\}^n\)</span></p>
+<p>Constraints :</p>
+<ul>
+<li>no sharp turns : If pairing <span class="math inline">\((i,j)\in
+S\)</span> , then <span class="math inline">\(i&lt;j-4\)</span></li>
+<li>pairing : <span class="math inline">\(A-G\)</span> , <span
+class="math inline">\(C-U\)</span></li>
+<li>one base can only appear in <span class="math inline">\(\le
+1\)</span> pairs</li>
+<li>no crossing pairing : <span class="math inline">\(\not\exist
+(i,j),(l,r)\in S,i&lt;l&lt;j&lt;r\)</span></li>
+</ul>
+<p>Goal : maximize the size of pairing set <span
+class="math inline">\(S\)</span></p></li>
+<li><p>Algorithm</p>
+<p><span class="math inline">\(opt(l,r)\)</span> : the maximum number of
+pairs in subsequence <span class="math inline">\([l,r]\)</span> <span
+class="math display">\[
+opt(l,r)=\max\begin{cases}
+opt(l+1,r-1)&amp;a[l]\text{ and }a[r] \text{ can pairing}\\
+\max_{l\le i\le r-1}\{opt(l,i)+opt(i+1,r)\}
+\end{cases}
+\]</span> Order : <span class="math inline">\(r-l\)</span>
+increasing</p>
+<p>Time Complexity : <span class="math inline">\(\mathcal
+O(n^3)\)</span></p>
+<p>Memory Complexity : <span class="math inline">\(\mathcal
+O(n^2)\)</span></p></li>
+</ol>
+<h3 id="dp-on-tree-and-tree-like-graph">3.4 DP on tree and tree-like
+graph</h3>
+<h4 id="maximum-independent-set-on-tree">3.4.1 maximum independent set
+on tree</h4>
+<ol type="1">
+<li><p>Description</p>
+<p>Input : A tree , vertex-weighted</p>
+<p>Goal : Find an Independent Set of maximum weight</p></li>
+<li><p>Algorithm</p>
+<p><span class="math inline">\(opt_{0/1}(x)\)</span> : the
+maximum-weighted independent set of the subtree <span
+class="math inline">\(x\)</span> , <span
+class="math inline">\(opt_1\)</span> means we choose <span
+class="math inline">\(x\)</span> , <span
+class="math inline">\(opt_0\)</span> means we don't choose <span
+class="math inline">\(x\)</span> . <span class="math display">\[
+opt_1(x)=w_x+\sum_{y\in child(x)}opt_0(y)\\
+opt_0(x)=\sum_{y\in child(x)}\max\{opt_0(y),opt_1(y)\}
+\]</span></p></li>
+<li><p>Tree DP View :</p>
+<ul>
+<li>subtree is the natural subinstance</li>
+<li>delete <span class="math inline">\(x\)</span> , the tree will be
+separated into several parts , no connection between <span
+class="math inline">\(subtree(y)\)</span> (<span
+class="math inline">\(y\in child(x)\)</span>) , <span
+class="math inline">\(G\backslash subtree(x)\)</span></li>
+</ul></li>
+</ol>
+<h3 id="treewidth">3.4.2 treewidth</h3>
+<ol type="1">
+<li><p>Tree Decomposition ( clique tree , junction trees )</p>
+<ol type="1">
+<li><p>Def [separator] : For connected graph <span
+class="math inline">\(G\)</span> , a separator is a vertex set <span
+class="math inline">\(S\subset V\)</span> , s.t. <span
+class="math inline">\(G\backslash S\)</span> is not connected .</p></li>
+<li><p>Def [tree decomposition] : <span
+class="math inline">\(T(G)\)</span> is a tree decomposition if :</p>
+<p>Each vertex in <span class="math inline">\(T(G)\)</span> is called a
+bag <span class="math inline">\((V_T(x),E_T(x))\)</span> : containing
+some vertices in <span class="math inline">\(G\)</span> and their
+edges</p>
+<ul>
+<li><span class="math inline">\(\cup_x V_T(x)=V\)</span></li>
+<li><span class="math inline">\(\forall e\in E,\exists x\in T(G) , e\in
+E_T(x)\)</span></li>
+<li><span class="math inline">\(\forall v\in V,\{x|v\in
+V_T(x)\}\)</span> form a connected subtree</li>
+</ul></li>
+<li><p>Def [treewidth for tree decomposition] : <span
+class="math inline">\(tw(T(G)):=\max_x \{|V_T(x)|\}-1\)</span></p></li>
+<li><p>Lemma : If <span class="math inline">\(G\)</span> is a tree ,
+<span class="math inline">\(tw(T(G))=1\)</span></p></li>
+<li><p>Def [treewidth for graph] : <span class="math display">\[
+tw(G)=\min\limits_{T(G)\text{ is a tree decomposition}}tw(T(G))
+\]</span></p></li>
+</ol></li>
+<li><p>Lemma [ bags and separators ] : <span
+class="math inline">\(T(G)\)</span> is a tree decomposition of <span
+class="math inline">\(G\)</span> , <span
+class="math inline">\(A,B\)</span> are adjacent bags in <span
+class="math inline">\(T(G)\)</span> , then</p>
+<p><span class="math inline">\(V_T(A)\)</span> is a separator of <span
+class="math inline">\(G\)</span> , <span class="math inline">\(V_T(A\cap
+B)\)</span> is a separator of <span
+class="math inline">\(G\)</span></p></li>
+<li><p>Independent Set on a graph with a tree decomposition</p>
+<p>Input : given <span class="math inline">\(G\)</span> and a tree
+decomposition <span class="math inline">\(T(G)\)</span></p>
+<p>Goal : Find maximum Independent Set in Time Complexity <span
+class="math inline">\(\mathcal O(n2^{tw(T(G))})\)</span></p></li>
+<li><p>Algorithm</p>
+<ul>
+<li><p><span class="math inline">\(opt(x,S)\)</span> : consider the
+subtree <span class="math inline">\(x\)</span> in the tree decomposition
+, choosing exactly <span class="math inline">\(S\)</span> in <span
+class="math inline">\(V_T(x)\)</span> , the maximum independent
+set</p></li>
+<li><p><span class="math display">\[
+opt(x,S)=w(S)+\sum_{y\in child(x)}\max_{S&#39; , S\text{ consists with }
+S&#39;\text{ on }S\cap S&#39;}\{opt(y,S&#39;)-w(S\cap S&#39;)\}
+\]</span></p></li>
+</ul></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ZigZagKmp
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://zigzagkmp.github.io/2023/10/09/Algorithm-Design-4/" title="Algorithm Design 4">https://zigzagkmp.github.io/2023/10/09/Algorithm-Design-4/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/ZigZagKmp">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.luogu.com.cn/user/35871">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Luogu</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83/" rel="tag"># 算法-贪心</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83-%E6%9C%80%E4%BC%98%E7%BC%93%E5%AD%98/" rel="tag"># 算法-贪心-最优缓存</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%9B%BE%E8%AE%BA-%E6%9C%80%E5%B0%8F%E6%A0%91%E5%BD%A2%E5%9B%BE/" rel="tag"># 算法-图论-最小树形图</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 算法-动态规划</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E7%BA%BF%E6%80%A7DP/" rel="tag"># 算法-动态规划-线性DP</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E8%83%8C%E5%8C%85/" rel="tag"># 算法-动态规划-背包</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E5%8C%BA%E9%97%B4DP/" rel="tag"># 算法-动态规划-区间DP</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%A0%91%E5%BD%A2DP/" rel="tag"># 算法-动态规划-树形DP</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%9B%BE%E8%AE%BA-%E6%A0%91%E5%88%86%E8%A7%A3/" rel="tag"># 算法-图论-树分解</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/10/08/Probability-and-Statistics-2/" rel="prev" title="Probability and Statistics 2">
+                  <i class="fa fa-angle-left"></i> Probability and Statistics 2
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZigZagKmp</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">11k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">38 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/ZigZagKmp" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"ZigZagKmp/zigzagkmp.github.io","repo_id":"R_kgDOKcVJdQ","category":"Announcements","category_id":"DIC_kwDOKcVJdc4CZ58w","mapping":"pathname","reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
