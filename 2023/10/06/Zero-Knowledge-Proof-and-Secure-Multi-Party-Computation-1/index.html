@@ -144,9 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lec01-basic-definitions-and-examples-of-zkp"><span class="nav-number">1.</span> <span class="nav-text">Lec01 Basic
-Definitions and Examples of ZKP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-notations"><span class="nav-number">1.1.</span> <span class="nav-text">1 Basic Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interactive-proof"><span class="nav-number">1.2.</span> <span class="nav-text">2 Interactive Proof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ip-examples"><span class="nav-number">1.3.</span> <span class="nav-text">3 IP Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#formularize-zero-knowledge-ip"><span class="nav-number">1.4.</span> <span class="nav-text">4 Formularize zero-knowledge
-IP</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lec01-Basic-Definitions-and-Examples-of-ZKP"><span class="nav-number">1.</span> <span class="nav-text">Lec01 Basic Definitions and Examples of ZKP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Basic-Notations"><span class="nav-number">1.1.</span> <span class="nav-text">1 Basic Notations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Interactive-Proof"><span class="nav-number">1.2.</span> <span class="nav-text">2 Interactive Proof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-IP-Examples"><span class="nav-number">1.3.</span> <span class="nav-text">3 IP Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Formularize-zero-knowledge-IP"><span class="nav-number">1.4.</span> <span class="nav-text">4 Formularize zero-knowledge IP</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -183,6 +181,12 @@ IP</span></a></li></ol></li></ol></div>
       </span>
       <span class="links-of-author-item">
         <a href="mailto:zigzagkmp@qq.com" title="E-Mail → mailto:zigzagkmp@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/35871" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;35871" rel="noopener me" target="_blank"><i class="fa fa-code fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/ZigZagKmp/" title="cnblogs → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ZigZagKmp&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-blog fa-fw"></i>cnblogs</a>
       </span>
   </div>
   <div class="cc-license animated" itemprop="license">
@@ -336,601 +340,306 @@ IP</span></a></li></ol></li></ol></div>
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="lec01-basic-definitions-and-examples-of-zkp">Lec01 Basic
-Definitions and Examples of ZKP</h2>
-<h3 id="basic-notations">1 Basic Notations</h3>
-<ol type="1">
+    <div class="post-body" itemprop="articleBody"><h2 id="Lec01-Basic-Definitions-and-Examples-of-ZKP"><a href="#Lec01-Basic-Definitions-and-Examples-of-ZKP" class="headerlink" title="Lec01 Basic Definitions and Examples of ZKP"></a>Lec01 Basic Definitions and Examples of ZKP</h2><h3 id="1-Basic-Notations"><a href="#1-Basic-Notations" class="headerlink" title="1 Basic Notations"></a>1 Basic Notations</h3><ol>
 <li><p>Complexity</p>
-<ol type="1">
-<li><p>Efficient Algorithm : poly-time algorithm .</p></li>
-<li><p>NP class : class of problems that are easy to verify a solution
-(but may be hard to solve it)</p>
-<p>Formal def : Suppose <span class="math inline">\(L\subset
-\{0,1\}^*\)</span> is a language . <span class="math inline">\(L\in
-NP\)</span> if there exists a poly-time algorithm <span
-class="math inline">\(\mathcal A\)</span> :</p>
+<ol>
+<li><p>Efficient Algorithm : poly-time algorithm .</p>
+</li>
+<li><p>NP class : class of problems that are easy to verify a solution (but may be hard to solve it)</p>
+<p>Formal def : Suppose $L\subset \{0,1\}^*$ is a language . $L\in NP$ if there exists a poly-time algorithm $\mathcal A$ :</p>
 <ul>
-<li>If <span class="math inline">\(x\in L\)</span> , <span
-class="math inline">\(\exists w\in \{0,1\}^{poly(|x|)}\)</span> , <span
-class="math inline">\(\mathcal A(x,w)=1\)</span></li>
-<li>If <span class="math inline">\(x\notin L\)</span> , <span
-class="math inline">\(\forall w\in \{0,1\}^{poly(|x|)}\)</span> , <span
-class="math inline">\(\mathcal A(x,w)=0\)</span></li>
+<li>If $x\in L$ , $\exists w\in \{0,1\}^{poly(|x|)}$ , $\mathcal A(x,w)=1$</li>
+<li>If $x\notin L$ , $\forall w\in \{0,1\}^{poly(|x|)}$ , $\mathcal A(x,w)=0$</li>
 </ul>
-<p><span class="math inline">\(w\)</span> that makes <span
-class="math inline">\(\mathcal A(x,w)=1\)</span> is called the proof of
-<span class="math inline">\(x\in L\)</span> , and <span
-class="math inline">\(\mathcal A\)</span> is called the verification
-algorithm .</p></li>
-</ol></li>
+<p>$w$ that makes $\mathcal A(x,w)=1$ is called the proof of $x\in L$ , and $\mathcal A$ is called the verification algorithm .</p>
+</li>
+</ol>
+</li>
 <li><p>Proof</p>
-<ol type="1">
-<li><p>Def : a static sequence of rules</p></li>
-<li><p>E.g.1 : Prove that <span
-class="math inline">\(f(x,y)=x^2y^3-5xy+4=0\)</span> has a solution
-.</p>
-<p>Proof 1 [Explicit Proof] : <span
-class="math inline">\(f(1,1)=0\)</span></p>
-<p>Proof 2 [Implicit Proof] : <span
-class="math inline">\(f(2,1)&lt;0,f(2,2)&gt;0\)</span> .</p>
-<p>( <span class="math inline">\(f(2,x)\)</span> is continuous , so
-<span class="math inline">\(\exists x_0\in (1,2) , f(2,x_0)=0\)</span>
-)</p></li>
-</ol></li>
+<ol>
+<li><p>Def : a static sequence of rules </p>
+</li>
+<li><p>E.g.1 : Prove that $f(x,y)=x^2y^3-5xy+4=0$ has a solution .</p>
+<p>Proof 1 [Explicit Proof] : $f(1,1)=0$</p>
+<p>Proof 2 [Implicit Proof] : $f(2,1)<0,f(2,2)>0$ .</p>
+<p>( $f(2,x)$ is continuous , so $\exists x_0\in (1,2) , f(2,x_0)=0$ )</p>
+</li>
 </ol>
-<h3 id="interactive-proof">2 Interactive Proof</h3>
-<ol type="1">
-<li><p>Interactive Proof</p>
-<ol type="1">
-<li><p>A Prover and a Verifier , Prover needs to convince Verifier some
-proposition .</p>
-<p>Usually , Prover needs to convince Verifier that some proposition is
-<strong>true</strong> . <span class="math inline">\((x\in
-L)\)</span></p></li>
-<li><p>Prover : with unbounded computation sources</p>
-<p>Verifier : Only efficient algorithm</p></li>
-<li><p>Complexity Class : IP : class of problems that are easy to
-determine with an interactive proof</p>
+</li>
+</ol>
+<h3 id="2-Interactive-Proof"><a href="#2-Interactive-Proof" class="headerlink" title="2 Interactive Proof"></a>2 Interactive Proof</h3><ol>
+<li><p>Interactive Proof </p>
+<ol>
+<li><p>A Prover and a Verifier , Prover needs to convince Verifier some proposition .</p>
+<p>Usually , Prover needs to convince Verifier that some proposition is <strong>true</strong> . $(x\in L)$</p>
+</li>
+<li><p>Prover : with unbounded computation sources </p>
+<p>Verifier : Only efficient algorithm </p>
+</li>
+<li><p>Complexity Class : IP : class of problems that are easy to determine with an interactive proof</p>
 <ul>
-<li><span class="math inline">\(NP\subsetneq IP\)</span></li>
-</ul></li>
+<li>$NP\subsetneq IP$</li>
+</ul>
+</li>
 <li><p>Transcript</p>
-<p>Prover sends <span class="math inline">\(m_1\)</span> to Verifier ,
-Verifier receives <span class="math inline">\(m_1\)</span> and sends
-<span class="math inline">\(m_2\)</span> to Prover , ... <span
-class="math display">\[
+<p>Prover sends $m_1$ to Verifier , Verifier receives $m_1$ and sends $m_2$ to Prover , …</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-P(x,r_p)\to m_1\quad \quad &amp;\\
-V(x,r_v,m_1,\cdots,m_{i-1})\to m_i\quad&amp; \text{for odd }i\\
-P(x,r_p,m_1,\cdots,m_{i-1})\to m_i\quad&amp; \text{for even }i\\
-V(x,r_v,m_1,\cdots,m_k)\to y\in \{0,1\}&amp;
-\end{aligned}
-\]</span></p>
-<ol type="1">
-<li>Def : transcript : <span
-class="math inline">\(\tau=\{m_1,\cdots,m_k\}\)</span></li>
-<li>Def : <span class="math inline">\(\braket{P,V}(x):=y\)</span></li>
-</ol></li>
-</ol></li>
+P(x,r_p)\to m_1\quad \quad &\\
+V(x,r_v,m_1,\cdots,m_{i-1})\to m_i\quad& \text{for odd }i\\
+P(x,r_p,m_1,\cdots,m_{i-1})\to m_i\quad& \text{for even }i\\
+V(x,r_v,m_1,\cdots,m_k)\to y\in \{0,1\}&
+\end{aligned}</script><ol>
+<li>Def : transcript : $\tau=\{m_1,\cdots,m_k\}$</li>
+<li>Def : $\braket{P,V}(x):=y$</li>
+</ol>
+</li>
+</ol>
+</li>
 <li><p>IP Criteria</p>
-<ol type="1">
-<li><p>Completeness : If Prover is honest , Verifier accepts the proof
-.</p>
-<p><span class="math inline">\(\forall x\in L ,
-\Pr\{\left&lt;P,V\right&gt;(x)=1\}=1\)</span></p></li>
-<li><p>Soundness : If Prover is dishonest , Verifier rejects the proof
-(with high probability) .</p></li>
-<li><p>Zero-Knowledge : If Prover is honest , Verifier cannot know more
-than "knowing the proposition is true"</p></li>
-</ol></li>
+<ol>
+<li><p>Completeness : If Prover is honest , Verifier accepts the proof .</p>
+<p>$\forall x\in L , \Pr\{\left<P,V\right>(x)=1\}=1$</p>
+</li>
+<li><p>Soundness : If Prover is dishonest , Verifier rejects the proof (with high probability) .</p>
+</li>
+<li><p>Zero-Knowledge : If Prover is honest , Verifier cannot know more than “knowing the proposition is true”</p>
+</li>
+</ol>
+</li>
 <li><p>Definition (somewhat formal (?) )</p>
-<p>A pair of randomized algorithms <span
-class="math inline">\((P,V)\)</span> is an interactive proof for <span
-class="math inline">\(L\)</span></p>
-<ol type="1">
-<li><p><span class="math inline">\(V\)</span> runs in poly-time</p></li>
-<li><p>Completeness : <span class="math inline">\(\forall x\in L ,
-\Pr\{\braket{P,V}(x)=1\}=1\)</span></p></li>
-<li><p>Soundness : <span class="math inline">\(\forall x\notin L,\forall
-P^*,\Pr\{\braket{P^*,V}(x)=1\}&lt; \epsilon\)</span></p></li>
-<li><p>Zero-Knowledge (Optimal)</p>
-<p><span class="math inline">\(\forall x\in L\)</span> , <span
-class="math inline">\(V\)</span> can generate everything itself with
-bounded computation time without interaction</p>
-<p><strong>gain sth. cannot gain by PPT <span
-class="math inline">\(\Rightarrow\)</span> gain
-knowledge</strong></p></li>
-</ol></li>
+<p>A pair of randomized algorithms $(P,V)$ is an interactive proof for $L$ </p>
+<ol>
+<li><p>$V$ runs in poly-time</p>
+</li>
+<li><p>Completeness : $\forall x\in L , \Pr\{\braket{P,V}(x)=1\}=1$</p>
+</li>
+<li><p>Soundness : $\forall x\notin L,\forall P^<em>,\Pr\{\braket{P^</em>,V}(x)=1\}&lt; \epsilon$</p>
+</li>
+<li><p>Zero-Knowledge (Optimal) </p>
+<p>$\forall x\in L$ , $V$ can generate everything itself with bounded computation time without interaction</p>
+<p><strong>gain sth. cannot gain by PPT $\Rightarrow$ gain knowledge</strong></p>
+</li>
 </ol>
-<h3 id="ip-examples">3 IP Examples</h3>
-<ol type="1">
+</li>
+</ol>
+<h3 id="3-IP-Examples"><a href="#3-IP-Examples" class="headerlink" title="3 IP Examples"></a>3 IP Examples</h3><ol>
 <li><p>Graph non-Isomorphism</p>
-<ol type="1">
+<ol>
 <li><p>Description</p>
-<p>Prover and Verifier know graphs <span
-class="math inline">\(G_0,G_1\)</span> .</p>
-<p>Prover wants to convince verifier that <span
-class="math inline">\(G_0\)</span> is not isomorphic with <span
-class="math inline">\(G_1\)</span> . <span class="math display">\[
+<p>Prover and Verifier know graphs $G_0,G_1$ .</p>
+<p>Prover wants to convince verifier that $G_0$ is not isomorphic with $G_1$ .</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;G_0=(V,E_0) , G_1=(V,E_1)\\
-\not\exists \pi\in S_{|V|}&amp;\ ,\ \{(\pi(u),\pi(v)):(u,v)\in E_0\}=E_1
-\end{aligned}
-\]</span></p></li>
+&G_0=(V,E_0) , G_1=(V,E_1)\\
+\not\exists \pi\in S_{|V|}&\ ,\ \{(\pi(u),\pi(v)):(u,v)\in E_0\}=E_1
+\end{aligned}</script></li>
 <li><p>Protocol</p>
-<p>Global : Prover and Verifier already know <span
-class="math inline">\(G_0,G_1\)</span> .</p>
-<table>
-<colgroup>
-<col style="width: 37%" />
-<col style="width: 13%" />
-<col style="width: 49%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Prover</th>
-<th style="text-align: center;"></th>
-<th>Verifier</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td><span class="math inline">\(b\leftarrow \{0,1\}\)</span> , <span
-class="math inline">\(\pi\leftarrow S_{|V|}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">&lt;- <span class="math inline">\(\tilde
-G\)</span> --</td>
-<td><span class="math inline">\(\tilde G:=\pi(G_b)\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Find $b $ , <span
-class="math inline">\(G_{\tilde b}\sim \tilde G\)</span></td>
-<td style="text-align: center;">-- <span class="math inline">\(\tilde
-b\)</span> -&gt;</td>
-<td></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td><span class="math inline">\(y=\begin{cases}1&amp; \text{if }b=\tilde
-b\\0&amp;\text{otherwise}\end{cases}\)</span></td>
-</tr>
-</tbody>
-</table></li>
+<p>Global : Prover and Verifier already know $G_0,G_1$ .</p>
+<p>|                     Prover                     |                  | Verifier                                                     |<br>| :——————————————————————: | :———————: | —————————————————————————————— |<br>|                                                |                  | $b\leftarrow \{0,1\}$ , $\pi\leftarrow S_{|V|}$              |<br>|                                                | &lt;- $\tilde G$ — | $\tilde G:=\pi(G_b)$                                         |<br>| Find $\tilde b $ , $G_{\tilde b}\sim \tilde G$ | — $\tilde b$ -&gt; |                                                              |<br>|                                                |                  | $y=\begin{cases}1&amp; \text{if }b=\tilde b\\0&amp;\text{otherwise}\end{cases}$ |</p>
+</li>
 <li><p>Analysis</p>
-<ol type="1">
-<li><p>Completeness : When <span class="math inline">\(G_0\not\sim
-G_1\)</span> , <span class="math inline">\(G_{\tilde b}\sim \tilde G\sim
-G_b\)</span> , so <span class="math inline">\(b=\tilde b\)</span> .
-Always accept .</p></li>
-<li><p>Soundness : When <span class="math inline">\(G_0\sim G_1\)</span>
-, any prover can only guess <span class="math inline">\(\tilde
-b\)</span> randomly since <span class="math inline">\(G_0\sim G_1\sim
-\tilde G\)</span> . <span class="math inline">\(\Pr\{V\text{
-accept}\}\le \frac{1}{2}\)</span> .</p>
-<p>Proof : <span class="math inline">\(P^*\)</span> knows <span
-class="math inline">\(\tilde G\)</span> and wants to guess <span
-class="math inline">\(b\)</span> , we need to prove that <span
-class="math display">\[
-\forall P^* , \Pr\{P^*(\tilde G)=b\}\le \frac{1}{2}
-\]</span> Since <span class="math inline">\(\forall \tilde G\sim G_0\sim
-G_1\)</span> , <span class="math display">\[
+<ol>
+<li><p>Completeness : When $G_0\not\sim G_1$ , $G_{\tilde b}\sim \tilde G\sim G_b$ , so $b=\tilde b$ . Always accept .</p>
+</li>
+<li><p>Soundness : When $G_0\sim G_1$ , any prover can only guess $\tilde b$ randomly since $G_0\sim G_1\sim \tilde G$ . $\Pr\{V\text{ accept}\}\le \frac{1}{2}$ .</p>
+<p>Proof : $P^*$ knows $\tilde G$ and wants to guess $b$ , we need to prove that</p>
+<script type="math/tex; mode=display">
+\forall P^* , \Pr\{P^*(\tilde G)=b\}\le \frac{1}{2}</script><p>Since $\forall \tilde G\sim G_0\sim G_1$ , </p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-\Pr\{\pi(G_0)=\tilde G\}&amp;=\Pr\{\pi(G_1)=\tilde G\}\\
-\Rightarrow \Pr\{\pi(G_b)=\tilde G|b=0\}&amp;=\Pr\{\pi(G_b)=\tilde
-G|b=1\}\\
-\Rightarrow \Pr\{b=0|\pi(G_b)=\tilde G\}&amp;=\Pr\{b=1|\pi(G_b)=\tilde
-G\}\\
-\end{aligned}
-\]</span> Therefore , <span class="math display">\[
-\forall P^* , \Pr\{P^*(\tilde G)=b|\pi(G_b)=\tilde G\}\le\frac{1}{2}
-\]</span> Therefore , <span class="math display">\[
+\Pr\{\pi(G_0)=\tilde G\}&=\Pr\{\pi(G_1)=\tilde G\}\\
+\Rightarrow \Pr\{\pi(G_b)=\tilde G|b=0\}&=\Pr\{\pi(G_b)=\tilde G|b=1\}\\
+\Rightarrow \Pr\{b=0|\pi(G_b)=\tilde G\}&=\Pr\{b=1|\pi(G_b)=\tilde G\}\\
+\end{aligned}</script><p>Therefore ,</p>
+<script type="math/tex; mode=display">
+\forall P^* , \Pr\{P^*(\tilde G)=b|\pi(G_b)=\tilde G\}\le\frac{1}{2}</script><p>Therefore ,</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-\Pr\{P^*(\tilde G)=b\}&amp;=\sum_{\tilde G}\Pr\{P^*(\tilde
-G)=b|\pi(G_b)=\tilde G\}\Pr\{\pi(G_b)=\tilde G\}\\
-&amp;\le \frac{1}{2}\sum_{\tilde G}\Pr\{\pi(G_b)=\tilde G\}\\
-&amp;=\frac{1}{2}
-\end{aligned}
-\]</span> <span class="math inline">\(k\)</span> rounds : <span
-class="math inline">\(\Pr\{V\text{ accepts}\}\le \frac{1}{2^k}\)</span>
-.</p></li>
-<li><p>Zero-Knowledge</p>
-<p>Verifier itself knows <span class="math inline">\(b,\pi,\tilde
-G\)</span> . Prover tells Verifier <span class="math inline">\(\tilde
-b\)</span> .</p>
-<p>Only consider <span class="math inline">\(G_0\not\sim G_1\)</span> ,
-then <span class="math inline">\(\tilde b\)</span> must be <span
-class="math inline">\(b\)</span> . Verifier itself can generate the
-transcript .</p>
+\Pr\{P^*(\tilde G)=b\}&=\sum_{\tilde G}\Pr\{P^*(\tilde G)=b|\pi(G_b)=\tilde G\}\Pr\{\pi(G_b)=\tilde G\}\\
+&\le \frac{1}{2}\sum_{\tilde G}\Pr\{\pi(G_b)=\tilde G\}\\
+&=\frac{1}{2}
+\end{aligned}</script><p>$k$ rounds : $\Pr\{V\text{ accepts}\}\le \frac{1}{2^k}$ .</p>
+</li>
+<li><p>Zero-Knowledge </p>
+<p>Verifier itself knows $b,\pi,\tilde G$ .  Prover tells Verifier $\tilde b$ .</p>
+<p>Only consider $G_0\not\sim G_1$ , then $\tilde b$ must be $b$ . Verifier itself can generate the transcript .</p>
 <blockquote>
-<p>注意：因为 zero-knowledge 是对 Prover 的保护，我们只需要保护诚实
-Prover 的隐私，因此只要考虑命题成立的情况（即 <span
-class="math inline">\(G_0\not\sim G_1\)</span>）。</p>
-</blockquote></li>
-</ol></li>
+<p>注意：因为 zero-knowledge 是对 Prover 的保护，我们只需要保护诚实 Prover 的隐私，因此只要考虑命题成立的情况（即 $G_0\not\sim G_1$）。</p>
+</blockquote>
+</li>
+</ol>
+</li>
 <li><p>Notes</p>
 <blockquote>
-<p>Given <span class="math inline">\(G_0\not\sim G_1\)</span> , Verifier
-can generate the proof itself</p>
-<p>Due to Verifier's randomness , Prover cannot generate the proof
-itself</p>
+<p>Given $G_0\not\sim G_1$ , Verifier can generate the proof itself </p>
+<p>Due to Verifier’s randomness , Prover cannot generate the proof itself</p>
+<p>Graph non-isomorphism Problem is not $NP$ , but can be solved by $IP$ . </p>
 </blockquote>
-<blockquote>
-<p>Graph non-isomorphism Problem is not <span
-class="math inline">\(NP\)</span> , but can be solved by <span
-class="math inline">\(IP\)</span> .</p>
-</blockquote></li>
-</ol></li>
+</li>
+</ol>
+</li>
 <li><p>Collision Problem</p>
-<ol type="1">
+<ol>
 <li><p>Definition</p>
-<ol type="1">
-<li>Given <span class="math inline">\(h:\{0,1\}^n\to\{0,1\}^n\)</span> ,
-either <span class="math inline">\(h\)</span> is a permutation or <span
-class="math inline">\(|Im(h)|\le 2^{n-1}\)</span> .</li>
-<li>Prover wants to convince Verifier that <span
-class="math inline">\(h\)</span> is a permutation .</li>
-</ol></li>
+<ol>
+<li>Given $h:\{0,1\}^n\to\{0,1\}^n$ , either $h$ is a permutation or $|Im(h)|\le 2^{n-1}$ .</li>
+<li>Prover wants to convince Verifier that $h$ is a permutation .</li>
+</ol>
+</li>
 <li><p>Protocol 1</p>
-<p>Global : Prover and Verifier already know <span
-class="math inline">\(h\)</span> . <span class="math inline">\(\forall
-x\in \{0,1\}^n\)</span> , Verifier can get <span
-class="math inline">\(h(x)\)</span> in poly-time .</p>
-<table style="width:100%;">
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 14%" />
-<col style="width: 54%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Prover</th>
-<th style="text-align: center;"></th>
-<th style="text-align: center;">Verifier</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math inline">\(x\leftarrow
-\{0,1\}^n\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">&lt;- <span
-class="math inline">\(y\)</span> --</td>
-<td style="text-align: center;"><span
-class="math inline">\(y:=h(x)\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Find <span class="math inline">\(\tilde
-x\)</span> , <span class="math inline">\(h(\tilde x)=y\)</span></td>
-<td style="text-align: center;">-- <span class="math inline">\(\tilde
-x\)</span> -&gt;</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span
-class="math inline">\(\begin{cases}1&amp;x=\tilde
-x\\0&amp;\text{otherwise}\end{cases}\)</span></td>
-</tr>
-</tbody>
-</table></li>
+<p>Global : Prover and Verifier already know $h$ . $\forall x\in \{0,1\}^n$ , Verifier can get $h(x)$ in poly-time .</p>
+<p>|              Prover               |                  |                          Verifier                          |<br>| :———————————————-: | :———————: | :————————————————————————————: |<br>|                                   |                  |                  $x\leftarrow \{0,1\}^n$                   |<br>|                                   |    &lt;- $y$ —     |                         $y:=h(x)$                          |<br>| Find $\tilde x$ , $h(\tilde x)=y$ | — $\tilde x$ -&gt; |                                                            |<br>|                                   |                  | $\begin{cases}1&amp;x=\tilde x\\0&amp;\text{otherwise}\end{cases}$ |</p>
+</li>
 <li><p>Analysis 1</p>
-<ol type="1">
-<li><p>Completeness : When <span class="math inline">\(h\)</span> is a
-permutation , <span class="math inline">\(h\)</span> is a injection ,
-<span class="math inline">\(x=\tilde x\)</span> .</p></li>
-<li><p>Soundness : When <span class="math inline">\(h\)</span> is not a
-permutation , then <span class="math inline">\(|Im(h)|\le
-2^{n-1}\)</span> . <span class="math display">\[
-\forall x , P^*\ ,\ \Pr\{P^*(h(x))=x\}=\frac{1}{|h^{-1}(h(x))|}
-\]</span> Therefore , <span class="math display">\[
+<ol>
+<li><p>Completeness : When $h$ is a permutation , $h$ is a injection , $x=\tilde x$ .</p>
+</li>
+<li><p>Soundness : When $h$ is not a permutation , then $|Im(h)|\le 2^{n-1}$ .</p>
+<script type="math/tex; mode=display">
+\forall x , P^*\ ,\ \Pr\{P^*(h(x))=x\}=\frac{1}{|h^{-1}(h(x))|}</script><p>Therefore ,</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-\Pr\{V\text{ accepts}\}&amp;=\sum_{y\in Im(h)}\Pr\{y=f(x)|x\in
-\{0,1\}^n\}\Pr\{P^*(h(x))=x\}\\
-&amp;=\sum_{y\in Im(h)}\frac{|h^{-1}(y)|}{2^n}\frac{1}{|h^{-1}(y)|}\\
-&amp;=\frac{|Im(h)|}{2^n}\\
-&amp;\le \frac{1}{2}
-\end{aligned}
-\]</span> <span class="math inline">\(k\)</span> rounds : <span
-class="math inline">\(\Pr\{V \text{ accepts}\}\le\frac{1}{2^k}\)</span>
-.</p></li>
-<li><p>Zero-knowledge :</p>
-<p>Verifier itself knows <span class="math inline">\(x,y\)</span> .
-Prover tells Verifier <span class="math inline">\(\tilde x\)</span>
-.</p>
-<p>When <span class="math inline">\(h\)</span> is a permutation , <span
-class="math inline">\(\tilde x=x\)</span> , so Verifier can generate
-<span class="math inline">\(\tilde x\)</span> itself .</p></li>
-</ol></li>
+\Pr\{V\text{ accepts}\}&=\sum_{y\in Im(h)}\Pr\{y=f(x)|x\in \{0,1\}^n\}\Pr\{P^*(h(x))=x\}\\
+&=\sum_{y\in Im(h)}\frac{|h^{-1}(y)|}{2^n}\frac{1}{|h^{-1}(y)|}\\
+&=\frac{|Im(h)|}{2^n}\\
+&\le \frac{1}{2}
+\end{aligned}</script><p>$k$ rounds : $\Pr\{V \text{ accepts}\}\le\frac{1}{2^k}$ .</p>
+</li>
+<li><p>Zero-knowledge : </p>
+<p>Verifier itself knows $x,y$ . Prover tells Verifier $\tilde x$ .</p>
+<p>When $h$ is a permutation , $\tilde x=x$ , so Verifier can generate $\tilde x$ itself .</p>
+</li>
+</ol>
+</li>
 <li><p>Protocol 2</p>
-<p>Global : Prover and Verifier already know <span
-class="math inline">\(h\)</span> . <span class="math inline">\(\forall
-x\in \{0,1\}^n\)</span> , Verifier can get <span
-class="math inline">\(h(x)\)</span> in poly-time .</p>
-<table>
-<colgroup>
-<col style="width: 23%" />
-<col style="width: 10%" />
-<col style="width: 65%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Prover</th>
-<th style="text-align: center;"></th>
-<th style="text-align: center;">Verifier</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">&lt;- <span
-class="math inline">\(y\)</span> --</td>
-<td style="text-align: center;"><span class="math inline">\(y\leftarrow
-\{0,1\}^n\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Find <span
-class="math inline">\(x\)</span> , <span
-class="math inline">\(h(x)=y\)</span></td>
-<td style="text-align: center;">-- <span
-class="math inline">\(x\)</span> -&gt;</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span
-class="math inline">\(\begin{cases}1&amp;h(x)=y\\0&amp;\text{otherwise}\end{cases}\)</span></td>
-</tr>
-</tbody>
-</table></li>
+<p>Global : Prover and Verifier already know $h$ . $\forall x\in \{0,1\}^n$ , Verifier can get $h(x)$ in poly-time .</p>
+<p>|       Prover        |           |                        Verifier                        |<br>| :————————-: | :———-: | :——————————————————————————: |<br>|                     | &lt;- $y$ — |                $y\leftarrow \{0,1\}^n$                 |<br>| Find $x$ , $h(x)=y$ | — $x$ -&gt; |                                                        |<br>|                     |           | $\begin{cases}1&amp;h(x)=y\\0&amp;\text{otherwise}\end{cases}$ |</p>
+</li>
 <li><p>Analysis 2</p>
-<ol type="1">
-<li><p>Completeness : When <span class="math inline">\(h\)</span> is a
-permutation , <span class="math inline">\(h\)</span> is a bijection ,
-<span class="math inline">\(x\)</span> always exists and unique . Always
-accept .</p></li>
-<li><p>Soundness : When <span class="math inline">\(h\)</span> is not a
-permutation , <span class="math inline">\(|Im(h)|\le 2^{n-1}\)</span> .
-<span class="math display">\[
-\Pr\{h^{-1}(y)=\varnothing|y\leftarrow
-\{0,1\}^n\}=1-\frac{|Im(h)|}{2^n}\ge \frac{1}{2}
-\]</span> When <span
-class="math inline">\(h^{-1}(y)=\varnothing\)</span> , any Prover cannot
-convince verifier , so <span class="math display">\[
-\Pr\{V\text{ accepts}\}\le 1-\Pr\{h^{-1}(y)=\varnothing|y\leftarrow
-\{0,1\}^n\}\le \frac{1}{2}
-\]</span> <span class="math inline">\(k\)</span> rounds : <span
-class="math inline">\(\Pr\{V \text{ accepts}\}\le\frac{1}{2^k}\)</span>
-.</p></li>
+<ol>
+<li><p>Completeness : When $h$ is a permutation , $h$ is a bijection , $x$ always exists and unique . Always accept .</p>
+</li>
+<li><p>Soundness : When $h$ is not a permutation , $|Im(h)|\le 2^{n-1}$ .</p>
+<script type="math/tex; mode=display">
+\Pr\{h^{-1}(y)=\varnothing|y\leftarrow \{0,1\}^n\}=1-\frac{|Im(h)|}{2^n}\ge \frac{1}{2}</script><p>When $h^{-1}(y)=\varnothing$ , any Prover cannot convince verifier , so </p>
+<script type="math/tex; mode=display">
+\Pr\{V\text{ accepts}\}\le 1-\Pr\{h^{-1}(y)=\varnothing|y\leftarrow \{0,1\}^n\}\le \frac{1}{2}</script><p>$k$ rounds : $\Pr\{V \text{ accepts}\}\le\frac{1}{2^k}$ .</p>
+</li>
 <li><p>Zero-knowledge : NOT zero-knowledge</p>
-<p><span class="math inline">\(V\)</span> knows <span
-class="math inline">\(h^{-1}(y)\)</span> , which cannot be computed in
-poly-time by itself .</p></li>
-</ol></li>
+<p>$V$ knows $h^{-1}(y)$ , which cannot be computed in poly-time by itself .</p>
+</li>
+</ol>
+</li>
 <li><p>Notes</p>
 <blockquote>
-<p>In Protocol 1 , when <span class="math inline">\(h\)</span> is a
-permutation , Verifier can always generate a valid proof</p>
+<p>In Protocol 1 , when $h$ is a permutation , Verifier can always generate a valid proof</p>
+<p>In both Protocols , Prover must have the ability to solve $h^{-1}$ . This may lead Verifier knowing something more .</p>
 </blockquote>
-<blockquote>
-<p>In both Protocols , Prover must have the ability to solve <span
-class="math inline">\(h^{-1}\)</span> . This may lead Verifier knowing
-something more .</p>
-</blockquote></li>
-</ol></li>
+</li>
 </ol>
-<h3 id="formularize-zero-knowledge-ip">4 Formularize zero-knowledge
-IP</h3>
-<ol type="1">
-<li><p>Security Parameter : <span
-class="math inline">\(\kappa\)</span></p>
-<ol type="1">
-<li>For efficiency : usually <span
-class="math inline">\(|x|=poly(\kappa)\)</span> , PPT should run in
-<span class="math inline">\(poly(\kappa)\)</span> .</li>
+</li>
+</ol>
+<h3 id="4-Formularize-zero-knowledge-IP"><a href="#4-Formularize-zero-knowledge-IP" class="headerlink" title="4 Formularize zero-knowledge IP"></a>4 Formularize zero-knowledge IP</h3><ol>
+<li><p>Security Parameter : $\kappa$</p>
+<ol>
+<li>For efficiency : usually $|x|=poly(\kappa)$  , PPT should run in $poly(\kappa)$ .</li>
 <li>For security : negligible function</li>
-</ol></li>
-<li><p>Negligible function : <span
-class="math inline">\(\epsilon\)</span></p>
-<ol type="1">
-<li><p>Def : negligible function <span
-class="math inline">\(\epsilon:\mathbb Z^*\to \mathbb R^*\)</span></p>
-<p>For all polynomial <span class="math inline">\(p\)</span> , <span
-class="math inline">\(\exists c\in \mathbb Z^* , \forall
-k&gt;c,\epsilon(k)&lt;\frac{1}{p(k)}\)</span> .</p></li>
+</ol>
+</li>
+<li><p>Negligible function : $\epsilon$</p>
+<ol>
+<li><p>Def : negligible function $\epsilon:\mathbb Z^<em>\to \mathbb R^</em>$</p>
+<p>For all polynomial $p$ , $\exists c\in \mathbb Z^* , \forall k&gt;c,\epsilon(k)&lt;\frac{1}{p(k)}$ .</p>
+</li>
 <li><p>Propositions :</p>
-<ol type="1">
-<li><span class="math inline">\(\epsilon , \delta\)</span> negligible
-<span class="math inline">\(\to\)</span> <span
-class="math inline">\(\epsilon+\delta , \epsilon\delta\)</span>
-negligible</li>
-<li><span class="math inline">\(\epsilon\)</span> negligible <span
-class="math inline">\(\to\)</span> For all polynomial <span
-class="math inline">\(p\)</span> , <span
-class="math inline">\(p\epsilon\)</span> negligible</li>
-</ol></li>
+<ol>
+<li>$\epsilon , \delta$ negligible $\to$ $\epsilon+\delta , \epsilon\delta$ negligible </li>
+<li>$\epsilon$ negligible $\to$ For all polynomial $p$ , $p\epsilon$ negligible</li>
+</ol>
+</li>
 <li><p>Conventions :</p>
-<ol type="1">
-<li><p><span class="math inline">\(\epsilon\)</span> noticeable : <span
-class="math inline">\(\exists\)</span> polynomial <span
-class="math inline">\(p\)</span> , <span class="math inline">\(\exists
-c\in \mathbb Z^*,\forall k&gt;c,\epsilon(k)\ge
-\frac{1}{p(k)}\)</span></p></li>
-<li><p><span class="math inline">\(A\)</span> happens with overwhelming
-probability : <span class="math display">\[
-\Pr\{A\}\ge 1-\epsilon \quad\quad \epsilon \text{ is negligible}
-\]</span></p></li>
-</ol></li>
+<ol>
+<li><p>$\epsilon$ noticeable : $\exists$ polynomial $p$ , $\exists c\in \mathbb Z^*,\forall k&gt;c,\epsilon(k)\ge \frac{1}{p(k)}$ </p>
+</li>
+<li><p>$A$ happens with overwhelming probability : </p>
+<script type="math/tex; mode=display">
+\Pr\{A\}\ge 1-\epsilon \quad\quad \epsilon \text{ is negligible}</script></li>
+</ol>
+</li>
 </ol>
 <blockquote>
-<p>There exists function that is neither negligible nor noticeable</p>
-</blockquote></li>
-<li><p>View of Verifier <span class="math display">\[
-View_V^P(x):=(x,r,\tau)
-\]</span></p></li>
+<p>There exists function that is neither negligible nor noticeable </p>
+</blockquote>
+</li>
+<li><p>View of Verifier</p>
+<script type="math/tex; mode=display">
+View_V^P(x):=(x,r,\tau)</script></li>
 <li><p>Honest-Verifier Zero-knowledge</p>
-<ol type="1">
-<li><p>Perfect honest-verifier zero-knowledge <span
-class="math display">\[
-\exists M\in PPT\ ,\ \forall x\in L\ ,\ View_V^P(x)\equiv M(x)
-\]</span></p></li>
+<ol>
+<li><p>Perfect honest-verifier zero-knowledge</p>
+<script type="math/tex; mode=display">
+\exists M\in PPT\ ,\ \forall x\in L\ ,\ View_V^P(x)\equiv M(x)</script></li>
 <li><p>Statistical honest-verifier zero-knowledge</p>
-<p>The statistical distance between <span
-class="math inline">\(View_V^P(x)\)</span> and <span
-class="math inline">\(M(x)\)</span> is negligible</p>
-<p><span class="math inline">\(\exists M\in PPT\ ,\ \forall x\in
-L\)</span> , <span class="math display">\[
-SD(View_V^P(x),M(x))=\frac{1}{2}\sum_{s}\left|\Pr\{View_V^P(x)=s\}-\Pr\{M(x)=s\}\right|&lt;\epsilon
-\]</span></p></li>
+<p>The statistical distance between $View_V^P(x)$ and $M(x)$ is negligible</p>
+<p>$\exists M\in PPT , \forall x\in L$ ,</p>
+<script type="math/tex; mode=display">
+SD(View_V^P(x),M(x))=\frac{1}{2}\sum_{s}\left|\Pr\{View_V^P(x)=s\}-\Pr\{M(x)=s\}\right|<\epsilon</script></li>
 <li><p>Computational honest-verifier zero-knowledge</p>
-<p><span class="math inline">\(\exists M\in PPT\ ,\ \forall x\in L\ , \
-\forall\)</span> distinguisher <span class="math inline">\(D\in
-PPT\)</span> , <span class="math display">\[
-\left|\Pr\{D(View_V^P(x))=1\}-\Pr\{D(M(x))=1\}\right|&lt;\epsilon
-\]</span></p></li>
-</ol></li>
-<li><p>Dishonest Verifier</p>
-<p><span class="math inline">\(\braket{P,V}\)</span> achieves
-perfect/statistical/computational dishonest-verifier zero-knowledge if
-:</p>
-<p><span class="math inline">\(\forall V^*\in PPT\ , \ \exists\)</span>
-expected poly-time randomized algorithm <span
-class="math inline">\(M^*\)</span> , <span class="math inline">\(\forall
-x\in L\)</span> , <span class="math inline">\(View_{V^*}^P(x)\)</span>
-and <span class="math inline">\(M^*(x)\)</span> are
-perfectly/statistically/computationally indistinguishable .</p></li>
-<li><p>Graph Isomorphism IP with dishonest-verifier zero-knowledge</p>
-<ol type="1">
-<li><p>Definition</p>
-<p>Prover and Verifier know graph <span
-class="math inline">\(G_0,G_1\)</span> .</p>
-<p>Prover wants to convince Verifier that <span
-class="math inline">\(G_0\sim G_1\)</span> , i.e. <span
-class="math inline">\(\exists \pi,\pi(G_0)=G_1\)</span> .</p></li>
-<li><p>Protocol</p>
-<table>
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 12%" />
-<col style="width: 52%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Prover</th>
-<th style="text-align: center;"></th>
-<th style="text-align: center;">Verifier</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span
-class="math inline">\(\pi_r\leftarrow S_n\)</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\tilde
-G:=\pi_r(G_0)\)</span></td>
-<td style="text-align: center;">--<span class="math inline">\(\tilde
-G\)</span>-&gt;</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">&lt;-<span
-class="math inline">\(b\)</span>--</td>
-<td style="text-align: center;"><span class="math inline">\(b\leftarrow
-\{0,1\}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">find <span
-class="math inline">\(\pi_b\)</span> , s.t. <span
-class="math inline">\(\tilde G=\pi_b(G_b)\)</span></td>
-<td style="text-align: center;">--<span
-class="math inline">\(\pi_b\)</span>-&gt;</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><span
-class="math inline">\(\begin{cases}1&amp;\tilde
-G=\pi_b(G_b)\\0&amp;\text{otherwise}\end{cases}\)</span></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>Note : If Prover knows <span class="math inline">\(\pi\)</span> that
-<span class="math inline">\(\pi(G_0)=G_1\)</span> , then <span
-class="math inline">\(\pi_b\)</span> can be constructed : <span
-class="math display">\[
-\pi_b=\begin{cases}\pi_r&amp;b=0\\\pi_r\circ\pi^{-1}&amp;b=1\end{cases}
-\]</span></p>
-</blockquote></li>
-<li><p>Analysis</p>
-<ol type="1">
-<li><p>Completeness : If <span class="math inline">\(G_0\sim
-G_1\)</span> , <span class="math inline">\(\pi_b\)</span> can be
-constructed as above . Always Accept .</p></li>
-<li><p>Soundness : If <span class="math inline">\(G_0\not\sim
-G_1\)</span> , <span class="math inline">\(\exists b^*\in
-\{0,1\},G_{b^*}\not\sim\tilde G\)</span></p>
-<p><span class="math inline">\(\Pr\{V \text{ rejects}\}\ge \Pr\{V\text{
-chooses }b^*\}=\frac{1}{2}\)</span></p>
-<blockquote>
-<p>Note : we cannot let Verifier just choose <span
-class="math inline">\(b=1\)</span> , since a malicious Prover can
-violate the protocol , <span class="math inline">\(\pi_r\)</span> may
-not be a permutation , and <span class="math inline">\(\tilde G\)</span>
-may not isomorphic to <span class="math inline">\(G_0\)</span> .</p>
-</blockquote></li>
-<li><p>honest-verifier zero-knowledge :</p>
-<p>Verifier itself knows : <span
-class="math inline">\(G_0,G_1,b\)</span> , <span
-class="math inline">\(r\)</span> : randomness generating <span
-class="math inline">\(b\)</span> . Prover tells verifier <span
-class="math inline">\(\tilde G,\pi_b\)</span> .</p>
-<p><span class="math inline">\(View_V^P=(G_0,G_1,r,b,\tilde
-G,\pi_b)\)</span> .</p>
-<p><span class="math inline">\(M_V\)</span> :</p>
-<ol type="1">
-<li>sample <span class="math inline">\(b\leftarrow \{0,1\}\)</span></li>
-<li>choose <span class="math inline">\(\pi_b\leftarrow S_n\)</span></li>
-<li><span class="math inline">\(\tilde G:=\pi_b(G_b)\)</span></li>
+<p>$\exists M\in PPT , \forall x\in L ,  \forall$ distinguisher $D\in PPT$ ,</p>
+<script type="math/tex; mode=display">
+\left|\Pr\{D(View_V^P(x))=1\}-\Pr\{D(M(x))=1\}\right|<\epsilon</script></li>
 </ol>
-<p>Since Prover and Verifier are honest , <span
-class="math inline">\(b\)</span> is independent of $G $ , and <span
-class="math inline">\(\pi_b\)</span> is generated by a uniformly random
-<span class="math inline">\(\pi_r\)</span> hence is also uniformly
-random .</p></li>
+</li>
+<li><p>Dishonest Verifier</p>
+<p>$\braket{P,V}$ achieves perfect/statistical/computational dishonest-verifier zero-knowledge if :</p>
+<p>$\forall V^<em>\in PPT ,  \exists$ expected poly-time randomized algorithm $M^</em>$ , $\forall x\in L$ , $View_{V^<em>}^P(x)$ and $M^</em>(x)$ are perfectly/statistically/computationally indistinguishable .</p>
+</li>
+<li><p>Graph Isomorphism IP with dishonest-verifier zero-knowledge</p>
+<ol>
+<li><p>Definition</p>
+<p>Prover and Verifier know graph $G_0,G_1$ .</p>
+<p>Prover wants to convince Verifier that $G_0\sim G_1$ , i.e. $\exists \pi,\pi(G_0)=G_1$ .</p>
+</li>
+<li><p>Protocol</p>
+<p>|                  Prover                   |                |                           Verifier                           |<br>| :———————————————————-: | :——————: | :—————————————————————————————: |<br>|           $\pi_r\leftarrow S_n$           |                |                                                              |<br>|          $\tilde G:=\pi_r(G_0)$           | —$\tilde G$-&gt; |                                                              |<br>|                                           |    &lt;-$b$—     |                    $b\leftarrow \{0,1\}$                     |<br>| find $\pi_b$ , s.t. $\tilde G=\pi_b(G_b)$ |  —$\pi_b$-&gt;   |                                                              |<br>|                                           |                | $\begin{cases}1&amp;\tilde G=\pi_b(G_b)\\0&amp;\text{otherwise}\end{cases}$ |</p>
+<blockquote>
+<p>Note : If Prover knows $\pi$ that $\pi(G_0)=G_1$ , then $\pi_b$ can be constructed :</p>
+<script type="math/tex; mode=display">
+\pi_b=\begin{cases}\pi_r&b=0\\\pi_r\circ\pi^{-1}&b=1\end{cases}</script></blockquote>
+</li>
+<li><p>Analysis</p>
+<ol>
+<li><p>Completeness : If $G_0\sim G_1$ , $\pi_b$ can be constructed as above . Always Accept .</p>
+</li>
+<li><p>Soundness : If $G_0\not\sim G_1$ , $\exists b^<em>\in \{0,1\},G_{b^</em>}\not\sim\tilde G$ </p>
+<p>$\Pr\{V \text{ rejects}\}\ge \Pr\{V\text{ chooses }b^*\}=\frac{1}{2}$ </p>
+<blockquote>
+<p>Note : we cannot let Verifier just choose $b=1$ , since a malicious Prover can violate the protocol , $\pi_r$ may not be a permutation , and $\tilde G$ may not isomorphic to $G_0$ .</p>
+</blockquote>
+</li>
+<li><p>honest-verifier zero-knowledge : </p>
+<p>Verifier itself knows : $G_0,G_1,b$ , $r$ : randomness generating $b$ . Prover tells verifier $\tilde G,\pi_b$ .</p>
+<p>$View_V^P=(G_0,G_1,r,b,\tilde G,\pi_b)$ .</p>
+<p>$M_V$ : </p>
+<pre><code> 1. sample $b\leftarrow \&#123;0,1\&#125;$
+ 2. choose $\pi_b\leftarrow S_n$
+ 3. $\tilde G:=\pi_b(G_b)$
+</code></pre><p>Since Prover and Verifier are honest , $b$ is independent of $\tilde G $ , and $\pi_b$ is generated by a uniformly random $\pi_r$ hence is also uniformly random .</p>
+</li>
 <li><p>dishonest-verifier zero-knowledge :</p>
-<p>Malicious Verifier can choose <span class="math inline">\(b\)</span>
-based on <span class="math inline">\(\tilde G\)</span> to gain more
-knowledge .</p>
-<p><span class="math inline">\(M^*\)</span> : should perform as Prover
-:</p>
-<ol type="1">
-<li>guess <span class="math inline">\(b^*\in \{0,1\}\)</span></li>
-<li>compute <span class="math inline">\(\pi_r\leftarrow S_n\)</span> ,
-<span class="math inline">\(\tilde G:=\pi_r(G_{b^*})\)</span></li>
-<li>use Verifier to receive <span class="math inline">\(b\)</span></li>
-<li>If <span class="math inline">\(b\neq b^*\)</span> , go back to
-1.</li>
-<li>If <span class="math inline">\(b=b^*\)</span> , then let <span
-class="math inline">\(\pi_b=\pi_r\)</span> , get the view</li>
-</ol></li>
-</ol></li>
-</ol></li>
+<p>Malicious Verifier can choose $b$ based on $\tilde G$ to gain more knowledge .</p>
+<p>$M^*$ : should perform as Prover :</p>
+<pre><code> 1.  guess $b^*\in \&#123;0,1\&#125;$ 
+ 2.  compute $\pi_r\leftarrow S_n$ , $\tilde G:=\pi_r(G_&#123;b^*&#125;)$
+ 3.  use Verifier to receive $b$
+ 4.  If $b\neq b^*$ , go back to 1.
+ 5.  If $b=b^*$ , then let $\pi_b=\pi_r$ , get the view 
+</code></pre></li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 
     </div>
