@@ -153,7 +153,11 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Greedy-Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2 Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-Optimal-Caching"><span class="nav-number">1.1.</span> <span class="nav-text">2.7 Optimal Caching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-Minimum-Cost-Arborescence"><span class="nav-number">1.2.</span> <span class="nav-text">2.8 Minimum Cost Arborescence</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-3-Dynamic-Programming"><span class="nav-number">2.</span> <span class="nav-text">Chapter 3 Dynamic Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-weighted-interval-scheduling-problem"><span class="nav-number">2.1.</span> <span class="nav-text">3.1 weighted interval scheduling problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Subset-Sum-Knapsack"><span class="nav-number">2.2.</span> <span class="nav-text">3.2 Subset Sum &#x2F; Knapsack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-RNA-secondary-structure"><span class="nav-number">2.3.</span> <span class="nav-text">3.3 RNA secondary structure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-DP-on-tree-and-tree-like-graph"><span class="nav-number">2.4.</span> <span class="nav-text">3.4 DP on tree and tree-like graph</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-maximum-independent-set-on-tree"><span class="nav-number">2.4.1.</span> <span class="nav-text">3.4.1 maximum independent set on tree</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-treewidth"><span class="nav-number">2.5.</span> <span class="nav-text">3.4.2 treewidth</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-2-greedy-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2 Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#optimal-caching"><span class="nav-number">1.1.</span> <span class="nav-text">2.7 Optimal Caching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minimum-cost-arborescence"><span class="nav-number">1.2.</span> <span class="nav-text">2.8 Minimum Cost Arborescence</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-3-dynamic-programming"><span class="nav-number">2.</span> <span class="nav-text">Chapter 3 Dynamic
+Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#weighted-interval-scheduling-problem"><span class="nav-number">2.1.</span> <span class="nav-text">3.1 weighted interval
+scheduling problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subset-sum-knapsack"><span class="nav-number">2.2.</span> <span class="nav-text">3.2 Subset Sum &#x2F; Knapsack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rna-secondary-structure"><span class="nav-number">2.3.</span> <span class="nav-text">3.3 RNA secondary structure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dp-on-tree-and-tree-like-graph"><span class="nav-number">2.4.</span> <span class="nav-text">3.4 DP on tree and tree-like
+graph</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#maximum-independent-set-on-tree"><span class="nav-number">2.4.1.</span> <span class="nav-text">3.4.1 maximum independent set
+on tree</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#treewidth"><span class="nav-number">2.5.</span> <span class="nav-text">3.4.2 treewidth</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -168,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -357,210 +361,321 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-2-Greedy-Algorithm"><a href="#Chapter-2-Greedy-Algorithm" class="headerlink" title="Chapter 2 Greedy Algorithm"></a>Chapter 2 Greedy Algorithm</h2><h3 id="2-7-Optimal-Caching"><a href="#2-7-Optimal-Caching" class="headerlink" title="2.7 Optimal Caching"></a>2.7 Optimal Caching</h3><ol>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-2-greedy-algorithm">Chapter 2 Greedy Algorithm</h2>
+<h3 id="optimal-caching">2.7 Optimal Caching</h3>
+<ol type="1">
 <li><p>Description</p>
 <ul>
-<li><p>U : $n$ pieces of distinct elements stored in main memory</p>
-</li>
-<li><p>cache : can hold $k&lt;n$ pieces</p>
-<p>init : cache holds $k$ elements </p>
-</li>
-<li><p>need to process a sequence of elements $d_1,\cdots,d_m$ ( $m$ can $\ge n$ , not distinct)</p>
-</li>
-<li><p>when processing $d_i$ : </p>
+<li><p>U : <span class="math inline">\(n\)</span> pieces of distinct
+elements stored in main memory</p></li>
+<li><p>cache : can hold <span class="math inline">\(k&lt;n\)</span>
+pieces</p>
+<p>init : cache holds <span class="math inline">\(k\)</span>
+elements</p></li>
+<li><p>need to process a sequence of elements <span
+class="math inline">\(d_1,\cdots,d_m\)</span> ( <span
+class="math inline">\(m\)</span> can <span class="math inline">\(\ge
+n\)</span> , not distinct)</p></li>
+<li><p>when processing <span class="math inline">\(d_i\)</span> :</p>
 <ul>
-<li>If $d_i$ already in cache : cache hit , do nothing to the cache</li>
-<li>If $d_i$ not in cache : cache miss , evict some other element from the cache</li>
-</ul>
-</li>
-<li><p>Goal : minimize # of cache miss .</p>
-</li>
-</ul>
-</li>
+<li>If <span class="math inline">\(d_i\)</span> already in cache : cache
+hit , do nothing to the cache</li>
+<li>If <span class="math inline">\(d_i\)</span> not in cache : cache
+miss , evict some other element from the cache</li>
+</ul></li>
+<li><p>Goal : minimize # of cache miss .</p></li>
+</ul></li>
 <li><p>Greedy Algorithm</p>
-<ol>
-<li><p>FF Strategy : evict the element that will be used the furthest in the future .</p>
-</li>
+<ol type="1">
+<li><p>FF Strategy : evict the element that will be used the furthest in
+the future .</p></li>
 <li><p>Proof [Exchange Argument] :</p>
 <p>See BOOK</p>
 <blockquote>
-<p>Suppose our solution $S_{FF}$ differs with the optimal solution $S$ firstly at $d_i$ , which is a cache miss , and our solution evicts $a$ and the optimal solution evicts $b$ , where the future used time : $t(a)&gt;t(b)$ . Let’s prove that we can construct a new solution $S’$ that is same with our solution at $d_i$ as well , and is not worse than the optimal solution $S$.</p>
-<p>We do not need to care about other caches and other elements . We only need to care about $a,b$ . $S=S’$ except the following cases :</p>
-<p>Case 0 : At $d_i$ , $S’$ should evict $a$ rather than $b$ </p>
-<p>Case 1 : $d_j$ let $a$ evicted in $S$ before the first future used time $t(a)$ . Then let $S’$ evicts $b$ at the same time , $S$ is the same as $S’$ .</p>
-<p>Case 2 : At $t(b)$ . If at this time , $S$ evicts $a$ , then $S’$ can do nothing and save one cache miss . If at this time , $S$ evicts $c\neq a$ , then we can let $S’$ evicts $c$ as well , and then let $a$ “waiting” until it is used at $t(a)$ or evicted later .</p>
-</blockquote>
-</li>
-</ol>
-</li>
+<p>Suppose our solution <span class="math inline">\(S_{FF}\)</span>
+differs with the optimal solution <span class="math inline">\(S\)</span>
+firstly at <span class="math inline">\(d_i\)</span> , which is a cache
+miss , and our solution evicts <span class="math inline">\(a\)</span>
+and the optimal solution evicts <span class="math inline">\(b\)</span> ,
+where the future used time : <span
+class="math inline">\(t(a)&gt;t(b)\)</span> . Let's prove that we can
+construct a new solution <span class="math inline">\(S&#39;\)</span>
+that is same with our solution at <span
+class="math inline">\(d_i\)</span> as well , and is not worse than the
+optimal solution <span class="math inline">\(S\)</span>.</p>
+<p>We do not need to care about other caches and other elements . We
+only need to care about <span class="math inline">\(a,b\)</span> . <span
+class="math inline">\(S=S&#39;\)</span> except the following cases :</p>
+<p>Case 0 : At <span class="math inline">\(d_i\)</span> , <span
+class="math inline">\(S&#39;\)</span> should evict <span
+class="math inline">\(a\)</span> rather than <span
+class="math inline">\(b\)</span></p>
+<p>Case 1 : <span class="math inline">\(d_j\)</span> let <span
+class="math inline">\(a\)</span> evicted in <span
+class="math inline">\(S\)</span> before the first future used time <span
+class="math inline">\(t(a)\)</span> . Then let <span
+class="math inline">\(S&#39;\)</span> evicts <span
+class="math inline">\(b\)</span> at the same time , <span
+class="math inline">\(S\)</span> is the same as <span
+class="math inline">\(S&#39;\)</span> .</p>
+<p>Case 2 : At <span class="math inline">\(t(b)\)</span> . If at this
+time , <span class="math inline">\(S\)</span> evicts <span
+class="math inline">\(a\)</span> , then <span
+class="math inline">\(S&#39;\)</span> can do nothing and save one cache
+miss . If at this time , <span class="math inline">\(S\)</span> evicts
+<span class="math inline">\(c\neq a\)</span> , then we can let <span
+class="math inline">\(S&#39;\)</span> evicts <span
+class="math inline">\(c\)</span> as well , and then let <span
+class="math inline">\(a\)</span> "waiting" until it is used at <span
+class="math inline">\(t(a)\)</span> or evicted later .</p>
+</blockquote></li>
+</ol></li>
 <li><p>In reality : we cannot know the sequence ahead</p>
-<p>LRU : least recently used </p>
+<p>LRU : least recently used</p>
 <p>using locality of reference</p>
-<p>[ Slater , Tarjan ] : LRU is the earliest online solution (elements come one by one)</p>
-<p>$LRU\le k(FF+1)$ , $k$ is the cache size .</p>
-</li>
+<p>[ Slater , Tarjan ] : LRU is the earliest online solution (elements
+come one by one)</p>
+<p><span class="math inline">\(LRU\le k(FF+1)\)</span> , <span
+class="math inline">\(k\)</span> is the cache size .</p></li>
 </ol>
-<h3 id="2-8-Minimum-Cost-Arborescence"><a href="#2-8-Minimum-Cost-Arborescence" class="headerlink" title="2.8 Minimum Cost Arborescence"></a>2.8 Minimum Cost Arborescence</h3><p>a.k.a 最小树形图</p>
-<ol>
+<h3 id="minimum-cost-arborescence">2.8 Minimum Cost Arborescence</h3>
+<p>a.k.a 最小树形图</p>
+<ol type="1">
 <li><p>Description</p>
-<p>Find a min-cost directed spanning tree rooted at $r$ in a directed graph $G$ .</p>
-<p>Assumption : $\forall e\in E,w(e)\ge 0$</p>
-</li>
+<p>Find a min-cost directed spanning tree rooted at <span
+class="math inline">\(r\)</span> in a directed graph <span
+class="math inline">\(G\)</span> .</p>
+<p>Assumption : <span class="math inline">\(\forall e\in E,w(e)\ge
+0\)</span></p></li>
 <li><p>Algorithm</p>
 <ul>
-<li><p>For $v\in V\backslash \{r\}$ , choose the in-edge with minimum weight $e_v$ .</p>
-<p>Let $F^<em>$ be the set of chosen edge , so $cost(F^</em>)\le OPT$ .</p>
-<p>If $F^*$ is already a tree , we get the optimal solution .</p>
-</li>
-<li><p>Otherwise , for all $v\in V\backslash\{r\}$ , let $w’(e=(u,v))=w(u,v)-w(e_v)$ , and then contract zero-cost cycles to get a new graph $G’$ .</p>
-</li>
-<li>Process $G’$ as above .</li>
-</ul>
-</li>
+<li><p>For <span class="math inline">\(v\in V\backslash \{r\}\)</span> ,
+choose the in-edge with minimum weight <span
+class="math inline">\(e_v\)</span> .</p>
+<p>Let <span class="math inline">\(F^*\)</span> be the set of chosen
+edge , so <span class="math inline">\(cost(F^*)\le OPT\)</span> .</p>
+<p>If <span class="math inline">\(F^*\)</span> is already a tree , we
+get the optimal solution .</p></li>
+<li><p>Otherwise , for all <span class="math inline">\(v\in
+V\backslash\{r\}\)</span> , let <span
+class="math inline">\(w&#39;(e=(u,v))=w(u,v)-w(e_v)\)</span> , and then
+contract zero-cost cycles to get a new graph <span
+class="math inline">\(G&#39;\)</span> .</p></li>
+<li><p>Process <span class="math inline">\(G&#39;\)</span> as above
+.</p></li>
+</ul></li>
 <li><p>Extension : matrix-tree theorem</p>
-<p>count # of spanning tree in a graph (either directed or undirected)</p>
-<p>$Det(L_{00})$</p>
-<p>variant : count # of spanning tree in a graph with given total weight</p>
-</li>
+<p>count # of spanning tree in a graph (either directed or
+undirected)</p>
+<p><span class="math inline">\(Det(L_{00})\)</span></p>
+<p>variant : count # of spanning tree in a graph with given total
+weight</p></li>
 </ol>
-<h2 id="Chapter-3-Dynamic-Programming"><a href="#Chapter-3-Dynamic-Programming" class="headerlink" title="Chapter 3 Dynamic Programming"></a>Chapter 3 Dynamic Programming</h2><h3 id="3-1-weighted-interval-scheduling-problem"><a href="#3-1-weighted-interval-scheduling-problem" class="headerlink" title="3.1 weighted interval scheduling problem"></a>3.1 weighted interval scheduling problem</h3><ol>
+<h2 id="chapter-3-dynamic-programming">Chapter 3 Dynamic
+Programming</h2>
+<h3 id="weighted-interval-scheduling-problem">3.1 weighted interval
+scheduling problem</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : $n$ intervals $[l_i,r_i]$ with weight $w_i$</p>
-<p>Goal : maximize the total weight s.t. the chosen intervals are distinct </p>
-</li>
+<p>Input : <span class="math inline">\(n\)</span> intervals <span
+class="math inline">\([l_i,r_i]\)</span> with weight <span
+class="math inline">\(w_i\)</span></p>
+<p>Goal : maximize the total weight s.t. the chosen intervals are
+distinct</p></li>
 <li><p>key : Dynamic Programming recursion</p>
-<ol>
-<li>sort the jobs according to $r_i$ (like greedy algorithm)</li>
-<li>define $opt(j)$ : the optimal value for the first $j$ intervals </li>
+<ol type="1">
+<li>sort the jobs according to <span class="math inline">\(r_i\)</span>
+(like greedy algorithm)</li>
+<li>define <span class="math inline">\(opt(j)\)</span> : the optimal
+value for the first <span class="math inline">\(j\)</span>
+intervals</li>
 </ol>
-<script type="math/tex; mode=display">
-opt(i)=\max\{opt(i-1),opt(p(i))+w_i\}</script><p>where $p(i)=\max\{j|r_j&lt;l_i\}$ .</p>
-<ol>
-<li><p>If we don’t use interval $i$ , it is $opt(i-1)$ .</p>
-<p>If we use interval $i$ , since $\{r_i\}$ non-decreasing , $opt(p(i))$ contains all valid optimal solutions before .</p>
-</li>
-</ol>
-</li>
+<p><span class="math display">\[
+opt(i)=\max\{opt(i-1),opt(p(i))+w_i\}
+\]</span></p>
+<p>where <span class="math inline">\(p(i)=\max\{j|r_j&lt;l_i\}\)</span>
+.</p>
+<ol start="3" type="1">
+<li><p>If we don't use interval <span class="math inline">\(i\)</span> ,
+it is <span class="math inline">\(opt(i-1)\)</span> .</p>
+<p>If we use interval <span class="math inline">\(i\)</span> , since
+<span class="math inline">\(\{r_i\}\)</span> non-decreasing , <span
+class="math inline">\(opt(p(i))\)</span> contains all valid optimal
+solutions before .</p></li>
+</ol></li>
 <li><p>Implementation</p>
 <p>naive :</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">compute_opt</span><span class="params">(<span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(i==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">compute_opt</span>(i<span class="number">-1</span>),w[i]+<span class="built_in">compute_opt</span>(<span class="built_in">p</span>(i)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Problem : can be exponential time !</p>
-<p>Key : many redundant computation $\to$ store them</p>
+<p>Key : many redundant computation <span
+class="math inline">\(\to\)</span> store them</p>
 </blockquote>
-<p>memorization / filling out the DP table : </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> opt[]=&#123;<span class="number">-1</span>&#125;;</span><br><span class="line"><span class="comment">// recursive implementation </span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">compute_opt</span><span class="params">(<span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(opt[i]!=<span class="number">-1</span>)<span class="keyword">return</span> opt[i];</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> opt[i]=<span class="built_in">max</span>(<span class="built_in">compute_opt</span>(i<span class="number">-1</span>),w[i]+<span class="built_in">compute_opt</span>(<span class="built_in">p</span>(i)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// non-recursive implementation</span></span><br><span class="line">&#123;</span><br><span class="line">    opt[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        opt[i]=<span class="built_in">max</span>(opt[i<span class="number">-1</span>],w[i]+opt[<span class="built_in">p</span>(i)]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<p>memorization / filling out the DP table :</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> opt[]=&#123;<span class="number">-1</span>&#125;;</span><br><span class="line"><span class="comment">// recursive implementation </span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">compute_opt</span><span class="params">(<span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(opt[i]!=<span class="number">-1</span>)<span class="keyword">return</span> opt[i];</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> opt[i]=<span class="built_in">max</span>(<span class="built_in">compute_opt</span>(i<span class="number">-1</span>),w[i]+<span class="built_in">compute_opt</span>(<span class="built_in">p</span>(i)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// non-recursive implementation</span></span><br><span class="line">&#123;</span><br><span class="line">    opt[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        opt[i]=<span class="built_in">max</span>(opt[i<span class="number">-1</span>],w[i]+opt[<span class="built_in">p</span>(i)]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="3-2-Subset-Sum-Knapsack"><a href="#3-2-Subset-Sum-Knapsack" class="headerlink" title="3.2 Subset Sum / Knapsack"></a>3.2 Subset Sum / Knapsack</h3><ol>
+<h3 id="subset-sum-knapsack">3.2 Subset Sum / Knapsack</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : $n$ items , item $i$ has weight $w_i$ and value $v_i$ ; Weight limit $W$ </p>
-<p>Goal : find a subset of items $S$ s.t.  $\sum_{i\in S}w_i\le W$ and maximize $\sum_{i\in S}v_i$ .</p>
-</li>
+<p>Input : <span class="math inline">\(n\)</span> items , item <span
+class="math inline">\(i\)</span> has weight <span
+class="math inline">\(w_i\)</span> and value <span
+class="math inline">\(v_i\)</span> ; Weight limit <span
+class="math inline">\(W\)</span></p>
+<p>Goal : find a subset of items <span class="math inline">\(S\)</span>
+s.t. <span class="math inline">\(\sum_{i\in S}w_i\le W\)</span> and
+maximize <span class="math inline">\(\sum_{i\in S}v_i\)</span>
+.</p></li>
 <li><p>DP Algorithm</p>
-<ol>
+<ol type="1">
 <li><p>pseudo-poly time / poly time</p>
-<p>pseudo-poly time : $poly(n,W)$</p>
-<p>poly time : $poly(n,\log W)$ ( $\log W$ is the least number of bits to input $W$ )</p>
+<p>pseudo-poly time : <span class="math inline">\(poly(n,W)\)</span></p>
+<p>poly time : <span class="math inline">\(poly(n,\log W)\)</span> (
+<span class="math inline">\(\log W\)</span> is the least number of bits
+to input <span class="math inline">\(W\)</span> )</p>
 <blockquote>
 <p>Knapsack : NP-Hard : hard to find poly time algorithm</p>
 <p>But finding a pseudo-poly time algorithm is easy !</p>
-</blockquote>
-</li>
-<li><p>$opt(i,w)$ : the optimal solution for first $i$ items and weight $= w$ </p>
-<script type="math/tex; mode=display">
-opt(i,w)=\max\begin{cases}opt(i-1,w)&\text{not using i-th item}\\
-opt(i-1,w-w_i)+v_i&\text{using i-th item}
-\end{cases}</script></li>
-<li><p>Time Complexity : $\mathcal O(nW)$ .</p>
-</li>
-</ol>
-</li>
+</blockquote></li>
+<li><p><span class="math inline">\(opt(i,w)\)</span> : the optimal
+solution for first <span class="math inline">\(i\)</span> items and
+weight <span class="math inline">\(= w\)</span> <span
+class="math display">\[
+opt(i,w)=\max\begin{cases}opt(i-1,w)&amp;\text{not using i-th item}\\
+opt(i-1,w-w_i)+v_i&amp;\text{using i-th item}
+\end{cases}
+\]</span></p></li>
+<li><p>Time Complexity : <span class="math inline">\(\mathcal
+O(nW)\)</span> .</p></li>
+</ol></li>
 <li><p>Implementation</p>
-<p>$opt(w)$ : at $i$-th iteration : the optimal solution for first $i$ items and weight $= w$ </p>
-<script type="math/tex; mode=display">
-opt(w)=\max\{opt(w),opt(w-w_i)+v_i\}</script><p>iterate $w$ decreasingly </p>
-<p><img src="\images\posts\AD4_fig1.jpg" alt=""></p>
-<p>Memory Complexity : $\mathcal O(n+W)$ </p>
-</li>
+<p><span class="math inline">\(opt(w)\)</span> : at <span
+class="math inline">\(i\)</span>-th iteration : the optimal solution for
+first <span class="math inline">\(i\)</span> items and weight <span
+class="math inline">\(= w\)</span> <span class="math display">\[
+opt(w)=\max\{opt(w),opt(w-w_i)+v_i\}
+\]</span> iterate <span class="math inline">\(w\)</span>
+decreasingly</p>
+<p><img src="\images\posts\AD4_fig1.jpg" /></p>
+<p>Memory Complexity : <span class="math inline">\(\mathcal
+O(n+W)\)</span></p></li>
 </ol>
-<h3 id="3-3-RNA-secondary-structure"><a href="#3-3-RNA-secondary-structure" class="headerlink" title="3.3 RNA secondary structure"></a>3.3 RNA secondary structure</h3><ol>
+<h3 id="rna-secondary-structure">3.3 RNA secondary structure</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : $\{A,C,G,U\}^n$</p>
+<p>Input : <span class="math inline">\(\{A,C,G,U\}^n\)</span></p>
 <p>Constraints :</p>
 <ul>
-<li>no sharp turns : If pairing $(i,j)\in S$ , then $i&lt;j-4$</li>
-<li>pairing : $A-G$ , $C-U$</li>
-<li>one base can only appear in $\le 1$ pairs</li>
-<li>no crossing pairing : $\not\exist (i,j),(l,r)\in S,i&lt;l&lt;j&lt;r$ </li>
+<li>no sharp turns : If pairing <span class="math inline">\((i,j)\in
+S\)</span> , then <span class="math inline">\(i&lt;j-4\)</span></li>
+<li>pairing : <span class="math inline">\(A-G\)</span> , <span
+class="math inline">\(C-U\)</span></li>
+<li>one base can only appear in <span class="math inline">\(\le
+1\)</span> pairs</li>
+<li>no crossing pairing : <span class="math inline">\(\not\exist
+(i,j),(l,r)\in S,i&lt;l&lt;j&lt;r\)</span></li>
 </ul>
-<p>Goal : maximize the size of pairing set $S$ </p>
-</li>
+<p>Goal : maximize the size of pairing set <span
+class="math inline">\(S\)</span></p></li>
 <li><p>Algorithm</p>
-<p>$opt(l,r)$ : the maximum number of pairs in subsequence $[l,r]$ </p>
-<script type="math/tex; mode=display">
+<p><span class="math inline">\(opt(l,r)\)</span> : the maximum number of
+pairs in subsequence <span class="math inline">\([l,r]\)</span> <span
+class="math display">\[
 opt(l,r)=\max\begin{cases}
-opt(l+1,r-1)&a[l]\text{ and }a[r] \text{ can pairing}\\
-\max_{l\le i\le r-1}\{opt(l,i)+opt(i+1,r)\} 
-\end{cases}</script><p>Order : $r-l$ increasing</p>
-<p>Time Complexity : $\mathcal O(n^3)$</p>
-<p>Memory Complexity : $\mathcal O(n^2)$</p>
-</li>
+opt(l+1,r-1)&amp;a[l]\text{ and }a[r] \text{ can pairing}\\
+\max_{l\le i\le r-1}\{opt(l,i)+opt(i+1,r)\}
+\end{cases}
+\]</span> Order : <span class="math inline">\(r-l\)</span>
+increasing</p>
+<p>Time Complexity : <span class="math inline">\(\mathcal
+O(n^3)\)</span></p>
+<p>Memory Complexity : <span class="math inline">\(\mathcal
+O(n^2)\)</span></p></li>
 </ol>
-<h3 id="3-4-DP-on-tree-and-tree-like-graph"><a href="#3-4-DP-on-tree-and-tree-like-graph" class="headerlink" title="3.4 DP on tree and tree-like graph"></a>3.4 DP on tree and tree-like graph</h3><h4 id="3-4-1-maximum-independent-set-on-tree"><a href="#3-4-1-maximum-independent-set-on-tree" class="headerlink" title="3.4.1 maximum independent set on tree"></a>3.4.1 maximum independent set on tree</h4><ol>
+<h3 id="dp-on-tree-and-tree-like-graph">3.4 DP on tree and tree-like
+graph</h3>
+<h4 id="maximum-independent-set-on-tree">3.4.1 maximum independent set
+on tree</h4>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : A tree , vertex-weighted </p>
-<p>Goal : Find an Independent Set of maximum weight</p>
-</li>
+<p>Input : A tree , vertex-weighted</p>
+<p>Goal : Find an Independent Set of maximum weight</p></li>
 <li><p>Algorithm</p>
-<p>$opt_{0/1}(x)$ : the maximum-weighted independent set of the subtree $x$ , $opt_1$ means we choose $x$ , $opt_0$ means we don’t choose $x$ .</p>
-<script type="math/tex; mode=display">
+<p><span class="math inline">\(opt_{0/1}(x)\)</span> : the
+maximum-weighted independent set of the subtree <span
+class="math inline">\(x\)</span> , <span
+class="math inline">\(opt_1\)</span> means we choose <span
+class="math inline">\(x\)</span> , <span
+class="math inline">\(opt_0\)</span> means we don't choose <span
+class="math inline">\(x\)</span> . <span class="math display">\[
 opt_1(x)=w_x+\sum_{y\in child(x)}opt_0(y)\\
-opt_0(x)=\sum_{y\in child(x)}\max\{opt_0(y),opt_1(y)\}</script></li>
-<li><p>Tree DP View : </p>
+opt_0(x)=\sum_{y\in child(x)}\max\{opt_0(y),opt_1(y)\}
+\]</span></p></li>
+<li><p>Tree DP View :</p>
 <ul>
 <li>subtree is the natural subinstance</li>
-<li>delete $x$ , the tree will be separated into several parts , no connection between $subtree(y)$ ($y\in child(x)$) , $G\backslash subtree(x)$ </li>
-</ul>
-</li>
+<li>delete <span class="math inline">\(x\)</span> , the tree will be
+separated into several parts , no connection between <span
+class="math inline">\(subtree(y)\)</span> (<span
+class="math inline">\(y\in child(x)\)</span>) , <span
+class="math inline">\(G\backslash subtree(x)\)</span></li>
+</ul></li>
 </ol>
-<h3 id="3-4-2-treewidth"><a href="#3-4-2-treewidth" class="headerlink" title="3.4.2 treewidth"></a>3.4.2 treewidth</h3><ol>
+<h3 id="treewidth">3.4.2 treewidth</h3>
+<ol type="1">
 <li><p>Tree Decomposition ( clique tree , junction trees )</p>
-<ol>
-<li><p>Def [separator] : For connected graph $G$ , a separator is a vertex set $S\subset V$ , s.t. $G\backslash S$ is not connected . </p>
-</li>
-<li><p>Def [tree decomposition] : $T(G)$ is a tree decomposition if :</p>
-<p>Each vertex in $T(G)$ is called a bag $(V_T(x),E_T(x))$ : containing some vertices in $G$ and their edges</p>
+<ol type="1">
+<li><p>Def [separator] : For connected graph <span
+class="math inline">\(G\)</span> , a separator is a vertex set <span
+class="math inline">\(S\subset V\)</span> , s.t. <span
+class="math inline">\(G\backslash S\)</span> is not connected .</p></li>
+<li><p>Def [tree decomposition] : <span
+class="math inline">\(T(G)\)</span> is a tree decomposition if :</p>
+<p>Each vertex in <span class="math inline">\(T(G)\)</span> is called a
+bag <span class="math inline">\((V_T(x),E_T(x))\)</span> : containing
+some vertices in <span class="math inline">\(G\)</span> and their
+edges</p>
 <ul>
-<li>$\cup_x V_T(x)=V$</li>
-<li>$\forall e\in E,\exists x\in T(G) , e\in E_T(x)$</li>
-<li>$\forall v\in V,\{x|v\in V_T(x)\}$ form a connected subtree</li>
-</ul>
-</li>
-<li><p>Def [treewidth for tree decomposition] : $tw(T(G)):=\max_x \{|V_T(x)|\}-1$</p>
-</li>
-<li><p>Lemma : If $G$ is a tree , $tw(T(G))=1$</p>
-</li>
-<li><p>Def [treewidth for graph] : </p>
-<script type="math/tex; mode=display">
-tw(G)=\min\limits_{T(G)\text{ is a tree decomposition}}tw(T(G))</script></li>
-</ol>
-</li>
-<li><p>Lemma [ bags and separators ] : $T(G)$ is a tree decomposition of $G$ , $A,B$ are adjacent bags in $T(G)$ , then </p>
-<p>$V_T(A)$ is a separator of $G$ , $V_T(A\cap B)$ is a separator of $G$</p>
-</li>
+<li><span class="math inline">\(\cup_x V_T(x)=V\)</span></li>
+<li><span class="math inline">\(\forall e\in E,\exists x\in T(G) , e\in
+E_T(x)\)</span></li>
+<li><span class="math inline">\(\forall v\in V,\{x|v\in
+V_T(x)\}\)</span> form a connected subtree</li>
+</ul></li>
+<li><p>Def [treewidth for tree decomposition] : <span
+class="math inline">\(tw(T(G)):=\max_x \{|V_T(x)|\}-1\)</span></p></li>
+<li><p>Lemma : If <span class="math inline">\(G\)</span> is a tree ,
+<span class="math inline">\(tw(T(G))=1\)</span></p></li>
+<li><p>Def [treewidth for graph] : <span class="math display">\[
+tw(G)=\min\limits_{T(G)\text{ is a tree decomposition}}tw(T(G))
+\]</span></p></li>
+</ol></li>
+<li><p>Lemma [ bags and separators ] : <span
+class="math inline">\(T(G)\)</span> is a tree decomposition of <span
+class="math inline">\(G\)</span> , <span
+class="math inline">\(A,B\)</span> are adjacent bags in <span
+class="math inline">\(T(G)\)</span> , then</p>
+<p><span class="math inline">\(V_T(A)\)</span> is a separator of <span
+class="math inline">\(G\)</span> , <span class="math inline">\(V_T(A\cap
+B)\)</span> is a separator of <span
+class="math inline">\(G\)</span></p></li>
 <li><p>Independent Set on a graph with a tree decomposition</p>
-<p>Input : given $G$ and a tree decomposition $T(G)$</p>
-<p>Goal : Find maximum Independent Set in Time Complexity $\mathcal O(n2^{tw(T(G))})$</p>
-</li>
+<p>Input : given <span class="math inline">\(G\)</span> and a tree
+decomposition <span class="math inline">\(T(G)\)</span></p>
+<p>Goal : Find maximum Independent Set in Time Complexity <span
+class="math inline">\(\mathcal O(n2^{tw(T(G))})\)</span></p></li>
 <li><p>Algorithm</p>
 <ul>
-<li><p>$opt(x,S)$ : consider the subtree $x$ in the tree decomposition , choosing exactly $S$ in $V_T(x)$ , the maximum independent set </p>
-</li>
-<li><script type="math/tex; mode=display">
-opt(x,S)=w(S)+\sum_{y\in child(x)}\max_{S' , S\text{ consists with } S'\text{ on }S\cap S'}\{opt(y,S')-w(S\cap S')\}</script></li>
-</ul>
-</li>
+<li><p><span class="math inline">\(opt(x,S)\)</span> : consider the
+subtree <span class="math inline">\(x\)</span> in the tree decomposition
+, choosing exactly <span class="math inline">\(S\)</span> in <span
+class="math inline">\(V_T(x)\)</span> , the maximum independent
+set</p></li>
+<li><p><span class="math display">\[
+opt(x,S)=w(S)+\sum_{y\in child(x)}\max_{S&#39; , S\text{ consists with }
+S&#39;\text{ on }S\cap S&#39;}\{opt(y,S&#39;)-w(S\cap S&#39;)\}
+\]</span></p></li>
+</ul></li>
 </ol>
 
     </div>
@@ -636,6 +751,9 @@ opt(x,S)=w(S)+\sum_{y\in child(x)}\max_{S' , S\text{ consists with } S'\text{ on
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/10/15/ZKP-and-MPC-2/" rel="next" title="ZKP and MPC 2">
+                  ZKP and MPC 2 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -672,13 +790,13 @@ opt(x,S)=w(S)+\sum_{y\in child(x)}\max_{S' , S\text{ consists with } S'\text{ on
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

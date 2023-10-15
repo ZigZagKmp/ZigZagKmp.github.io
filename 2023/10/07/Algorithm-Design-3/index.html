@@ -148,7 +148,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Greedy-Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2 Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Minimum-Spanning-Tree-undirected"><span class="nav-number">1.1.</span> <span class="nav-text">2.3 Minimum Spanning Tree (undirected)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Union-Find-Set"><span class="nav-number">1.2.</span> <span class="nav-text">2.4 Union-Find Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Priority-Queue"><span class="nav-number">1.3.</span> <span class="nav-text">2.5 Priority Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-Huffman-Code"><span class="nav-number">1.4.</span> <span class="nav-text">2.6 Huffman Code</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-2-greedy-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2 Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#minimum-spanning-tree-undirected"><span class="nav-number">1.1.</span> <span class="nav-text">2.3 Minimum Spanning Tree
+(undirected)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#union-find-set"><span class="nav-number">1.2.</span> <span class="nav-text">2.4 Union-Find Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#priority-queue"><span class="nav-number">1.3.</span> <span class="nav-text">2.5 Priority Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#huffman-code"><span class="nav-number">1.4.</span> <span class="nav-text">2.6 Huffman Code</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -163,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,7 +175,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -358,220 +359,303 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-2-Greedy-Algorithm"><a href="#Chapter-2-Greedy-Algorithm" class="headerlink" title="Chapter 2 Greedy Algorithm"></a>Chapter 2 Greedy Algorithm</h2><h3 id="2-3-Minimum-Spanning-Tree-undirected"><a href="#2-3-Minimum-Spanning-Tree-undirected" class="headerlink" title="2.3 Minimum Spanning Tree (undirected)"></a>2.3 Minimum Spanning Tree (undirected)</h3><ol>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-2-greedy-algorithm">Chapter 2 Greedy Algorithm</h2>
+<h3 id="minimum-spanning-tree-undirected">2.3 Minimum Spanning Tree
+(undirected)</h3>
+<ol type="1">
 <li><p>Definition</p>
-<ol>
-<li><p>Input : undirected , edge-weighted graph $G$</p>
-</li>
-<li><p>Output : Minimum Spanning Tree of $G$</p>
-<p>Spanning Tree : a subgraph of $G$ that is a tree containing all vertices</p>
-<p>Minimum : the sum of weights on tree’s all edges is minimized</p>
-</li>
-</ol>
-</li>
+<ol type="1">
+<li><p>Input : undirected , edge-weighted graph <span
+class="math inline">\(G\)</span></p></li>
+<li><p>Output : Minimum Spanning Tree of <span
+class="math inline">\(G\)</span></p>
+<p>Spanning Tree : a subgraph of <span class="math inline">\(G\)</span>
+that is a tree containing all vertices</p>
+<p>Minimum : the sum of weights on tree's all edges is
+minimized</p></li>
+</ol></li>
 <li><p>Properties</p>
-<ol>
+<ol type="1">
 <li><p>Spanning Tree</p>
-<ol>
-<li>Connectivity $\leftrightarrow$ check connectivity $\to$ <strong>cut</strong></li>
+<ol type="1">
+<li>Connectivity <span class="math inline">\(\leftrightarrow\)</span>
+check connectivity <span class="math inline">\(\to\)</span>
+<strong>cut</strong></li>
 <li>Acyclic</li>
-</ol>
-</li>
+</ol></li>
 <li><p>Cut</p>
-<ol>
-<li><p>Def : Graph $G=(V,E),V=A\cup B,A\cap B=\varnothing$</p>
-<p>$(A,B)$-cut : $E(A,B)=\{(u,v)\in E|u\in A,v\in B\}$</p>
-</li>
-<li><p>Observation : If $T$ is a Spanning Tree , $E(A,B)$ is any cut , then $T\cap E(A,B)\neq \varnothing$</p>
+<ol type="1">
+<li><p>Def : Graph <span class="math inline">\(G=(V,E),V=A\cup B,A\cap
+B=\varnothing\)</span></p>
+<p><span class="math inline">\((A,B)\)</span>-cut : <span
+class="math inline">\(E(A,B)=\{(u,v)\in E|u\in A,v\in
+B\}\)</span></p></li>
+<li><p>Observation : If <span class="math inline">\(T\)</span> is a
+Spanning Tree , <span class="math inline">\(E(A,B)\)</span> is any cut ,
+then <span class="math inline">\(T\cap E(A,B)\neq
+\varnothing\)</span></p>
 <blockquote>
 <p>Otherwise , not connected</p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><p>Lemma : Assumption : weights are distinct </p>
-<p>Suppose $e=(u,v),u\in A,v\in B$ is the edge with minimum weight in $(A,B)$-cut , then every MST must contain $e$ .</p>
+</blockquote></li>
+</ol></li>
+<li><p>Lemma : Assumption : weights are distinct</p>
+<p>Suppose <span class="math inline">\(e=(u,v),u\in A,v\in B\)</span> is
+the edge with minimum weight in <span
+class="math inline">\((A,B)\)</span>-cut , then every MST must contain
+<span class="math inline">\(e\)</span> .</p>
 <p>Proof : [Exchange Argument , Prove by contradiction]</p>
-<p>Suppose $T$ is a MST but $e\notin T$ . By the observation , there exists $e’\in T,e’\in E(A,B)$ .</p>
-<p>Let $T’=T-e’+e$ , then $T$ is still connected , with smaller weight .</p>
-</li>
+<p>Suppose <span class="math inline">\(T\)</span> is a MST but <span
+class="math inline">\(e\notin T\)</span> . By the observation , there
+exists <span class="math inline">\(e&#39;\in T,e&#39;\in E(A,B)\)</span>
+.</p>
+<p>Let <span class="math inline">\(T&#39;=T-e&#39;+e\)</span> , then
+<span class="math inline">\(T\)</span> is still connected , with smaller
+weight .</p></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<div class="note warning"><p>Problem : $T$ can have cycle !</p>
+<div class="note warning"><p>Problem : <span class="math inline">\(T\)</span> can have cycle !</p>
 </div>
-<div class="note success"><p>Correction :<br>Choose one specific $e’$ : $e\notin T$ , then $e$ and some edges in $T$ can form a cycle ( the path from $u$ to $v$ on $T$ ). This cycle must contain an edge $e’\in E(A,B)$ .</p>
+<div class="note success"><p>Correction :<br />
+Choose one specific <span class="math inline">\(e&#39;\)</span> : <span
+class="math inline">\(e\notin T\)</span> , then <span
+class="math inline">\(e\)</span> and some edges in <span
+class="math inline">\(T\)</span> can form a cycle ( the path from <span
+class="math inline">\(u\)</span> to <span
+class="math inline">\(v\)</span> on <span
+class="math inline">\(T\)</span> ). This cycle must contain an edge
+<span class="math inline">\(e&#39;\in E(A,B)\)</span> .</p>
 </div>
-<ol>
-<li><p>Kruskal’s Algorithm</p>
-<ol>
+<ol start="3" type="1">
+<li><p>Kruskal's Algorithm</p>
+<ol type="1">
 <li><p>Algorithm</p>
-<p>Successively inserting edges from $E$ in increasing order of weight .</p>
-<p>If edge $e$ would create a cycle . discard it .</p>
-<p>(Using Union-Find Set)</p>
-</li>
+<p>Successively inserting edges from <span
+class="math inline">\(E\)</span> in increasing order of weight .</p>
+<p>If edge <span class="math inline">\(e\)</span> would create a cycle .
+discard it .</p>
+<p>(Using Union-Find Set)</p></li>
 <li><p>Proof of Correctness</p>
-<p>Consider every added edge $e$ , $e$ is the min-weight edge in some cut </p>
-<p>$e=(u,v)$ , consider the connected component $C$ containing $u$ , then $e$ is the minimum weight edge in cut $E(C,V\backslash C)$ </p>
-</li>
-</ol>
-</li>
-<li><p>Prim’s Algorithm</p>
-<ol>
+<p>Consider every added edge <span class="math inline">\(e\)</span> ,
+<span class="math inline">\(e\)</span> is the min-weight edge in some
+cut</p>
+<p><span class="math inline">\(e=(u,v)\)</span> , consider the connected
+component <span class="math inline">\(C\)</span> containing <span
+class="math inline">\(u\)</span> , then <span
+class="math inline">\(e\)</span> is the minimum weight edge in cut <span
+class="math inline">\(E(C,V\backslash C)\)</span></p></li>
+</ol></li>
+<li><p>Prim's Algorithm</p>
+<ol type="1">
 <li><p>Algorithm</p>
-<p>At each step , add the node that can be attached as cheaply as possible to the partial tree we already have .</p>
-</li>
+<p>At each step , add the node that can be attached as cheaply as
+possible to the partial tree we already have .</p></li>
 <li><p>Naive Implementation</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// d[x] : current minimum edge in cut E(&#123;x&#125;,S)</span></span><br><span class="line"><span class="comment">// Init </span></span><br><span class="line"><span class="keyword">for</span> (v in V)&#123;</span><br><span class="line">    d[v]=+inf;</span><br><span class="line">&#125;</span><br><span class="line">d[<span class="number">1</span>]=<span class="number">0</span>;S.<span class="built_in">insert</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">while</span>(S!=V)&#123;</span><br><span class="line">    <span class="type">int</span> x=<span class="built_in">argmin</span>(d[v] | v in V\S);</span><br><span class="line">    S.<span class="built_in">insert</span>(x); <span class="comment">// using the edge d[x]</span></span><br><span class="line">    <span class="keyword">for</span>(y in <span class="built_in">Neighbour</span>(x))&#123;</span><br><span class="line">        d[y]=<span class="built_in">min</span>(d[y],<span class="built_in">w</span>(x,y));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Improvement : Priority Queue</p>
-</li>
-</ol>
-</li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// d[x] : current minimum edge in cut E(&#123;x&#125;,S)</span></span><br><span class="line"><span class="comment">// Init </span></span><br><span class="line"><span class="keyword">for</span> (v in V)&#123;</span><br><span class="line">    d[v]=+inf;</span><br><span class="line">&#125;</span><br><span class="line">d[<span class="number">1</span>]=<span class="number">0</span>;S.<span class="built_in">insert</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">while</span>(S!=V)&#123;</span><br><span class="line">    <span class="type">int</span> x=<span class="built_in">argmin</span>(d[v] | v in V\S);</span><br><span class="line">    S.<span class="built_in">insert</span>(x); <span class="comment">// using the edge d[x]</span></span><br><span class="line">    <span class="keyword">for</span>(y in <span class="built_in">Neighbour</span>(x))&#123;</span><br><span class="line">        d[y]=<span class="built_in">min</span>(d[y],<span class="built_in">w</span>(x,y));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Improvement : Priority Queue</p></li>
+</ol></li>
 <li><p>Reverse Deletion</p>
-<p>Successively removing edges from $E$ in decreasing order of weight .</p>
-<p>If removing edge $e$ would cause disconnectedness , discard it  .</p>
+<p>Successively removing edges from <span
+class="math inline">\(E\)</span> in decreasing order of weight .</p>
+<p>If removing edge <span class="math inline">\(e\)</span> would cause
+disconnectedness , discard it .</p>
 <blockquote>
-<p>The reverse version of Kruskal’s Algorithm</p>
-</blockquote>
-</li>
+<p>The reverse version of Kruskal's Algorithm</p>
+</blockquote></li>
 <li><p>Faster algorithms</p>
-<p>[Chazelle] Deterministic Algorithm $\mathcal O(|E|\alpha(|E|))$</p>
+<p>[Chazelle] Deterministic Algorithm <span
+class="math inline">\(\mathcal O(|E|\alpha(|E|))\)</span></p>
 <blockquote>
-<p>This means MST is weaker than sorting </p>
+<p>This means MST is weaker than sorting</p>
 </blockquote>
-<p>[Karger , Klem , Tarjan] Randomized Algorithm $\mathcal O(|E|+|V|)$ </p>
-<p><strong>Open Question</strong> : Deterministic Linear Algorithm </p>
-</li>
+<p>[Karger , Klem , Tarjan] Randomized Algorithm <span
+class="math inline">\(\mathcal O(|E|+|V|)\)</span></p>
+<p><strong>Open Question</strong> : Deterministic Linear
+Algorithm</p></li>
 </ol>
-<h3 id="2-4-Union-Find-Set"><a href="#2-4-Union-Find-Set" class="headerlink" title="2.4 Union-Find Set"></a>2.4 Union-Find Set</h3><ol>
+<h3 id="union-find-set">2.4 Union-Find Set</h3>
+<ol type="1">
 <li><p>Definition</p>
 <p>Maintain sets of elements , support :</p>
-<ol>
-<li><code>find(element e)</code> , return the set that contains $e$</li>
-<li><code>union(set Si,set Sj)</code> , combine set $S_i$ and $S_j$ , return the union set $S_i\cup S_j$</li>
-</ol>
-</li>
+<ol type="1">
+<li><code>find(element e)</code> , return the set that contains <span
+class="math inline">\(e\)</span></li>
+<li><code>union(set Si,set Sj)</code> , combine set <span
+class="math inline">\(S_i\)</span> and <span
+class="math inline">\(S_j\)</span> , return the union set <span
+class="math inline">\(S_i\cup S_j\)</span></li>
+</ol></li>
 <li><p>Implementation</p>
 <p>The sets can be viewed as trees .</p>
-<p>The set can be represented by the root of the corresponding tree .</p>
-<p><code>find</code> : find the root of the tree (keep finding father)</p>
-<p><code>union</code> : $fa(root(S_1))\leftarrow root(S_2)$ </p>
-<p>Problem : tree can be very deep</p>
-</li>
+<p>The set can be represented by the root of the corresponding tree
+.</p>
+<p><code>find</code> : find the root of the tree (keep finding
+father)</p>
+<p><code>union</code> : <span
+class="math inline">\(fa(root(S_1))\leftarrow root(S_2)\)</span></p>
+<p>Problem : tree can be very deep</p></li>
 <li><p>Improve</p>
-<ol>
+<ol type="1">
 <li><p>启发式合并 / Heuristic merging</p>
-<p>To make the tree shallow , suppose $|S_1|\le |S_2|$ </p>
-<p>小集合合并到大集合上</p>
-</li>
+<p>To make the tree shallow , suppose <span
+class="math inline">\(|S_1|\le |S_2|\)</span></p>
+<p>小集合合并到大集合上</p></li>
 <li><p>路径压缩 / Path Compression</p>
-<p>Suppose one find : $e,v_1,\cdots,v_k,root$ , after the find , let $fa(e)=fa(v_1)=\cdots=fa(v_k)=root$</p>
-</li>
-</ol>
-</li>
+<p>Suppose one find : <span
+class="math inline">\(e,v_1,\cdots,v_k,root\)</span> , after the find ,
+let <span
+class="math inline">\(fa(e)=fa(v_1)=\cdots=fa(v_k)=root\)</span></p></li>
+</ol></li>
 <li><p>Time Complexity</p>
-<p>Amortized Analysis / 均摊分析   ( using Path Compression and Heuristic merging)</p>
-<p>Suppose we have a sequence of <code>find</code> or <code>union</code> operations , with length $m$ . </p>
-<p>Total running time of union-find is  $\mathcal O(m\alpha(m,n))$</p>
-<p>$\alpha$ : inverse Ackermann’s function , grows very slow </p>
+<p>Amortized Analysis / 均摊分析 ( using Path Compression and Heuristic
+merging)</p>
+<p>Suppose we have a sequence of <code>find</code> or <code>union</code>
+operations , with length <span class="math inline">\(m\)</span> .</p>
+<p>Total running time of union-find is <span
+class="math inline">\(\mathcal O(m\alpha(m,n))\)</span></p>
+<p><span class="math inline">\(\alpha\)</span> : inverse Ackermann's
+function , grows very slow</p>
 <blockquote>
-<p>Another slow function : $\log^*(n)$ , number of logs to make $n$ to small constant (i.e. $\log(\log\cdots\log(n))\le 5$)</p>
+<p>Another slow function : <span
+class="math inline">\(\log^*(n)\)</span> , number of logs to make <span
+class="math inline">\(n\)</span> to small constant (i.e. <span
+class="math inline">\(\log(\log\cdots\log(n))\le 5\)</span>)</p>
 </blockquote>
-<p>See [CLRS] for detailed proof .</p>
-</li>
-<li><p>Kruskal’s Algorithm Implementation</p>
+<p>See [CLRS] for detailed proof .</p></li>
+<li><p>Kruskal's Algorithm Implementation</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span>(E); <span class="comment">// weight-increasing</span></span><br><span class="line"><span class="keyword">for</span>(edge e=(u,v):E)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">find</span>(u)!=<span class="built_in">find</span>(v))&#123;</span><br><span class="line">        T.<span class="built_in">insert</span>(e);</span><br><span class="line">        <span class="built_in">union</span>(<span class="built_in">find</span>(u),<span class="built_in">find</span>(v));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Total time complexity : $\mathcal O(|E|\log|E|)$ .</p>
-</li>
+<p>Total time complexity : <span class="math inline">\(\mathcal
+O(|E|\log|E|)\)</span> .</p></li>
 </ol>
-<h3 id="2-5-Priority-Queue"><a href="#2-5-Priority-Queue" class="headerlink" title="2.5 Priority Queue"></a>2.5 Priority Queue</h3><ol>
+<h3 id="priority-queue">2.5 Priority Queue</h3>
+<ol type="1">
 <li><p>Definition</p>
-<p>Maintain a set of elements $S$ , support :</p>
-<p><code>insert(S,x)</code> , insert $x$ into $S$ .</p>
-<p><code>extract_max(S)</code> , return the maximum element in $S$ , and then remove this element .</p>
-<p><code>max(S)</code> , return the maximum element in $S$</p>
-<p><code>increase_key(S,x,k)</code> , increase value of $x$ by $k$</p>
-</li>
+<p>Maintain a set of elements <span class="math inline">\(S\)</span> ,
+support :</p>
+<p><code>insert(S,x)</code> , insert <span
+class="math inline">\(x\)</span> into <span
+class="math inline">\(S\)</span> .</p>
+<p><code>extract_max(S)</code> , return the maximum element in <span
+class="math inline">\(S\)</span> , and then remove this element .</p>
+<p><code>max(S)</code> , return the maximum element in <span
+class="math inline">\(S\)</span></p>
+<p><code>increase_key(S,x,k)</code> , increase value of <span
+class="math inline">\(x\)</span> by <span
+class="math inline">\(k\)</span></p></li>
 <li><p>(Basic) (max) Heap</p>
-<ol>
-<li><p>Property : Complete binary tree , parent $\ge $ both children </p>
-</li>
+<ol type="1">
+<li><p>Property : Complete binary tree , parent $$ both
+children</p></li>
 <li><p>Can be implemented in an array</p>
-<p><code>fa[x]=x/2</code> , <code>left_child[x]=2x</code> , <code>right_child[x]=2x+1</code> </p>
-</li>
+<p><code>fa[x]=x/2</code> , <code>left_child[x]=2x</code> ,
+<code>right_child[x]=2x+1</code></p></li>
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">insert</span>(S,x)&#123; <span class="comment">// flow down , O(log n)</span></span><br><span class="line">    val[|S|]=x;|S|++;</span><br><span class="line">    <span class="type">int</span> p=|S|<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p!=root&amp;&amp;val[p]&gt;val[fa[p]])&#123;</span><br><span class="line">        <span class="built_in">swap</span>(val[p],val[fa[p]]);</span><br><span class="line">        p=fa[p];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Note : build a heap : O(n)</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">extract_max</span>(S)&#123; <span class="comment">// flow up , O(log n)</span></span><br><span class="line">    <span class="type">int</span> ret_val=val[root];</span><br><span class="line">    <span class="built_in">swap</span>(val[root],val[|S|<span class="number">-1</span>]); <span class="comment">// swap the root and the last element</span></span><br><span class="line">    |S|--; <span class="comment">// delete original root</span></span><br><span class="line">    <span class="type">int</span> p=root;</span><br><span class="line">    <span class="keyword">while</span>(val[p]&lt;val[left_child[p]]||val[p]&lt;val[right_child[p]])&#123;</span><br><span class="line">        <span class="keyword">if</span>(val[left_child[p]]&gt;val[right_child[p]])&#123;</span><br><span class="line">            <span class="built_in">swap</span>(val[p],val[left_child[p]]);</span><br><span class="line">            p=left_child[p];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">swap</span>(val[p],val[right_child[p]]);</span><br><span class="line">            p=right_child[p];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret_val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">max</span>(S)&#123; <span class="comment">// O(1)</span></span><br><span class="line">    <span class="keyword">return</span> val[root];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">increase_key</span>(S,p,k)&#123; <span class="comment">// flow down , O(log n)</span></span><br><span class="line">    val[p]=val[p]+k;</span><br><span class="line">    <span class="keyword">while</span>(p!=root&amp;&amp;val[p]&gt;val[fa[p]])&#123;</span><br><span class="line">        <span class="built_in">swap</span>(val[p],val[fa[p]]);</span><br><span class="line">        p=fa[p];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">increase_key</span>(S,p,k)&#123; <span class="comment">// flow down , O(log n)</span></span><br><span class="line">    val[p]=val[p]+k;</span><br><span class="line">    <span class="keyword">while</span>(p!=root&amp;&amp;val[p]&gt;val[fa[p]])&#123;</span><br><span class="line">        <span class="built_in">swap</span>(val[p],val[fa[p]]);</span><br><span class="line">        p=fa[p];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>Advanced : Fibonacci Heap</p>
 <p>Time complexity (amortized-time)</p>
-<p>| operations     | binary heap          | Fibonacci heap       |<br>| ——————— | —————————— | —————————— |<br>| <code>insert</code>       | $\mathcal O(\log n)$ | $\mathcal O(1)$      |<br>| <code>extract_max</code>  | $\mathcal O(\log n)$ | $\mathcal O(\log n)$ |<br>| <code>max</code>          | $\mathcal O(1)$      | $\mathcal O(1)$      |<br>| <code>increase_key</code> | $\mathcal O(\log n)$ | $\mathcal O(1)$      |</p>
-<p>See [CLRS] for detailed Fibonacci heap .</p>
-</li>
-<li><p>Prim’s Algorithm with Priority Queue</p>
+<table>
+<thead>
+<tr class="header">
+<th>operations</th>
+<th>binary heap</th>
+<th>Fibonacci heap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>insert</code></td>
+<td><span class="math inline">\(\mathcal O(\log n)\)</span></td>
+<td><span class="math inline">\(\mathcal O(1)\)</span></td>
+</tr>
+<tr class="even">
+<td><code>extract_max</code></td>
+<td><span class="math inline">\(\mathcal O(\log n)\)</span></td>
+<td><span class="math inline">\(\mathcal O(\log n)\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>max</code></td>
+<td><span class="math inline">\(\mathcal O(1)\)</span></td>
+<td><span class="math inline">\(\mathcal O(1)\)</span></td>
+</tr>
+<tr class="even">
+<td><code>increase_key</code></td>
+<td><span class="math inline">\(\mathcal O(\log n)\)</span></td>
+<td><span class="math inline">\(\mathcal O(1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>See [CLRS] for detailed Fibonacci heap .</p></li>
+<li><p>Prim's Algorithm with Priority Queue</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// using min priority queue</span></span><br><span class="line"><span class="keyword">for</span> (v in V\&#123;<span class="number">1</span>&#125;)&#123;</span><br><span class="line">    d[v]=+inf;</span><br><span class="line">    inS[v]=<span class="literal">false</span>;</span><br><span class="line">    PQ.<span class="built_in">insert</span>((v,+inf));</span><br><span class="line">&#125;</span><br><span class="line">d[<span class="number">1</span>]=<span class="number">0</span>;inS[<span class="number">1</span>]=<span class="literal">true</span>;</span><br><span class="line">PQ.<span class="built_in">insert</span>((<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line"><span class="comment">// index 1 , value 0</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;++i)&#123; <span class="comment">// n-1 rounds</span></span><br><span class="line">    <span class="type">int</span> x=PQ.<span class="built_in">extract_min</span>(); <span class="comment">// argmin value</span></span><br><span class="line">    inS[x]=<span class="literal">true</span>;</span><br><span class="line">    <span class="comment">// using edge d[x]</span></span><br><span class="line">    <span class="keyword">for</span>(y in <span class="built_in">Neighbour</span>(x))&#123;</span><br><span class="line">        <span class="keyword">if</span>(!inS[y] &amp;&amp; <span class="built_in">w</span>(x,y)&lt;d[y])&#123;</span><br><span class="line">            PQ.<span class="built_in">decrease_key</span>(y,d[y]-<span class="built_in">w</span>(x,y));</span><br><span class="line">            d[y]=<span class="built_in">w</span>(x,y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Time Complexity : $\mathcal O(|E|\log |V|)$ .</p>
-</li>
-<li><p>Dijkstra’s Algorithm with Priority Queue</p>
+<p>Time Complexity : <span class="math inline">\(\mathcal O(|E|\log
+|V|)\)</span> .</p></li>
+<li><p>Dijkstra's Algorithm with Priority Queue</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// using min priority queue</span></span><br><span class="line"><span class="keyword">for</span>(v in V\&#123;s&#125;)&#123;</span><br><span class="line">    d[v]=+inf;</span><br><span class="line">    inS[v]=<span class="literal">false</span>;</span><br><span class="line">    PQ.<span class="built_in">insert</span>((v,+inf))</span><br><span class="line">&#125;</span><br><span class="line">d[s]=<span class="number">0</span>;inS[s]=<span class="literal">true</span>;</span><br><span class="line">PQ.<span class="built_in">insert</span>((v,+inf));</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;++i)&#123; <span class="comment">// n-1 rounds</span></span><br><span class="line">    <span class="type">int</span> x=PQ.<span class="built_in">extract_min</span>();</span><br><span class="line">    inS[x]=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(y in <span class="built_in">Neighbour</span>(x))&#123;</span><br><span class="line">        <span class="keyword">if</span>(!inS[y] &amp;&amp; d[y] &gt; d[x]+<span class="built_in">w</span>(x,y) )&#123;</span><br><span class="line">            PQ.<span class="built_in">decrease_key</span>(d[y]-d[x]-<span class="built_in">w</span>(x,y));</span><br><span class="line">            d[y]=d[x]+<span class="built_in">w</span>(x,y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Time Complexity : $\mathcal O(|E|\log |V|)$ .</p>
-</li>
+<p>Time Complexity : <span class="math inline">\(\mathcal O(|E|\log
+|V|)\)</span> .</p></li>
 </ol>
-<h3 id="2-6-Huffman-Code"><a href="#2-6-Huffman-Code" class="headerlink" title="2.6 Huffman Code"></a>2.6 Huffman Code</h3><ol>
-<li><p>Code Definition : a set $S$ of letters encode to $\{0,1\}^<em>$ , $r:S\to \{0,1\}^</em>$</p>
+<h3 id="huffman-code">2.6 Huffman Code</h3>
+<ol type="1">
+<li><p>Code Definition : a set <span class="math inline">\(S\)</span> of
+letters encode to <span class="math inline">\(\{0,1\}^*\)</span> , <span
+class="math inline">\(r:S\to \{0,1\}^*\)</span></p>
 <p>Properties</p>
-<ol>
-<li>$r$ is one-to-one / injection</li>
+<ol type="1">
+<li><span class="math inline">\(r\)</span> is one-to-one /
+injection</li>
 <li>encoding / decoding efficiently</li>
 <li>minimize average length of the code</li>
 <li>[optional] robust to errors , Error Correction Code</li>
-</ol>
-</li>
+</ol></li>
 <li><p>Prefix Code</p>
-<ol>
-<li><p>Def : $\forall x,y\in S$ , $r(x)$ is not a prefix of $r(y)$</p>
-</li>
-<li><p>Property : useful for decoding (unique decode) , can decode greedily</p>
-</li>
-<li><p>e.g. $S=\{a,b,c,d,e\}$</p>
-<p>Prefix Code </p>
-<script type="math/tex; mode=display">
-r(a)=11,r(b)=01,r(c)=001,r(d)=10,r(e)=000</script><script type="math/tex; mode=display">
-decode(0000011101)=decode(000\ 001\ 11\ 01)=ecab</script><p>non-Prefix Code</p>
-<script type="math/tex; mode=display">
-r(a)=110,r(b)=11,r(c)=01</script><script type="math/tex; mode=display">
-decode(11011)=decode(110\ 11)=decode(11\ 01\ 1)</script></li>
+<ol type="1">
+<li><p>Def : <span class="math inline">\(\forall x,y\in S\)</span> ,
+<span class="math inline">\(r(x)\)</span> is not a prefix of <span
+class="math inline">\(r(y)\)</span></p></li>
+<li><p>Property : useful for decoding (unique decode) , can decode
+greedily</p></li>
+<li><p>e.g. <span class="math inline">\(S=\{a,b,c,d,e\}\)</span></p>
+<p>Prefix Code <span class="math display">\[
+r(a)=11,r(b)=01,r(c)=001,r(d)=10,r(e)=000
+\]</span></p>
+<p><span class="math display">\[
+decode(0000011101)=decode(000\ 001\ 11\ 01)=ecab
+\]</span></p>
+<p>non-Prefix Code <span class="math display">\[
+r(a)=110,r(b)=11,r(c)=01
+\]</span></p>
+<p><span class="math display">\[
+decode(11011)=decode(110\ 11)=decode(11\ 01\ 1)
+\]</span></p></li>
 <li><p>Prefix Code can be represented using a binary tree</p>
-<p>Leafy tree : each leaf corresponds to a letter</p>
-</li>
-</ol>
-</li>
+<p>Leafy tree : each leaf corresponds to a letter</p></li>
+</ol></li>
 <li><p>Minimize the length</p>
-<ol>
+<ol type="1">
 <li><p>Average encoding length</p>
-<p>Suppose each letter has a frequency $p(x)$ , $\sum_{x\in S}p(x)=1$ .</p>
-<p>Average encoding length :</p>
-<script type="math/tex; mode=display">
-AEL(r)=\sum_{x\in S}p(x)|r(x)|</script></li>
-<li><p>[Shannon] Source Coding Theorem</p>
-<script type="math/tex; mode=display">
-\forall r,AEL(r)\ge \sum_{x\in S}-p(x)\log p(x) =:H</script><p>See : [Thomas Cover] Information Theory</p>
-</li>
-</ol>
-</li>
+<p>Suppose each letter has a frequency <span
+class="math inline">\(p(x)\)</span> , <span
+class="math inline">\(\sum_{x\in S}p(x)=1\)</span> .</p>
+<p>Average encoding length : <span class="math display">\[
+AEL(r)=\sum_{x\in S}p(x)|r(x)|
+\]</span></p></li>
+<li><p>[Shannon] Source Coding Theorem <span class="math display">\[
+\forall r,AEL(r)\ge \sum_{x\in S}-p(x)\log p(x) =:H
+\]</span> See : [Thomas Cover] Information Theory</p></li>
+</ol></li>
 <li><p>Lemma</p>
-<p>There is an optimal code ( or an optimal binary tree ) in which two lowest-frequency letter are assigned to leaves that are as deep as possible , and are siblings .</p>
+<p>There is an optimal code ( or an optimal binary tree ) in which two
+lowest-frequency letter are assigned to leaves that are as deep as
+possible , and are siblings .</p>
 <blockquote>
-<p>Proof :  同层换：对 AEL 无影响；跨层： exchange argument </p>
-</blockquote>
-</li>
-<li><p>Huffman’s Code</p>
-<p>Initially , construct a set $S$ containing all letters.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(|S|&gt;<span class="number">1</span>)&#123;</span><br><span class="line">    elem x,y;</span><br><span class="line">    x=<span class="built_in">extract_max</span>(S) , y=<span class="built_in">extract_max</span>(S);</span><br><span class="line">    elem new_elem=(id,<span class="built_in">p</span>(x)+<span class="built_in">p</span>(y));</span><br><span class="line">    <span class="built_in">insert</span>(S,new_elem);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<p>Proof : 同层换：对 AEL 无影响；跨层： exchange argument</p>
+</blockquote></li>
+<li><p>Huffman's Code</p>
+<p>Initially , construct a set <span class="math inline">\(S\)</span>
+containing all letters.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(|S|&gt;<span class="number">1</span>)&#123;</span><br><span class="line">    elem x,y;</span><br><span class="line">    x=<span class="built_in">extract_max</span>(S) , y=<span class="built_in">extract_max</span>(S);</span><br><span class="line">    elem new_elem=(id,<span class="built_in">p</span>(x)+<span class="built_in">p</span>(y));</span><br><span class="line">    <span class="built_in">insert</span>(S,new_elem);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
     </div>
@@ -639,8 +723,8 @@ AEL(r)=\sum_{x\in S}p(x)|r(x)|</script></li>
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/10/06/Zero-Knowledge-Proof-and-Secure-Multi-Party-Computation-1/" rel="prev" title="Zero-Knowledge Proof and Secure Multi-Party Computation 1">
-                  <i class="fa fa-angle-left"></i> Zero-Knowledge Proof and Secure Multi-Party Computation 1
+                <a href="/2023/10/06/Zero-Knowledge-Proof-and-Secure-Multi-Party-Computation-1/" rel="prev" title="ZKP and MPC 1">
+                  <i class="fa fa-angle-left"></i> ZKP and MPC 1
                 </a>
             </div>
             <div class="post-nav-item">
@@ -683,13 +767,13 @@ AEL(r)=\sum_{x\in S}p(x)|r(x)|</script></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar/avatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zigzagkmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="ZKP and MPC 2">
+<meta property="og:url" content="https://zigzagkmp.github.io/2023/10/15/ZKP-and-MPC-2/index.html">
+<meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-15T12:48:06.000Z">
+<meta property="article:modified_time" content="2023-10-15T12:49:26.667Z">
+<meta property="article:author" content="ZigZagKmp">
+<meta property="article:tag" content="密码学">
+<meta property="article:tag" content="密码学-零知识证明">
+<meta property="article:tag" content="密码学-交互式证明">
+<meta property="article:tag" content="密码学-证明复合">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zigzagkmp.github.io/2023/10/15/ZKP-and-MPC-2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/10/15/ZKP-and-MPC-2/","path":"2023/10/15/ZKP-and-MPC-2/","title":"ZKP and MPC 2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ZKP and MPC 2 | ZigZagKmp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZigZagKmp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Mainly for study materials</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lec02-zero-knowledge-proof-under-composition"><span class="nav-number">1.</span> <span class="nav-text">Lec02
+Zero-Knowledge Proof under Composition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#review-of-interactive-proof"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 Review of Interactive
+Proof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interactive-proof-for-graph-isomorphism"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 Interactive Proof
+for Graph Isomorphism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sequential-composition"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 Sequential Composition</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZigZagKmp"
+      src="/images/avatar/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ZigZagKmp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ZigZagKmp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ZigZagKmp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zigzagkmp@qq.com" title="E-Mail → mailto:zigzagkmp@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/35871" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;35871" rel="noopener me" target="_blank"><i class="fa fa-code fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/ZigZagKmp/" title="cnblogs → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ZigZagKmp&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-blog fa-fw"></i>cnblogs</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com" rel="noopener" target="_blank">Github</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;www.tsinghua.edu.cn" rel="noopener" target="_blank">THU</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://iiis.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;iiis.tsinghua.edu.cn" rel="noopener" target="_blank">IIIS</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.luogu.com.cn/" title="https:&#x2F;&#x2F;www.luogu.com.cn" rel="noopener" target="_blank">Luogu</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/06/Zero-Knowledge-Proof-and-Secure-Multi-Party-Computation-1/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-06</time>
+        <br>
+      ZKP and MPC 1
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/07/%E7%AD%94%E7%96%91%E5%9D%8A-%E7%A8%8B%E8%AE%BE-DSA-%E8%B6%A3%E9%A2%98%E8%8B%A5%E5%B9%B2/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-07</time>
+        <br>
+      答疑坊 程设/离散/DSA 趣题若干
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/10/15/ZKP-and-MPC-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.jpg">
+      <meta itemprop="name" content="ZigZagKmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZigZagKmp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ZKP and MPC 2 | ZigZagKmp's Blog">
+      <meta itemprop="description" content="[2023 秋] 零知识证明与多方安全计算 第二课课堂笔记 / [2023 Fall] Zero-Knowledge Proof and Secure Multi-Party Computation Lecture 2 Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ZKP and MPC 2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-10-15 20:48:06 / 修改时间：20:49:26" itemprop="dateCreated datePublished" datetime="2023-10-15T20:48:06+08:00">2023-10-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E%E5%92%8C%E5%A4%9A%E6%96%B9%E5%AE%89%E5%85%A8%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">零知识证明和多方安全计算</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">[2023 秋] 零知识证明与多方安全计算 第二课课堂笔记 / [2023 Fall] Zero-Knowledge Proof and Secure Multi-Party Computation Lecture 2 Notes</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="lec02-zero-knowledge-proof-under-composition">Lec02
+Zero-Knowledge Proof under Composition</h2>
+<h3 id="review-of-interactive-proof">2.1 Review of Interactive
+Proof</h3>
+<ol type="1">
+<li><p>Interactive Proof</p>
+<ol type="1">
+<li><p>Framework</p>
+<p>Prover <span class="math inline">\(P\)</span>, Verifier <span
+class="math inline">\(V\)</span> . <span
+class="math inline">\(P,V\)</span> knows <span
+class="math inline">\(x\)</span> .</p>
+<p><span class="math inline">\(P\)</span> wants to convince <span
+class="math inline">\(V\)</span> that <span class="math inline">\(x\in
+L\)</span> with interaction .</p>
+<p><span class="math inline">\(P,V\)</span> sends messages <span
+class="math inline">\(m_1,m_2,\cdots,m_k\)</span> one by one , then
+<span class="math inline">\(V\)</span> accept/reject whether <span
+class="math inline">\(x\in L\)</span> .</p>
+<p><span class="math inline">\(\braket{P,V}(x)=y\in \{0,1\}\)</span> ,
+indicating whether <span class="math inline">\(x\in L\)</span> .</p>
+<p><strong><em>transcript</em></strong> : <span
+class="math inline">\(\tau=\{m_1,m_2,\cdots,m_k\}\)</span> .</p></li>
+<li><p>Formal Definition</p>
+<p><span class="math inline">\((P,V)\)</span> is an
+<strong><em>interactive proof</em></strong> for <span
+class="math inline">\(L\)</span> if</p>
+<ul>
+<li><span class="math inline">\(V\)</span> is an efficient algorithm (
+poly-time )</li>
+<li><strong><em>Completeness</em></strong> : <span
+class="math inline">\(\forall x\in
+L,\Pr\{\braket{P,V}(x)=1\}=1\)</span></li>
+<li><strong><em>(Almost) Soundness</em></strong> : <span
+class="math inline">\(\forall x\notin L,\forall
+P^*,\Pr\{\braket{P^*,V}(x)=1\}&lt;\epsilon\)</span></li>
+</ul></li>
+</ol></li>
+<li><p>Error Toleration</p>
+<ol type="1">
+<li><p>Security parameter : <span
+class="math inline">\(\kappa\)</span></p></li>
+<li><p>For Efficiency : <span
+class="math inline">\(|x|=poly(\kappa)\)</span></p></li>
+<li><p>For Security</p>
+<ul>
+<li><p>Def [<strong><em>Negligible Function</em></strong>] <span
+class="math inline">\(\epsilon:\mathbb N\to \mathbb R^*\)</span> is
+<strong><em>negligible</em></strong> if for all positive polynomial
+<span class="math inline">\(p\)</span> , <span
+class="math inline">\(\exists c\)</span> , s.t. <span
+class="math inline">\(\forall k\ge
+c,\epsilon(k)&lt;\frac{1}{p(k)}\)</span></p></li>
+<li><p>Def [<strong><em>Statistically Indistinguishable</em></strong>] :
+two distribution <span class="math inline">\(f,g\)</span> are
+<strong><em>statistically indistinguishable</em></strong> if there
+exists a negligible function <span
+class="math inline">\(\epsilon\)</span> that : <span
+class="math display">\[
+SD(f(x),g(x))=\frac{1}{2}\sum_{s}\left|\Pr\{f(x)=s\}-\Pr\{g(x)=s\}\right|&lt;\epsilon
+\]</span></p></li>
+<li><p>Def [<strong><em>Computationally Indistinguishable</em></strong>]
+: two distribution <span class="math inline">\(f,g\)</span> are
+<strong><em>computationally indistinguishable</em></strong> if <span
+class="math inline">\(\forall D\)</span> (distinguisher) in P.P.T ,
+there exists a negligible function <span
+class="math inline">\(\epsilon\)</span> that : <span
+class="math display">\[
+\left|\Pr\left\{D\big(f(x)\big)=1\right\}-\Pr\left\{D\big(g(x)\big)=1\right\}\right|&lt;\epsilon
+\]</span></p></li>
+</ul></li>
+</ol></li>
+<li><p>Zero Knowledge</p>
+<ol type="1">
+<li><p>Intuition : not gain of <strong>Knowledge</strong></p>
+<blockquote>
+<p>Everything can be <strong>computed locally</strong> is not a gain of
+knowledge</p>
+</blockquote></li>
+<li><p>Def [<strong><em>View</em></strong>] : <span
+class="math display">\[
+View_V^P(x)=(x,r,\tau)
+\]</span></p></li>
+<li><p>Def [<strong><em>dishonest-verifier zero-knowledge</em></strong>]
+: <span class="math inline">\((P,V)\)</span> is an IP for <span
+class="math inline">\(L\)</span> . If <span
+class="math inline">\((P,V)\)</span> achieves
+perfect/statistical/computational <strong><em>dishonest-verifier
+zero-knowledge</em></strong> , it satisfies that :</p>
+<p><span class="math inline">\(\forall V^*\)</span> in P.P.T. , $$
+expected poly-time randomized algorithm <span
+class="math inline">\(M^*\)</span> , s.t. <span class="math display">\[
+\forall x\in L,M^*(x)\sim View_{V^*}^P(x)
+\]</span> <span class="math inline">\(\sim\)</span> refers to equivalent
+/ statistically indistinguishable / computationally
+indistinguishable</p></li>
+<li><p>Alternative definition of zero-knowledge :</p>
+<p><span class="math inline">\(\forall V^*\)</span> in P.P.T. , <span
+class="math inline">\(\exists\)</span> expected poly-time randomized
+algorithm <span class="math inline">\(M^*\)</span> , s.t. <span
+class="math display">\[
+\forall x\in L,\braket{P,V^*}(x)\sim M^*(x)
+\]</span></p>
+<blockquote>
+<p><em>Proof of Equivalence</em></p>
+<p>Original <span class="math inline">\(\to\)</span> Alternative : The
+output of <span class="math inline">\(V^*\)</span> only depends on its
+view . If <span class="math inline">\(M^*\)</span> can simulate the view
+of <span class="math inline">\(V^*\)</span> , then it can run <span
+class="math inline">\(V^*\)</span> with the view , and get the output of
+<span class="math inline">\(V^*\)</span> .</p>
+<p>Alternative <span class="math inline">\(\to\)</span> Original : The
+proposition holds for all <span class="math inline">\(V^*\)</span> (
+which can violate the protocol ) , so if <span
+class="math inline">\(V^*\)</span> just output its entire view , we
+still need to be able to find the corresponding <span
+class="math inline">\(M^*\)</span> , this means the ability to simulate
+the view of <span class="math inline">\(V^*\)</span> .</p>
+</blockquote></li>
+</ol></li>
+</ol>
+<h3 id="interactive-proof-for-graph-isomorphism">2.2 Interactive Proof
+for Graph Isomorphism</h3>
+<ol type="1">
+<li><p>Protocol</p>
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 12%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Prover</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Verifier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(\pi_r\leftarrow S_n\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\tilde
+G:=\pi_r(G_0)\)</span></td>
+<td style="text-align: center;">--<span class="math inline">\(\tilde
+G\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">&lt;-<span
+class="math inline">\(b\)</span>--</td>
+<td style="text-align: center;"><span class="math inline">\(b\leftarrow
+\{0,1\}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">find <span
+class="math inline">\(\pi_b\)</span> , s.t. <span
+class="math inline">\(\tilde G=\pi_b(G_b)\)</span></td>
+<td style="text-align: center;">--<span
+class="math inline">\(\pi_b\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{cases}1&amp;\tilde
+G=\pi_b(G_b)\\0&amp;\text{otherwise}\end{cases}\)</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note : If Prover knows <span class="math inline">\(\pi\)</span> that
+<span class="math inline">\(\pi(G_0)=G_1\)</span> , then <span
+class="math inline">\(\pi_b\)</span> can be constructed : <span
+class="math display">\[
+\pi_b=\begin{cases}\pi_r&amp;b=0\\\pi_r\circ\pi^{-1}&amp;b=1\end{cases}
+\]</span></p>
+</blockquote></li>
+<li><p>Completeness : By construction of <span
+class="math inline">\(\pi_b\)</span> above , <span
+class="math inline">\(\Pr\{V\text{ accepts}\}=1\)</span> .</p></li>
+<li><p>Soundness : <span class="math inline">\(\forall \tilde G\)</span>
+, if <span class="math inline">\(G_0\not\sim G_1\)</span> , then either
+<span class="math inline">\(\tilde G\not\sim G_0\)</span> , or <span
+class="math inline">\(\tilde G\not\sim G_1\)</span> ,</p>
+<p>If <span class="math inline">\(\tilde G\not\sim G_{b^*}\)</span> ,
+then <span class="math inline">\(\Pr\{V\text{ rejects}\}\ge
+\Pr\{b=b^*\}=\frac{1}{2}\)</span></p>
+<blockquote>
+<p>Note : we cannot let Verifier just choose <span
+class="math inline">\(b=1\)</span> , since a malicious Prover can
+violate the protocol , <span class="math inline">\(\pi_r\)</span> may
+not be a permutation , and <span class="math inline">\(\tilde G\)</span>
+may not isomorphic to <span class="math inline">\(G_0\)</span> .</p>
+</blockquote>
+<p>Repeat <span class="math inline">\(k\)</span> times , <span
+class="math inline">\(\Pr\{V\text{ rejects}\}\ge
+1-\frac{1}{2^k}\)</span> .</p></li>
+<li><p>Honest-Verifier Zero-Knowledge : <span
+class="math inline">\(P,V\)</span> follows the protocol .</p>
+<p>In <span class="math inline">\(View_V^P\)</span> , the additional
+info is <span class="math inline">\(\tilde G,\pi_b\)</span> , which are
+both randomly picked s.t. <span class="math inline">\(\pi_b(G_b)=\tilde
+G\)</span> .</p>
+<p><span class="math inline">\(M\)</span> : samples <span
+class="math inline">\(b\gets\{0,1\}\)</span> , samples <span
+class="math inline">\(\pi_b\gets S_n\)</span> , computes <span
+class="math inline">\(\tilde G=\pi_b(G_b)\)</span> .</p></li>
+<li><p>Dishonest-Verifier Zero-Knowledge : <span
+class="math inline">\(V^*\)</span> may not follow the protocol : <span
+class="math inline">\(b\)</span> may be chosen depends on <span
+class="math inline">\(\tilde G\)</span> .</p>
+<p><span class="math inline">\(M^*\)</span> : perform as <span
+class="math inline">\(P\)</span> (but without knowing <span
+class="math inline">\(\pi\)</span>)</p>
+<ol type="1">
+<li><p><em>Strategy</em> :</p>
+<ol type="1">
+<li><p><span class="math inline">\(M^*\)</span> samples <span
+class="math inline">\(b^*\gets \{0,1\}\)</span> ,samples <span
+class="math inline">\(\pi_{b^*}\gets S_n\)</span> , computes <span
+class="math inline">\(\tilde G=\pi_{b^*}(G_{b^*})\)</span></p></li>
+<li><p><span class="math inline">\(M^*\)</span> runs with <span
+class="math inline">\(V^*\)</span> and obtains <span
+class="math inline">\(b\)</span> .</p></li>
+<li><p>If <span class="math inline">\(b^*=b\)</span> , reply <span
+class="math inline">\(\pi_{b^*}\)</span> and find out the view .</p>
+<p>If <span class="math inline">\(b^*\neq b\)</span> , go back to
+(1).</p></li>
+</ol></li>
+<li><p>Prove <span class="math inline">\(M^*(x)\equiv
+View_{V^*}^P(x)\)</span> :</p>
+<p><em>Proof Strategy</em> : <strong><em>Hybrid Arguments</em></strong>
+: make sure that every two adjacent <span
+class="math inline">\(Hyb\)</span> are so near .</p>
+<ol start="0" type="1">
+<li><p><span class="math inline">\(Hyb_0\)</span> : <span
+class="math inline">\(P\)</span> runs with <span
+class="math inline">\(V^*\)</span> , output <span
+class="math inline">\(View_{V^*}^P(x)\)</span></p></li>
+<li><p><span class="math inline">\(Hyb_1\)</span> : <span
+class="math inline">\(\tilde P\)</span> runs with <span
+class="math inline">\(V^*\)</span> , receives <span
+class="math inline">\(b\)</span> . Then <span
+class="math inline">\(\tilde P\)</span> samples <span
+class="math inline">\(b^*\gets \{0,1\}\)</span></p>
+<p>If <span class="math inline">\(b^*=b\)</span> , <span
+class="math inline">\(\tilde P\)</span> continues with <span
+class="math inline">\(V^*\)</span> . Otherwise , <span
+class="math inline">\(\tilde P\)</span> reruns with <span
+class="math inline">\(V^*\)</span> .</p>
+<ul>
+<li><span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=2\)</span></li>
+<li><span class="math inline">\(View_{V^*}^P(x)\equiv View_{V^*}^{\tilde
+P}(x)\)</span></li>
+</ul>
+<blockquote>
+<p>Proof : <span class="math inline">\(\forall v\)</span> , compute
+<span class="math inline">\(\Pr\{View_{V^*}^{\tilde
+P}(x)=v\}\)</span></p>
+<p>Define <span class="math inline">\(v_i\)</span> : view of <span
+class="math inline">\(V^*\)</span> in the <span
+class="math inline">\(i\)</span>-th iteration</p>
+<p>If <span class="math inline">\(\tilde P\)</span> exactly finishes at
+<span class="math inline">\(i\)</span>-th iteration , then <span
+class="math inline">\(v_i\equiv View_{V^*}^{P}(x)\)</span> <span
+class="math display">\[
+\begin{aligned}
+\Pr\{View_{V^*}^{\tilde P}(x)=v\}&amp;=\sum_{l=1}^{+\infty}
+\Pr\{v_l=v\land b_l^*=b_l\land \forall i&lt;l,b_i^*\neq b_i\}\\
+&amp;=\sum_{l=1}^{+\infty}\Pr\{v_l=v\}\Pr\{b_l^*=b_l\land \forall
+i&lt;l,b_i^*\neq b_i\}\\
+&amp;=\Pr\{View_{V^*}^P(x)=v\}\sum_{l=1}^{+\infty}\Pr\{b_l^*=b_l\land
+\forall i&lt;l,b_i^*\neq b_i\}\\
+&amp;=\Pr\{View_{V^*}^P(x)=v\}
+\end{aligned}
+\]</span></p>
+</blockquote></li>
+<li><p><span class="math inline">\(Hyb_2\)</span> : <span
+class="math inline">\(\tilde P\)</span> samples <span
+class="math inline">\(b^*\gets \{0,1\}\)</span> . Then <span
+class="math inline">\(\tilde P\)</span> runs with <span
+class="math inline">\(V^*\)</span> , receives <span
+class="math inline">\(b\)</span> .</p>
+<p>If <span class="math inline">\(b^*=b\)</span> , <span
+class="math inline">\(\tilde P\)</span> continues with <span
+class="math inline">\(V^*\)</span> . Otherwise , <span
+class="math inline">\(\tilde P\)</span> reruns with <span
+class="math inline">\(V^*\)</span> .</p>
+<ul>
+<li><span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=2\)</span></li>
+<li><span class="math inline">\(Hyb_1\equiv Hyb_2\)</span> ( Since we
+only swap two independent operations )</li>
+</ul></li>
+<li><p><span class="math inline">\(Hyb_3\)</span> : <span
+class="math inline">\(\tilde P\)</span> samples <span
+class="math inline">\(b^*\gets\{0,1\}\)</span> . Then <span
+class="math inline">\(\tilde P\)</span> samples <span
+class="math inline">\(\pi_{b^*}\)</span> and computes <span
+class="math inline">\(\tilde G=\pi_{b^*}(G_{b^*})\)</span> . Then <span
+class="math inline">\(\tilde P\)</span> runs with <span
+class="math inline">\(V^*\)</span> , receives <span
+class="math inline">\(b\)</span> .</p></li>
+</ol>
+<p>If <span class="math inline">\(b^*=b\)</span> , <span
+class="math inline">\(\tilde P\)</span> continues with <span
+class="math inline">\(V^*\)</span> . Otherwise , <span
+class="math inline">\(\tilde P\)</span> reruns with <span
+class="math inline">\(V^*\)</span> .</p>
+<ul>
+<li><span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=2\)</span></li>
+<li><span class="math inline">\(Hyb_2\equiv Hyb_3\)</span> ( Since the
+distribution of <span class="math inline">\((\pi_{b^*},\tilde
+G)\)</span> is the same )</li>
+<li><span class="math inline">\(Hyb_3\)</span> is exactly <span
+class="math inline">\(M^*\)</span></li>
+</ul></li>
+</ol></li>
+<li><p>Zero-knowledge under Repetition (for soundness)</p>
+<ol type="1">
+<li><p>Def [<strong><em>parallel composition</em></strong>] :</p>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 23%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Prover</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Verifier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(\pi_r^i\leftarrow S_n\)</span> for <span
+class="math inline">\(i\in [\kappa]\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\tilde
+{G^i}:=\pi_r^i(G_0)\)</span> for <span class="math inline">\(i\in
+[\kappa]\)</span></td>
+<td style="text-align: center;">--<span class="math inline">\(\{\tilde
+{G^i}|i\in [\kappa]\}\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">&lt;-<span
+class="math inline">\(b\)</span>--</td>
+<td style="text-align: center;"><span class="math inline">\(b\leftarrow
+\{0,1\}^\kappa\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">find <span
+class="math inline">\(\pi_b^i\)</span> , s.t. <span
+class="math inline">\(\tilde {G^i}=\pi_{b}^i(G_{b_i})\)</span></td>
+<td style="text-align: center;">--<span
+class="math inline">\(\{\pi_b^i|i\in [\kappa]\}\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{cases}1&amp;\forall i\in [\kappa],\tilde
+{G^i}=\pi_b^i(G_{b_i})\\0&amp;\text{otherwise}\end{cases}\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Brute force simulator :</p>
+<p>randomly sample <span
+class="math inline">\(b^*\gets\{0,1\}^\kappa\)</span> , if received
+<span class="math inline">\(b\neq b^*\)</span> , rerun .</p>
+<p>Good : <span class="math inline">\(M^*(x)\equiv
+View_{V^*}^P(x)\)</span></p>
+<p>Bad : <span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=2^{\kappa}\)</span></p></li>
+</ol>
+<blockquote>
+<p>For most ZKP , we don't know how to prove <em>dishonest-verifier
+zero-knowledge</em> under parallel composition .</p>
+</blockquote></li>
+</ol>
+<h3 id="sequential-composition">2.3 Sequential Composition</h3>
+<ol type="1">
+<li><p>Def [<strong><em>sequential composition</em></strong>] : <span
+class="math inline">\((P,V)\)</span> is an IP for <span
+class="math inline">\(L\)</span> , Let <span
+class="math inline">\((P_q,V_q)\)</span> be <span
+class="math inline">\((P,V)\)</span> repeat <span
+class="math inline">\(q\)</span> times .</p></li>
+<li><p>Brute force simulator for Graph Isomorphism :</p>
+<p>For <span class="math inline">\(i=1,2,\cdots,\kappa\)</span> :</p>
+<ol type="1">
+<li><p><span class="math inline">\(M^*\)</span> samples <span
+class="math inline">\(b^*\gets\{0,1\}\)</span> , samples <span
+class="math inline">\(\pi_{b^*}\gets S_n\)</span> , computes <span
+class="math inline">\(\tilde G=\pi_{b^*}(G_{b^*})\)</span></p></li>
+<li><p><span class="math inline">\(M^*\)</span> runs with <span
+class="math inline">\(V^*\)</span> and receives <span
+class="math inline">\(b^*\)</span></p></li>
+<li><p>If <span class="math inline">\(b=b^*\)</span> , <span
+class="math inline">\(M^*\)</span> continues working as <span
+class="math inline">\(P\)</span></p>
+<p>If <span class="math inline">\(b\neq b^*\)</span> , <span
+class="math inline">\(M^*\)</span> restarts from <span
+class="math inline">\(i=1\)</span></p></li>
+</ol>
+<blockquote>
+<p>Bad : <span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=\mathcal O(2^{\kappa})\)</span></p>
+</blockquote></li>
+<li><p>Idea : Not restarts from <span class="math inline">\(i=1\)</span>
+?</p>
+<p>Store the state of <span class="math inline">\(V^*\)</span> : <span
+class="math inline">\((input,memory,output,randomness)\)</span></p>
+<blockquote>
+<p>We can store randomness of <span class="math inline">\(V^*\)</span>
+since it can be provided by <span class="math inline">\(M^*\)</span></p>
+<p>The randomness of <span class="math inline">\(V^*\)</span> can be
+pre-determined</p>
+</blockquote>
+<p>Simulator <span class="math inline">\(M^*\)</span> :</p>
+<p>For <span class="math inline">\(i=1,2,\cdots,\kappa\)</span> :</p>
+<ol type="1">
+<li><p><span class="math inline">\(M^*\)</span> saves the state <span
+class="math inline">\(st_{i-1}\)</span> of <span
+class="math inline">\(V^*\)</span></p></li>
+<li><p><span class="math inline">\(M^*\)</span> samples <span
+class="math inline">\(b_i^*\gets\{0,1\}\)</span> , samples <span
+class="math inline">\(\pi_{b_i^*}\gets S_n\)</span> , computes <span
+class="math inline">\(\tilde
+G_i=\pi_{b_i^*}(G_{b_i^*})\)</span></p></li>
+<li><p><span class="math inline">\(M^*\)</span> runs with <span
+class="math inline">\(V^*\)</span> and receives <span
+class="math inline">\(b_i^*\)</span></p></li>
+<li><p>If <span class="math inline">\(b_i=b_i^*\)</span> , <span
+class="math inline">\(M^*\)</span> continues working as <span
+class="math inline">\(P\)</span></p>
+<p>If <span class="math inline">\(b_i\neq b_i^*\)</span> , <span
+class="math inline">\(M^*\)</span> reloads <span
+class="math inline">\(st_{i-1}\)</span> for <span
+class="math inline">\(V^*\)</span> and goes back to (2).</p></li>
+</ol></li>
+<li><p>Def [<strong><em>Interactive Proof with Auxiliary
+Input</em></strong>] :</p>
+<p><span class="math inline">\((P,V)\)</span> is an
+<strong><em>interactive zk-proof with auxiliary input</em></strong> for
+<span class="math inline">\(L\)</span> if</p>
+<ul>
+<li><p><span class="math inline">\(V\)</span> is an efficient algorithm
+( poly-time )</p></li>
+<li><p><strong><em>Completeness</em></strong> : <span
+class="math inline">\(\forall x\in L,\forall y,z\in
+\{0,1\}^*,\Pr\{\braket{P(y),V(z)}(x)=1\}=1\)</span></p></li>
+<li><p><strong><em>(Almost) Soundness</em></strong> : <span
+class="math inline">\(\forall x\notin L,\forall y,z\in \{0,1\}^*,\forall
+P^*,\Pr\{\braket{P^*(y),V(z)}(x)=1\}&lt;\epsilon\)</span></p></li>
+<li><p><strong><em>Zero-Knowledge</em></strong> : <span
+class="math inline">\(\forall V^*\)</span> in P.P.T. , <span
+class="math inline">\(\exists\)</span> expected poly-time algorithm
+<span class="math inline">\(M^*\)</span> , <span
+class="math inline">\(\forall y,z\in \{0,1\}^*\)</span> , <span
+class="math display">\[
+M^*(x,z)\sim View_{V^*(z)}^{P(y)}(x)
+\]</span></p></li>
+</ul></li>
+<li><p>Lemma [<strong><em>Composition Lemma</em></strong>] :</p>
+<p><span class="math inline">\((P,V)\)</span> : zero-knowledge IP for
+<span class="math inline">\(L\)</span> , <span
+class="math inline">\(q\)</span> is a polynomial of <span
+class="math inline">\(\kappa\)</span></p>
+<p><span class="math inline">\((P_q,V_q)\)</span> : An IP runs <span
+class="math inline">\((P,V)\)</span> <span
+class="math inline">\(q\)</span> times</p>
+<p>Claim : <span class="math inline">\((P_q,V_q)\)</span> are still
+zero-knowledge .</p>
+<blockquote>
+<p>Proof Intuition</p>
+<p>In the <span class="math inline">\(i\)</span>-th iteration : <span
+class="math inline">\(V\)</span> runs like <span
+class="math inline">\(V_i^*(x,st_{i-1})\)</span> , construct
+corresponding <span class="math inline">\(M_i^*(x,st_{i-1})\)</span></p>
+<p>Prove <span class="math inline">\(M_i^*(x,st_{i-1})\sim
+View_{V_i^*}^P(x)\)</span></p>
+</blockquote></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ZigZagKmp
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://zigzagkmp.github.io/2023/10/15/ZKP-and-MPC-2/" title="ZKP and MPC 2">https://zigzagkmp.github.io/2023/10/15/ZKP-and-MPC-2/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/ZigZagKmp">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.luogu.com.cn/user/35871">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Luogu</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag"># 密码学</a>
+              <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6-%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/" rel="tag"># 密码学-零知识证明</a>
+              <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6-%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%AF%81%E6%98%8E/" rel="tag"># 密码学-交互式证明</a>
+              <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6-%E8%AF%81%E6%98%8E%E5%A4%8D%E5%90%88/" rel="tag"># 密码学-证明复合</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/10/09/Algorithm-Design-4/" rel="prev" title="Algorithm Design 4">
+                  <i class="fa fa-angle-left"></i> Algorithm Design 4
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZigZagKmp</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">12k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">44 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/ZigZagKmp" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"ZigZagKmp/zigzagkmp.github.io","repo_id":"R_kgDOKcVJdQ","category":"Announcements","category_id":"DIC_kwDOKcVJdc4CZ58w","mapping":"pathname","reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

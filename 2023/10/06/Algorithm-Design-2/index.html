@@ -145,7 +145,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-dfs-application"><span class="nav-number">1.</span> <span class="nav-text">1.3 dfs application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Greedy-Algorithm"><span class="nav-number"></span> <span class="nav-text">Chapter 2 : Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Interval-Scheduling"><span class="nav-number">1.</span> <span class="nav-text">2.1 Interval Scheduling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Scheduling-to-minimize-lateness"><span class="nav-number">2.</span> <span class="nav-text">2.2. Scheduling to minimize lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Shortest-Path-without-w-lt-0"><span class="nav-number">3.</span> <span class="nav-text">2.3. Shortest Path (without $w&lt;0$)</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#dfs-application"><span class="nav-number">1.</span> <span class="nav-text">1.3 dfs application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-2-greedy-algorithm"><span class="nav-number"></span> <span class="nav-text">Chapter 2 : Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#interval-scheduling"><span class="nav-number">1.</span> <span class="nav-text">2.1 Interval Scheduling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scheduling-to-minimize-lateness"><span class="nav-number">2.</span> <span class="nav-text">2.2. Scheduling to minimize
+lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shortest-path-without-w0"><span class="nav-number">3.</span> <span class="nav-text">2.3. Shortest Path (without \(w&lt;0\))</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,7 +172,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -349,123 +350,241 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="1-3-dfs-application"><a href="#1-3-dfs-application" class="headerlink" title="1.3 dfs application"></a>1.3 dfs application</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
+    <div class="post-body" itemprop="articleBody"><h3 id="dfs-application">1.3 dfs application</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol type="1">
 <li><p>THM parenthesis</p>
-<p>on dfs tree , if $u$ is one ancestor of $v$ , then $[v.d,v.f]\subset[u.d,u.f]$</p>
-<p>on dfs tree , otherwise , then $[u.d,u.f]\cap [v.d,v.f]=\varnothing$</p>
-</li>
+<p>on dfs tree , if <span class="math inline">\(u\)</span> is one
+ancestor of <span class="math inline">\(v\)</span> , then <span
+class="math inline">\([v.d,v.f]\subset[u.d,u.f]\)</span></p>
+<p>on dfs tree , otherwise , then <span
+class="math inline">\([u.d,u.f]\cap
+[v.d,v.f]=\varnothing\)</span></p></li>
 <li><p>THM white-path</p>
-<p>on dfs tree ,  at the time when $u$ is discovered , </p>
-<p> $u$ is one ancestor of $v$  $\Leftrightarrow$ $\exists$ white path from $u$ to $v$ </p>
-<p>即： $v$ 是 $u$ 的后代$\Leftrightarrow$在 $u$ 刚访问到的时候一定存在一条完全没有被访问过的路径 $u\to v$ .</p>
+<p>on dfs tree , at the time when <span class="math inline">\(u\)</span>
+is discovered ,</p>
+<p><span class="math inline">\(u\)</span> is one ancestor of <span
+class="math inline">\(v\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(\exists\)</span> white path from <span
+class="math inline">\(u\)</span> to <span
+class="math inline">\(v\)</span></p>
+<p>即： <span class="math inline">\(v\)</span> 是 <span
+class="math inline">\(u\)</span> 的后代<span
+class="math inline">\(\Leftrightarrow\)</span>在 <span
+class="math inline">\(u\)</span>
+刚访问到的时候一定存在一条完全没有被访问过的路径 <span
+class="math inline">\(u\to v\)</span> .</p>
 <ul>
 <li>Proof : use parenthesis THM</li>
 </ul>
-<p>$\Rightarrow$ trivial</p>
-<p>$\Leftarrow$  proof by contradiction </p>
-<p>Consider a white path $x_1=u,x_2,\cdots,x_m=v$ , and $x_k$ is the last vertex that is a descendent of $u$ (including $u$ itself) .</p>
-<p>We need to prove that $x_{k+1}$ is also a descendent of $u$ , leading to contradiction . </p>
-<p>Therefore , $u.d&lt;x_k.d&lt;x_k.f&lt;u.f$ , </p>
-<p>Case 1 : $x_k.d<x_{k+1}.d<x_{k+1}.f<x_k.f$ -> $x_{k+1}$ is also a descendent of $u$ .</p>
-<p>Case 2 : $x_k.d&lt;x_k.f&lt;x_{k+1}.d&lt;x_{k+1}.f$ : Impossible .</p>
-</li>
+<p><span class="math inline">\(\Rightarrow\)</span> trivial</p>
+<p><span class="math inline">\(\Leftarrow\)</span> proof by
+contradiction</p>
+<p>Consider a white path <span
+class="math inline">\(x_1=u,x_2,\cdots,x_m=v\)</span> , and <span
+class="math inline">\(x_k\)</span> is the last vertex that is a
+descendent of <span class="math inline">\(u\)</span> (including <span
+class="math inline">\(u\)</span> itself) .</p>
+<p>We need to prove that <span class="math inline">\(x_{k+1}\)</span> is
+also a descendent of <span class="math inline">\(u\)</span> , leading to
+contradiction .</p>
+<p>Therefore , <span
+class="math inline">\(u.d&lt;x_k.d&lt;x_k.f&lt;u.f\)</span> ,</p>
+<p>Case 1 : <span
+class="math inline">\(x_k.d&lt;x_{k+1}.d&lt;x_{k+1}.f&lt;x_k.f\)</span>
+-&gt; <span class="math inline">\(x_{k+1}\)</span> is also a descendent
+of <span class="math inline">\(u\)</span> .</p>
+<p>Case 2 : <span
+class="math inline">\(x_k.d&lt;x_k.f&lt;x_{k+1}.d&lt;x_{k+1}.f\)</span>
+: Impossible .</p></li>
 <li><p>Strongly Connected Components (SCC)</p>
-<ol>
-<li><p>View : any directed graph can be viewed as a DAG of SCC</p>
-</li>
-<li><p>Find SCC ?  Kosaraju’s Algorithm</p>
-<ol>
+<ol type="1">
+<li><p>View : any directed graph can be viewed as a DAG of SCC</p></li>
+<li><p>Find SCC ? Kosaraju's Algorithm</p>
+<ol type="1">
 <li><p>Algorithm</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dfs1</span>(G);<span class="comment">// compute the finishing time u.f</span></span><br><span class="line">G_=<span class="built_in">reverse_edge</span>(G);</span><br><span class="line"><span class="built_in">dfs2</span>(G_); <span class="comment">// In main loop , consider vertices in decreasing order of u.f</span></span><br><span class="line">Claim : Each dfs-<span class="function">tree in <span class="title">dfs2</span><span class="params">(G_)</span> is a SCC</span></span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dfs1</span>(G);<span class="comment">// compute the finishing time u.f</span></span><br><span class="line">G_=<span class="built_in">reverse_edge</span>(G);</span><br><span class="line"><span class="built_in">dfs2</span>(G_); <span class="comment">// In main loop , consider vertices in decreasing order of u.f</span></span><br><span class="line">Claim : Each dfs-<span class="function">tree in <span class="title">dfs2</span><span class="params">(G_)</span> is a SCC</span></span><br></pre></td></tr></table></figure></li>
 <li><p>Proof</p>
-<p>Intuition : find and “delete” sink components in dfs2 , like a-topological order in $G_$ ( i.e. topological order in $G$ ) </p>
-<ol>
-<li><p>Lemma : If we start DFS at a node in a sink component , we will visit precisely all vertices in this component .</p>
-<p>Trivial .</p>
-</li>
-<li><p>Lemma (key) : node with largest $u.f$ belongs to a start component in $G$ (i.e. a sink component in $G_$)</p>
-<p>Only need to prove the following lemma .</p>
-</li>
-<li><p>Lemma ( for proving key Lemma ) : $C,D$ are two SCC , $D$ is reachable from $C$ , </p>
-<p>Then for $v\in C$ , which is the firstly visited vertex in $C$ , then $\forall u\in D,v.f&gt;u.f$</p>
-<p>Proof : </p>
-<p>Case 1 : $v$ is also the firstly visited vertex in $C\cup D$ , then by white-path THM , all nodes in $C\cup D$ are descendent of $v$ , so $\forall u\in C\cup D\backslash \{v\} , v.f&gt;u.f$ .</p>
-<p>Case 2 : $\exists y\in D$ , $y$ is the firstly visited vertex in $C\cup D$ , so $v$ is not a descendent of $y$ since $C$ is not reachable from $D$ .</p>
-<p>Therefore , by parenthesis THM , $y.d\le u.d&lt;u.f\le y.f&lt;v.d&lt;v.f$ for all $u\in D$ .</p>
-</li>
+<p>Intuition : find and "delete" sink components in dfs2 , like
+a-topological order in <span class="math inline">\(G\_\)</span> ( i.e.
+topological order in <span class="math inline">\(G\)</span> )</p>
+<ol type="1">
+<li><p>Lemma : If we start DFS at a node in a sink component , we will
+visit precisely all vertices in this component .</p>
+<p>Trivial .</p></li>
+<li><p>Lemma (key) : node with largest <span
+class="math inline">\(u.f\)</span> belongs to a start component in <span
+class="math inline">\(G\)</span> (i.e. a sink component in <span
+class="math inline">\(G\_\)</span>)</p>
+<p>Only need to prove the following lemma .</p></li>
+<li><p>Lemma ( for proving key Lemma ) : <span
+class="math inline">\(C,D\)</span> are two SCC , <span
+class="math inline">\(D\)</span> is reachable from <span
+class="math inline">\(C\)</span> ,</p>
+<p>Then for <span class="math inline">\(v\in C\)</span> , which is the
+firstly visited vertex in <span class="math inline">\(C\)</span> , then
+<span class="math inline">\(\forall u\in D,v.f&gt;u.f\)</span></p>
+<p>Proof :</p>
+<p>Case 1 : <span class="math inline">\(v\)</span> is also the firstly
+visited vertex in <span class="math inline">\(C\cup D\)</span> , then by
+white-path THM , all nodes in <span class="math inline">\(C\cup
+D\)</span> are descendent of <span class="math inline">\(v\)</span> , so
+<span class="math inline">\(\forall u\in C\cup D\backslash \{v\} ,
+v.f&gt;u.f\)</span> .</p>
+<p>Case 2 : <span class="math inline">\(\exists y\in D\)</span> , <span
+class="math inline">\(y\)</span> is the firstly visited vertex in <span
+class="math inline">\(C\cup D\)</span> , so <span
+class="math inline">\(v\)</span> is not a descendent of <span
+class="math inline">\(y\)</span> since <span
+class="math inline">\(C\)</span> is not reachable from <span
+class="math inline">\(D\)</span> .</p>
+<p>Therefore , by parenthesis THM , <span class="math inline">\(y.d\le
+u.d&lt;u.f\le y.f&lt;v.d&lt;v.f\)</span> for all <span
+class="math inline">\(u\in D\)</span> .</p></li>
+</ol></li>
+</ol></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="Chapter-2-Greedy-Algorithm"><a href="#Chapter-2-Greedy-Algorithm" class="headerlink" title="Chapter 2 : Greedy Algorithm"></a>Chapter 2 : Greedy Algorithm</h2><h3 id="2-1-Interval-Scheduling"><a href="#2-1-Interval-Scheduling" class="headerlink" title="2.1 Interval Scheduling"></a>2.1 Interval Scheduling</h3><ol>
-<li><p>Description </p>
-<p>Input : $n$ jobs $s_i,f_i$</p>
-<p>Goal : maximize the #jobs , s.t. at most one job at a time .</p>
-</li>
+<h2 id="chapter-2-greedy-algorithm">Chapter 2 : Greedy Algorithm</h2>
+<h3 id="interval-scheduling">2.1 Interval Scheduling</h3>
+<ol type="1">
+<li><p>Description</p>
+<p>Input : <span class="math inline">\(n\)</span> jobs <span
+class="math inline">\(s_i,f_i\)</span></p>
+<p>Goal : maximize the #jobs , s.t. at most one job at a time .</p></li>
 <li><p>Another view</p>
-<p>Connect all jobs pairs $[s_i,f_i],[s_j,f_j]$ if $[s_i,f_i]\cap [s_j,f_j]\neq \varnothing$ .</p>
-<p>Goal $\Leftrightarrow$ maximum independent set .</p>
-<p>In general graph : NP-hard for general graph .</p>
-</li>
+<p>Connect all jobs pairs <span
+class="math inline">\([s_i,f_i],[s_j,f_j]\)</span> if <span
+class="math inline">\([s_i,f_i]\cap [s_j,f_j]\neq \varnothing\)</span>
+.</p>
+<p>Goal <span class="math inline">\(\Leftrightarrow\)</span> maximum
+independent set .</p>
+<p>In general graph : NP-hard for general graph .</p></li>
 <li><p>Algorithm</p>
-<p>Repeat : Select the available jobs that finishes first .</p>
-</li>
+<p>Repeat : Select the available jobs that finishes first .</p></li>
 <li><p>Proof of optimality :</p>
-<p>Method : [Exchange Argument] : Compare our solution and the optimal solution .</p>
-<p>SOL : $i_1,i_2,\cdots ,i_m$ , OPT : $j_1,j_2,\cdots,j_k$ .</p>
-<ol>
-<li>Claim : If $f_{i_1}\le f_{j_1}$ , then $f_{i_r}\le f_{j_r}$ for all $r\ge 1$ .</li>
+<p>Method : [Exchange Argument] : Compare our solution and the optimal
+solution .</p>
+<p>SOL : <span class="math inline">\(i_1,i_2,\cdots ,i_m\)</span> , OPT
+: <span class="math inline">\(j_1,j_2,\cdots,j_k\)</span> .</p>
+<ol type="1">
+<li>Claim : If <span class="math inline">\(f_{i_1}\le f_{j_1}\)</span> ,
+then <span class="math inline">\(f_{i_r}\le f_{j_r}\)</span> for all
+<span class="math inline">\(r\ge 1\)</span> .</li>
 </ol>
 <p>Proof : [Induction]</p>
-<p>If the claim is true for $r-1$ , suppose the claim is not true for $r$ , i.e. $f_{i_r}&gt;f_{j_r}$ . Since $f_{i_{r-1}}\le f_{j_{r-1}}$ , and $s_{j_r}&gt;f_{j_{r-1}}$ , then $f_{i_{r-1}}&lt;s_{j_r}$ , so $j_r$ is also available , but has earlier finish time , contradict .</p>
-<ol>
-<li>If $m&lt;k$ , then $f_{i_m}&lt;f_{j_m}$ . We can use $j_{m+1},\cdots,j_k$ after  $i_m$ .</li>
+<p>If the claim is true for <span class="math inline">\(r-1\)</span> ,
+suppose the claim is not true for <span class="math inline">\(r\)</span>
+, i.e. <span class="math inline">\(f_{i_r}&gt;f_{j_r}\)</span> . Since
+<span class="math inline">\(f_{i_{r-1}}\le f_{j_{r-1}}\)</span> , and
+<span class="math inline">\(s_{j_r}&gt;f_{j_{r-1}}\)</span> , then <span
+class="math inline">\(f_{i_{r-1}}&lt;s_{j_r}\)</span> , so <span
+class="math inline">\(j_r\)</span> is also available , but has earlier
+finish time , contradict .</p>
+<ol start="2" type="1">
+<li>If <span class="math inline">\(m&lt;k\)</span> , then <span
+class="math inline">\(f_{i_m}&lt;f_{j_m}\)</span> . We can use <span
+class="math inline">\(j_{m+1},\cdots,j_k\)</span> after <span
+class="math inline">\(i_m\)</span> .</li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<h3 id="2-2-Scheduling-to-minimize-lateness"><a href="#2-2-Scheduling-to-minimize-lateness" class="headerlink" title="2.2. Scheduling to minimize lateness"></a>2.2. Scheduling to minimize lateness</h3><ol>
+<h3 id="scheduling-to-minimize-lateness">2.2. Scheduling to minimize
+lateness</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : $n$ jobs , each job $i$ has ddl $d_i$ and length $t_i$ . Def lateness : $l_i:=\max\{0,f_i-d_i\}$</p>
-<p>Goal : find a schedule of all $n$ jobs , and minimize the maximal lateness .</p>
-</li>
+<p>Input : <span class="math inline">\(n\)</span> jobs , each job <span
+class="math inline">\(i\)</span> has ddl <span
+class="math inline">\(d_i\)</span> and length <span
+class="math inline">\(t_i\)</span> . Def lateness : <span
+class="math inline">\(l_i:=\max\{0,f_i-d_i\}\)</span></p>
+<p>Goal : find a schedule of all <span class="math inline">\(n\)</span>
+jobs , and minimize the maximal lateness .</p></li>
 <li><p>Equal formularization</p>
-<p>Goal : find a permutation $\{p_i\}\in S_n$ , then $f_i=\sum_{j=1}^i t_{p_j}$ , $l_i:=\max\{0,f_i-d_{p_i}\}$ . Minimize $\max\{l_i\}$ .</p>
-<p>$\Leftrightarrow$ $l_i:=f_i-d_{p_i}$ , Minimize $\max\{0,\max\{l_i\}\}$ .</p>
-</li>
+<p>Goal : find a permutation <span class="math inline">\(\{p_i\}\in
+S_n\)</span> , then <span class="math inline">\(f_i=\sum_{j=1}^i
+t_{p_j}\)</span> , <span
+class="math inline">\(l_i:=\max\{0,f_i-d_{p_i}\}\)</span> . Minimize
+<span class="math inline">\(\max\{l_i\}\)</span> .</p>
+<p><span class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(l_i:=f_i-d_{p_i}\)</span> , Minimize <span
+class="math inline">\(\max\{0,\max\{l_i\}\}\)</span> .</p></li>
 <li><p>Algorithm</p>
-<p>Schedule the job in increasing order of $d_i$ .</p>
-</li>
+<p>Schedule the job in increasing order of <span
+class="math inline">\(d_i\)</span> .</p></li>
 <li><p>Proof of optimality</p>
-<ol>
-<li><p>Def (Inversion) : Consider a schedule $A’$ , $(i,j)$ is an inversion if $i$ is scheduled before $j$ but $d_i&gt;d_j$ .</p>
-</li>
-<li><p>If OPT$\neq $ SOL , there must be an inversion , then there must be an adjacent inversion . Suppose $(i,i+1)$ is an inversion , then $d_{p_i}&gt;d_{p_{i+1}}$ .</p>
-<p>Let $f=\sum_{j=1}^{i-1}t_{p_j}$ , so $f_i=f+t_{p_i}$ , $f_{i+1}=f+t_{p_i}+t_{p_{i+1}}$ , so $l_i=f+t_{p_i}-d_{p_i}$ , $l_{i+1}=f+t_{p_i}+t_{p_{i+1}}-d_{p_{i+1}}$ .</p>
-<p>If swap $(i,i+1)$ , then $f_{i+1}’=f+t_{p_{i+1}}$ , $f_{i}’=f+t_{p_{i+1}}+t_{p_i}$ , so $l_{i+1}’=f+t_{p_{i+1}}-d_{p_{i+1}}$ , $l_i’=f+t_{p_{i+1}}+t_{p_i}-d_{p_i}$ .</p>
-<p>Therefore , obviously , $l_{i+1}’<l_{i+1}$ . Since $d_{p_i}>d_{p_{i+1}}$ , then $l_i’&lt;l_i$ . Therefore , swap can lead to better solution , so OPT is not optimal . </p>
-</li>
+<ol type="1">
+<li><p>Def (Inversion) : Consider a schedule <span
+class="math inline">\(A&#39;\)</span> , <span
+class="math inline">\((i,j)\)</span> is an inversion if <span
+class="math inline">\(i\)</span> is scheduled before <span
+class="math inline">\(j\)</span> but <span
+class="math inline">\(d_i&gt;d_j\)</span> .</p></li>
+<li><p>If OPT$$ SOL , there must be an inversion , then there must be an
+adjacent inversion . Suppose <span
+class="math inline">\((i,i+1)\)</span> is an inversion , then <span
+class="math inline">\(d_{p_i}&gt;d_{p_{i+1}}\)</span> .</p>
+<p>Let <span class="math inline">\(f=\sum_{j=1}^{i-1}t_{p_j}\)</span> ,
+so <span class="math inline">\(f_i=f+t_{p_i}\)</span> , <span
+class="math inline">\(f_{i+1}=f+t_{p_i}+t_{p_{i+1}}\)</span> , so <span
+class="math inline">\(l_i=f+t_{p_i}-d_{p_i}\)</span> , <span
+class="math inline">\(l_{i+1}=f+t_{p_i}+t_{p_{i+1}}-d_{p_{i+1}}\)</span>
+.</p>
+<p>If swap <span class="math inline">\((i,i+1)\)</span> , then <span
+class="math inline">\(f_{i+1}&#39;=f+t_{p_{i+1}}\)</span> , <span
+class="math inline">\(f_{i}&#39;=f+t_{p_{i+1}}+t_{p_i}\)</span> , so
+<span
+class="math inline">\(l_{i+1}&#39;=f+t_{p_{i+1}}-d_{p_{i+1}}\)</span> ,
+<span
+class="math inline">\(l_i&#39;=f+t_{p_{i+1}}+t_{p_i}-d_{p_i}\)</span>
+.</p>
+<p>Therefore , obviously , <span
+class="math inline">\(l_{i+1}&#39;&lt;l_{i+1}\)</span> . Since <span
+class="math inline">\(d_{p_i}&gt;d_{p_{i+1}}\)</span> , then <span
+class="math inline">\(l_i&#39;&lt;l_i\)</span> . Therefore , swap can
+lead to better solution , so OPT is not optimal .</p></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<h3 id="2-3-Shortest-Path-without-w-lt-0"><a href="#2-3-Shortest-Path-without-w-lt-0" class="headerlink" title="2.3. Shortest Path (without $w&lt;0$)"></a>2.3. Shortest Path (without $w&lt;0$)</h3><ol>
+<h3 id="shortest-path-without-w0">2.3. Shortest Path (without <span
+class="math inline">\(w&lt;0\)</span>)</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : weighted graph $G=(V,E)$ , start vertex $s$ .</p>
-<p>Output : $d(u)$ for all $u\in V$ , where $d(u)=\min_{p\text{ is a path }s\to u}\{\sum_{e\in p}l(e)\}$  .</p>
-</li>
+<p>Input : weighted graph <span class="math inline">\(G=(V,E)\)</span> ,
+start vertex <span class="math inline">\(s\)</span> .</p>
+<p>Output : <span class="math inline">\(d(u)\)</span> for all <span
+class="math inline">\(u\in V\)</span> , where <span
+class="math inline">\(d(u)=\min_{p\text{ is a path }s\to u}\{\sum_{e\in
+p}l(e)\}\)</span> .</p></li>
 <li><p>Algorithm [Dijkstra 1959]</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Init</span></span><br><span class="line"><span class="keyword">for</span>(u in V)&#123;</span><br><span class="line">    d[u]=+inf;</span><br><span class="line">&#125;</span><br><span class="line">d[s]=<span class="number">0</span>; S.<span class="built_in">insert</span>(s);</span><br><span class="line"><span class="comment">// Main Algorithm</span></span><br><span class="line"><span class="keyword">while</span>(S != V)&#123;</span><br><span class="line">    v=<span class="built_in">argmin</span>(d[u]+<span class="built_in">l</span>(e) |v: v in V\S , e=(u,v) , u in S );</span><br><span class="line">    d[v]=d[u]+<span class="built_in">l</span>(e);</span><br><span class="line">    S.<span class="built_in">insert</span>(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Init</span></span><br><span class="line"><span class="keyword">for</span>(u in V)&#123;</span><br><span class="line">    d[u]=+inf;</span><br><span class="line">&#125;</span><br><span class="line">d[s]=<span class="number">0</span>; S.<span class="built_in">insert</span>(s);</span><br><span class="line"><span class="comment">// Main Algorithm</span></span><br><span class="line"><span class="keyword">while</span>(S != V)&#123;</span><br><span class="line">    v=<span class="built_in">argmin</span>(d[u]+<span class="built_in">l</span>(e) |v: v in V\S , e=(u,v) , u in S );</span><br><span class="line">    d[v]=d[u]+<span class="built_in">l</span>(e);</span><br><span class="line">    S.<span class="built_in">insert</span>(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>Proof</p>
-<p>Prove by induction on $S$ . $\forall v\in S , d(v)=\min dist(s,v)$ ,</p>
-<p>Suppose we grow $S$ by adding $v$ , suppose the proposition does not hold . Then $d(u)+l_e$ is not the shortest distance to $v$ . Let $p$ be the shortest path from $s$ to $v$ .</p>
-<p>Let $w$ be the last vertex that is in $S$ , then by induction , all vertices on $p$ from $s$ to $w$ are all in $S$ . Let $p’=path(s,u)+e$ .</p>
-<p>$p’: s\to w\to u\to v$ , $p:s\to w\to x\to v$ . ($x\notin S$) . Since $d(u)+l_e$ is minimal , $d(u)+l_e\le d(w)+l_{w,x}$ , but $dist(p)=d(w)+l_{w,x}+dist(x,v)$ , where $dist(x,v)\ge 0$ , and $dist(p)&lt;dist(p’)=d(u)+l_e$ , so $d(w)+l_{w,x}\le dist(p)&lt;d(u)+l_e$ , contradict .</p>
-</li>
+<p>Prove by induction on <span class="math inline">\(S\)</span> . <span
+class="math inline">\(\forall v\in S , d(v)=\min dist(s,v)\)</span>
+,</p>
+<p>Suppose we grow <span class="math inline">\(S\)</span> by adding
+<span class="math inline">\(v\)</span> , suppose the proposition does
+not hold . Then <span class="math inline">\(d(u)+l_e\)</span> is not the
+shortest distance to <span class="math inline">\(v\)</span> . Let <span
+class="math inline">\(p\)</span> be the shortest path from <span
+class="math inline">\(s\)</span> to <span
+class="math inline">\(v\)</span> .</p>
+<p>Let <span class="math inline">\(w\)</span> be the last vertex that is
+in <span class="math inline">\(S\)</span> , then by induction , all
+vertices on <span class="math inline">\(p\)</span> from <span
+class="math inline">\(s\)</span> to <span
+class="math inline">\(w\)</span> are all in <span
+class="math inline">\(S\)</span> . Let <span
+class="math inline">\(p&#39;=path(s,u)+e\)</span> .</p>
+<p><span class="math inline">\(p&#39;: s\to w\to u\to v\)</span> , <span
+class="math inline">\(p:s\to w\to x\to v\)</span> . (<span
+class="math inline">\(x\notin S\)</span>) . Since <span
+class="math inline">\(d(u)+l_e\)</span> is minimal , <span
+class="math inline">\(d(u)+l_e\le d(w)+l_{w,x}\)</span> , but <span
+class="math inline">\(dist(p)=d(w)+l_{w,x}+dist(x,v)\)</span> , where
+<span class="math inline">\(dist(x,v)\ge 0\)</span> , and <span
+class="math inline">\(dist(p)&lt;dist(p&#39;)=d(u)+l_e\)</span> , so
+<span class="math inline">\(d(w)+l_{w,x}\le dist(p)&lt;d(u)+l_e\)</span>
+, contradict .</p></li>
 </ol>
 
     </div>
@@ -535,8 +654,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/10/06/Zero-Knowledge-Proof-and-Secure-Multi-Party-Computation-1/" rel="next" title="Zero-Knowledge Proof and Secure Multi-Party Computation 1">
-                  Zero-Knowledge Proof and Secure Multi-Party Computation 1 <i class="fa fa-angle-right"></i>
+                <a href="/2023/10/06/Zero-Knowledge-Proof-and-Secure-Multi-Party-Computation-1/" rel="next" title="ZKP and MPC 1">
+                  ZKP and MPC 1 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -574,13 +693,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">12k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
