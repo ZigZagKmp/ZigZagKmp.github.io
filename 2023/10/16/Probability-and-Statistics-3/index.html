@@ -20,28 +20,30 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zigzagkmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="article">
-<meta property="og:title" content="Algorithm Design 2">
-<meta property="og:url" content="https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-2/index.html">
+<meta property="og:title" content="Probability and Statistics 3">
+<meta property="og:url" content="https://zigzagkmp.github.io/2023/10/16/Probability-and-Statistics-3/index.html">
 <meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-06T08:33:54.000Z">
-<meta property="article:modified_time" content="2023-10-06T08:37:24.958Z">
+<meta property="og:image" content="https://zigzagkmp.github.io/images/posts/PS3_fig1.png">
+<meta property="og:image" content="https://zigzagkmp.github.io/images/posts/PS3_fig2.png">
+<meta property="article:published_time" content="2023-10-16T13:51:16.000Z">
+<meta property="article:modified_time" content="2023-10-16T13:53:06.620Z">
 <meta property="article:author" content="ZigZagKmp">
-<meta property="article:tag" content="算法">
-<meta property="article:tag" content="算法-搜索">
-<meta property="article:tag" content="算法-强连通分量(SCC)">
-<meta property="article:tag" content="算法-贪心">
+<meta property="article:tag" content="概率论-概率密度函数">
+<meta property="article:tag" content="实分析-Lebesgue积分">
+<meta property="article:tag" content="实分析-积分性质">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zigzagkmp.github.io/images/posts/PS3_fig1.png">
 
 
-<link rel="canonical" href="https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-2/">
+<link rel="canonical" href="https://zigzagkmp.github.io/2023/10/16/Probability-and-Statistics-3/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-2/","path":"2023/10/06/Algorithm-Design-2/","title":"Algorithm Design 2"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/10/16/Probability-and-Statistics-3/","path":"2023/10/16/Probability-and-Statistics-3/","title":"Probability and Statistics 3"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Algorithm Design 2 | ZigZagKmp's Blog</title>
+<title>Probability and Statistics 3 | ZigZagKmp's Blog</title>
   
 
 
@@ -145,8 +147,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#dfs-application"><span class="nav-number">1.</span> <span class="nav-text">1.3 dfs application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-2-greedy-algorithm"><span class="nav-number"></span> <span class="nav-text">Chapter 2 : Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#interval-scheduling"><span class="nav-number">1.</span> <span class="nav-text">2.1 Interval Scheduling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scheduling-to-minimize-lateness"><span class="nav-number">2.</span> <span class="nav-text">2.2. Scheduling to minimize
-lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shortest-path-without-w0"><span class="nav-number">3.</span> <span class="nav-text">2.3. Shortest Path (without \(w&lt;0\))</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-1-background-in-probability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 Background in
+Probability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#integration"><span class="nav-number">1.1.</span> <span class="nav-text">1.4 Integration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#properties-of-integration"><span class="nav-number">1.2.</span> <span class="nav-text">1.5 Properties of Integration</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -232,31 +234,24 @@ lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" hre
   </div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2023/10/16/Algorithm-Design-5/" rel="bookmark">
-        <time class="popular-posts-time">2023-10-16</time>
+      <a class="popular-posts-link" href="/2023/10/08/Probability-and-Statistics-2/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-08</time>
         <br>
-      Algorithm Design 5
+      Probability and Statistics 2
       </a>
     </li>
     <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2023/10/09/Algorithm-Design-4/" rel="bookmark">
-        <time class="popular-posts-time">2023-10-09</time>
+      <a class="popular-posts-link" href="/2023/10/08/Probability-and-Statistics-1/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-08</time>
         <br>
-      Algorithm Design 4
+      Probability and Statistics 1
       </a>
     </li>
     <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2023/10/05/Algorithm-Design-1/" rel="bookmark">
-        <time class="popular-posts-time">2023-10-05</time>
-        <br>
-      Algorithm Design 1
-      </a>
-    </li>
-    <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2023/10/07/Algorithm-Design-3/" rel="bookmark">
+      <a class="popular-posts-link" href="/2023/10/07/%E7%AD%94%E7%96%91%E5%9D%8A-%E5%BE%AE%E7%A7%AF%E5%88%86-%E8%B6%A3%E9%A2%98%E8%8B%A5%E5%B9%B2/" rel="bookmark">
         <time class="popular-posts-time">2023-10-07</time>
         <br>
-      Algorithm Design 3
+      答疑坊 微积分 趣题若干
       </a>
     </li>
   </ul>
@@ -279,7 +274,7 @@ lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" hre
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-2/">
+    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/10/16/Probability-and-Statistics-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar.jpg">
@@ -292,12 +287,12 @@ lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" hre
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Algorithm Design 2 | ZigZagKmp's Blog">
-      <meta itemprop="description" content="[2023 秋] 算法设计 第二课课堂笔记 / [2023 Fall] Algorithm Design Lecture 2 Notes">
+      <meta itemprop="name" content="Probability and Statistics 3 | ZigZagKmp's Blog">
+      <meta itemprop="description" content="[2023 秋] 概率与统计 第三课课堂笔记 / [2023 Fall] Probability and Statistics Lecture 3 Notes">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Algorithm Design 2
+          Probability and Statistics 3
         </h1>
 
         <div class="post-meta-container">
@@ -309,7 +304,7 @@ lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" hre
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-10-06 16:33:54 / 修改时间：16:37:24" itemprop="dateCreated datePublished" datetime="2023-10-06T16:33:54+08:00">2023-10-06</time>
+      <time title="创建时间：2023-10-16 21:51:16 / 修改时间：21:53:06" itemprop="dateCreated datePublished" datetime="2023-10-16T21:51:16+08:00">2023-10-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -321,7 +316,7 @@ lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" hre
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">算法设计</span></a>
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E4%B8%8E%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率与统计</span></a>
         </span>
     </span>
 
@@ -339,259 +334,369 @@ lateness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" hre
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
-            <div class="post-description">[2023 秋] 算法设计 第二课课堂笔记 / [2023 Fall] Algorithm Design Lecture 2 Notes</div>
+            <div class="post-description">[2023 秋] 概率与统计 第三课课堂笔记 / [2023 Fall] Probability and Statistics Lecture 3 Notes</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="dfs-application">1.3 dfs application</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-1-background-in-probability">Chapter 1 Background in
+Probability</h2>
+<h3 id="integration">1.4 Integration</h3>
 <ol type="1">
-<li><p>THM parenthesis</p>
-<p>on dfs tree , if <span class="math inline">\(u\)</span> is one
-ancestor of <span class="math inline">\(v\)</span> , then <span
-class="math inline">\([v.d,v.f]\subset[u.d,u.f]\)</span></p>
-<p>on dfs tree , otherwise , then <span
-class="math inline">\([u.d,u.f]\cap
-[v.d,v.f]=\varnothing\)</span></p></li>
-<li><p>THM white-path</p>
-<p>on dfs tree , at the time when <span class="math inline">\(u\)</span>
-is discovered ,</p>
-<p><span class="math inline">\(u\)</span> is one ancestor of <span
-class="math inline">\(v\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(\exists\)</span> white path from <span
-class="math inline">\(u\)</span> to <span
-class="math inline">\(v\)</span></p>
-<p>即： <span class="math inline">\(v\)</span> 是 <span
-class="math inline">\(u\)</span> 的后代<span
-class="math inline">\(\Leftrightarrow\)</span>在 <span
-class="math inline">\(u\)</span>
-刚访问到的时候一定存在一条完全没有被访问过的路径 <span
-class="math inline">\(u\to v\)</span> .</p>
+<li><p>Judgement : an integration should satisfies :</p>
+<ol type="i">
+<li><p><span class="math inline">\(\varphi\ge 0\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , then <span
+class="math inline">\(\int\varphi d\mu\ge 0\)</span></p></li>
+<li><p><span class="math inline">\(\int a\varphi d\mu=a\int \varphi
+d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\int (\varphi+\psi)d\mu=\int \varphi
+d\mu+\int \psi d\mu\)</span></p></li>
+</ol></li>
+<li><p>Basic Properties of integration</p>
+<ol start="4" type="i">
+<li><p><span class="math inline">\(\varphi\le \psi\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , then <span
+class="math inline">\(\int \varphi d\mu\le \int \psi
+d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\varphi=\psi\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , then <span
+class="math inline">\(\int \varphi d\mu=\int \psi d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\left|\int \varphi d\mu\right|\le
+\int |\varphi|d\mu\)</span></p></li>
+</ol></li>
+<li><p>Bounded Function</p>
+<ol type="1">
+<li><p>Def [ <strong><em>Bounded Function</em></strong> ] : <span
+class="math inline">\(\exists M&lt;\infty,|f(x)|\le M\)</span> , and
+<span class="math inline">\(\exists E\subseteq \Omega ,
+\mu(E)&lt;\infty,f(E^c)=0\)</span> .</p></li>
+<li><p>Def [ <strong><em>Integration for Bounded Function</em></strong>
+] : Let <span class="math inline">\(\Phi_s\)</span> be the set of simple
+functions . If <span class="math inline">\(f\)</span> is a bounded
+function, <span class="math display">\[
+\int fd\mu:=\sup_{\varphi\in \Phi_s , \varphi\le f}\int \varphi d\mu
+=\inf_{\psi\in \Phi_s , \psi\ge f}\int \psi d\mu
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(\varphi \le f,\psi\ge f\)</span> : <span
+class="math inline">\(\mu\)</span>-a.e.</p>
+</blockquote>
+<blockquote>
+<p>Intuition : Like Darboux's upper sum and lower sum</p>
+</blockquote></li>
+<li><p>Proof of <span class="math inline">\(\sup\limits_{\varphi\in
+\Phi_s , \varphi\le f}\int \varphi d\mu =\inf\limits_{\psi\in \Phi_s ,
+\psi\ge f}\int \psi d\mu\)</span></p>
+<ol type="1">
+<li><p>By Prop (iv) , <span class="math inline">\(\varphi\le f\le
+\psi\)</span> , so <span class="math inline">\(\int \varphi d\mu\le \int
+\psi d\mu\)</span></p></li>
+<li><p>Prove <span class="math inline">\(\sup\limits_{\varphi\in \Phi_s
+, \varphi\le f}\int \varphi d\mu \ge \inf\limits_{\psi\in \Phi_s ,
+\psi\ge f}\int \psi d\mu\)</span></p>
+<p>Since <span class="math inline">\(|f|\le M\)</span> , let <span
+class="math inline">\(E_k:=\{x\in E|\frac{(k-1)M}{n}&lt;f(x)\le
+\frac{kM}{n}\}\)</span> , <span class="math inline">\(-n\le k\le
+n\)</span> .</p>
+<p>Let <span class="math inline">\(\varphi_n=\sum\limits_{k=-n}^n
+\frac{(k-1)M}{n}\mathbb 1_{E_k}\)</span> , <span
+class="math inline">\(\psi_n=\sum\limits_{k=-n}^n \frac{kM}{n}\mathbb
+1_{E_k}\)</span></p>
+<p>Therefore , <span class="math inline">\(\int
+(\psi_n-\varphi_n)d\mu=\frac{M}{n}\mu(E)\)</span> , <span
+class="math display">\[
+\sup\limits_{\varphi\in \Phi_s , \varphi\le f}\int \varphi d\mu \ge\int
+\varphi_nd\mu =-\frac{M}{n}\mu(E)+\int \psi_n d\mu \ge
+-\frac{M\mu(E)}{n}+\inf\limits_{\psi\in \Phi_s , \psi\ge f}\int \psi
+d\mu
+\]</span> When <span class="math inline">\(n\to +\infty\)</span> , <span
+class="math inline">\(-\frac{M\mu(E)}{n}\to 0\)</span> , so <span
+class="math inline">\(\sup\limits_{\varphi\in \Phi_s , \varphi\le f}\int
+\varphi d\mu =\inf\limits_{\psi\in \Phi_s , \psi\ge f}\int \psi
+d\mu\)</span> .</p>
+<figure>
+<img src="/images/posts/PS3_fig1.png" alt="diagram of the proof" />
+<figcaption aria-hidden="true">diagram of the proof</figcaption>
+</figure></li>
+</ol></li>
+<li><p>Proof of (i)(ii)(iii)</p>
+<ol type="i">
+<li><p>: Let <span class="math inline">\(\varphi=0\)</span> ,
+trivial</p></li>
+<li><p>: For <span class="math inline">\(a&gt;0\)</span> , <span
+class="math inline">\(a\varphi\le af\iff \varphi\le f\)</span> <span
+class="math display">\[
+\int afd\mu =\sup_{a\varphi\le af}\int a\varphi d\mu =\sup_{\varphi\le
+f}\int a\varphi d\mu=a\sup_{\varphi\le f}\int \varphi d\mu=a\int fd\mu
+\]</span></p></li>
+<li><p>: Firstly prove <span class="math inline">\(\int (f+g)d\mu\le
+\int fd\mu +\int gd\mu\)</span> .</p></li>
+</ol>
+<p>Let <span class="math inline">\(\Phi_s&#39;=\{\psi|\exists
+\psi_1,\psi_2,\psi=\psi_1+\psi_2,\psi_1\ge f,\psi_2\ge g\}\)</span> , so
+<span class="math inline">\(\Phi_s&#39;\subseteq \{\psi|\psi\ge
+f+g\}\)</span> . <span class="math display">\[
+\begin{aligned}
+\int(f+g)d\mu&amp;=\inf_{\psi\ge f+g} \psi d\mu\\
+&amp;\le \inf_{\psi=\psi_1+\psi_2\in \Phi_s&#39;} (\psi_1+\psi_2)d\mu\\\
+&amp;=\inf_{\psi_1\ge f,\psi_2\ge g} \int \psi_1d\mu+\int \psi_2d\mu\\
+&amp;=\inf_{\psi_1\ge f} \int \psi_1d\mu+\inf_{\psi_2\ge g}\int
+\psi_2d\mu\\
+&amp;=\int fd\mu+\int gd\mu
+\end{aligned}
+\]</span> Use (ii) , let <span class="math inline">\(a=-1\)</span> , so
+<span class="math inline">\(\int -(f+g)d\mu\le \int (-f)d\mu+\int
+(-g)d\mu\)</span> , so <span class="math inline">\(\int (f+g)d\mu\ge
+\int fd\mu+\int gd\mu\)</span> .</p></li>
+</ol></li>
+<li><p>Non-Negative Function</p>
+<ol type="1">
+<li><p>Compare with bounded function</p>
 <ul>
-<li>Proof : use parenthesis THM</li>
-</ul>
-<p><span class="math inline">\(\Rightarrow\)</span> trivial</p>
-<p><span class="math inline">\(\Leftarrow\)</span> proof by
-contradiction</p>
-<p>Consider a white path <span
-class="math inline">\(x_1=u,x_2,\cdots,x_m=v\)</span> , and <span
-class="math inline">\(x_k\)</span> is the last vertex that is a
-descendent of <span class="math inline">\(u\)</span> (including <span
-class="math inline">\(u\)</span> itself) .</p>
-<p>We need to prove that <span class="math inline">\(x_{k+1}\)</span> is
-also a descendent of <span class="math inline">\(u\)</span> , leading to
-contradiction .</p>
-<p>Therefore , <span
-class="math inline">\(u.d&lt;x_k.d&lt;x_k.f&lt;u.f\)</span> ,</p>
-<p>Case 1 : <span
-class="math inline">\(x_k.d&lt;x_{k+1}.d&lt;x_{k+1}.f&lt;x_k.f\)</span>
--&gt; <span class="math inline">\(x_{k+1}\)</span> is also a descendent
-of <span class="math inline">\(u\)</span> .</p>
-<p>Case 2 : <span
-class="math inline">\(x_k.d&lt;x_k.f&lt;x_{k+1}.d&lt;x_{k+1}.f\)</span>
-: Impossible .</p></li>
-<li><p>Strongly Connected Components (SCC)</p>
-<ol type="1">
-<li><p>View : any directed graph can be viewed as a DAG of SCC</p></li>
-<li><p>Find SCC ? Kosaraju's Algorithm</p>
-<ol type="1">
-<li><p>Algorithm</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dfs1</span>(G);<span class="comment">// compute the finishing time u.f</span></span><br><span class="line">G_=<span class="built_in">reverse_edge</span>(G);</span><br><span class="line"><span class="built_in">dfs2</span>(G_); <span class="comment">// In main loop , consider vertices in decreasing order of u.f</span></span><br><span class="line">Claim : Each dfs-<span class="function">tree in <span class="title">dfs2</span><span class="params">(G_)</span> is a SCC</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Proof</p>
-<p>Intuition : find and "delete" sink components in dfs2 , like
-a-topological order in <span class="math inline">\(G\_\)</span> ( i.e.
-topological order in <span class="math inline">\(G\)</span> )</p>
-<ol type="1">
-<li><p>Lemma : If we start DFS at a node in a sink component , we will
-visit precisely all vertices in this component .</p>
-<p>Trivial .</p></li>
-<li><p>Lemma (key) : node with largest <span
-class="math inline">\(u.f\)</span> belongs to a start component in <span
-class="math inline">\(G\)</span> (i.e. a sink component in <span
-class="math inline">\(G\_\)</span>)</p>
-<p>Only need to prove the following lemma .</p></li>
-<li><p>Lemma ( for proving key Lemma ) : <span
-class="math inline">\(C,D\)</span> are two SCC , <span
-class="math inline">\(D\)</span> is reachable from <span
-class="math inline">\(C\)</span> ,</p>
-<p>Then for <span class="math inline">\(v\in C\)</span> , which is the
-firstly visited vertex in <span class="math inline">\(C\)</span> , then
-<span class="math inline">\(\forall u\in D,v.f&gt;u.f\)</span></p>
-<p>Proof :</p>
-<p>Case 1 : <span class="math inline">\(v\)</span> is also the firstly
-visited vertex in <span class="math inline">\(C\cup D\)</span> , then by
-white-path THM , all nodes in <span class="math inline">\(C\cup
-D\)</span> are descendent of <span class="math inline">\(v\)</span> , so
-<span class="math inline">\(\forall u\in C\cup D\backslash \{v\} ,
-v.f&gt;u.f\)</span> .</p>
-<p>Case 2 : <span class="math inline">\(\exists y\in D\)</span> , <span
-class="math inline">\(y\)</span> is the firstly visited vertex in <span
-class="math inline">\(C\cup D\)</span> , so <span
-class="math inline">\(v\)</span> is not a descendent of <span
-class="math inline">\(y\)</span> since <span
-class="math inline">\(C\)</span> is not reachable from <span
-class="math inline">\(D\)</span> .</p>
-<p>Therefore , by parenthesis THM , <span class="math inline">\(y.d\le
-u.d&lt;u.f\le y.f&lt;v.d&lt;v.f\)</span> for all <span
-class="math inline">\(u\in D\)</span> .</p></li>
-</ol></li>
-</ol></li>
-</ol></li>
-</ol>
-<h2 id="chapter-2-greedy-algorithm">Chapter 2 : Greedy Algorithm</h2>
-<h3 id="interval-scheduling">2.1 Interval Scheduling</h3>
-<ol type="1">
-<li><p>Description</p>
-<p>Input : <span class="math inline">\(n\)</span> jobs <span
-class="math inline">\(s_i,f_i\)</span></p>
-<p>Goal : maximize the #jobs , s.t. at most one job at a time .</p></li>
-<li><p>Another view</p>
-<p>Connect all jobs pairs <span
-class="math inline">\([s_i,f_i],[s_j,f_j]\)</span> if <span
-class="math inline">\([s_i,f_i]\cap [s_j,f_j]\neq \varnothing\)</span>
+<li>can exists <span class="math inline">\(x\)</span> , <span
+class="math inline">\(f(x)\to\infty\)</span></li>
+<li>the smallest <span class="math inline">\(E\)</span> s.t. <span
+class="math inline">\(f(E^c)=0\)</span> , may be <span
+class="math inline">\(\mu(E)\to\infty\)</span></li>
+</ul></li>
+<li><p>Notation :</p>
+<ul>
+<li><p><span class="math display">\[
+\int_E fd\mu:=\int f\cdot \mathbb 1_{E}d\mu
+\]</span></p></li>
+<li><p><span class="math display">\[
+a\land b:=\min\{a,b\}
+\]</span></p></li>
+<li><p>Def [ <strong><em>Integration for non-negative
+function</em></strong> ] For non-negative function <span
+class="math inline">\(f\)</span> , <span class="math display">\[
+\int fd\mu=\sup\left\{\small\int hd\mu\mid 0\le h\le f,h\text{ bounded
+function}\right\}
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(h\)</span> is bounded function , so <span
+class="math inline">\(\int hd\mu\)</span> is bounded , but <span
+class="math inline">\(\sup \int hd\mu\)</span> can be unbounded .</p>
+</blockquote></li>
+</ul></li>
+<li><p>Lemma :</p>
+<p>If <span class="math inline">\(E_n\uparrow \Omega ,
+\mu(E_n)&lt;\infty\)</span> , then <span class="math display">\[
+\int_{E_n}f\land nd\mu\uparrow \int fd\mu
+\]</span></p>
+<blockquote>
+<p>This lemma needs <span class="math inline">\(\mu\)</span> be a <span
+class="math inline">\(\sigma\)</span>-finite measure.</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\((f\land n)\cdot \mathbb 1_E\in \{h|0\le
+h\le f,h\text{ bounded function}\}\)</span></p>
+</blockquote>
+<p><strong>Proof</strong></p>
+<p>It's easy to find that <span
+class="math inline">\(\lim\limits_{n\to\infty}\int_{E_n}f\land n\
+d\mu=\sup\limits_{n\ge 1}\int_{E_n}f\land n\ d\mu\le \int fd\mu\)</span>
 .</p>
-<p>Goal <span class="math inline">\(\Leftrightarrow\)</span> maximum
-independent set .</p>
-<p>In general graph : NP-hard for general graph .</p></li>
-<li><p>Algorithm</p>
-<p>Repeat : Select the available jobs that finishes first .</p></li>
-<li><p>Proof of optimality :</p>
-<p>Method : [Exchange Argument] : Compare our solution and the optimal
-solution .</p>
-<p>SOL : <span class="math inline">\(i_1,i_2,\cdots ,i_m\)</span> , OPT
-: <span class="math inline">\(j_1,j_2,\cdots,j_k\)</span> .</p>
-<ol type="1">
-<li>Claim : If <span class="math inline">\(f_{i_1}\le f_{j_1}\)</span> ,
-then <span class="math inline">\(f_{i_r}\le f_{j_r}\)</span> for all
-<span class="math inline">\(r\ge 1\)</span> .</li>
+<p>We only need to prove that <span class="math inline">\(\forall
+h,|h|&lt;M,0\le h\le f\)</span> , <span
+class="math inline">\(\lim\limits_{n\to\infty}\int_{E_n}f\land n\
+d\mu\ge \int fd\mu\)</span> .</p>
+<p><span class="math inline">\(\forall n&gt;M\)</span> , <span
+class="math inline">\(\int_{E_n} f\land n\ d\mu\ge \int_{E_n}hd\mu=\int
+hd\mu-\int_{E_n^c}hd\mu\)</span> .</p>
+<p>And <span class="math inline">\(\int_{E_n^c} hd\mu\le M\mu(E_n^c\cap
+\{x|h(x)&gt;0\})\)</span> .</p>
+<p>Since <span class="math inline">\(n\to \infty , \mu(E_n^c\cap
+\{x|h(x)&gt;0\})\to 0\)</span> <span class="math inline">\((*)\)</span>
+.</p>
+<p>Therefore , <span class="math inline">\(\liminf\limits_{n\to \infty}
+\int_{E_n} f\land n\ d\mu\ge \int hd\mu\)</span> .</p>
+<p><strong>To prove <span
+class="math inline">\((*)\)</span></strong></p>
+<p>Let <span class="math inline">\(a_n=\mu(E_n^c\cap
+\{x|h(x)&gt;0\})\)</span> , we only need to prove that <span
+class="math inline">\(\lim_{n\to \infty} a_n=0\)</span> .</p>
+<p>Way 1 : <span class="math inline">\(a_n\)</span> non-increasing ,
+<span class="math inline">\(a_n\ge 0\)</span> , so <span
+class="math inline">\(\lim_{n\to\infty} a_n=c\)</span></p>
+<p>If <span class="math inline">\(c&gt;0\)</span> , then <span
+class="math inline">\(\exists \tilde \Omega\subseteq \Omega ,
+\mu(\tilde\Omega)=c\)</span> , <span class="math inline">\(\forall
+n,\tilde\Omega\cap E_n=\varnothing\)</span> .</p>
+<p>Therefore , <span class="math inline">\(\tilde \Omega\cap
+\bigcup_{n=1}^{\infty}E_n=\varnothing\)</span> , so <span
+class="math inline">\(\tilde \Omega\cap\Omega=\varnothing\)</span> ,
+contradicts .</p>
+<p>Way 2 : By definition , <span class="math inline">\(E_1^c\supset
+E_2^c \supset\cdots\)</span> , so <span
+class="math inline">\(E_n^c=\bigcap_{m=1}^n E_m^c\)</span> .</p>
+<p><span
+class="math inline">\(\lim_{n\to\infty}a_n=\mu(\bigcap_{m=1}^{\infty}E_m^c\cap\{x|h(x)&gt;0\})=\mu(\Omega^c\cap\{x|h(x)&gt;0\})=0\)</span></p></li>
+<li><p>Proof of (i)(ii)(iii)</p>
+<ol type="i">
+<li><p>trivial (non-negative)</p></li>
+<li><p><span class="math inline">\(a&gt;0\)</span> , so <span
+class="math inline">\(ah\le af\iff h\le f\)</span> <span
+class="math display">\[
+\begin{aligned}
+\int af\ d\mu&amp;=\sup\{\int ah\ d\mu|0\le ah\le af,ah\text{ bounded
+function}\}\\
+&amp;=\sup\{a\int h\ d\mu|0\le h\le f,h\text{ bounded function}\}\\
+&amp;=a\int fd\mu
+\end{aligned}
+\]</span></p></li>
+<li><p>Firstly prove <span class="math inline">\(\int (f+g)d\mu\ge \int
+fd\mu+\int gd\mu\)</span></p></li>
 </ol>
-<p>Proof : [Induction]</p>
-<p>If the claim is true for <span class="math inline">\(r-1\)</span> ,
-suppose the claim is not true for <span class="math inline">\(r\)</span>
-, i.e. <span class="math inline">\(f_{i_r}&gt;f_{j_r}\)</span> . Since
-<span class="math inline">\(f_{i_{r-1}}\le f_{j_{r-1}}\)</span> , and
-<span class="math inline">\(s_{j_r}&gt;f_{j_{r-1}}\)</span> , then <span
-class="math inline">\(f_{i_{r-1}}&lt;s_{j_r}\)</span> , so <span
-class="math inline">\(j_r\)</span> is also available , but has earlier
-finish time , contradict .</p>
-<ol start="2" type="1">
-<li>If <span class="math inline">\(m&lt;k\)</span> , then <span
-class="math inline">\(f_{i_m}&lt;f_{j_m}\)</span> . We can use <span
-class="math inline">\(j_{m+1},\cdots,j_k\)</span> after <span
-class="math inline">\(i_m\)</span> .</li>
+<p>Consider bounded function <span class="math inline">\(k,h\)</span> ,
+<span class="math inline">\(f\ge h,g\ge k\)</span> , so ,</p>
+<p><span class="math inline">\(\int (f+g)d\mu\ge \sup_{0\le h\le f}\int
+hd\mu+\sup_{0\le k\le g}\int gd\mu=\int fd\mu+\int gd\mu\)</span></p>
+<p>Secondly prove <span class="math inline">\(\int(f+g)d\mu\le \int
+fd\mu+\int gd\mu\)</span></p>
+<p>Use Lemma , <span class="math inline">\((f+g)\land n\le (f\land
+n)+(g\land n)\)</span> .</p>
+<p>Therefore , <span class="math inline">\(\int_{E_n}(f+g)\land n\
+d\mu\le \int_{E_n}f\land n\ d\mu+\int_{E_n} g\land n\ d\mu\)</span>
+.</p>
+<p>As <span class="math inline">\(n\to\infty\)</span> , <span
+class="math inline">\(\int (f+g)d\mu\le \int fd\mu+\int
+gd\mu\)</span></p></li>
+</ol></li>
+<li><p>General Function</p>
+<ol type="1">
+<li><p>Def [ <strong><em>Integralable</em></strong> ] : <span
+class="math inline">\(f\)</span> is
+<strong><em>integralable</em></strong> if <span
+class="math inline">\(\int |f|d\mu&lt;\infty\)</span></p></li>
+<li><p>Def [ <strong><em>Integration for General Function</em></strong>
+] : If <span class="math inline">\(f\)</span> is integralable ,
+define</p>
+<p><span class="math inline">\(f^+(x):=f(x)\cdot\mathbb 1(f(x)\ge
+0)\)</span> , <span class="math inline">\(f^-(x):=|f(x)|\cdot \mathbb
+1(f(x)&lt;0)\)</span></p>
+<p>Therefore , <span class="math inline">\(f(x)=f^+(x)-f^-(x)\)</span> ,
+and <span class="math inline">\(f^+,f^-\)</span> non-negative <span
+class="math display">\[
+\int fd\mu:=\int f^+d\mu-\int f^-d\mu
+\]</span></p>
+<blockquote>
+<p>Note : If <span class="math inline">\(f\)</span> is not integralable
+, then <span class="math inline">\(\int f^+d\mu\)</span> , <span
+class="math inline">\(\int f^-d\mu\)</span> can both be <span
+class="math inline">\(\infty\)</span> , <span
+class="math inline">\(\infty-\infty\)</span> not well-defined.</p>
+</blockquote></li>
+</ol></li>
+<li><p>Lebesgue Integration</p>
+<ol type="1">
+<li><p>When <span class="math inline">\(\mu\)</span> is Lebesgue measure
+: <span class="math inline">\(\mu((a,b])=b-a\)</span> .</p>
+<p><span class="math inline">\(\int fd\mu\)</span> is Lebesgue
+Integration of <span class="math inline">\(f\)</span> .</p></li>
+<li><p>Compare with Riemann Integration</p>
+<figure>
+<img src="/images/posts/PS3_fig2.png"
+alt="Riemann Integration and Lebesgue Integration" />
+<figcaption aria-hidden="true">Riemann Integration and Lebesgue
+Integration</figcaption>
+</figure>
+<p>Lebesgue is more powerful</p>
+<p>E.g. Dirichlet function <span class="math inline">\(\mathbb
+1_{\mathbb Q}\)</span> , <span class="math inline">\(\int_{[0,1]}\mathbb
+1_{\mathbb Q}\)</span></p>
+<ul>
+<li>Riemann integration : not integralable , <span
+class="math inline">\(\mu(\{x:\mathbb 1_{\mathbb Q}\text{ incontinuous
+at }x\})&gt;0\)</span></li>
+<li>Lebesgue integration : integralable : <span
+class="math inline">\(\int_{[0,1]}\mathbb 1_{\mathbb Q}=\mu(\mathbb
+Q\cap [0,1])=0\)</span></li>
+</ul></li>
+</ol></li>
+<li><p>Formal Definition of PDF</p>
+<ol type="1">
+<li><p>Def [ <strong><em>Absolutely Continuous</em></strong> ] : <span
+class="math inline">\(\nu\)</span> is <strong><em>absolutely
+continuous</em></strong> w.r.t <span class="math inline">\(\mu\)</span>
+( denote as <span class="math inline">\(\nu\ll \mu\)</span> ) if</p>
+<p><span class="math inline">\(\forall A\in \mathcal F\)</span> , <span
+class="math inline">\(\mu(A)=0\Rightarrow \nu(A)=0\)</span></p></li>
+<li><p>Thm [ Radon-Nikodym ] : measurable space <span
+class="math inline">\((\Omega,\mathcal F)\)</span> with <span
+class="math inline">\(\sigma\)</span>-finite measure <span
+class="math inline">\(\nu,\mu\)</span> , <span
+class="math inline">\(\nu\ll\mu\)</span></p>
+<p>Then <span class="math inline">\(\exists g\ge 0,\forall E\in \mathcal
+F,\int_Egd\mu=\nu(E)\)</span></p>
+<p><span class="math inline">\(g\)</span> is called Radon-Nikodym
+derivative</p></li>
+<li><p>Prop : If <span class="math inline">\(\exists g,h\)</span> ,
+<span class="math inline">\(\int_Egd\mu=\int_Ehd\mu=\nu(E)\)</span> ,
+then <span class="math inline">\(g\equiv h\)</span> a.e.</p></li>
+<li><p>Def [ <strong><em>PDF</em></strong> ] : When <span
+class="math inline">\(\nu\)</span> is a distribution measure , <span
+class="math inline">\(\mu\)</span> is Lebesgue measure , <span
+class="math inline">\(g\)</span> is the <strong><em>probability density
+function</em></strong> for <span class="math inline">\(\nu\)</span>
+.</p>
+<blockquote>
+<p>Observation : <span class="math inline">\(\nu(E)=P(X\in E)=\int
+gd\mu\)</span></p>
+</blockquote></li>
+<li><p>Prop : <span class="math inline">\(g\)</span> is <span
+class="math inline">\(\mathcal F\)</span>-measurable , i.e. <span
+class="math inline">\(g\)</span> is a measurable map <span
+class="math inline">\((\Omega,\mathcal F)\to(\mathbb R,\mathcal
+R)\)</span> .</p></li>
 </ol></li>
 </ol>
-<h3 id="scheduling-to-minimize-lateness">2.2. Scheduling to minimize
-lateness</h3>
+<h3 id="properties-of-integration">1.5 Properties of Integration</h3>
 <ol type="1">
-<li><p>Description</p>
-<p>Input : <span class="math inline">\(n\)</span> jobs , each job <span
-class="math inline">\(i\)</span> has ddl <span
-class="math inline">\(d_i\)</span> and length <span
-class="math inline">\(t_i\)</span> . Def lateness : <span
-class="math inline">\(l_i:=\max\{0,f_i-d_i\}\)</span></p>
-<p>Goal : find a schedule of all <span class="math inline">\(n\)</span>
-jobs , and minimize the maximal lateness .</p></li>
-<li><p>Equal formularization</p>
-<p>Goal : find a permutation <span class="math inline">\(\{p_i\}\in
-S_n\)</span> , then <span class="math inline">\(f_i=\sum_{j=1}^i
-t_{p_j}\)</span> , <span
-class="math inline">\(l_i:=\max\{0,f_i-d_{p_i}\}\)</span> . Minimize
-<span class="math inline">\(\max\{l_i\}\)</span> .</p>
-<p><span class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(l_i:=f_i-d_{p_i}\)</span> , Minimize <span
-class="math inline">\(\max\{0,\max\{l_i\}\}\)</span> .</p></li>
-<li><p>Algorithm</p>
-<p>Schedule the job in increasing order of <span
-class="math inline">\(d_i\)</span> .</p></li>
-<li><p>Proof of optimality</p>
+<li><p>Jenson's Inequality</p>
 <ol type="1">
-<li><p>Def (Inversion) : Consider a schedule <span
-class="math inline">\(A&#39;\)</span> , <span
-class="math inline">\((i,j)\)</span> is an inversion if <span
-class="math inline">\(i\)</span> is scheduled before <span
-class="math inline">\(j\)</span> but <span
-class="math inline">\(d_i&gt;d_j\)</span> .</p></li>
-<li><p>If OPT$$ SOL , there must be an inversion , then there must be an
-adjacent inversion . Suppose <span
-class="math inline">\((i,i+1)\)</span> is an inversion , then <span
-class="math inline">\(d_{p_i}&gt;d_{p_{i+1}}\)</span> .</p>
-<p>Let <span class="math inline">\(f=\sum_{j=1}^{i-1}t_{p_j}\)</span> ,
-so <span class="math inline">\(f_i=f+t_{p_i}\)</span> , <span
-class="math inline">\(f_{i+1}=f+t_{p_i}+t_{p_{i+1}}\)</span> , so <span
-class="math inline">\(l_i=f+t_{p_i}-d_{p_i}\)</span> , <span
-class="math inline">\(l_{i+1}=f+t_{p_i}+t_{p_{i+1}}-d_{p_{i+1}}\)</span>
-.</p>
-<p>If swap <span class="math inline">\((i,i+1)\)</span> , then <span
-class="math inline">\(f_{i+1}&#39;=f+t_{p_{i+1}}\)</span> , <span
-class="math inline">\(f_{i}&#39;=f+t_{p_{i+1}}+t_{p_i}\)</span> , so
-<span
-class="math inline">\(l_{i+1}&#39;=f+t_{p_{i+1}}-d_{p_{i+1}}\)</span> ,
-<span
-class="math inline">\(l_i&#39;=f+t_{p_{i+1}}+t_{p_i}-d_{p_i}\)</span>
-.</p>
-<p>Therefore , obviously , <span
-class="math inline">\(l_{i+1}&#39;&lt;l_{i+1}\)</span> . Since <span
-class="math inline">\(d_{p_i}&gt;d_{p_{i+1}}\)</span> , then <span
-class="math inline">\(l_i&#39;&lt;l_i\)</span> . Therefore , swap can
-lead to better solution , so OPT is not optimal .</p></li>
+<li><p>Def [ <strong><em>convex</em></strong> ] : <span
+class="math inline">\(\varphi\)</span> is a convex , if <span
+class="math inline">\(\forall \lambda\in (0,1) ,
+\lambda\varphi(x)+(1-\lambda)\varphi(y)\ge \varphi(\lambda
+x+(1-\lambda)y)\)</span></p></li>
+<li><p>THM [ <strong><em>Jenson's Inequality</em></strong> ] : If <span
+class="math inline">\(\varphi\)</span> is a convex , <span
+class="math inline">\(\varphi\circ f\)</span> is integralable , <span
+class="math inline">\(\mu\)</span> is a probability measure , <span
+class="math display">\[
+\varphi\left(\int fd\mu\right)\le \int (\varphi \circ f)d\mu
+\]</span></p></li>
+<li><p>Proof :</p>
+<p>For convex <span class="math inline">\(\varphi\)</span> , we can find
+a line <span class="math inline">\(L(x)=ax+b\)</span> , s.t. <span
+class="math inline">\(\varphi(x)\ge ax+b\)</span> , and equal iff <span
+class="math inline">\(x=\int fd\mu\)</span> . <span
+class="math display">\[
+\begin{aligned}
+\int (\varphi \circ f)d\mu&amp;\ge \int (ax+b)\circ fd\mu\\
+&amp;=a\int fd\mu+\int bd\mu\\
+&amp;=a\int fd\mu+b\mu(\Omega)\\
+&amp;=a\int fd\mu+b\\
+&amp;=L\left(\int fd\mu\right)\\
+&amp;=\varphi\left(\int fd\mu\right)
+\end{aligned}
+\]</span></p></li>
 </ol></li>
-</ol>
-<h3 id="shortest-path-without-w0">2.3. Shortest Path (without <span
-class="math inline">\(w&lt;0\)</span>)</h3>
-<ol type="1">
-<li><p>Description</p>
-<p>Input : weighted graph <span class="math inline">\(G=(V,E)\)</span> ,
-start vertex <span class="math inline">\(s\)</span> .</p>
-<p>Output : <span class="math inline">\(d(u)\)</span> for all <span
-class="math inline">\(u\in V\)</span> , where <span
-class="math inline">\(d(u)=\min_{p\text{ is a path }s\to u}\{\sum_{e\in
-p}l(e)\}\)</span> .</p></li>
-<li><p>Algorithm [Dijkstra 1959]</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Init</span></span><br><span class="line"><span class="keyword">for</span>(u in V)&#123;</span><br><span class="line">    d[u]=+inf;</span><br><span class="line">&#125;</span><br><span class="line">d[s]=<span class="number">0</span>; S.<span class="built_in">insert</span>(s);</span><br><span class="line"><span class="comment">// Main Algorithm</span></span><br><span class="line"><span class="keyword">while</span>(S != V)&#123;</span><br><span class="line">    v=<span class="built_in">argmin</span>(d[u]+<span class="built_in">l</span>(e) |v: v in V\S , e=(u,v) , u in S );</span><br><span class="line">    d[v]=d[u]+<span class="built_in">l</span>(e);</span><br><span class="line">    S.<span class="built_in">insert</span>(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Proof</p>
-<p>Prove by induction on <span class="math inline">\(S\)</span> . <span
-class="math inline">\(\forall v\in S , d(v)=\min dist(s,v)\)</span>
-,</p>
-<p>Suppose we grow <span class="math inline">\(S\)</span> by adding
-<span class="math inline">\(v\)</span> , suppose the proposition does
-not hold . Then <span class="math inline">\(d(u)+l_e\)</span> is not the
-shortest distance to <span class="math inline">\(v\)</span> . Let <span
-class="math inline">\(p\)</span> be the shortest path from <span
-class="math inline">\(s\)</span> to <span
-class="math inline">\(v\)</span> .</p>
-<p>Let <span class="math inline">\(w\)</span> be the last vertex that is
-in <span class="math inline">\(S\)</span> , then by induction , all
-vertices on <span class="math inline">\(p\)</span> from <span
-class="math inline">\(s\)</span> to <span
-class="math inline">\(w\)</span> are all in <span
-class="math inline">\(S\)</span> . Let <span
-class="math inline">\(p&#39;=path(s,u)+e\)</span> .</p>
-<p><span class="math inline">\(p&#39;: s\to w\to u\to v\)</span> , <span
-class="math inline">\(p:s\to w\to x\to v\)</span> . (<span
-class="math inline">\(x\notin S\)</span>) . Since <span
-class="math inline">\(d(u)+l_e\)</span> is minimal , <span
-class="math inline">\(d(u)+l_e\le d(w)+l_{w,x}\)</span> , but <span
-class="math inline">\(dist(p)=d(w)+l_{w,x}+dist(x,v)\)</span> , where
-<span class="math inline">\(dist(x,v)\ge 0\)</span> , and <span
-class="math inline">\(dist(p)&lt;dist(p&#39;)=d(u)+l_e\)</span> , so
-<span class="math inline">\(d(w)+l_{w,x}\le dist(p)&lt;d(u)+l_e\)</span>
-, contradict .</p></li>
 </ol>
 
     </div>
@@ -610,7 +715,7 @@ class="math inline">\(dist(p)&lt;dist(p&#39;)=d(u)+l_e\)</span> , so
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-2/" title="Algorithm Design 2">https://zigzagkmp.github.io/2023/10/06/Algorithm-Design-2/</a>
+      <a href="https://zigzagkmp.github.io/2023/10/16/Probability-and-Statistics-3/" title="Probability and Statistics 3">https://zigzagkmp.github.io/2023/10/16/Probability-and-Statistics-3/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -646,24 +751,20 @@ class="math inline">\(dist(p)&lt;dist(p&#39;)=d(u)+l_e\)</span> , so
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
-              <a href="/tags/%E7%AE%97%E6%B3%95-%E6%90%9C%E7%B4%A2/" rel="tag"># 算法-搜索</a>
-              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-SCC/" rel="tag"># 算法-强连通分量(SCC)</a>
-              <a href="/tags/%E7%AE%97%E6%B3%95-%E8%B4%AA%E5%BF%83/" rel="tag"># 算法-贪心</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6%E5%87%BD%E6%95%B0/" rel="tag"># 概率论-概率密度函数</a>
+              <a href="/tags/%E5%AE%9E%E5%88%86%E6%9E%90-Lebesgue%E7%A7%AF%E5%88%86/" rel="tag"># 实分析-Lebesgue积分</a>
+              <a href="/tags/%E5%AE%9E%E5%88%86%E6%9E%90-%E7%A7%AF%E5%88%86%E6%80%A7%E8%B4%A8/" rel="tag"># 实分析-积分性质</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/10/05/Algorithm-Design-1/" rel="prev" title="Algorithm Design 1">
-                  <i class="fa fa-angle-left"></i> Algorithm Design 1
+                <a href="/2023/10/16/ZKP-and-MPC-3/" rel="prev" title="ZKP and MPC 3">
+                  <i class="fa fa-angle-left"></i> ZKP and MPC 3
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/10/06/ZKP-and_MPC-1/" rel="next" title="ZKP and MPC 1">
-                  ZKP and MPC 1 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
