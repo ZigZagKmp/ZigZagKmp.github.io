@@ -512,6 +512,9 @@ Hyb_i\)</span></p></li>
 </ol>
 <h2 id="lec03-commitment-scheme-zk-proof-for-general-np">Lec03
 Commitment Scheme , zk-proof for general NP</h2>
+<h3 id="important">3.0 Important</h3>
+<p><strong><em>In the next lecture , we re-defined commitment in a more
+simple way .</em></strong></p>
 <h3 id="commitment">3.1 Commitment</h3>
 <blockquote>
 <p>Intuition :</p>
@@ -3672,10 +3675,15 @@ convince verifier , so <span class="math display">\[
 \]</span> <span class="math inline">\(k\)</span> rounds : <span
 class="math inline">\(\Pr\{V \text{ accepts}\}\le\frac{1}{2^k}\)</span>
 .</p></li>
-<li><p>Zero-knowledge : NOT zero-knowledge</p>
+<li><p>Zero-knowledge : <strong>NOT (dishonest-verifier)
+zero-knowledge</strong></p>
 <p><span class="math inline">\(V\)</span> knows <span
 class="math inline">\(h^{-1}(y)\)</span> , which cannot be computed in
-poly-time by itself .</p></li>
+poly-time by itself .</p>
+<blockquote>
+<p>This is still <strong>honest-verifier zero-knowledge</strong> , see
+homework 1</p>
+</blockquote></li>
 </ol></li>
 <li><p>Notes</p>
 <blockquote>
@@ -4150,8 +4158,8 @@ class="math inline">\(dist(p)&lt;dist(p&#39;)=d(u)+l_e\)</span> , so
       <tags>
         <tag>算法</tag>
         <tag>算法-搜索</tag>
-        <tag>算法-强连通分量(SCC)</tag>
         <tag>算法-贪心</tag>
+        <tag>算法-强连通分量(SCC)</tag>
       </tags>
   </entry>
   <entry>
