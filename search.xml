@@ -1,6 +1,738 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Algorithm Design 7</title>
+    <url>/2023/10/31/Algorithm-Design-7/</url>
+    <content><![CDATA[<ol type="1">
+<li><p>NP-Hardness</p>
+<ul>
+<li><p>NP Completeness : Decision Problem</p></li>
+<li><p>NP Hardness : Optimization Problem</p></li>
+<li><p>Problem in <strong>NP-Hard</strong> : not in <strong>NPC</strong>
+, but the decision version is <strong>NPC</strong></p></li>
+</ul></li>
+<li><p>How to almost solve <strong>NP-Hard</strong> problem ?</p>
+<ul>
+<li>Special Restrictions</li>
+<li>Approximation</li>
+<li>Randomization</li>
+</ul></li>
+</ol>
+<h2 id="chapter-5-extending-the-limits-of-tractability">Chapter 5
+Extending the Limits of Tractability</h2>
+<p>Solving <strong>NP-Hard</strong> problem under some special
+restrictions</p>
+<ol type="1">
+<li><p>Max Independent Set</p>
+<ul>
+<li>general graphs : NP-Hard</li>
+<li>interval graph : P</li>
+<li>tree / graph with bounded tree width : P</li>
+</ul></li>
+<li><p>FPT (fixed parameter tractable)</p>
+<p>Intuition : Consider the parametrization of an instance</p>
+<p>Def [ <strong><em>FTP</em></strong> ]: Input size <span
+class="math inline">\(n\)</span> , parameter <span
+class="math inline">\(k\)</span> . A problem is
+<strong><em>FPT</em></strong> if there exists an algorithm that solve
+the problem in <span class="math inline">\(\mathcal
+O(f(k)poly(n))\)</span>.</p>
+<blockquote>
+<p><span class="math inline">\(k\)</span> can be viewed similar to
+constant , <span class="math inline">\(\mathcal O(2^kpoly(n))\)</span>
+is still FPT , but <span class="math inline">\(\mathcal O(n^k)\)</span>
+is not FPT ( <span class="math inline">\(poly(n)\)</span> is independent
+from <span class="math inline">\(k\)</span> ).</p>
+</blockquote></li>
+<li><p>Vertex Cover , <span class="math inline">\(k=|VC|\)</span></p>
+<blockquote>
+<p>We want to construct an algorithm in <span
+class="math inline">\(\mathcal O(f(k)poly(n))\)</span> , which is better
+than trivial algorithm in <span class="math inline">\(\mathcal
+O(n^{k})\)</span> .</p>
+</blockquote>
+<ol type="1">
+<li><p>Key Observation : <span class="math inline">\(e=(u,v)\)</span> ,
+<span class="math inline">\(VC(G)\le k\iff VC(G-u)\le k-1\lor CV(G-v)\le
+k-1\)</span> .</p></li>
+<li><p>Algorithm : check <span class="math inline">\((G,k)\)</span></p>
+<ol type="1">
+<li>If <span class="math inline">\(G\)</span> has no edge , then the
+empty set is a VC , return <code>true</code> .</li>
+<li>If <span class="math inline">\(|E|&gt; k|V|\)</span> , then <span
+class="math inline">\(\not\exists VC,|VC|\le k\)</span> , return
+<code>false</code> .</li>
+<li>Let <span class="math inline">\(e=(u,v)\in E\)</span> , return
+<code>check(G-u,k-1)||check(G-v,k-1)</code> .</li>
+</ol></li>
+<li><p>Running time : By recursive tree , at most <span
+class="math inline">\(k\)</span> levels , level <span
+class="math inline">\(i\)</span> has <span
+class="math inline">\(2^{i-1}\)</span> possibilities , with <span
+class="math inline">\(\mathcal O(n(k-i+1))\)</span> computation in each
+node.</p>
+<p>Total time : <span class="math inline">\(\mathcal O(2^kkn)\)</span>
+.</p></li>
+<li><p>Best FPT : <span class="math inline">\(\mathcal
+O(1.2738^kpoly(n))\)</span> .</p>
+<p>Method : reduce more in Key Observation (e.g. <span
+class="math inline">\(k\to k-1\)</span> improve to <span
+class="math inline">\(k\to k-2\)</span>) by considering more edges.</p>
+<p>Kernel method : <span class="math inline">\(\mathcal
+O(|E|+(5^{1/4})^k k^2)\)</span> .</p></li>
+</ol></li>
+</ol>
+<h2 id="chapter-6-approximation-algorithm">Chapter 6 Approximation
+Algorithm</h2>
+<h3 id="approximation-criteria">6.1 Approximation Criteria</h3>
+<ol type="1">
+<li><p>Approximation ration <span class="math inline">\(\alpha\ge
+1\)</span></p>
+<p>minimization problem : <span class="math inline">\(\alpha:=\sup_I
+\frac{SOL(I)}{OPT(I)}\)</span>.</p>
+<p>maximization problem : <span class="math inline">\(\alpha:=\sup_I
+\frac{OPT(I)}{SOL(I)}\)</span>.</p></li>
+<li><p>Some examples</p>
+<ul>
+<li>Exact solution : <span class="math inline">\(\alpha=1\)</span></li>
+<li>Constant approximation : <span class="math inline">\(\alpha=\mathcal
+O(1)\)</span></li>
+<li>Logarithm approximation : <span
+class="math inline">\(\alpha=\mathcal O(\log n)\)</span></li>
+<li><span class="math inline">\(\alpha=\mathcal O(n)\)</span> : usually
+not interesting.</li>
+<li>Poly-Time Approximation Scheme ( <strong><em>PTAS</em></strong> ) :
+<span class="math inline">\(\alpha=1+\epsilon\)</span> , Time : poly
+when <span class="math inline">\(\epsilon\)</span> is constant.</li>
+<li>Fully Poly-Time Approximation Scheme (
+<strong><em>FPTAS</em></strong> ) : Time : <span
+class="math inline">\(\mathcal
+O(poly(\frac{1}{\epsilon},n))\)</span>.</li>
+</ul></li>
+</ol>
+<h3 id="load-balancing-problem">6.2 Load Balancing Problem</h3>
+<ol type="1">
+<li><p>Description :</p>
+<p>Input : <span class="math inline">\(n\)</span> jobs , <span
+class="math inline">\(t_i\)</span> : time for job <span
+class="math inline">\(i\)</span> , <span
+class="math inline">\(m\)</span> machines</p>
+<p>Output : assign each job to one machine , say machine <span
+class="math inline">\(j\)</span> is assigned jobs <span
+class="math inline">\(S_j\)</span> , minimize <span
+class="math inline">\(\max_{j=1}^m \left\{\sum_{i\in
+S_j}t_i\right\}\)</span> .</p></li>
+<li><p><strong>Load Balancing Problem</strong> is
+<strong>NP-Hard</strong></p>
+<p>Prove 1 : <strong>special subset sum</strong> <span
+class="math inline">\(\le_p\)</span> <strong>Load Balancing
+Problem</strong></p>
+<p><strong>special subset sum</strong> : <span
+class="math inline">\(W=\frac{\sum_{i=1}^n w_i}{2}\)</span> . This is
+still <strong>NPC</strong>.</p>
+<p>Prove 2 : <strong>3-partition problem</strong> <span
+class="math inline">\(\le_p\)</span> <strong>Load Balancing
+Problem</strong></p>
+<p><strong>3-partition problem </strong> :</p>
+<p>Given <span class="math inline">\(3n\)</span> numbers <span
+class="math inline">\(a_1,\cdots,a_{3n}\)</span> , partition them into
+<span class="math inline">\(n\)</span> groups , with each group <span
+class="math inline">\(3\)</span> numbers.</p>
+<p>Decide whether we can find a partition , s.t. the sum of each group
+is the same.</p>
+<p>Theorem : <strong>3-partition problem</strong> is
+<strong>NPC</strong> ( even if <span class="math inline">\(a_i\)</span>
+is poly-sized )</p></li>
+<li><p>Greedy Algorithm 1</p>
+<p>Process jobs in arbitrary order one-by-one . Assign the job to the
+machine with current minimal load.</p>
+<ol type="1">
+<li><p>Analysis : <span
+class="math inline">\(\alpha=2\)</span>.</p></li>
+<li><p>Proof :</p>
+<p>load of OPT : <span class="math inline">\(T^*\)</span>.</p>
+<ul>
+<li>Observation 1 : <span class="math inline">\(T^*\ge \max_{i=1}^n
+t_i\)</span>.</li>
+<li>Observation 2 : <span class="math inline">\(T^*\ge
+\frac{1}{m}\sum_{i=1}^n t_i\)</span>.</li>
+</ul>
+<p>Let's prove that <span class="math inline">\(SOL\le \max_{i=1}^n
+t_i+\frac{1}{m}\sum_{i=1}^n t_i\)</span> , so <span
+class="math inline">\(SOL\le 2T^*\)</span>.</p>
+<p>Let <span class="math inline">\(SOL=\sum_{i\in S_j} t_i\)</span> ,
+and <span class="math inline">\(t_k\)</span> is the last job assigned to
+machine <span class="math inline">\(j\)</span> . Therefore , we can
+prove that before assigning <span class="math inline">\(t_k\)</span> ,
+the load of machine <span class="math inline">\(j\)</span> is <span
+class="math inline">\(\le \frac{1}{m}\sum_{i=1}^m t_i\)</span> ( since
+machine <span class="math inline">\(j\)</span> with current minimal load
+) . <span class="math inline">\(t_k\le \max_{i=1}^n t_i\)</span> .
+Therefore , <span class="math inline">\(SOL\le \frac{1}{m}\sum_{i=1}^m
+t_i +\max_{i=1}^n t_i\)</span>.</p></li>
+<li><p>Worst case :</p>
+<p><span class="math inline">\(n=m(m-1)+1\)</span> , with <span
+class="math inline">\(m(m-1)\)</span> jobs <span
+class="math inline">\(t_j=1\)</span> , and <span
+class="math inline">\(1\)</span> job <span
+class="math inline">\(t_j=m\)</span>.</p>
+<p>Then <span class="math inline">\(SOL=2m-1\)</span> , but <span
+class="math inline">\(OPT=m\)</span>. <span
+class="math inline">\(\alpha=\frac{2m-1}{m}\to 2\)</span> .</p></li>
+</ol></li>
+<li><p>Greedy Algorithm 2 ( improvement )</p>
+<p>Process jobs in decreasing order.</p>
+<ol type="1">
+<li><p>Analysis : <span class="math inline">\(\alpha=1.5\)</span> ( not
+tight )</p></li>
+<li><p>Proof :</p>
+<ol type="1">
+<li><p>Case 1 : <span class="math inline">\(n\le m\)</span> , <span
+class="math inline">\(OPT=SOL\)</span></p></li>
+<li><p>Case 2 : <span class="math inline">\(n&gt;m\)</span> , so <span
+class="math inline">\(t_k\le t_{m+1}\le \frac{OPT}{2}\)</span>.</p>
+<p><span class="math inline">\(t_{m+1},t_i\)</span> must be both in one
+machine for some <span class="math inline">\(1\le i\le
+m\)</span>.</p></li>
+</ol></li>
+</ol></li>
+</ol>
+<h3 id="k-center-problem">6.3 <span
+class="math inline">\(k\)</span>-Center Problem</h3>
+<ol type="1">
+<li><p>Description</p>
+<p>Input : a metric graph <span class="math inline">\(G=(V,E,d)\)</span>
+, number of centers <span class="math inline">\(k\)</span>.</p>
+<p>Def [ <strong><em>metric graph</em></strong> ] : <span
+class="math inline">\(d\)</span> satisfies <span
+class="math inline">\(\begin{cases}d(u,u)=0&amp;u\in
+V\\d(u,v)=d(v,u)&amp;u,v\in V\\d(s,t)\le d(s,w)+d(w,t)&amp;s,t,w\in
+V\end{cases}\)</span>.</p>
+<p>Output : Choose <span class="math inline">\(k\)</span> centers <span
+class="math inline">\(C=\{c_1,\cdots,c_k\}\subseteq V\)</span>. Minimize
+max cluster radius. <span class="math display">\[
+d(v,C):=\min_{i=1}^k \{d(v,c_i)\}
+\]</span> Minimize <span class="math inline">\(\max_{v\in
+V}d(v,C)\)</span>.</p></li>
+<li><p>Remark : Applications in ML</p>
+<p>unsupervised learning.</p>
+<p><span class="math inline">\(k\)</span>-means : minimize <span
+class="math inline">\(\sum_{v\in V}d(v,C)^2\)</span>.</p>
+<p><span class="math inline">\(k\)</span>-median : minimize <span
+class="math inline">\(\sum_{v\in V}d(v,C)\)</span>.</p></li>
+<li><p>Greedy Algorithm with <span
+class="math inline">\(\alpha=2\)</span></p>
+<ol type="1">
+<li><p>Algorithm</p>
+<ol type="1">
+<li><p>Guess optimal radius <span class="math inline">\(r\)</span> ( at
+most <span class="math inline">\(|E|\)</span> possibilities )</p></li>
+<li><p>Choose an arbitrary vertex <span class="math inline">\(v\in
+S\)</span> , <span class="math inline">\(C\gets
+C\cup\{v\}\)</span></p></li>
+<li><p>Let <span class="math inline">\(D=\{u\in S:d(u,v)\le
+2r\}\)</span> , <span class="math inline">\(S\gets S\backslash
+D\)</span></p></li>
+<li><p>If <span class="math inline">\(S\neq \varnothing\)</span> , go to
+(2)</p></li>
+<li><p>Finally , if <span class="math inline">\(|C|&gt;k\)</span> , our
+guess is too small ( fail )</p>
+<p>If <span class="math inline">\(|C|\le k\)</span> , our guess
+succeed.</p></li>
+</ol>
+<p>Hopefully , we want if we success at <span
+class="math inline">\(r\)</span> , then <span
+class="math inline">\(OPT\ge r\)</span> and <span
+class="math inline">\(SOL\le 2r\)</span> .</p></li>
+<li><p>Proof</p>
+<p>Key Observation : If <span class="math inline">\(r\ge OPT\)</span> ,
+then we will definitely success.</p>
+<p>Suppose <span
+class="math inline">\(C_{OPT}=\{c_1,\cdots,c_{opt}\}\)</span> , and
+<span class="math inline">\(b_v=\arg\min_{1\le i\le OPT}
+d(v,c_i)\)</span> .</p>
+<p>In each step , suppose that we choose <span
+class="math inline">\(v\)</span> , then <span
+class="math inline">\(\forall u\in V,b_u=b_v\)</span> , <span
+class="math inline">\(d(u,v)\le d(u,c_{b_v})+d(c_{b_v},v)\le 2r\)</span>
+. Therefore , <span class="math inline">\(\{u:b_u=b_v\}\subseteq
+D_{v}\)</span> .</p>
+<p>That is , each step we can remove at least one optimal cluster
+.</p></li>
+</ol></li>
+<li><p><span class="math inline">\(\alpha=2\)</span> is the best
+result</p>
+<p>Inapproximability : <span class="math inline">\(\forall
+\alpha&lt;2\)</span> , this problem is NP-Hard .</p>
+<p>Promise Problem : For a given instance , such that the optimal value
+is <span class="math inline">\(\le h\)</span> or <span
+class="math inline">\(&gt; \alpha h\)</span> . Decide which case it
+is.</p>
+<p>Claim : Any <span class="math inline">\(\alpha\)</span>-approximation
+algorithm can be used to solve Promise Problem.</p>
+<blockquote>
+<p>Approximation answer : <span class="math inline">\(\le \alpha
+h\)</span> , then <span class="math inline">\(OPT\le \alpha h\)</span> ,
+then <span class="math inline">\(OPT\le h\)</span> , output
+<code>true</code></p>
+<p>Approximation answer : $&gt;h $ , then <span
+class="math inline">\(OPT&gt;h\)</span> , then <span
+class="math inline">\(OPT&gt;\alpha h\)</span> , output
+<code>false</code></p>
+</blockquote></li>
+<li><p>THM : Promise <span class="math inline">\(k\)</span>-center for
+any <span class="math inline">\(\alpha&lt;2\)</span> is NPC</p>
+<p>Proof : Dominating Set <span class="math inline">\(\le_p\)</span>
+Promise <span class="math inline">\(k\)</span>-center for <span
+class="math inline">\(\alpha&lt;2\)</span></p>
+<p><span class="math inline">\(G\)</span> for Dominating Set , construct
+<span class="math inline">\(G&#39;\)</span> for Promise <span
+class="math inline">\(k\)</span>-center for <span
+class="math inline">\(\alpha&lt;2\)</span></p>
+<p><span class="math inline">\(G&#39;\)</span> : <span
+class="math inline">\(E&#39;\)</span> complete graph , <span
+class="math inline">\(w(e)=\begin{cases}1&amp;e\in E\\2&amp;e\notin
+E\end{cases}\)</span></p>
+<p><span class="math inline">\((G,k)\in DS\iff\)</span> the answer of
+<span class="math inline">\(G&#39;\)</span> is <code>true</code> for
+<span class="math inline">\((G&#39;,k,h=1)\)</span> .</p></li>
+</ol>
+]]></content>
+      <categories>
+        <category>课程笔记</category>
+        <category>算法设计</category>
+      </categories>
+      <tags>
+        <tag>计算理论</tag>
+        <tag>计算理论-NP-Hard</tag>
+        <tag>算法-近似算法</tag>
+        <tag>算法-近似算法-负载平衡问题</tag>
+        <tag>算法-近似算法-聚类问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Algorithm Design 6</title>
+    <url>/2023/10/31/Algorithm-Design-6/</url>
+    <content><![CDATA[<h2 id="chapter-4-np-completeness">Chapter 4 NP Completeness</h2>
+<h3 id="other-problems-in-npc">4.4 Other Problems in NPC</h3>
+<p>Intuition : Find problems <span class="math inline">\(L\in
+NP\)</span> that <span class="math inline">\(SAT\le_p L\)</span> .</p>
+<h4 id="sat">4.4.1 3-SAT</h4>
+<ol type="1">
+<li><p>Description :</p>
+<ol type="1">
+<li><p>Def [ <strong><em>literal</em></strong> ] : For <span
+class="math inline">\(\vec x=(x_1,\cdots,x_n)\in \{0,1\}^n\)</span> ,
+<strong><em>literal</em></strong> is an element of <span
+class="math inline">\(X=\{x_i|i\in [n]\}\cup\{\bar x_i|i\in
+[n]\}\)</span> .</p>
+<p>Def [ <strong><em>CNF-clause</em></strong> ] : A
+<strong><em>CNF-clause</em></strong> <span
+class="math inline">\(c\)</span> is a formula with form : <span
+class="math display">\[
+c=\lor_{j=1}^m a_j
+\]</span> where <span class="math inline">\(a_1,\cdots,a_m\)</span> are
+distinct literals .</p>
+<p>Def [ <strong><em>CNF</em></strong> ] : A <strong><em>conjunctive
+normal formula (CNF)</em></strong> is a formula <span
+class="math inline">\(\{0,1\}^n\to \{0,1\}\)</span> with following form
+: <span class="math display">\[
+f(\vec x)=\land_{i=1}^k c_i(\vec x)
+\]</span> where <span class="math inline">\(c_i(\vec x)\)</span> is a
+CNF-clause .</p>
+<p>Def [ <strong><em>3-CNF</em></strong> ] : A
+<strong><em>3-CNF</em></strong> is a CNF with all clauses having exactly
+<span class="math inline">\(3\)</span> literals . <span
+class="math inline">\(c_i=a_{i,1}\lor a_{i,2}\lor a_{i,3}\)</span> ,
+where <span class="math inline">\(a_{i,1},a_{i,2},a_{i,3}\)</span> are
+distinct literals .</p></li>
+<li><p>Input : a 3-CNF</p>
+<p>Output : Decide whether there exists an assignment for <span
+class="math inline">\(\vec x\)</span> such that <span
+class="math inline">\(f(\vec x)=1\)</span> .</p></li>
+</ol></li>
+<li><p><strong>3-SAT</strong> is <strong>NPC</strong></p>
+<p>Obviously , <strong>3-SAT</strong> is <strong>NP</strong> .</p>
+<p>Goal : <strong>SAT</strong> $_p $ <strong>3-SAT</strong></p>
+<p>Given a SAT instance <span class="math inline">\(I\)</span> , we
+construct in poly-time a 3-SAT instance <span
+class="math inline">\(I&#39;\)</span> , s.t. <span
+class="math inline">\(I\in SAT\iff I&#39;\in 3-SAT\)</span> .</p>
+<blockquote>
+<p><strong><em>Cook reduction</em></strong> : can use oracle poly
+times<br />
+<strong><em>Karp reduction</em></strong> : only use oracle once</p>
+<p>Originally , Cook define NPC by Cook reduction , but almost always
+Karp reduction is enough (though stronger than Cook's) ,</p>
+</blockquote>
+<p>For each node <span class="math inline">\(v\in I\)</span> , construct
+a variable <span class="math inline">\(x_v\)</span> in <span
+class="math inline">\(I&#39;\)</span></p>
+<ul>
+<li>If <span class="math inline">\(v=\lnot\)</span> with child <span
+class="math inline">\(u\)</span> , we need <span
+class="math inline">\(x_v=\overline{x_u}\)</span> , so add to <span
+class="math inline">\(I&#39;\)</span> a clause <span
+class="math inline">\((x_v\lor x_u)\land
+(\overline{x_v}\lor\overline{x_u})\)</span> .</li>
+<li>If <span class="math inline">\(v=\lor\)</span> with children <span
+class="math inline">\(u,w\)</span> , we need <span
+class="math inline">\(x_v=x_u\lor x_w\)</span> , so add to <span
+class="math inline">\(I&#39;\)</span> a clause <span
+class="math inline">\((x_v\lor \bar x_u)\land (x_v\lor \bar x_w)\land
+(\bar x_v\lor x_u\lor x_w)\)</span> .</li>
+<li>If <span class="math inline">\(v=\land\)</span> with children <span
+class="math inline">\(u,v\)</span> , we need <span
+class="math inline">\(x_v=x_u\land x_w\)</span> , so add to <span
+class="math inline">\(I&#39;\)</span> a clause <span
+class="math inline">\((\bar x_v\lor x_u)\land (\bar x_v\lor x_w)\land
+(x_v\lor \bar x_u\lor \bar x_w)\)</span> .</li>
+<li>If <span class="math inline">\(v=0/1\)</span> , add to <span
+class="math inline">\(I&#39;\)</span> a clause <span
+class="math inline">\(\bar x_v\)</span> or <span
+class="math inline">\(x_v\)</span> .</li>
+</ul>
+<p>Extend each clause into <span class="math inline">\(3\)</span>
+literals : <span class="math inline">\((a\lor b)=(a\lor b\lor c)\land
+(a\lor b\lor \bar c)\)</span></p>
+<p>Claim : <span class="math inline">\(I\in SAT\iff I&#39;\in
+3-SAT\)</span></p></li>
+</ol>
+<h4 id="independent-set-is">4.4.2 Independent Set ( <strong>IS</strong>
+)</h4>
+<p>Obviously , <strong>IS</strong> is <strong>NP</strong></p>
+<p>Goal : <strong>3-SAT</strong> <span
+class="math inline">\(\le_p\)</span> <strong>IS</strong></p>
+<ol type="1">
+<li><p>Construction</p>
+<p>Given <strong>3-SAT</strong> instance <span
+class="math inline">\(I\)</span> , construct an <strong>IS</strong>
+instance <span class="math inline">\(I&#39;=(G,k)\)</span> , s.t. <span
+class="math inline">\((G,k)\in\)</span> <strong>IS</strong> $I$
+<strong>3-SAT</strong> .</p>
+<ul>
+<li>Each clause <span class="math inline">\(x_{i,1}\lor x_{i,2}\lor \bar
+x_{i,3}\)</span> , construct a 3-cycle <span
+class="math inline">\((x_{i,1} , x_{i,2} , \bar x_{i,3})\)</span>
+(finally <span class="math inline">\(3n\)</span> nodes , <span
+class="math inline">\(3n\)</span> edges).</li>
+<li>Then connecting <span class="math inline">\(x_i\)</span> and <span
+class="math inline">\(\bar x_i\)</span> for all <span
+class="math inline">\(i\)</span> .</li>
+</ul>
+<blockquote>
+<p>In each triangle , we can choose at most <span
+class="math inline">\(1\)</span> node .</p>
+</blockquote></li>
+<li><p>Claim : <span class="math inline">\((G,k)\in\)</span>
+<strong>IS</strong> $I$ <strong>3-SAT</strong> ( <span
+class="math inline">\(k\)</span> is the number of clauses )</p>
+<p>Proof :</p>
+<ol type="1">
+<li>If $I$ <strong>3-SAT</strong> , then there is a valid assignment
+<span class="math inline">\(\vec x\)</span> . Each clause has at least
+one <code>true</code> , so we choose that literal in the clause , this
+is an independent set in <span class="math inline">\(G\)</span> with
+size <span class="math inline">\(k\)</span> .</li>
+<li>If $(G,k)$ <strong>IS</strong> , for each literal <span
+class="math inline">\(x_i\)</span> (<span class="math inline">\(\bar
+x_i\)</span>) chosen , let <span class="math inline">\(x_i=1\)</span> (
+<span class="math inline">\(x_i=0\)</span> ) . The rest of variables are
+assigned arbitrarily . This assignment is a valid assignment for <span
+class="math inline">\(I\)</span> , so <span
+class="math inline">\(I\in\)</span> <strong>3-SAT</strong> .</li>
+</ol></li>
+<li><p>Cor : Vertex Coloring , Set Coloring <span
+class="math inline">\(\in\)</span> NPC</p></li>
+</ol>
+<h4 id="hamiltonian-cycle-hc">4.4.3 Hamiltonian Cycle (
+<strong>HC</strong> )</h4>
+<ol type="1">
+<li><p>Description</p>
+<ol type="1">
+<li>Input : A directed/undirected graph</li>
+<li>Output : Decide whether there exists a cycle visiting each vertex
+exactly once</li>
+</ol>
+<blockquote>
+<p><strong>TSP</strong> : weighted , determine the shortest Hamiltonian
+Cycle</p>
+<p><strong>TSP</strong> is <strong>NP-Hard</strong></p>
+</blockquote></li>
+<li><p><strong>HC</strong> is <strong>NPC</strong></p>
+<p>Obviously , <strong>HC</strong> is <strong>NP</strong></p>
+<p>Goal : <strong>3-SAT</strong> <span
+class="math inline">\(\le_p\)</span> <strong>HC</strong></p>
+<ol type="1">
+<li><p>Construction</p>
+<p>Consider an instance <span class="math inline">\(I\)</span> for
+<strong>3-SAT</strong> , construct <span
+class="math inline">\(G\)</span> , s.t. <span
+class="math inline">\(G\in\)</span> <strong>HC</strong> $I$
+<strong>3-SAT</strong> .</p>
+<p>Suppose <span class="math inline">\(I\)</span> has <span
+class="math inline">\(n\)</span> variables , <span
+class="math inline">\(k\)</span> clauses .</p>
+<ul>
+<li><p><span class="math inline">\(S,T\in V\)</span> , <span
+class="math inline">\((T,S)\in E\)</span></p></li>
+<li><p><span class="math inline">\(n\)</span> lines (<span
+class="math inline">\(P_i\)</span>) : on line <span
+class="math inline">\(i\)</span> : <span
+class="math inline">\(x_{i,0/1}\in V\)</span> , <span
+class="math inline">\(v_{i,j,0/1/2}\in V\)</span> , <span
+class="math inline">\(1\le j\le k\)</span> , <span
+class="math inline">\((v_{i,j,0},v_{i,j,1}),(v_{i,j,1},v_{i,j,2}),(v_{i,j,2},v_{i,j+1,0})\in
+E\)</span></p>
+<p><span class="math inline">\((x_{i,0},v_{i,1,0}) ,
+(v_{i,k,2},x_{i,1})\in E\)</span></p></li>
+<li><p>Between two lines : <span
+class="math inline">\((x_{i,0},x_{i+1,0}) , (x_{i,0},x_{i+1},1) ,
+(x_{i,1},x_{i+1,0}),(x_{i,1},x_{i+1,1})\in E\)</span></p>
+<p><span
+class="math inline">\((S,x_{1,0}),(S,x_{1,1}),(x_{n,0},T),(x_{n,1},T)\in
+E\)</span></p></li>
+<li><p>Clause : For example <span class="math inline">\(c_a=(x_i\lor
+\bar x_j\lor x_k)\)</span></p>
+<p><span class="math inline">\(c_a\in V\)</span> , <span
+class="math inline">\((v_{i,a,0},c_a),(c_a,v_{i,a,1})\in E\)</span> ,
+<span class="math inline">\((v_{j,a,1},c_a),(c_a,v_{j,a,0})\in
+E\)</span> , <span
+class="math inline">\((v_{k,a,0},c_a),(c_a,v_{k,a,1})\in
+E\)</span></p></li>
+</ul>
+<p><img src="/images/posts/AD6_fig1.png" /></p>
+<blockquote>
+<p><span class="math inline">\(v_{i,j,2}\)</span> for constraining the
+Hamiltonian cycle be the form <span class="math inline">\(S\to
+x_{1,0/1}\to x_{1,1/0}\to \cdots\to x_{n,0/1}\to x_{n,1/0}\to T\to
+S\)</span> .</p>
+</blockquote></li>
+<li><p>Cor : <strong>Hamiltonian Cycle</strong> / <strong>Hamiltonian
+Path</strong> for directed/undirected graph are all <strong>NPC</strong>
+.</p></li>
+</ol></li>
+</ol>
+<h4 id="dimensional-matching-3dm">4.4.4 3-Dimensional Matching (
+3DM)</h4>
+<ol type="1">
+<li><p>Description</p>
+<p>Def [ <strong><em>3D graph</em></strong> ] : <span
+class="math inline">\(G=(X,Y,Z,E)\)</span> , <span
+class="math inline">\(E=\{e=(x_e,y_e,z_e)|x_e\in X,y_e\in Y,z_e\in
+Z\}\)</span> .</p>
+<p>Def [ <strong><em>3D Matching</em></strong> ] : <span
+class="math inline">\(M\subseteq E\)</span> satisfies</p>
+<ul>
+<li>$e_1e_2M $, <span class="math inline">\(x_{e_1}\neq x_{e_2}\)</span>
+, <span class="math inline">\(y_{e_1}\neq y_{e_2}\)</span> , <span
+class="math inline">\(z_{e_1}\neq z_{e_2}\)</span></li>
+<li><span class="math inline">\(\bigcup\limits_{e\in M}x_e=X\)</span> ,
+<span class="math inline">\(\bigcup\limits_{e\in M}y_e=Y\)</span> ,
+<span class="math inline">\(\bigcup\limits_{e\in M}z_e=Z\)</span>.</li>
+</ul>
+<p>Input : A 3D graph</p>
+<p>Output : Decide whether there is a 3D Matching for this
+graph.</p></li>
+<li><p><strong>3DM</strong> is <strong>NPC</strong></p>
+<p>Obviously , <strong>3DM</strong> is <strong>NP</strong></p>
+<p>Goal : <strong>3-SAT</strong> <span
+class="math inline">\(\le_p\)</span> <strong>3DM</strong></p>
+<p>Consider an instance <span class="math inline">\(I\)</span> for
+<strong>3-SAT</strong> , construct <span
+class="math inline">\(G\)</span> , s.t. <span
+class="math inline">\(G\in\)</span> <strong>3DM</strong> $I$
+<strong>3-SAT</strong> .</p>
+<p>Suppose <span class="math inline">\(I\)</span> has <span
+class="math inline">\(n\)</span> variables , <span
+class="math inline">\(k\)</span> clauses .</p>
+<p>Construction :</p>
+<p><strong>Vertices :</strong></p>
+<ul>
+<li>For each variable <span class="math inline">\(x_i\)</span> ,
+construct <span
+class="math inline">\(A_i=\{a_{i,1},\cdots,a_{i,2k}\}\)</span> , <span
+class="math inline">\(B_i=\{b_{i,1},\cdots,b_{i,k}\}\)</span> , <span
+class="math inline">\(C_i=\{c_{i,1},\cdots,c_{i,k}\}\)</span> .</li>
+<li>For each clause <span class="math inline">\(c_i\)</span> , construct
+<span class="math inline">\(d_i,e_i\)</span> .</li>
+<li>Cleanup garget : for <span class="math inline">\(i\)</span>-th
+garget construct <span class="math inline">\(y_i,z_i\)</span> .</li>
+</ul>
+<p><span class="math inline">\(X=\bigcup A_i\)</span> , <span
+class="math inline">\(Y=\left(\bigcup B_i \right)\cup
+\{d_i\}\cup\{y_i\}\)</span> , <span
+class="math inline">\(Z=\left(\bigcup C_i \right)\cup
+\{e_i\}\cup\{z_i\}\)</span></p>
+<p><strong>Hyperedges</strong> :</p>
+<ul>
+<li>For each variable <span class="math inline">\(x_i\)</span> : <span
+class="math inline">\(e_{i,2j-1}=(a_{i,2j-1},b_{i,j},c_{i,j})\)</span> ,
+<span
+class="math inline">\(e_{i,2j}=(a_{i,2j},b_{i,j+1},c_{i,j})\)</span> .
+(<span class="math inline">\(1\le j\le k\)</span> )</li>
+<li>For each clause <span class="math inline">\(c_t\)</span> : suppose
+<span class="math inline">\(c_t=x_i\lor \bar x_j\lor x_k\)</span> :
+<span class="math inline">\(e_{t,1}=(a_{i,2t},d_t,e_t)\)</span> , <span
+class="math inline">\(e_{t,2}=(a_{j,2t-1},d_t,e_t)\)</span> , <span
+class="math inline">\(e_{t,3}=(a_{k,2t},d_t,e_t)\)</span> . (<span
+class="math inline">\(1\le t\le k\)</span>)</li>
+<li>For each cleanup garget <span class="math inline">\(g_t\)</span> :
+<span class="math inline">\(e_{t,i,j}=(a_{i,j},y_t,z_t)\)</span> .
+(<span class="math inline">\(1\le i\le n,1\le j\le 2k\)</span>)</li>
+</ul>
+<p><img src="/images/posts/AD6_fig2.png" /></p>
+<blockquote>
+<p>Cleanup garget : we need <span class="math inline">\((n-1)k\)</span>
+gargets to recycle all free <span class="math inline">\(a_{i,j}\)</span>
+( tips ) .</p>
+</blockquote></li>
+</ol>
+<h4 id="coloring-problem-3col">4.4.5 3-Coloring Problem (3CoL)</h4>
+<ol type="1">
+<li><p>Description</p>
+<ol type="1">
+<li><p>Def [ <strong><em>valid coloring</em></strong> ] : Assign each
+vertex a color , such that no two vertices having same color share an
+edge</p>
+<p><span class="math inline">\(\forall e=(u,v)\in E\)</span> , <span
+class="math inline">\(c(u)\neq c(v)\)</span> .</p></li>
+<li><p>Def [ <strong><em>chromatic number</em></strong> ] <span
+class="math inline">\(\chi(G)\)</span> :The minimum number of colors
+that can color the graph validly .</p></li>
+<li><p>Input : A graph <span class="math inline">\(G\)</span></p>
+<p>Output : Decide whether <span class="math inline">\(\chi(G)\le
+3\)</span>.</p></li>
+</ol>
+<blockquote>
+<ul>
+<li><p><strong>2CoL</strong> is <strong>P</strong> , using
+<code>dfs</code></p></li>
+<li><p><strong>4CoL Theorem</strong> : Any planar graph can be <span
+class="math inline">\(4\)</span>-colored.</p>
+<p>Current Proof : need computer assistant ( <span
+class="math inline">\(\sim 10^2\)</span> cases to verify )</p>
+<p>Open : a proof of <strong>4CoL Theorem</strong> without computer
+assistant ?</p></li>
+</ul>
+</blockquote></li>
+<li><p><strong>3CoL</strong> is <strong>NPC</strong></p>
+<p>Obviously <strong>3CoL</strong> is <strong>NP</strong> .</p>
+<p>Goal : <strong>3CoL</strong> <span
+class="math inline">\(\le_p\)</span> <strong>3-SAT</strong> .</p>
+<p>Consider an instance <span class="math inline">\(I\)</span> for
+<strong>3-SAT</strong> , construct <span
+class="math inline">\(G\)</span> , s.t. <span
+class="math inline">\(G\in\)</span> <strong>3CoL</strong> $I$
+<strong>3-SAT</strong> .</p>
+<p>Suppose <span class="math inline">\(I\)</span> has <span
+class="math inline">\(n\)</span> variables , <span
+class="math inline">\(k\)</span> clauses .</p>
+<p>Construction :</p>
+<p><strong>Vertices</strong> :</p>
+<ul>
+<li>Special garget : <span class="math inline">\(T,F,B\)</span> .</li>
+<li>Variable garget : <span class="math inline">\(v_i\)</span> , <span
+class="math inline">\(\bar v_i\)</span> .</li>
+<li>Clause garget : <span class="math inline">\(6\)</span> vertices for
+each clause .</li>
+</ul>
+<p><strong>Edges</strong> :</p>
+<ul>
+<li><p>Special garget : <span
+class="math inline">\((T,F),(T,B),(F,B)\)</span></p>
+<blockquote>
+<p>To ensure <span class="math inline">\(T,F,B\)</span> having distinct
+colors</p>
+</blockquote></li>
+<li><p>Variable garget : <span class="math inline">\((B,v_i)\)</span> ,
+<span class="math inline">\((v_i,\bar v_i)\)</span> , <span
+class="math inline">\((B,\bar v_i)\)</span></p>
+<blockquote>
+<p>To ensure either <span class="math inline">\(c(v_i)=c(T),c(\bar
+v_i)=c(F)\)</span> , or <span class="math inline">\(c(v_i)=c(F),c(\bar
+v_i)=c(T)\)</span></p>
+</blockquote></li>
+<li><p>Clause garget : Example <span class="math inline">\(c=(x_i\lor
+\bar x_j\lor x_k)\)</span></p>
+<p><span class="math inline">\((v_i,a),(T,a),(a,b),(T,b)\)</span></p>
+<p><span class="math inline">\((\bar v_j,c),(T,c)\)</span></p>
+<p><span class="math inline">\((v_k,d),(T,d),(d,e),(F,e)\)</span></p>
+<p><span class="math inline">\((f,a),(f,c),(f,e)\)</span></p>
+<blockquote>
+<p>To ensure that <span class="math inline">\(f\)</span> can be colored
+if and only if <span class="math inline">\(v_i,\bar v_j,v_k\)</span> are
+not all colored with <span class="math inline">\(c(F)\)</span>.</p>
+<p>Otherwise , <span class="math inline">\(c(v_i)=c(F)\)</span> , so
+<span class="math inline">\(c(a)=c(B)\)</span> , so <span
+class="math inline">\(c(b)=c(F)\)</span></p>
+<p><span class="math inline">\(c(\bar v_j)=c(F)\)</span> , so <span
+class="math inline">\(c(c)=c(B)\)</span></p>
+<p><span class="math inline">\(c(v_3)=c(F)\)</span> , so <span
+class="math inline">\(c(d)=c(B)\)</span> , so <span
+class="math inline">\(c(e)=c(T)\)</span></p>
+<p>Then <span class="math inline">\(f\)</span> cannot be colored</p>
+</blockquote></li>
+</ul>
+<p><img src="/images/posts/AD6_fig3.png" /></p></li>
+</ol>
+<h4 id="subset-sum-problem">4.4.6 Subset Sum Problem</h4>
+<ol type="1">
+<li><p>Description</p>
+<p>Input : <span class="math inline">\(w_1,\cdots,w_n\)</span> , target
+<span class="math inline">\(W\)</span> .</p>
+<p>Output : determine whether there exists <span
+class="math inline">\(S\subseteq [n]\)</span> , s.t. <span
+class="math inline">\(\sum_{i\in S}w_i=W\)</span> .</p>
+<blockquote>
+<p>Subset Sum can be solved in <span class="math inline">\(\mathcal
+O(nW)\)</span> with DP method</p>
+</blockquote></li>
+<li><p><strong>Subset Sum</strong> is <strong>NPC</strong></p>
+<p>Obviously <strong>Subset Sum</strong> is <strong>NP</strong>.</p>
+<blockquote>
+<p><span class="math inline">\(W\)</span> in the reduction must be
+exponentially large</p>
+</blockquote>
+<p>Goal : <strong>3DM</strong> <span
+class="math inline">\(\le_p\)</span> <strong>Subset Sum</strong></p>
+<ol type="1">
+<li><p>Construction</p>
+<p>For each hyperedge <span class="math inline">\(e=(x,y,z)\)</span> ,
+construct <span
+class="math inline">\(w_e=2^{x-1+|Y|+|Z|}+2^{y-1+|Z|}+2^{z-1}\)</span></p>
+<p>Let <span
+class="math inline">\(W=\sum\limits_{x=1}^{|X|}2^{x-1+|Y|+|Z|}+\sum\limits_{y=1}^{|Y|}2^{y-1+|Z|}+\sum\limits_{z=1}^{|Z|}2^{z-1}\)</span></p>
+<p><strong>Problem : carry ( 进位 )</strong></p></li>
+<li><p>Improved Construction</p>
+<p>Let <span class="math inline">\(b=|E|+1\)</span></p>
+<p>For each hyperedge <span class="math inline">\(e=(x,y,z)\)</span> ,
+construct <span
+class="math inline">\(w_e=b^{x-1+|Y|+|Z|}+b^{y-1+|Z|}+b^{z-1}\)</span></p>
+<p>Let <span
+class="math inline">\(W=\sum\limits_{x=1}^{|X|}b^{x-1+|Y|+|Z|}+\sum\limits_{y=1}^{|Y|}b^{y-1+|Z|}+\sum\limits_{z=1}^{|Z|}b^{z-1}\)</span></p></li>
+</ol></li>
+</ol>
+]]></content>
+      <categories>
+        <category>课程笔记</category>
+        <category>算法设计</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>算法-图论</tag>
+        <tag>算法-动态规划</tag>
+        <tag>算法-动态规划-背包</tag>
+        <tag>计算理论</tag>
+        <tag>计算理论-NPC</tag>
+        <tag>计算理论-3SAT</tag>
+        <tag>算法-图论-独立集</tag>
+        <tag>算法-图论-哈密顿路</tag>
+        <tag>算法-图论-高维图匹配</tag>
+        <tag>算法-图论-染色问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Probability and Statistics 3</title>
     <url>/2023/10/16/Probability-and-Statistics-3/</url>
     <content><![CDATA[<h2 id="chapter-1-background-in-probability">Chapter 1 Background in
@@ -1624,9 +2356,9 @@ View_{V_i^*}^P(x)\)</span></p>
       </categories>
       <tags>
         <tag>密码学</tag>
+        <tag>密码学-证明复合</tag>
         <tag>密码学-零知识证明</tag>
         <tag>密码学-交互式证明</tag>
-        <tag>密码学-证明复合</tag>
       </tags>
   </entry>
   <entry>
@@ -2314,8 +3046,8 @@ B_j)+\sum_{j=0}^nb_j\sum_{i=0}^m \mu(A_i\cup B_j)\\
         <category>概率与统计</category>
       </categories>
       <tags>
-        <tag>实分析-测度-可测映射</tag>
         <tag>概率论-随机变量</tag>
+        <tag>实分析-测度-可测映射</tag>
         <tag>概率论-分布函数</tag>
         <tag>概率论-概率密度函数</tag>
         <tag>实分析-Lebesgue积分</tag>
@@ -2834,11 +3566,11 @@ class="math inline">\((\mathbb R,\mathcal R)\)</span> .</p></li>
         <category>概率与统计</category>
       </categories>
       <tags>
+        <tag>概率论-随机变量</tag>
+        <tag>实分析-测度-可测映射</tag>
         <tag>概率论-概率空间</tag>
         <tag>实分析-测度</tag>
         <tag>实分析-代数空间</tag>
-        <tag>实分析-测度-可测映射</tag>
-        <tag>概率论-随机变量</tag>
       </tags>
   </entry>
   <entry>
@@ -4158,8 +4890,8 @@ class="math inline">\(dist(p)&lt;dist(p&#39;)=d(u)+l_e\)</span> , so
       <tags>
         <tag>算法</tag>
         <tag>算法-搜索</tag>
-        <tag>算法-贪心</tag>
         <tag>算法-强连通分量(SCC)</tag>
+        <tag>算法-贪心</tag>
       </tags>
   </entry>
   <entry>
