@@ -145,7 +145,10 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lec02-Zero-Knowledge-Proof-under-Composition"><span class="nav-number">1.</span> <span class="nav-text">Lec02  Zero-Knowledge Proof under Composition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Review-of-Interactive-Proof"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 Review of Interactive Proof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Interactive-Proof-for-Graph-Isomorphism"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 Interactive Proof for Graph Isomorphism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Sequential-Composition"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 Sequential Composition</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lec02-zero-knowledge-proof-under-composition"><span class="nav-number">1.</span> <span class="nav-text">Lec02
+Zero-Knowledge Proof under Composition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#review-of-interactive-proof"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 Review of Interactive
+Proof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interactive-proof-for-graph-isomorphism"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 Interactive Proof
+for Graph Isomorphism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sequential-composition"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 Sequential Composition</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,7 +163,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,7 +174,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -342,228 +345,507 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Lec02-Zero-Knowledge-Proof-under-Composition"><a href="#Lec02-Zero-Knowledge-Proof-under-Composition" class="headerlink" title="Lec02  Zero-Knowledge Proof under Composition"></a>Lec02  Zero-Knowledge Proof under Composition</h2><h3 id="2-1-Review-of-Interactive-Proof"><a href="#2-1-Review-of-Interactive-Proof" class="headerlink" title="2.1 Review of Interactive Proof"></a>2.1 Review of Interactive Proof</h3><ol>
+    <div class="post-body" itemprop="articleBody"><h2 id="lec02-zero-knowledge-proof-under-composition">Lec02
+Zero-Knowledge Proof under Composition</h2>
+<h3 id="review-of-interactive-proof">2.1 Review of Interactive
+Proof</h3>
+<ol type="1">
 <li><p>Interactive Proof</p>
-<ol>
+<ol type="1">
 <li><p>Framework</p>
-<p>Prover $P$, Verifier $V$ . $P,V$ knows $x$ .</p>
-<p>$P$ wants to convince $V$ that $x\in L$ with interaction .</p>
-<p>$P,V$ sends messages $m_1,m_2,\cdots,m_k$ one by one , then $V$ accept/reject whether $x\in L$ .</p>
-<p>$\braket{P,V}(x)=y\in \{0,1\}$ , indicating whether $x\in L$ .</p>
-<p><strong><em>transcript</em></strong> : $\tau=\{m_1,m_2,\cdots,m_k\}$ .</p>
-</li>
+<p>Prover <span class="math inline">\(P\)</span>, Verifier <span
+class="math inline">\(V\)</span> . <span
+class="math inline">\(P,V\)</span> knows <span
+class="math inline">\(x\)</span> .</p>
+<p><span class="math inline">\(P\)</span> wants to convince <span
+class="math inline">\(V\)</span> that <span class="math inline">\(x\in
+L\)</span> with interaction .</p>
+<p><span class="math inline">\(P,V\)</span> sends messages <span
+class="math inline">\(m_1,m_2,\cdots,m_k\)</span> one by one , then
+<span class="math inline">\(V\)</span> accept/reject whether <span
+class="math inline">\(x\in L\)</span> .</p>
+<p><span class="math inline">\(\braket{P,V}(x)=y\in \{0,1\}\)</span> ,
+indicating whether <span class="math inline">\(x\in L\)</span> .</p>
+<p><strong><em>transcript</em></strong> : <span
+class="math inline">\(\tau=\{m_1,m_2,\cdots,m_k\}\)</span> .</p></li>
 <li><p>Formal Definition</p>
-<p>$(P,V)$ is an <strong><em>interactive proof</em></strong> for $L$ if </p>
+<p><span class="math inline">\((P,V)\)</span> is an
+<strong><em>interactive proof</em></strong> for <span
+class="math inline">\(L\)</span> if</p>
 <ul>
-<li>$V$ is an efficient algorithm ( poly-time )</li>
-<li><strong><em>Completeness</em></strong> : $\forall x\in L,\Pr\{\braket{P,V}(x)=1\}=1$</li>
-<li><strong><em>(Almost) Soundness</em></strong> : $\forall x\notin L,\forall P^<em>,\Pr\{\braket{P^</em>,V}(x)=1\}&lt;\epsilon$</li>
-</ul>
-</li>
-</ol>
-</li>
+<li><span class="math inline">\(V\)</span> is an efficient algorithm (
+poly-time )</li>
+<li><strong><em>Completeness</em></strong> : <span
+class="math inline">\(\forall x\in
+L,\Pr\{\braket{P,V}(x)=1\}=1\)</span></li>
+<li><strong><em>(Almost) Soundness</em></strong> : <span
+class="math inline">\(\forall x\notin L,\forall
+P^*,\Pr\{\braket{P^*,V}(x)=1\}&lt;\epsilon\)</span></li>
+</ul></li>
+</ol></li>
 <li><p>Error Toleration</p>
-<ol>
-<li><p>Security parameter : $\kappa$</p>
-</li>
-<li><p>For Efficiency : $|x|=poly(\kappa)$</p>
-</li>
+<ol type="1">
+<li><p>Security parameter : <span
+class="math inline">\(\kappa\)</span></p></li>
+<li><p>For Efficiency : <span
+class="math inline">\(|x|=poly(\kappa)\)</span></p></li>
 <li><p>For Security</p>
 <ul>
-<li><p>Def [<strong><em>Negligible Function</em></strong>] $\epsilon:\mathbb N\to \mathbb R^<em>$ is **</em>negligible<em>*</em> if for all positive polynomial $p$ , $\exists c$ , s.t. $\forall k\ge c,\epsilon(k)&lt;\frac{1}{p(k)}$</p>
-</li>
-<li><p>Def [<strong><em>Statistically Indistinguishable</em></strong>] : two distribution $f,g$ are <strong><em>statistically indistinguishable</em></strong> if there exists a negligible function $\epsilon$ that : </p>
-<script type="math/tex; mode=display">
-SD(f(x),g(x))=\frac{1}{2}\sum_{s}\left|\Pr\{f(x)=s\}-\Pr\{g(x)=s\}\right|<\epsilon</script></li>
-<li><p>Def [<strong><em>Computationally Indistinguishable</em></strong>] : two distribution $f,g$ are <strong><em>computationally indistinguishable</em></strong> if $\forall D$ (distinguisher) in P.P.T , there exists a negligible function $\epsilon$ that : </p>
-<script type="math/tex; mode=display">
-\left|\Pr\left\{D\big(f(x)\big)=1\right\}-\Pr\left\{D\big(g(x)\big)=1\right\}\right|<\epsilon</script></li>
-</ul>
-</li>
-</ol>
-</li>
+<li><p>Def [<strong><em>Negligible Function</em></strong>] <span
+class="math inline">\(\epsilon:\mathbb N\to \mathbb R^*\)</span> is
+<strong><em>negligible</em></strong> if for all positive polynomial
+<span class="math inline">\(p\)</span> , <span
+class="math inline">\(\exists c\)</span> , s.t. <span
+class="math inline">\(\forall k\ge
+c,\epsilon(k)&lt;\frac{1}{p(k)}\)</span></p></li>
+<li><p>Def [<strong><em>Statistically Indistinguishable</em></strong>] :
+two distribution <span class="math inline">\(f,g\)</span> are
+<strong><em>statistically indistinguishable</em></strong> if there
+exists a negligible function <span
+class="math inline">\(\epsilon\)</span> that : <span
+class="math display">\[
+SD(f(x),g(x))=\frac{1}{2}\sum_{s}\left|\Pr\{f(x)=s\}-\Pr\{g(x)=s\}\right|&lt;\epsilon
+\]</span></p></li>
+<li><p>Def [<strong><em>Computationally Indistinguishable</em></strong>]
+: two distribution <span class="math inline">\(f,g\)</span> are
+<strong><em>computationally indistinguishable</em></strong> if <span
+class="math inline">\(\forall D\)</span> (distinguisher) in P.P.T ,
+there exists a negligible function <span
+class="math inline">\(\epsilon\)</span> that : <span
+class="math display">\[
+\left|\Pr\left\{D\big(f(x)\big)=1\right\}-\Pr\left\{D\big(g(x)\big)=1\right\}\right|&lt;\epsilon
+\]</span></p></li>
+</ul></li>
+</ol></li>
 <li><p>Zero Knowledge</p>
-<ol>
+<ol type="1">
 <li><p>Intuition : not gain of <strong>Knowledge</strong></p>
 <blockquote>
-<p>Everything can be <strong>computed locally</strong> is not a gain of knowledge</p>
-</blockquote>
-</li>
-<li><p>Def [<strong><em>View</em></strong>] : </p>
-<script type="math/tex; mode=display">
-View_V^P(x)=(x,r,\tau)</script></li>
-<li><p>Def [<strong><em>dishonest-verifier zero-knowledge</em></strong>] : $(P,V)$ is an IP for $L$ . If $(P,V)$ achieves perfect/statistical/computational <strong><em>dishonest-verifier zero-knowledge</em></strong> , it satisfies that :</p>
-<p>$\forall V^<em>$ in P.P.T. , $\exists  $ expected poly-time randomized algorithm $M^</em>$ , s.t.</p>
-<script type="math/tex; mode=display">
-\forall x\in L,M^*(x)\sim View_{V^*}^P(x)</script><p>$\sim$ refers to equivalent / statistically indistinguishable / computationally indistinguishable</p>
-</li>
-<li><p>Alternative definition of zero-knowledge : </p>
-<p>$\forall V^<em>$ in P.P.T. , $\exists $ expected poly-time randomized algorithm $M^</em>$ , s.t. </p>
-<script type="math/tex; mode=display">
-\forall x\in L,\braket{P,V^*}(x)\sim M^*(x)</script><blockquote>
+<p>Everything can be <strong>computed locally</strong> is not a gain of
+knowledge</p>
+</blockquote></li>
+<li><p>Def [<strong><em>View</em></strong>] : <span
+class="math display">\[
+View_V^P(x)=(x,r,\tau)
+\]</span></p></li>
+<li><p>Def [<strong><em>dishonest-verifier zero-knowledge</em></strong>]
+: <span class="math inline">\((P,V)\)</span> is an IP for <span
+class="math inline">\(L\)</span> . If <span
+class="math inline">\((P,V)\)</span> achieves
+perfect/statistical/computational <strong><em>dishonest-verifier
+zero-knowledge</em></strong> , it satisfies that :</p>
+<p><span class="math inline">\(\forall V^*\)</span> in P.P.T. , <span
+class="math inline">\(\exists \ \)</span> expected poly-time randomized
+algorithm <span class="math inline">\(M^*\)</span> , s.t. <span
+class="math display">\[
+\forall x\in L,M^*(x)\sim View_{V^*}^P(x)
+\]</span> <span class="math inline">\(\sim\)</span> refers to equivalent
+/ statistically indistinguishable / computationally
+indistinguishable</p></li>
+<li><p>Alternative definition of zero-knowledge :</p>
+<p><span class="math inline">\(\forall V^*\)</span> in P.P.T. , <span
+class="math inline">\(\exists\ \)</span> expected poly-time randomized
+algorithm <span class="math inline">\(M^*\)</span> , s.t. <span
+class="math display">\[
+\forall x\in L,\braket{P,V^*}(x)\sim M^*(x)
+\]</span></p>
+<blockquote>
 <p><em>Proof of Equivalence</em></p>
-<p>Original $\to$ Alternative : The output of $V^<em>$ only depends on its view . If $M^</em>$ can simulate the view of $V^<em>$ , then it can run $V^</em>$ with the view , and get the output of $V^*$ .</p>
-<p>Alternative $\to$ Original : The proposition holds for all $V^<em>$ ( which can violate the protocol ) , so if $V^</em>$ just output its entire view , we still need to be able to find the corresponding $M^<em>$ , this means the ability to simulate the view of $V^</em>$ . </p>
-</blockquote>
-</li>
+<p>Original <span class="math inline">\(\to\)</span> Alternative : The
+output of <span class="math inline">\(V^*\)</span> only depends on its
+view . If <span class="math inline">\(M^*\)</span> can simulate the view
+of <span class="math inline">\(V^*\)</span> , then it can run <span
+class="math inline">\(V^*\)</span> with the view , and get the output of
+<span class="math inline">\(V^*\)</span> .</p>
+<p>Alternative <span class="math inline">\(\to\)</span> Original : The
+proposition holds for all <span class="math inline">\(V^*\)</span> (
+which can violate the protocol ) , so if <span
+class="math inline">\(V^*\)</span> just output its entire view , we
+still need to be able to find the corresponding <span
+class="math inline">\(M^*\)</span> , this means the ability to simulate
+the view of <span class="math inline">\(V^*\)</span> .</p>
+</blockquote></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<h3 id="2-2-Interactive-Proof-for-Graph-Isomorphism"><a href="#2-2-Interactive-Proof-for-Graph-Isomorphism" class="headerlink" title="2.2 Interactive Proof for Graph Isomorphism"></a>2.2 Interactive Proof for Graph Isomorphism</h3><ol>
+<h3 id="interactive-proof-for-graph-isomorphism">2.2 Interactive Proof
+for Graph Isomorphism</h3>
+<ol type="1">
 <li><p>Protocol</p>
-<p>|                  Prover                   |                |                           Verifier                           |<br>| :———————————————————-: | :——————: | :—————————————————————————————: |<br>|           $\pi_r\leftarrow S_n$           |                |                                                              |<br>|          $\tilde G:=\pi_r(G_0)$           | —$\tilde G$-&gt; |                                                              |<br>|                                           |    &lt;-$b$—     |                    $b\leftarrow \{0,1\}$                     |<br>| find $\pi_b$ , s.t. $\tilde G=\pi_b(G_b)$ |  —$\pi_b$-&gt;   |                                                              |<br>|                                           |                | $\begin{cases}1&amp;\tilde G=\pi_b(G_b)\\0&amp;\text{otherwise}\end{cases}$ |</p>
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 12%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Prover</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Verifier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(\pi_r\leftarrow S_n\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\tilde
+G:=\pi_r(G_0)\)</span></td>
+<td style="text-align: center;">--<span class="math inline">\(\tilde
+G\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">&lt;-<span
+class="math inline">\(b\)</span>--</td>
+<td style="text-align: center;"><span class="math inline">\(b\leftarrow
+\{0,1\}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">find <span
+class="math inline">\(\pi_b\)</span> , s.t. <span
+class="math inline">\(\tilde G=\pi_b(G_b)\)</span></td>
+<td style="text-align: center;">--<span
+class="math inline">\(\pi_b\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{cases}1&amp;\tilde
+G=\pi_b(G_b)\\0&amp;\text{otherwise}\end{cases}\)</span></td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>Note : If Prover knows $\pi$ that $\pi(G_0)=G_1$ , then $\pi_b$ can be constructed :</p>
-<script type="math/tex; mode=display">
-\pi_b=\begin{cases}\pi_r&b=0\\\pi_r\circ\pi^{-1}&b=1\end{cases}</script></blockquote>
-</li>
-<li><p>Completeness : By construction of $\pi_b$ above , $\Pr\{V\text{ accepts}\}=1$ .</p>
-</li>
-<li><p>Soundness : $\forall \tilde G$ , if $G_0\not\sim G_1$ , then either $\tilde G\not\sim G_0$ , or $\tilde G\not\sim G_1$ ,</p>
-<p>If $\tilde G\not\sim G_{b^<em>}$ , then $\Pr\{V\text{ rejects}\}\ge \Pr\{b=b^</em>\}=\frac{1}{2}$</p>
+<p>Note : If Prover knows <span class="math inline">\(\pi\)</span> that
+<span class="math inline">\(\pi(G_0)=G_1\)</span> , then <span
+class="math inline">\(\pi_b\)</span> can be constructed : <span
+class="math display">\[
+\pi_b=\begin{cases}\pi_r&amp;b=0\\\pi_r\circ\pi^{-1}&amp;b=1\end{cases}
+\]</span></p>
+</blockquote></li>
+<li><p>Completeness : By construction of <span
+class="math inline">\(\pi_b\)</span> above , <span
+class="math inline">\(\Pr\{V\text{ accepts}\}=1\)</span> .</p></li>
+<li><p>Soundness : <span class="math inline">\(\forall \tilde G\)</span>
+, if <span class="math inline">\(G_0\not\sim G_1\)</span> , then either
+<span class="math inline">\(\tilde G\not\sim G_0\)</span> , or <span
+class="math inline">\(\tilde G\not\sim G_1\)</span> ,</p>
+<p>If <span class="math inline">\(\tilde G\not\sim G_{b^*}\)</span> ,
+then <span class="math inline">\(\Pr\{V\text{ rejects}\}\ge
+\Pr\{b=b^*\}=\frac{1}{2}\)</span></p>
 <blockquote>
-<p>Note : we cannot let Verifier just choose $b=1$ , since a malicious Prover can violate the protocol , $\pi_r$ may not be a permutation , and $\tilde G$ may not isomorphic to $G_0$ .</p>
+<p>Note : we cannot let Verifier just choose <span
+class="math inline">\(b=1\)</span> , since a malicious Prover can
+violate the protocol , <span class="math inline">\(\pi_r\)</span> may
+not be a permutation , and <span class="math inline">\(\tilde G\)</span>
+may not isomorphic to <span class="math inline">\(G_0\)</span> .</p>
 </blockquote>
-<p>Repeat $k$ times , $\Pr\{V\text{ rejects}\}\ge 1-\frac{1}{2^k}$ .</p>
-</li>
-<li><p>Honest-Verifier Zero-Knowledge : $P,V$ follows the protocol .</p>
-<p>In $View_V^P$ , the additional info is $\tilde G,\pi_b$ , which are both randomly picked s.t. $\pi_b(G_b)=\tilde G$ .</p>
-<p>$M$ : samples $b\gets\{0,1\}$ , samples $\pi_b\gets S_n$ , computes $\tilde G=\pi_b(G_b)$ .</p>
-</li>
-<li><p>Dishonest-Verifier Zero-Knowledge : $V^*$ may not follow the protocol : $b$ may be chosen depends on $\tilde G$ .</p>
-<p>$M^*$ : perform as $P$ (but without knowing $\pi$) </p>
-<ol>
+<p>Repeat <span class="math inline">\(k\)</span> times , <span
+class="math inline">\(\Pr\{V\text{ rejects}\}\ge
+1-\frac{1}{2^k}\)</span> .</p></li>
+<li><p>Honest-Verifier Zero-Knowledge : <span
+class="math inline">\(P,V\)</span> follows the protocol .</p>
+<p>In <span class="math inline">\(View_V^P\)</span> , the additional
+info is <span class="math inline">\(\tilde G,\pi_b\)</span> , which are
+both randomly picked s.t. <span class="math inline">\(\pi_b(G_b)=\tilde
+G\)</span> .</p>
+<p><span class="math inline">\(M\)</span> : samples <span
+class="math inline">\(b\gets\{0,1\}\)</span> , samples <span
+class="math inline">\(\pi_b\gets S_n\)</span> , computes <span
+class="math inline">\(\tilde G=\pi_b(G_b)\)</span> .</p></li>
+<li><p>Dishonest-Verifier Zero-Knowledge : <span
+class="math inline">\(V^*\)</span> may not follow the protocol : <span
+class="math inline">\(b\)</span> may be chosen depends on <span
+class="math inline">\(\tilde G\)</span> .</p>
+<p><span class="math inline">\(M^*\)</span> : perform as <span
+class="math inline">\(P\)</span> (but without knowing <span
+class="math inline">\(\pi\)</span>)</p>
+<ol type="1">
 <li><p><em>Strategy</em> :</p>
-<ol>
-<li><p>$M^<em>$ samples $b^</em>\gets \{0,1\}$ ,samples $\pi_{b^<em>}\gets S_n$ , computes $\tilde G=\pi_{b^</em>}(G_{b^*})$</p>
-</li>
-<li><p>$M^<em>$ runs with $V^</em>$ and obtains $b$ .</p>
-</li>
-<li><p>If $b^<em>=b$ , reply $\pi_{b^</em>}$ and find out the view .</p>
-<p>If $b^*\neq b$ , go back to (1).</p>
-</li>
-</ol>
-</li>
-<li><p>Prove $M^<em>(x)\equiv View_{V^</em>}^P(x)$ :</p>
-<p><em>Proof Strategy</em> : <strong><em>Hybrid Arguments</em></strong> : make sure that every two adjacent $Hyb$ are so near .</p>
-<ol>
-<li><p>$Hyb_0$ : $P$ runs with $V^<em>$ , output $View_{V^</em>}^P(x)$</p>
-</li>
-<li><p>$Hyb_1$ : $\tilde P$ runs with $V^<em>$ , receives $b$ . Then $\tilde P$ samples $b^</em>\gets \{0,1\}$ </p>
-<p>If $b^<em>=b$ , $\tilde P$ continues with $V^</em>$ . Otherwise , $\tilde P$ reruns with $V^*$ .</p>
+<ol type="1">
+<li><p><span class="math inline">\(M^*\)</span> samples <span
+class="math inline">\(b^*\gets \{0,1\}\)</span> ,samples <span
+class="math inline">\(\pi_{b^*}\gets S_n\)</span> , computes <span
+class="math inline">\(\tilde G=\pi_{b^*}(G_{b^*})\)</span></p></li>
+<li><p><span class="math inline">\(M^*\)</span> runs with <span
+class="math inline">\(V^*\)</span> and obtains <span
+class="math inline">\(b\)</span> .</p></li>
+<li><p>If <span class="math inline">\(b^*=b\)</span> , reply <span
+class="math inline">\(\pi_{b^*}\)</span> and find out the view .</p>
+<p>If <span class="math inline">\(b^*\neq b\)</span> , go back to
+(1).</p></li>
+</ol></li>
+<li><p>Prove <span class="math inline">\(M^*(x)\equiv
+View_{V^*}^P(x)\)</span> :</p>
+<p><em>Proof Strategy</em> : <strong><em>Hybrid Arguments</em></strong>
+: make sure that every two adjacent <span
+class="math inline">\(Hyb\)</span> are so near .</p>
+<ol start="0" type="1">
+<li><p><span class="math inline">\(Hyb_0\)</span> : <span
+class="math inline">\(P\)</span> runs with <span
+class="math inline">\(V^*\)</span> , output <span
+class="math inline">\(View_{V^*}^P(x)\)</span></p></li>
+<li><p><span class="math inline">\(Hyb_1\)</span> : <span
+class="math inline">\(\tilde P\)</span> runs with <span
+class="math inline">\(V^*\)</span> , receives <span
+class="math inline">\(b\)</span> . Then <span
+class="math inline">\(\tilde P\)</span> samples <span
+class="math inline">\(b^*\gets \{0,1\}\)</span></p>
+<p>If <span class="math inline">\(b^*=b\)</span> , <span
+class="math inline">\(\tilde P\)</span> continues with <span
+class="math inline">\(V^*\)</span> . Otherwise , <span
+class="math inline">\(\tilde P\)</span> reruns with <span
+class="math inline">\(V^*\)</span> .</p>
 <ul>
-<li>$\mathbb E\{\text{repitition time}\}=2$</li>
-<li>$View_{V^<em>}^P(x)\equiv View_{V^</em>}^{\tilde P}(x)$</li>
+<li><span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=2\)</span></li>
+<li><span class="math inline">\(View_{V^*}^P(x)\equiv View_{V^*}^{\tilde
+P}(x)\)</span></li>
 </ul>
 <blockquote>
-<p>Proof : $\forall v$ , compute $\Pr\{View_{V^*}^{\tilde P}(x)=v\}$</p>
-<p>Define $v_i$ : view of $V^*$ in the $i$-th iteration </p>
-<p>If $\tilde P$ exactly finishes at $i$-th iteration , then $v_i\equiv View_{V^*}^{P}(x)$</p>
-<script type="math/tex; mode=display">
+<p>Proof : <span class="math inline">\(\forall v\)</span> , compute
+<span class="math inline">\(\Pr\{View_{V^*}^{\tilde
+P}(x)=v\}\)</span></p>
+<p>Define <span class="math inline">\(v_i\)</span> : view of <span
+class="math inline">\(V^*\)</span> in the <span
+class="math inline">\(i\)</span>-th iteration</p>
+<p>If <span class="math inline">\(\tilde P\)</span> exactly finishes at
+<span class="math inline">\(i\)</span>-th iteration , then <span
+class="math inline">\(v_i\equiv View_{V^*}^{P}(x)\)</span> <span
+class="math display">\[
 \begin{aligned}
-\Pr\{View_{V^*}^{\tilde P}(x)=v\}&=\sum_{l=1}^{+\infty} \Pr\{v_l=v\land b_l^*=b_l\land \forall i<l,b_i^*\neq b_i\}\\
-&=\sum_{l=1}^{+\infty}\Pr\{v_l=v\}\Pr\{b_l^*=b_l\land \forall i<l,b_i^*\neq b_i\}\\
-&=\Pr\{View_{V^*}^P(x)=v\}\sum_{l=1}^{+\infty}\Pr\{b_l^*=b_l\land \forall i<l,b_i^*\neq b_i\}\\
-&=\Pr\{View_{V^*}^P(x)=v\}
-\end{aligned}</script></blockquote>
-</li>
-<li><p>$Hyb_2$ : $\tilde P$ samples $b^<em>\gets \{0,1\}$ . Then $\tilde P$ runs with $V^</em>$ , receives $b$ .</p>
-<p>If $b^<em>=b$ , $\tilde P$ continues with $V^</em>$ . Otherwise , $\tilde P$ reruns with $V^*$ .</p>
+\Pr\{View_{V^*}^{\tilde P}(x)=v\}&amp;=\sum_{l=1}^{+\infty}
+\Pr\{v_l=v\land b_l^*=b_l\land \forall i&lt;l,b_i^*\neq b_i\}\\
+&amp;=\sum_{l=1}^{+\infty}\Pr\{v_l=v\}\Pr\{b_l^*=b_l\land \forall
+i&lt;l,b_i^*\neq b_i\}\\
+&amp;=\Pr\{View_{V^*}^P(x)=v\}\sum_{l=1}^{+\infty}\Pr\{b_l^*=b_l\land
+\forall i&lt;l,b_i^*\neq b_i\}\\
+&amp;=\Pr\{View_{V^*}^P(x)=v\}
+\end{aligned}
+\]</span></p>
+</blockquote></li>
+<li><p><span class="math inline">\(Hyb_2\)</span> : <span
+class="math inline">\(\tilde P\)</span> samples <span
+class="math inline">\(b^*\gets \{0,1\}\)</span> . Then <span
+class="math inline">\(\tilde P\)</span> runs with <span
+class="math inline">\(V^*\)</span> , receives <span
+class="math inline">\(b\)</span> .</p>
+<p>If <span class="math inline">\(b^*=b\)</span> , <span
+class="math inline">\(\tilde P\)</span> continues with <span
+class="math inline">\(V^*\)</span> . Otherwise , <span
+class="math inline">\(\tilde P\)</span> reruns with <span
+class="math inline">\(V^*\)</span> .</p>
 <ul>
-<li>$\mathbb E\{\text{repitition time}\}=2$</li>
-<li>$Hyb_1\equiv Hyb_2$ ( Since we only swap two independent operations )</li>
-</ul>
-</li>
-<li><p>$Hyb_3$ : $\tilde P$ samples $b^<em>\gets\{0,1\}$ . Then $\tilde P$ samples $\pi_{b^</em>}$ and computes $\tilde G=\pi_{b^<em>}(G_{b^</em>})$ . Then $\tilde P$ runs with $V^*$ , receives $b$ .</p>
-<p>If $b^<em>=b$ , $\tilde P$ continues with $V^</em>$ . Otherwise , $\tilde P$ reruns with $V^*$ .</p>
+<li><span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=2\)</span></li>
+<li><span class="math inline">\(Hyb_1\equiv Hyb_2\)</span> ( Since we
+only swap two independent operations )</li>
+</ul></li>
+<li><p><span class="math inline">\(Hyb_3\)</span> : <span
+class="math inline">\(\tilde P\)</span> samples <span
+class="math inline">\(b^*\gets\{0,1\}\)</span> . Then <span
+class="math inline">\(\tilde P\)</span> samples <span
+class="math inline">\(\pi_{b^*}\)</span> and computes <span
+class="math inline">\(\tilde G=\pi_{b^*}(G_{b^*})\)</span> . Then <span
+class="math inline">\(\tilde P\)</span> runs with <span
+class="math inline">\(V^*\)</span> , receives <span
+class="math inline">\(b\)</span> .</p></li>
+</ol>
+<p>If <span class="math inline">\(b^*=b\)</span> , <span
+class="math inline">\(\tilde P\)</span> continues with <span
+class="math inline">\(V^*\)</span> . Otherwise , <span
+class="math inline">\(\tilde P\)</span> reruns with <span
+class="math inline">\(V^*\)</span> .</p>
 <ul>
-<li>$\mathbb E\{\text{repitition time}\}=2$</li>
-<li>$Hyb_2\equiv Hyb_3$ ( Since the distribution of $(\pi_{b^*},\tilde G)$ is the same )</li>
-<li>$Hyb_3$ is exactly $M^*$ </li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-</li>
+<li><span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=2\)</span></li>
+<li><span class="math inline">\(Hyb_2\equiv Hyb_3\)</span> ( Since the
+distribution of <span class="math inline">\((\pi_{b^*},\tilde
+G)\)</span> is the same )</li>
+<li><span class="math inline">\(Hyb_3\)</span> is exactly <span
+class="math inline">\(M^*\)</span></li>
+</ul></li>
+</ol></li>
 <li><p>Zero-knowledge under Repetition (for soundness)</p>
-<ol>
-<li><p>Def [<strong><em>parallel composition</em></strong>] : </p>
-<p>|                         Prover                          |                                      |                           Verifier                           |<br>| :——————————————————————————-: | :—————————————————: | :—————————————————————————————: |<br>|       $\pi_r^i\leftarrow S_n$ for $i\in [\kappa]$       |                                      |                                                              |<br>|    $\tilde {G^i}:=\pi_r^i(G_0)$ for $i\in [\kappa]$     | —$\{\tilde {G^i}|i\in [\kappa]\}$-&gt; |                                                              |<br>|                                                         |               &lt;-$b$—                |                 $b\leftarrow \{0,1\}^\kappa$                 |<br>| find $\pi_b^i$ , s.t. $\tilde {G^i}=\pi_{b}^i(G_{b_i})$ |   —$\{\pi_b^i|i\in [\kappa]\}$-&gt;    |                                                              |<br>|                                                         |                                      | $\begin{cases}1&amp;\forall i\in [\kappa],\tilde {G^i}=\pi_b^i(G_{b_i})\\0&amp;\text{otherwise}\end{cases}$ |</p>
-</li>
+<ol type="1">
+<li><p>Def [<strong><em>parallel composition</em></strong>] :</p>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 23%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Prover</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Verifier</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">\(\pi_r^i\leftarrow S_n\)</span> for <span
+class="math inline">\(i\in [\kappa]\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\tilde
+{G^i}:=\pi_r^i(G_0)\)</span> for <span class="math inline">\(i\in
+[\kappa]\)</span></td>
+<td style="text-align: center;">--<span class="math inline">\(\{\tilde
+{G^i}|i\in [\kappa]\}\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">&lt;-<span
+class="math inline">\(b\)</span>--</td>
+<td style="text-align: center;"><span class="math inline">\(b\leftarrow
+\{0,1\}^\kappa\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">find <span
+class="math inline">\(\pi_b^i\)</span> , s.t. <span
+class="math inline">\(\tilde {G^i}=\pi_{b}^i(G_{b_i})\)</span></td>
+<td style="text-align: center;">--<span
+class="math inline">\(\{\pi_b^i|i\in [\kappa]\}\)</span>-&gt;</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{cases}1&amp;\forall i\in [\kappa],\tilde
+{G^i}=\pi_b^i(G_{b_i})\\0&amp;\text{otherwise}\end{cases}\)</span></td>
+</tr>
+</tbody>
+</table></li>
 <li><p>Brute force simulator :</p>
-<p>randomly sample $b^<em>\gets\{0,1\}^\kappa$ , if received $b\neq b^</em>$ , rerun .</p>
-<p>Good : $M^<em>(x)\equiv View_{V^</em>}^P(x)$</p>
-<p>Bad : $\mathbb E\{\text{repitition time}\}=2^{\kappa}$</p>
-</li>
+<p>randomly sample <span
+class="math inline">\(b^*\gets\{0,1\}^\kappa\)</span> , if received
+<span class="math inline">\(b\neq b^*\)</span> , rerun .</p>
+<p>Good : <span class="math inline">\(M^*(x)\equiv
+View_{V^*}^P(x)\)</span></p>
+<p>Bad : <span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=2^{\kappa}\)</span></p></li>
 </ol>
 <blockquote>
-<p>For most ZKP , we don’t know how to prove <em>dishonest-verifier zero-knowledge</em> under parallel composition .</p>
-</blockquote>
-</li>
+<p>For most ZKP , we don't know how to prove <em>dishonest-verifier
+zero-knowledge</em> under parallel composition .</p>
+</blockquote></li>
 </ol>
-<h3 id="2-3-Sequential-Composition"><a href="#2-3-Sequential-Composition" class="headerlink" title="2.3 Sequential Composition"></a>2.3 Sequential Composition</h3><ol>
-<li><p>Def [<strong><em>sequential composition</em></strong>] : $(P,V)$ is an IP for $L$ , Let $(P_q,V_q)$ be $(P,V)$ repeat $q$ times .</p>
-</li>
+<h3 id="sequential-composition">2.3 Sequential Composition</h3>
+<ol type="1">
+<li><p>Def [<strong><em>sequential composition</em></strong>] : <span
+class="math inline">\((P,V)\)</span> is an IP for <span
+class="math inline">\(L\)</span> , Let <span
+class="math inline">\((P_q,V_q)\)</span> be <span
+class="math inline">\((P,V)\)</span> repeat <span
+class="math inline">\(q\)</span> times .</p></li>
 <li><p>Brute force simulator for Graph Isomorphism :</p>
-<p>For $i=1,2,\cdots,\kappa$ :</p>
-<ol>
-<li><p>$M^<em>$ samples $b^</em>\gets\{0,1\}$ , samples $\pi_{b^<em>}\gets S_n$ , computes $\tilde G=\pi_{b^</em>}(G_{b^*})$</p>
-</li>
-<li><p>$M^<em>$ runs with $V^</em>$ and receives $b^*$</p>
-</li>
-<li><p>If $b=b^<em>$ , $M^</em>$ continues working as $P$</p>
-<p>If $b\neq b^<em>$ , $M^</em>$ restarts from $i=1$</p>
-</li>
+<p>For <span class="math inline">\(i=1,2,\cdots,\kappa\)</span> :</p>
+<ol type="1">
+<li><p><span class="math inline">\(M^*\)</span> samples <span
+class="math inline">\(b^*\gets\{0,1\}\)</span> , samples <span
+class="math inline">\(\pi_{b^*}\gets S_n\)</span> , computes <span
+class="math inline">\(\tilde G=\pi_{b^*}(G_{b^*})\)</span></p></li>
+<li><p><span class="math inline">\(M^*\)</span> runs with <span
+class="math inline">\(V^*\)</span> and receives <span
+class="math inline">\(b^*\)</span></p></li>
+<li><p>If <span class="math inline">\(b=b^*\)</span> , <span
+class="math inline">\(M^*\)</span> continues working as <span
+class="math inline">\(P\)</span></p>
+<p>If <span class="math inline">\(b\neq b^*\)</span> , <span
+class="math inline">\(M^*\)</span> restarts from <span
+class="math inline">\(i=1\)</span></p></li>
 </ol>
 <blockquote>
-<p>Bad : $\mathbb E\{\text{repitition time}\}=\mathcal O(2^{\kappa})$</p>
-</blockquote>
-</li>
-<li><p>Idea : Not restarts from $i=1$ ?</p>
-<p>Store the state of $V^*$ : $(input,memory,output,randomness)$</p>
+<p>Bad : <span class="math inline">\(\mathbb E\{\text{repitition
+time}\}=\mathcal O(2^{\kappa})\)</span></p>
+</blockquote></li>
+<li><p>Idea : Not restarts from <span class="math inline">\(i=1\)</span>
+?</p>
+<p>Store the state of <span class="math inline">\(V^*\)</span> : <span
+class="math inline">\((input,memory,output,randomness)\)</span></p>
 <blockquote>
-<p>We can store randomness of $V^<em>$ since it can be provided by $M^</em>$</p>
-<p>The randomness of $V^*$ can be pre-determined</p>
+<p>We can store randomness of <span class="math inline">\(V^*\)</span>
+since it can be provided by <span class="math inline">\(M^*\)</span></p>
+<p>The randomness of <span class="math inline">\(V^*\)</span> can be
+pre-determined</p>
 </blockquote>
-<p>Simulator $M^*$ :</p>
-<p>For $i=1,2,\cdots,\kappa$ :</p>
-<ol>
-<li><p>$M^<em>$ saves the state $st_{i-1}$ of $V^</em>$</p>
-</li>
-<li><p>$M^<em>$ samples $b_i^</em>\gets\{0,1\}$ , samples $\pi_{b_i^<em>}\gets S_n$ , computes $\tilde G_i=\pi_{b_i^</em>}(G_{b_i^*})$</p>
-</li>
-<li><p>$M^<em>$ runs with $V^</em>$ and receives $b_i^*$</p>
-</li>
-<li><p>If $b_i=b_i^<em>$ , $M^</em>$ continues working as $P$ </p>
-<p>If $b_i\neq b_i^<em>$ , $M^</em>$ reloads $st_{i-1}$ for $V^*$ and goes back to (2). </p>
-</li>
-</ol>
-</li>
-<li><p>Def [<strong><em>Interactive Proof with Auxiliary Input</em></strong>] : </p>
-<p>$(P,V)$ is an <strong><em>interactive zk-proof with auxiliary input</em></strong> for $L$ if </p>
+<p>Simulator <span class="math inline">\(M^*\)</span> :</p>
+<p>For <span class="math inline">\(i=1,2,\cdots,\kappa\)</span> :</p>
+<ol type="1">
+<li><p><span class="math inline">\(M^*\)</span> saves the state <span
+class="math inline">\(st_{i-1}\)</span> of <span
+class="math inline">\(V^*\)</span></p></li>
+<li><p><span class="math inline">\(M^*\)</span> samples <span
+class="math inline">\(b_i^*\gets\{0,1\}\)</span> , samples <span
+class="math inline">\(\pi_{b_i^*}\gets S_n\)</span> , computes <span
+class="math inline">\(\tilde
+G_i=\pi_{b_i^*}(G_{b_i^*})\)</span></p></li>
+<li><p><span class="math inline">\(M^*\)</span> runs with <span
+class="math inline">\(V^*\)</span> and receives <span
+class="math inline">\(b_i^*\)</span></p></li>
+<li><p>If <span class="math inline">\(b_i=b_i^*\)</span> , <span
+class="math inline">\(M^*\)</span> continues working as <span
+class="math inline">\(P\)</span></p>
+<p>If <span class="math inline">\(b_i\neq b_i^*\)</span> , <span
+class="math inline">\(M^*\)</span> reloads <span
+class="math inline">\(st_{i-1}\)</span> for <span
+class="math inline">\(V^*\)</span> and goes back to (2).</p></li>
+</ol></li>
+<li><p>Def [<strong><em>Interactive Proof with Auxiliary
+Input</em></strong>] :</p>
+<p><span class="math inline">\((P,V)\)</span> is an
+<strong><em>interactive zk-proof with auxiliary input</em></strong> for
+<span class="math inline">\(L\)</span> if</p>
 <ul>
-<li><p>$V$ is an efficient algorithm ( poly-time )</p>
-</li>
-<li><p><strong><em>Completeness</em></strong> : $\forall x\in L,\forall y,z\in \{0,1\}^*,\Pr\{\braket{P(y),V(z)}(x)=1\}=1$</p>
-</li>
-<li><p><strong><em>(Almost) Soundness</em></strong> : $\forall x\notin L,\forall y,z\in \{0,1\}^<em>,\forall P^</em>,\Pr\{\braket{P^*(y),V(z)}(x)=1\}&lt;\epsilon$</p>
-</li>
-<li><p><strong><em>Zero-Knowledge</em></strong> : $\forall V^<em>$ in P.P.T. , $\exists$ expected poly-time algorithm $M^</em>$ , $\forall x\in L,\forall y,z\in \{0,1\}^*$ ,</p>
-<script type="math/tex; mode=display">
-M^*(x,z)\sim View_{V^*(z)}^{P(y)}(x)</script></li>
-</ul>
-</li>
+<li><p><span class="math inline">\(V\)</span> is an efficient algorithm
+( poly-time )</p></li>
+<li><p><strong><em>Completeness</em></strong> : <span
+class="math inline">\(\forall x\in L,\forall y,z\in
+\{0,1\}^*,\Pr\{\braket{P(y),V(z)}(x)=1\}=1\)</span></p></li>
+<li><p><strong><em>(Almost) Soundness</em></strong> : <span
+class="math inline">\(\forall x\notin L,\forall y,z\in \{0,1\}^*,\forall
+P^*,\Pr\{\braket{P^*(y),V(z)}(x)=1\}&lt;\epsilon\)</span></p></li>
+<li><p><strong><em>Zero-Knowledge</em></strong> : <span
+class="math inline">\(\forall V^*\)</span> in P.P.T. , <span
+class="math inline">\(\exists\)</span> expected poly-time algorithm
+<span class="math inline">\(M^*\)</span> , <span
+class="math inline">\(\forall x\in L,\forall y,z\in \{0,1\}^*\)</span> ,
+<span class="math display">\[
+M^*(x,z)\sim View_{V^*(z)}^{P(y)}(x)
+\]</span></p></li>
+</ul></li>
 <li><p>Lemma [<strong><em>Composition Lemma</em></strong>] :</p>
-<p>$(P,V)$ : zero-knowledge IP for $L$ , $q$ is a polynomial of $\kappa$ </p>
-<p>$(P_q,V_q)$ : An IP runs $(P,V)$ $q$ times</p>
-<p>Claim : $(P_q,V_q)$ are still zero-knowledge .</p>
+<p><span class="math inline">\((P,V)\)</span> : zero-knowledge IP for
+<span class="math inline">\(L\)</span> , <span
+class="math inline">\(q\)</span> is a polynomial of <span
+class="math inline">\(\kappa\)</span></p>
+<p><span class="math inline">\((P_q,V_q)\)</span> : An IP runs <span
+class="math inline">\((P,V)\)</span> <span
+class="math inline">\(q\)</span> times</p>
+<p>Claim : <span class="math inline">\((P_q,V_q)\)</span> are still
+zero-knowledge .</p>
 <blockquote>
-<p>Proof Intuition </p>
-<p>In the $i$-th iteration : $V$ runs like $V_i^<em>(x,st_{i-1})$ , construct corresponding $M_i^</em>(x,st_{i-1})$ </p>
-<p>Prove $M_i^<em>(x,st_{i-1})\sim View_{V_i^</em>}^P(x)$</p>
-</blockquote>
-</li>
+<p>Proof Intuition</p>
+<p>In the <span class="math inline">\(i\)</span>-th iteration : <span
+class="math inline">\(V\)</span> runs like <span
+class="math inline">\(V_i^*(x,st_{i-1})\)</span> , construct
+corresponding <span class="math inline">\(M_i^*(x,st_{i-1})\)</span></p>
+<p>Prove <span class="math inline">\(M_i^*(x,st_{i-1})\sim
+View_{V_i^*}^P(x)\)</span></p>
+</blockquote></li>
 </ol>
 
     </div>
@@ -672,13 +954,13 @@ M^*(x,z)\sim View_{V^*(z)}^{P(y)}(x)</script></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

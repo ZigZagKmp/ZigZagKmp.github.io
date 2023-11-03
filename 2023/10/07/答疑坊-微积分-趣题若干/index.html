@@ -146,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1"><span class="nav-number">1.</span> <span class="nav-text">P1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E7%AD%94"><span class="nav-number">1.2.</span> <span class="nav-text">解答</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2"><span class="nav-number">2.</span> <span class="nav-text">P2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E7%AD%94-1"><span class="nav-number">2.2.</span> <span class="nav-text">解答</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#p1"><span class="nav-number">1.</span> <span class="nav-text">P1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E7%AD%94"><span class="nav-number">1.2.</span> <span class="nav-text">解答</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#p2"><span class="nav-number">2.</span> <span class="nav-text">P2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E7%AD%94-1"><span class="nav-number">2.2.</span> <span class="nav-text">解答</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -161,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -172,7 +172,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -231,6 +231,13 @@
     相关文章
   </div>
   <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/11/03/Probability-and-Statistics-5/" rel="bookmark">
+        <time class="popular-posts-time">2023-11-03</time>
+        <br>
+      Probability and Statistics 5
+      </a>
+    </li>
     <li class="popular-posts-item">
       <a class="popular-posts-link" href="/2023/11/03/Probability-and-Statistics-4/" rel="bookmark">
         <time class="popular-posts-time">2023-11-03</time>
@@ -356,42 +363,65 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="P1"><a href="#P1" class="headerlink" title="P1"></a>P1</h3><p>类型：极限存在性</p>
-<h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><p>证明下面的极限存在：</p>
-<script type="math/tex; mode=display">
-\lim_{n\to +\infty}(1+\frac{1}{2^2})(1+\frac{1}{3^2})\cdots(1+\frac{1}{n^2})</script><h4 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h4><p>显然上述数列单调增，因此只需要证明有上界</p>
-<script type="math/tex; mode=display">
+    <div class="post-body" itemprop="articleBody"><h3 id="p1">P1</h3>
+<p>类型：极限存在性</p>
+<h4 id="题目">题目</h4>
+<p>证明下面的极限存在： <span class="math display">\[
+\lim_{n\to
++\infty}(1+\frac{1}{2^2})(1+\frac{1}{3^2})\cdots(1+\frac{1}{n^2})
+\]</span></p>
+<h4 id="解答">解答</h4>
+<p>显然上述数列单调增，因此只需要证明有上界 <span
+class="math display">\[
 \begin{aligned}
-&\quad \prod_{k=2}^n (1+\frac{1}{k^2})\\
-&=\exp\left(\sum_{k=2}^n \ln (1+\frac{1}{k^2})\right)\\
-&\le \exp\left(\sum_{k=2}^n \frac{1}{k^2}\right)\\
-&\le \exp\left(\sum_{k=2}^n \frac{1}{k(k-1)}\right)\\
-&=\exp\left(\sum_{k=1}^n \frac{1}{k-1}-\frac{1}{k}\right)\\
-&=\exp(1-\frac{1}{n})\\
-&\le e
-\end{aligned}</script><p>其中第 $3$ 行使用常见不等式 $\ln(1+x)\le x$ ，第 $4\sim 6$ 行为裂项。</p>
-<hr>
-<h3 id="P2"><a href="#P2" class="headerlink" title="P2"></a>P2</h3><p>类型：$e$ 相关极限不等式</p>
-<h4 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h4><p>证明，对任意正整数 $n\ge 2$ ，</p>
-<script type="math/tex; mode=display">
-\sum_{k=0}^n \frac{1}{k!}-\frac{3}{2n}<(1+\frac{1}{n})^n<\sum_{k=0}^n \frac{1}{k!}</script><h4 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h4><p>使用二项式定理</p>
-<script type="math/tex; mode=display">
+&amp;\quad \prod_{k=2}^n (1+\frac{1}{k^2})\\
+&amp;=\exp\left(\sum_{k=2}^n \ln (1+\frac{1}{k^2})\right)\\
+&amp;\le \exp\left(\sum_{k=2}^n \frac{1}{k^2}\right)\\
+&amp;\le \exp\left(\sum_{k=2}^n \frac{1}{k(k-1)}\right)\\
+&amp;=\exp\left(\sum_{k=1}^n \frac{1}{k-1}-\frac{1}{k}\right)\\
+&amp;=\exp(1-\frac{1}{n})\\
+&amp;\le e
+\end{aligned}
+\]</span> 其中第 <span class="math inline">\(3\)</span> 行使用常见不等式
+<span class="math inline">\(\ln(1+x)\le x\)</span> ，第 <span
+class="math inline">\(4\sim 6\)</span> 行为裂项。</p>
+<hr />
+<h3 id="p2">P2</h3>
+<p>类型：<span class="math inline">\(e\)</span> 相关极限不等式</p>
+<h4 id="题目-1">题目</h4>
+<p>证明，对任意正整数 <span class="math inline">\(n\ge 2\)</span> ，
+<span class="math display">\[
+\sum_{k=0}^n
+\frac{1}{k!}-\frac{3}{2n}&lt;(1+\frac{1}{n})^n&lt;\sum_{k=0}^n
+\frac{1}{k!}
+\]</span></p>
+<h4 id="解答-1">解答</h4>
+<p>使用二项式定理 <span class="math display">\[
 \begin{aligned}
-(1+\frac{1}{n})^n&=\sum_{k=0}^n \frac{n!}{k!(n-k)!}\frac{1}{n^k}\\
-&=\sum_{k=0}^n \frac{1}{k!}\prod_{j=0}^{k-1}(1-\frac{j}{n})
-\end{aligned}</script><p>显然对 $n\ge 2$ ,  $\prod_{j=0}^{k-1}(1-\frac{j}{n})&lt; 1$ ，故右侧不等式成立。</p>
-<p>考虑 Bernoulli 不等式：</p>
-<script type="math/tex; mode=display">
-\forall a_1,\cdots,a_n>-1,且a_i 同号，则\prod_{k=1}^n (1+a_k)>1+\sum_{k=1}^n a_k</script><p>故</p>
-<script type="math/tex; mode=display">
+(1+\frac{1}{n})^n&amp;=\sum_{k=0}^n \frac{n!}{k!(n-k)!}\frac{1}{n^k}\\
+&amp;=\sum_{k=0}^n \frac{1}{k!}\prod_{j=0}^{k-1}(1-\frac{j}{n})
+\end{aligned}
+\]</span> 显然对 <span class="math inline">\(n\ge 2\)</span> , <span
+class="math inline">\(\prod_{j=0}^{k-1}(1-\frac{j}{n})&lt; 1\)</span>
+，故右侧不等式成立。</p>
+<p>考虑 Bernoulli 不等式： <span class="math display">\[
+\forall a_1,\cdots,a_n&gt;-1,且a_i 同号，则\prod_{k=1}^n
+(1+a_k)&gt;1+\sum_{k=1}^n a_k
+\]</span> 故 <span class="math display">\[
 \begin{aligned}
-(1+\frac{1}{n})^n&>\sum_{k=0}^n\left( \frac{1}{k!}-\frac{1}{k!}\sum_{j=1}^{k-1}\frac{j}{n}\right)\\
-&=\sum_{k=0}^n \frac{1}{k!}-\sum_{k=0}^n \frac{1}{k!}\frac{k(k-1)}{2n}\\
-&=\sum_{k=0}^n \frac{1}{k!}-\sum_{k=2}^n \frac{1}{(k-2)!}\frac{1}{2n}\\
-&\ge \sum_{k=0}^n \frac{1}{k!}-\frac{1}{2n}\left(2+\sum_{k=2}^{n-2} \frac{1}{k(k-1)}\right)\\
-&=\sum_{k=0}^n \frac{1}{k!}-\frac{1}{2n}(3-\frac{1}{n-2})\\
-&>\sum_{k=0}^n \frac{1}{k!}-\frac{3}{2n}
-\end{aligned}</script><hr>
+(1+\frac{1}{n})^n&amp;&gt;\sum_{k=0}^n\left(
+\frac{1}{k!}-\frac{1}{k!}\sum_{j=1}^{k-1}\frac{j}{n}\right)\\
+&amp;=\sum_{k=0}^n \frac{1}{k!}-\sum_{k=0}^n
+\frac{1}{k!}\frac{k(k-1)}{2n}\\
+&amp;=\sum_{k=0}^n \frac{1}{k!}-\sum_{k=2}^n
+\frac{1}{(k-2)!}\frac{1}{2n}\\
+&amp;\ge \sum_{k=0}^n \frac{1}{k!}-\frac{1}{2n}\left(2+\sum_{k=2}^{n-2}
+\frac{1}{k(k-1)}\right)\\
+&amp;=\sum_{k=0}^n \frac{1}{k!}-\frac{1}{2n}(3-\frac{1}{n-2})\\
+&amp;&gt;\sum_{k=0}^n \frac{1}{k!}-\frac{3}{2n}
+\end{aligned}
+\]</span></p>
+<hr />
 
     </div>
 
@@ -500,13 +530,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

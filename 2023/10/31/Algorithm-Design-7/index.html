@@ -146,7 +146,9 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-5-Extending-the-Limits-of-Tractability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 5 Extending the Limits of Tractability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-6-Approximation-Algorithm"><span class="nav-number">2.</span> <span class="nav-text">Chapter 6  Approximation Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-Approximation-Criteria"><span class="nav-number">2.1.</span> <span class="nav-text">6.1 Approximation Criteria</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Load-Balancing-Problem"><span class="nav-number">2.2.</span> <span class="nav-text">6.2 Load Balancing Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-k-Center-Problem"><span class="nav-number">2.3.</span> <span class="nav-text">6.3 $k$-Center Problem</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-5-extending-the-limits-of-tractability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 5
+Extending the Limits of Tractability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-6-approximation-algorithm"><span class="nav-number">2.</span> <span class="nav-text">Chapter 6 Approximation
+Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#approximation-criteria"><span class="nav-number">2.1.</span> <span class="nav-text">6.1 Approximation Criteria</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#load-balancing-problem"><span class="nav-number">2.2.</span> <span class="nav-text">6.2 Load Balancing Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-center-problem"><span class="nav-number">2.3.</span> <span class="nav-text">6.3 \(k\)-Center Problem</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -161,7 +163,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -172,7 +174,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -364,187 +366,299 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><ol>
+    <div class="post-body" itemprop="articleBody"><ol type="1">
 <li><p>NP-Hardness</p>
 <ul>
-<li><p>NP Completeness : Decision Problem </p>
-</li>
-<li><p>NP Hardness : Optimization Problem</p>
-</li>
-<li><p>Problem in <strong>NP-Hard</strong> : not in <strong>NPC</strong> , but the decision version is <strong>NPC</strong></p>
-</li>
-</ul>
-</li>
+<li><p>NP Completeness : Decision Problem</p></li>
+<li><p>NP Hardness : Optimization Problem</p></li>
+<li><p>Problem in <strong>NP-Hard</strong> : not in <strong>NPC</strong>
+, but the decision version is <strong>NPC</strong></p></li>
+</ul></li>
 <li><p>How to almost solve <strong>NP-Hard</strong> problem ?</p>
 <ul>
 <li>Special Restrictions</li>
 <li>Approximation</li>
 <li>Randomization</li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h2 id="Chapter-5-Extending-the-Limits-of-Tractability"><a href="#Chapter-5-Extending-the-Limits-of-Tractability" class="headerlink" title="Chapter 5 Extending the Limits of Tractability"></a>Chapter 5 Extending the Limits of Tractability</h2><p>Solving <strong>NP-Hard</strong> problem under some special restrictions</p>
-<ol>
+<h2 id="chapter-5-extending-the-limits-of-tractability">Chapter 5
+Extending the Limits of Tractability</h2>
+<p>Solving <strong>NP-Hard</strong> problem under some special
+restrictions</p>
+<ol type="1">
 <li><p>Max Independent Set</p>
 <ul>
 <li>general graphs : NP-Hard</li>
 <li>interval graph : P</li>
 <li>tree / graph with bounded tree width : P</li>
-</ul>
-</li>
+</ul></li>
 <li><p>FPT (fixed parameter tractable)</p>
 <p>Intuition : Consider the parametrization of an instance</p>
-<p>Def [ <strong><em>FTP</em></strong> ]: Input size $n$ , parameter $k$ . A problem is <strong><em>FPT</em></strong> if there exists an algorithm that solve the problem in $\mathcal O(f(k)poly(n))$.</p>
+<p>Def [ <strong><em>FTP</em></strong> ]: Input size <span
+class="math inline">\(n\)</span> , parameter <span
+class="math inline">\(k\)</span> . A problem is
+<strong><em>FPT</em></strong> if there exists an algorithm that solve
+the problem in <span class="math inline">\(\mathcal
+O(f(k)poly(n))\)</span>.</p>
 <blockquote>
-<p>$k$ can be viewed similar to constant , $\mathcal O(2^kpoly(n))$ is still FPT , but $\mathcal O(n^k)$ is not FPT ( $poly(n)$ is independent from $k$ ).</p>
-</blockquote>
-</li>
-<li><p>Vertex Cover , $k=|VC|$ </p>
+<p><span class="math inline">\(k\)</span> can be viewed similar to
+constant , <span class="math inline">\(\mathcal O(2^kpoly(n))\)</span>
+is still FPT , but <span class="math inline">\(\mathcal O(n^k)\)</span>
+is not FPT ( <span class="math inline">\(poly(n)\)</span> is independent
+from <span class="math inline">\(k\)</span> ).</p>
+</blockquote></li>
+<li><p>Vertex Cover , <span class="math inline">\(k=|VC|\)</span></p>
 <blockquote>
-<p>We want to construct an algorithm in $\mathcal O(f(k)poly(n))$ , which is better than trivial algorithm in $\mathcal O(n^{k})$ .</p>
+<p>We want to construct an algorithm in <span
+class="math inline">\(\mathcal O(f(k)poly(n))\)</span> , which is better
+than trivial algorithm in <span class="math inline">\(\mathcal
+O(n^{k})\)</span> .</p>
 </blockquote>
-<ol>
-<li><p>Key Observation : $e=(u,v)$ , $VC(G)\le k\iff VC(G-u)\le k-1\lor CV(G-v)\le k-1$ .</p>
-</li>
-<li><p>Algorithm : check $(G,k)$</p>
-<ol>
-<li>If $G$ has no edge , then the empty set is a VC , return <code>true</code> .</li>
-<li>If $|E|&gt; k|V|$ , then $\not\exists VC,|VC|\le k$ , return <code>false</code> .</li>
-<li>Let $e=(u,v)\in E$ , return <code>check(G-u,k-1)||check(G-v,k-1)</code> .</li>
+<ol type="1">
+<li><p>Key Observation : <span class="math inline">\(e=(u,v)\)</span> ,
+<span class="math inline">\(VC(G)\le k\iff VC(G-u)\le k-1\lor CV(G-v)\le
+k-1\)</span> .</p></li>
+<li><p>Algorithm : check <span class="math inline">\((G,k)\)</span></p>
+<ol type="1">
+<li>If <span class="math inline">\(G\)</span> has no edge , then the
+empty set is a VC , return <code>true</code> .</li>
+<li>If <span class="math inline">\(|E|&gt; k|V|\)</span> , then <span
+class="math inline">\(\not\exists VC,|VC|\le k\)</span> , return
+<code>false</code> .</li>
+<li>Let <span class="math inline">\(e=(u,v)\in E\)</span> , return
+<code>check(G-u,k-1)||check(G-v,k-1)</code> .</li>
+</ol></li>
+<li><p>Running time : By recursive tree , at most <span
+class="math inline">\(k\)</span> levels , level <span
+class="math inline">\(i\)</span> has <span
+class="math inline">\(2^{i-1}\)</span> possibilities , with <span
+class="math inline">\(\mathcal O(n(k-i+1))\)</span> computation in each
+node.</p>
+<p>Total time : <span class="math inline">\(\mathcal O(2^kkn)\)</span>
+.</p></li>
+<li><p>Best FPT : <span class="math inline">\(\mathcal
+O(1.2738^kpoly(n))\)</span> .</p>
+<p>Method : reduce more in Key Observation (e.g. <span
+class="math inline">\(k\to k-1\)</span> improve to <span
+class="math inline">\(k\to k-2\)</span>) by considering more edges.</p>
+<p>Kernel method : <span class="math inline">\(\mathcal
+O(|E|+(5^{1/4})^k k^2)\)</span> .</p></li>
+</ol></li>
 </ol>
-</li>
-<li><p>Running time : By recursive tree , at most $k$ levels , level $i$ has $2^{i-1}$ possibilities , with $\mathcal O(n(k-i+1))$ computation in each node.</p>
-<p>Total time : $\mathcal O(2^kkn)$ .</p>
-</li>
-<li><p>Best FPT : $\mathcal O(1.2738^kpoly(n))$ .</p>
-<p>Method : reduce more in Key Observation (e.g. $k\to k-1$ improve to $k\to k-2$) by considering more edges.</p>
-<p>Kernel method : $\mathcal O(|E|+(5^{1/4})^k k^2)$ .</p>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="Chapter-6-Approximation-Algorithm"><a href="#Chapter-6-Approximation-Algorithm" class="headerlink" title="Chapter 6  Approximation Algorithm"></a>Chapter 6  Approximation Algorithm</h2><h3 id="6-1-Approximation-Criteria"><a href="#6-1-Approximation-Criteria" class="headerlink" title="6.1 Approximation Criteria"></a>6.1 Approximation Criteria</h3><ol>
-<li><p>Approximation ration $\alpha\ge 1$</p>
-<p>minimization problem : $\alpha:=\sup_I \frac{SOL(I)}{OPT(I)}$.</p>
-<p>maximization problem : $\alpha:=\sup_I \frac{OPT(I)}{SOL(I)}$.</p>
-</li>
+<h2 id="chapter-6-approximation-algorithm">Chapter 6 Approximation
+Algorithm</h2>
+<h3 id="approximation-criteria">6.1 Approximation Criteria</h3>
+<ol type="1">
+<li><p>Approximation ration <span class="math inline">\(\alpha\ge
+1\)</span></p>
+<p>minimization problem : <span class="math inline">\(\alpha:=\sup_I
+\frac{SOL(I)}{OPT(I)}\)</span>.</p>
+<p>maximization problem : <span class="math inline">\(\alpha:=\sup_I
+\frac{OPT(I)}{SOL(I)}\)</span>.</p></li>
 <li><p>Some examples</p>
 <ul>
-<li>Exact solution : $\alpha=1$</li>
-<li>Constant approximation : $\alpha=\mathcal O(1)$</li>
-<li>Logarithm approximation : $\alpha=\mathcal O(\log n)$</li>
-<li>$\alpha=\mathcal O(n)$ : usually not interesting.</li>
-<li>Poly-Time Approximation Scheme ( <strong><em>PTAS</em></strong> ) : $\alpha=1+\epsilon$ , Time : poly when $\epsilon$ is constant. </li>
-<li>Fully Poly-Time Approximation Scheme ( <strong><em>FPTAS</em></strong> ) : Time : $\mathcal O(poly(\frac{1}{\epsilon},n))$.</li>
-</ul>
-</li>
+<li>Exact solution : <span class="math inline">\(\alpha=1\)</span></li>
+<li>Constant approximation : <span class="math inline">\(\alpha=\mathcal
+O(1)\)</span></li>
+<li>Logarithm approximation : <span
+class="math inline">\(\alpha=\mathcal O(\log n)\)</span></li>
+<li><span class="math inline">\(\alpha=\mathcal O(n)\)</span> : usually
+not interesting.</li>
+<li>Poly-Time Approximation Scheme ( <strong><em>PTAS</em></strong> ) :
+<span class="math inline">\(\alpha=1+\epsilon\)</span> , Time : poly
+when <span class="math inline">\(\epsilon\)</span> is constant.</li>
+<li>Fully Poly-Time Approximation Scheme (
+<strong><em>FPTAS</em></strong> ) : Time : <span
+class="math inline">\(\mathcal
+O(poly(\frac{1}{\epsilon},n))\)</span>.</li>
+</ul></li>
 </ol>
-<h3 id="6-2-Load-Balancing-Problem"><a href="#6-2-Load-Balancing-Problem" class="headerlink" title="6.2 Load Balancing Problem"></a>6.2 Load Balancing Problem</h3><ol>
-<li><p>Description : </p>
-<p>Input : $n$ jobs , $t_i$ : time for job $i$ , $m$ machines </p>
-<p>Output : assign each job to one machine , say machine $j$ is assigned jobs $S_j$ , minimize $\max_{j=1}^m \left\{\sum_{i\in S_j}t_i\right\}$ .</p>
-</li>
-<li><p><strong>Load Balancing Problem</strong> is <strong>NP-Hard</strong></p>
-<p>Prove 1 : <strong>special subset sum</strong> $\le_p$ <strong>Load Balancing Problem</strong> </p>
-<p><strong>special subset sum</strong> : $W=\frac{\sum_{i=1}^n w_i}{2}$ . This is still <strong>NPC</strong>.</p>
-<p>Prove 2 : <strong>3-partition problem</strong> $\le_p$ <strong>Load Balancing Problem</strong></p>
-<p><strong>3-partition problem </strong> : </p>
-<pre><code>Given $3n$ numbers $a_1,\cdots,a_&#123;3n&#125;$ , partition them into $n$ groups , with each group $3$ numbers.
-
-Decide whether we can find a partition , s.t. the sum of each group is the same.
-</code></pre><p>Theorem : <strong>3-partition problem</strong> is <strong>NPC</strong> ( even if $a_i$ is poly-sized ) </p>
-</li>
+<h3 id="load-balancing-problem">6.2 Load Balancing Problem</h3>
+<ol type="1">
+<li><p>Description :</p>
+<p>Input : <span class="math inline">\(n\)</span> jobs , <span
+class="math inline">\(t_i\)</span> : time for job <span
+class="math inline">\(i\)</span> , <span
+class="math inline">\(m\)</span> machines</p>
+<p>Output : assign each job to one machine , say machine <span
+class="math inline">\(j\)</span> is assigned jobs <span
+class="math inline">\(S_j\)</span> , minimize <span
+class="math inline">\(\max_{j=1}^m \left\{\sum_{i\in
+S_j}t_i\right\}\)</span> .</p></li>
+<li><p><strong>Load Balancing Problem</strong> is
+<strong>NP-Hard</strong></p>
+<p>Prove 1 : <strong>special subset sum</strong> <span
+class="math inline">\(\le_p\)</span> <strong>Load Balancing
+Problem</strong></p>
+<p><strong>special subset sum</strong> : <span
+class="math inline">\(W=\frac{\sum_{i=1}^n w_i}{2}\)</span> . This is
+still <strong>NPC</strong>.</p>
+<p>Prove 2 : <strong>3-partition problem</strong> <span
+class="math inline">\(\le_p\)</span> <strong>Load Balancing
+Problem</strong></p>
+<p><strong>3-partition problem </strong> :</p>
+<p>Given <span class="math inline">\(3n\)</span> numbers <span
+class="math inline">\(a_1,\cdots,a_{3n}\)</span> , partition them into
+<span class="math inline">\(n\)</span> groups , with each group <span
+class="math inline">\(3\)</span> numbers.</p>
+<p>Decide whether we can find a partition , s.t. the sum of each group
+is the same.</p>
+<p>Theorem : <strong>3-partition problem</strong> is
+<strong>NPC</strong> ( even if <span class="math inline">\(a_i\)</span>
+is poly-sized )</p></li>
 <li><p>Greedy Algorithm 1</p>
-<p>Process jobs in arbitrary order one-by-one . Assign the job to the machine with current minimal load.</p>
-<ol>
-<li><p>Analysis : $\alpha=2$.</p>
-</li>
-<li><p>Proof : </p>
-<p>load of OPT : $T^*$.</p>
+<p>Process jobs in arbitrary order one-by-one . Assign the job to the
+machine with current minimal load.</p>
+<ol type="1">
+<li><p>Analysis : <span
+class="math inline">\(\alpha=2\)</span>.</p></li>
+<li><p>Proof :</p>
+<p>load of OPT : <span class="math inline">\(T^*\)</span>.</p>
 <ul>
-<li>Observation 1 : $T^*\ge \max_{i=1}^n t_i$.</li>
-<li>Observation 2 : $T^*\ge \frac{1}{m}\sum_{i=1}^n t_i$.</li>
+<li>Observation 1 : <span class="math inline">\(T^*\ge \max_{i=1}^n
+t_i\)</span>.</li>
+<li>Observation 2 : <span class="math inline">\(T^*\ge
+\frac{1}{m}\sum_{i=1}^n t_i\)</span>.</li>
 </ul>
-<p>Let’s prove that $SOL\le \max_{i=1}^n t_i+\frac{1}{m}\sum_{i=1}^n t_i$ , so $SOL\le 2T^*$.</p>
-<p>Let $SOL=\sum_{i\in S_j} t_i$ , and $t_k$ is the last job assigned to machine $j$ . Therefore , we can prove that before assigning $t_k$ , the load of machine $j$ is $\le \frac{1}{m}\sum_{i=1}^m t_i$ ( since machine $j$ with current minimal load ) . $t_k\le \max_{i=1}^n t_i$ . Therefore , $SOL\le \frac{1}{m}\sum_{i=1}^m t_i +\max_{i=1}^n t_i$.</p>
-</li>
+<p>Let's prove that <span class="math inline">\(SOL\le \max_{i=1}^n
+t_i+\frac{1}{m}\sum_{i=1}^n t_i\)</span> , so <span
+class="math inline">\(SOL\le 2T^*\)</span>.</p>
+<p>Let <span class="math inline">\(SOL=\sum_{i\in S_j} t_i\)</span> ,
+and <span class="math inline">\(t_k\)</span> is the last job assigned to
+machine <span class="math inline">\(j\)</span> . Therefore , we can
+prove that before assigning <span class="math inline">\(t_k\)</span> ,
+the load of machine <span class="math inline">\(j\)</span> is <span
+class="math inline">\(\le \frac{1}{m}\sum_{i=1}^m t_i\)</span> ( since
+machine <span class="math inline">\(j\)</span> with current minimal load
+) . <span class="math inline">\(t_k\le \max_{i=1}^n t_i\)</span> .
+Therefore , <span class="math inline">\(SOL\le \frac{1}{m}\sum_{i=1}^m
+t_i +\max_{i=1}^n t_i\)</span>.</p></li>
 <li><p>Worst case :</p>
-<p> $n=m(m-1)+1$ , with $m(m-1)$ jobs $t_j=1$ , and $1$ job $t_j=m$. </p>
-<p>Then $SOL=2m-1$ , but $OPT=m$. $\alpha=\frac{2m-1}{m}\to 2$ .</p>
-</li>
-</ol>
-</li>
+<p><span class="math inline">\(n=m(m-1)+1\)</span> , with <span
+class="math inline">\(m(m-1)\)</span> jobs <span
+class="math inline">\(t_j=1\)</span> , and <span
+class="math inline">\(1\)</span> job <span
+class="math inline">\(t_j=m\)</span>.</p>
+<p>Then <span class="math inline">\(SOL=2m-1\)</span> , but <span
+class="math inline">\(OPT=m\)</span>. <span
+class="math inline">\(\alpha=\frac{2m-1}{m}\to 2\)</span> .</p></li>
+</ol></li>
 <li><p>Greedy Algorithm 2 ( improvement )</p>
 <p>Process jobs in decreasing order.</p>
-<ol>
-<li><p>Analysis : $\alpha=1.5$ ( not tight )</p>
-</li>
-<li><p>Proof : </p>
-<ol>
-<li><p>Case 1 : $n\le m$ , $OPT=SOL$</p>
-</li>
-<li><p>Case 2 : $n&gt;m$ , so $t_k\le t_{m+1}\le \frac{OPT}{2}$.</p>
-<p>$t_{m+1},t_i$ must be both in one machine for some $1\le i\le m$.</p>
-</li>
+<ol type="1">
+<li><p>Analysis : <span class="math inline">\(\alpha=1.5\)</span> ( not
+tight )</p></li>
+<li><p>Proof :</p>
+<ol type="1">
+<li><p>Case 1 : <span class="math inline">\(n\le m\)</span> , <span
+class="math inline">\(OPT=SOL\)</span></p></li>
+<li><p>Case 2 : <span class="math inline">\(n&gt;m\)</span> , so <span
+class="math inline">\(t_k\le t_{m+1}\le \frac{OPT}{2}\)</span>.</p>
+<p><span class="math inline">\(t_{m+1},t_i\)</span> must be both in one
+machine for some <span class="math inline">\(1\le i\le
+m\)</span>.</p></li>
+</ol></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="6-3-k-Center-Problem"><a href="#6-3-k-Center-Problem" class="headerlink" title="6.3 $k$-Center Problem"></a>6.3 $k$-Center Problem</h3><ol>
+<h3 id="k-center-problem">6.3 <span
+class="math inline">\(k\)</span>-Center Problem</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : a metric graph $G=(V,E,d)$ , number of centers $k$.</p>
-<p>Def [ <strong><em>metric graph</em></strong> ] : $d$ satisfies $\begin{cases}d(u,u)=0&amp;u\in V\\d(u,v)=d(v,u)&amp;u,v\in V\\d(s,t)\le d(s,w)+d(w,t)&amp;s,t,w\in V\end{cases}$.</p>
-<p>Output : Choose $k$ centers $C=\{c_1,\cdots,c_k\}\subseteq V$. Minimize max cluster radius.</p>
-<script type="math/tex; mode=display">
-d(v,C):=\min_{i=1}^k \{d(v,c_i)\}</script><p>Minimize $\max_{v\in V}d(v,C)$.</p>
-</li>
+<p>Input : a metric graph <span class="math inline">\(G=(V,E,d)\)</span>
+, number of centers <span class="math inline">\(k\)</span>.</p>
+<p>Def [ <strong><em>metric graph</em></strong> ] : <span
+class="math inline">\(d\)</span> satisfies <span
+class="math inline">\(\begin{cases}d(u,u)=0&amp;u\in
+V\\d(u,v)=d(v,u)&amp;u,v\in V\\d(s,t)\le d(s,w)+d(w,t)&amp;s,t,w\in
+V\end{cases}\)</span>.</p>
+<p>Output : Choose <span class="math inline">\(k\)</span> centers <span
+class="math inline">\(C=\{c_1,\cdots,c_k\}\subseteq V\)</span>. Minimize
+max cluster radius. <span class="math display">\[
+d(v,C):=\min_{i=1}^k \{d(v,c_i)\}
+\]</span> Minimize <span class="math inline">\(\max_{v\in
+V}d(v,C)\)</span>.</p></li>
 <li><p>Remark : Applications in ML</p>
 <p>unsupervised learning.</p>
-<p>$k$-means : minimize $\sum_{v\in V}d(v,C)^2$.</p>
-<p>$k$-median : minimize $\sum_{v\in V}d(v,C)$.</p>
-</li>
-<li><p>Greedy Algorithm with $\alpha=2$</p>
-<ol>
+<p><span class="math inline">\(k\)</span>-means : minimize <span
+class="math inline">\(\sum_{v\in V}d(v,C)^2\)</span>.</p>
+<p><span class="math inline">\(k\)</span>-median : minimize <span
+class="math inline">\(\sum_{v\in V}d(v,C)\)</span>.</p></li>
+<li><p>Greedy Algorithm with <span
+class="math inline">\(\alpha=2\)</span></p>
+<ol type="1">
 <li><p>Algorithm</p>
-<ol>
-<li><p>Guess optimal radius $r$ ( at most $|E|$ possibilities )</p>
-</li>
-<li><p>Choose an arbitrary vertex $v\in S$ , $C\gets C\cup\{v\}$</p>
-</li>
-<li><p>Let $D=\{u\in S:d(u,v)\le 2r\}$ , $S\gets S\backslash D$</p>
-</li>
-<li><p>If $S\neq \varnothing$ , go to (2)</p>
-</li>
-<li><p>Finally , if $|C|&gt;k$ , our guess is too small ( fail )</p>
-<p>If $|C|\le k$ , our guess succeed.</p>
-</li>
+<ol type="1">
+<li><p>Guess optimal radius <span class="math inline">\(r\)</span> ( at
+most <span class="math inline">\(|E|\)</span> possibilities )</p></li>
+<li><p>Choose an arbitrary vertex <span class="math inline">\(v\in
+S\)</span> , <span class="math inline">\(C\gets
+C\cup\{v\}\)</span></p></li>
+<li><p>Let <span class="math inline">\(D=\{u\in S:d(u,v)\le
+2r\}\)</span> , <span class="math inline">\(S\gets S\backslash
+D\)</span></p></li>
+<li><p>If <span class="math inline">\(S\neq \varnothing\)</span> , go to
+(2)</p></li>
+<li><p>Finally , if <span class="math inline">\(|C|&gt;k\)</span> , our
+guess is too small ( fail )</p>
+<p>If <span class="math inline">\(|C|\le k\)</span> , our guess
+succeed.</p></li>
 </ol>
-<p>Hopefully , we want if we success at $r$ , then $OPT\ge r$ and $SOL\le 2r$ .</p>
-</li>
-<li><p>Proof </p>
-<p>Key Observation : If $r\ge OPT$ , then we will definitely success.</p>
-<p>Suppose $C_{OPT}=\{c_1,\cdots,c_{opt}\}$ , and $b_v=\arg\min_{1\le i\le OPT} d(v,c_i)$ .</p>
-<p>In each step , suppose that we choose $v$ , then $\forall u\in V,b_u=b_v$ , $d(u,v)\le d(u,c_{b_v})+d(c_{b_v},v)\le 2r$ . Therefore , $\{u:b_u=b_v\}\subseteq D_{v}$ .</p>
-<p>That is , each step we can remove at least one optimal cluster .</p>
-</li>
-</ol>
-</li>
-<li><p>$\alpha=2$ is the best result</p>
-<p>Inapproximability : $\forall \alpha&lt;2$ , this problem is NP-Hard .</p>
-<p>Promise Problem : For a given instance , such that the optimal value is $\le h$ or $&gt; \alpha h$ . Decide which case it is.</p>
-<p>Claim : Any $\alpha$-approximation algorithm can be used to solve Promise Problem.</p>
+<p>Hopefully , we want if we success at <span
+class="math inline">\(r\)</span> , then <span
+class="math inline">\(OPT\ge r\)</span> and <span
+class="math inline">\(SOL\le 2r\)</span> .</p></li>
+<li><p>Proof</p>
+<p>Key Observation : If <span class="math inline">\(r\ge OPT\)</span> ,
+then we will definitely success.</p>
+<p>Suppose <span
+class="math inline">\(C_{OPT}=\{c_1,\cdots,c_{opt}\}\)</span> , and
+<span class="math inline">\(b_v=\arg\min_{1\le i\le OPT}
+d(v,c_i)\)</span> .</p>
+<p>In each step , suppose that we choose <span
+class="math inline">\(v\)</span> , then <span
+class="math inline">\(\forall u\in V,b_u=b_v\)</span> , <span
+class="math inline">\(d(u,v)\le d(u,c_{b_v})+d(c_{b_v},v)\le 2r\)</span>
+. Therefore , <span class="math inline">\(\{u:b_u=b_v\}\subseteq
+D_{v}\)</span> .</p>
+<p>That is , each step we can remove at least one optimal cluster
+.</p></li>
+</ol></li>
+<li><p><span class="math inline">\(\alpha=2\)</span> is the best
+result</p>
+<p>Inapproximability : <span class="math inline">\(\forall
+\alpha&lt;2\)</span> , this problem is NP-Hard .</p>
+<p>Promise Problem : For a given instance , such that the optimal value
+is <span class="math inline">\(\le h\)</span> or <span
+class="math inline">\(&gt; \alpha h\)</span> . Decide which case it
+is.</p>
+<p>Claim : Any <span class="math inline">\(\alpha\)</span>-approximation
+algorithm can be used to solve Promise Problem.</p>
 <blockquote>
-<p>Approximation answer : $\le \alpha h$  , then $OPT\le \alpha h$ , then $OPT\le h$ , output <code>true</code></p>
-<p>Approximation answer : $&gt;\alpha h $ , then $OPT&gt;h$ , then $OPT&gt;\alpha h$ , output <code>false</code></p>
-</blockquote>
-</li>
-<li><p>THM : Promise $k$-center for any $\alpha&lt;2$ is NPC</p>
-<p>Proof : Dominating Set $\le_p$ Promise $k$-center for $\alpha&lt;2$ </p>
-<p>$G$ for Dominating Set , construct $G’$ for Promise $k$-center for $\alpha&lt;2$</p>
-<p>$G’$ : $E’$ complete graph , $w(e)=\begin{cases}1&amp;e\in E\\2&amp;e\notin E\end{cases}$</p>
-<p>$(G,k)\in DS\iff$ the answer of $G’$ is <code>true</code> for $(G’,k,h=1)$ .</p>
-</li>
+<p>Approximation answer : <span class="math inline">\(\le \alpha
+h\)</span> , then <span class="math inline">\(OPT\le \alpha h\)</span> ,
+then <span class="math inline">\(OPT\le h\)</span> , output
+<code>true</code></p>
+<p>Approximation answer : $&gt;h $ , then <span
+class="math inline">\(OPT&gt;h\)</span> , then <span
+class="math inline">\(OPT&gt;\alpha h\)</span> , output
+<code>false</code></p>
+</blockquote></li>
+<li><p>THM : Promise <span class="math inline">\(k\)</span>-center for
+any <span class="math inline">\(\alpha&lt;2\)</span> is NPC</p>
+<p>Proof : Dominating Set <span class="math inline">\(\le_p\)</span>
+Promise <span class="math inline">\(k\)</span>-center for <span
+class="math inline">\(\alpha&lt;2\)</span></p>
+<p><span class="math inline">\(G\)</span> for Dominating Set , construct
+<span class="math inline">\(G&#39;\)</span> for Promise <span
+class="math inline">\(k\)</span>-center for <span
+class="math inline">\(\alpha&lt;2\)</span></p>
+<p><span class="math inline">\(G&#39;\)</span> : <span
+class="math inline">\(E&#39;\)</span> complete graph , <span
+class="math inline">\(w(e)=\begin{cases}1&amp;e\in E\\2&amp;e\notin
+E\end{cases}\)</span></p>
+<p><span class="math inline">\((G,k)\in DS\iff\)</span> the answer of
+<span class="math inline">\(G&#39;\)</span> is <code>true</code> for
+<span class="math inline">\((G&#39;,k,h=1)\)</span> .</p></li>
 </ol>
 
     </div>
@@ -654,13 +768,13 @@ d(v,C):=\min_{i=1}^k \{d(v,c_i)\}</script><p>Minimize $\max_{v\in V}d(v,C)$.</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

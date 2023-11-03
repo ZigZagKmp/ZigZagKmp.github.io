@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zigzagkmp.github.io/images/posts/PS2_fig1.png">
 <meta property="article:published_time" content="2023-10-08T12:15:56.000Z">
-<meta property="article:modified_time" content="2023-10-31T08:40:09.841Z">
+<meta property="article:modified_time" content="2023-11-03T12:19:44.347Z">
 <meta property="article:author" content="ZigZagKmp">
 <meta property="article:tag" content="实分析-测度-可测映射">
 <meta property="article:tag" content="概率论-随机变量">
@@ -148,7 +148,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-Background-in-Probability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 Background in Probability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Random-Variables"><span class="nav-number">1.1.</span> <span class="nav-text">1.2 Random Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Distribution"><span class="nav-number">1.2.</span> <span class="nav-text">1.3 Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Integration"><span class="nav-number">1.3.</span> <span class="nav-text">1.4 Integration</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-1-background-in-probability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 Background in
+Probability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#random-variables"><span class="nav-number">1.1.</span> <span class="nav-text">1.2 Random Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#distribution"><span class="nav-number">1.2.</span> <span class="nav-text">1.3 Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#integration"><span class="nav-number">1.3.</span> <span class="nav-text">1.4 Integration</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -163,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,7 +175,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -255,6 +256,13 @@
       </a>
     </li>
     <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/11/03/Probability-and-Statistics-5/" rel="bookmark">
+        <time class="popular-posts-time">2023-11-03</time>
+        <br>
+      Probability and Statistics 5
+      </a>
+    </li>
+    <li class="popular-posts-item">
       <a class="popular-posts-link" href="/2023/10/07/%E7%AD%94%E7%96%91%E5%9D%8A-%E5%BE%AE%E7%A7%AF%E5%88%86-%E8%B6%A3%E9%A2%98%E8%8B%A5%E5%B9%B2/" rel="bookmark">
         <time class="popular-posts-time">2023-10-07</time>
         <br>
@@ -317,7 +325,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-31 16:40:09" itemprop="dateModified" datetime="2023-10-31T16:40:09+08:00">2023-10-31</time>
+      <time title="修改时间：2023-11-03 20:19:44" itemprop="dateModified" datetime="2023-11-03T20:19:44+08:00">2023-11-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -365,201 +373,344 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-1-Background-in-Probability"><a href="#Chapter-1-Background-in-Probability" class="headerlink" title="Chapter 1 Background in Probability"></a>Chapter 1 Background in Probability</h2><h3 id="1-2-Random-Variables"><a href="#1-2-Random-Variables" class="headerlink" title="1.2 Random Variables"></a>1.2 Random Variables</h3><ol>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-1-background-in-probability">Chapter 1 Background in
+Probability</h2>
+<h3 id="random-variables">1.2 Random Variables</h3>
+<ol type="1">
 <li><p>measurable map</p>
-<ol>
+<ol type="1">
 <li><p>Remark of Thm [a sufficient condition for measurable map]</p>
 <blockquote>
-<p>If $\mathcal S$ is a $\sigma$-field , then $\{X^{-1}(B)|B\in \mathcal S\}$ is a $\sigma$-field</p>
-<p>Def : [generation of measurable map] $\sigma(X)$ is the $\sigma$-field generated by $X$ </p>
-<script type="math/tex; mode=display">
-\sigma(X)=\{X^{-1}(B)|B\in \mathcal S\}</script><p>$\sigma(X)$ is the smallest $\sigma$-field on $\Omega$ that makes $X$ a measurable map to $(S,\mathcal S)$ .</p>
+<p>If <span class="math inline">\(\mathcal S\)</span> is a <span
+class="math inline">\(\sigma\)</span>-field , then <span
+class="math inline">\(\{X^{-1}(B)|B\in \mathcal S\}\)</span> is a <span
+class="math inline">\(\sigma\)</span>-field</p>
 </blockquote>
-</li>
-<li><p>Thm [measurable map composition] : If $X:(\Omega,\mathcal F)\to(S,\mathcal S)$ , $f:(S,\mathcal S)\to (T,\mathcal T)$ are both measurable maps , then $f\circ X$ is a measurable map $(\Omega,\mathcal S)\to(T,\mathcal T)$ .</p>
 <blockquote>
-<p>Proof : $(f\circ X)^{-1}(B)=X^{-1}(f^{-1}(B))$ , $C:=f^{-1}(B)\in \mathcal S$ , $X^{-1}(C)\in \mathcal F$ </p>
+<p>Def : [generation of measurable map] <span
+class="math inline">\(\sigma(X)\)</span> is the <span
+class="math inline">\(\sigma\)</span>-field generated by <span
+class="math inline">\(X\)</span> <span class="math display">\[
+\sigma(X)=\{X^{-1}(B)|B\in \mathcal S\}
+\]</span></p>
 </blockquote>
-</li>
-<li><p>Cor : If $X_1,\cdots,X_n$ are random variables , $f:(\mathbb R^n,\mathcal R^n)\to(\mathbb R,\mathcal R)$ is measurable , then $f(X_1,\cdots,X_n)$ is a random variable .</p>
-</li>
-<li><p>(*) Cor : $X_1,\cdots,X_n$ are random variables , then $X_1+\cdots+X_n$ is a random variable .</p>
-</li>
-<li><p>(*) Thm : $X_1,\cdots$ are random variables , then $\inf_n X_n$ , $\sup_n X_n$ , $\liminf_n X_n$ , $\limsup_n X_n$ are random variables</p>
 <blockquote>
-<p>Proof : $\{\inf_n X_n&lt;a\}=\cup_n\{X_n&lt;a\}\in\mathcal F$ .</p>
-<script type="math/tex; mode=display">
-\liminf_{n\to \infty}X_n=\sup_n\left(\inf_{m\ge n}X_m\right)</script><p>$Y_n=\inf_{m\ge n}X_m$ is a random variable .</p>
+<p><span class="math inline">\(\sigma(X)\)</span> is the smallest <span
+class="math inline">\(\sigma\)</span>-field on <span
+class="math inline">\(\Omega\)</span> that makes <span
+class="math inline">\(X\)</span> a measurable map to <span
+class="math inline">\((S,\mathcal S)\)</span> .</p>
+</blockquote></li>
+<li><p>Thm [measurable map composition] : If <span
+class="math inline">\(X:(\Omega,\mathcal F)\to(S,\mathcal S)\)</span> ,
+<span class="math inline">\(f:(S,\mathcal S)\to (T,\mathcal T)\)</span>
+are both measurable maps , then <span class="math inline">\(f\circ
+X\)</span> is a measurable map <span
+class="math inline">\((\Omega,\mathcal S)\to(T,\mathcal T)\)</span>
+.</p>
+<blockquote>
+<p>Proof : <span class="math inline">\((f\circ
+X)^{-1}(B)=X^{-1}(f^{-1}(B))\)</span> , <span
+class="math inline">\(C:=f^{-1}(B)\in \mathcal S\)</span> , <span
+class="math inline">\(X^{-1}(C)\in \mathcal F\)</span></p>
+</blockquote></li>
+<li><p>Cor : If <span class="math inline">\(X_1,\cdots,X_n\)</span> are
+random variables , <span class="math inline">\(f:(\mathbb R^n,\mathcal
+R^n)\to(\mathbb R,\mathcal R)\)</span> is measurable , then <span
+class="math inline">\(f(X_1,\cdots,X_n)\)</span> is a random variable
+.</p></li>
+<li><p>(*) Cor : <span class="math inline">\(X_1,\cdots,X_n\)</span> are
+random variables , then <span
+class="math inline">\(X_1+\cdots+X_n\)</span> is a random variable
+.</p></li>
+<li><p>(*) Thm : <span class="math inline">\(X_1,\cdots\)</span> are
+random variables , then <span class="math inline">\(\inf_n X_n\)</span>
+, <span class="math inline">\(\sup_n X_n\)</span> , <span
+class="math inline">\(\liminf_n X_n\)</span> , <span
+class="math inline">\(\limsup_n X_n\)</span> are random variables</p>
+<blockquote>
+<p>Proof : <span class="math inline">\(\{\inf_n
+X_n&lt;a\}=\cup_n\{X_n&lt;a\}\in\mathcal F\)</span> . <span
+class="math display">\[
+\liminf_{n\to \infty}X_n=\sup_n\left(\inf_{m\ge n}X_m\right)
+\]</span> <span class="math inline">\(Y_n=\inf_{m\ge n}X_m\)</span> is a
+random variable .</p>
+</blockquote></li>
+</ol></li>
+<li><p>(*) Generalization of random variable</p>
+<ol type="1">
+<li><p>Def : [Converges almost surely]</p>
+<p>From Thm above , the following set is a measurable set <span
+class="math display">\[
+\Omega_o:=\{w:\lim_{n\to\infty}X_n\text{
+exists}\}=\{w:\limsup_{n\to\infty}X_n-\liminf_{n\to\infty}X_n=0\}
+\]</span> If <span class="math inline">\(P(\Omega_o)=1\)</span> , then
+<span class="math inline">\(X_n\)</span> converges almost surely ( a.s.
+) .</p>
+<blockquote>
+<p>即一列 <span class="math inline">\(X_n\)</span> 是几乎处处收敛的
+当且仅当 <span class="math inline">\(X_n\)</span> 不收敛的点集测度为
+<span class="math inline">\(0\)</span></p>
 </blockquote>
-</li>
+<p>Def : <span class="math inline">\(X_\infty:=\limsup_{n\to \infty}
+X_n\)</span></p>
+<p>Problem : <span class="math inline">\(X_{\infty}\)</span> can have
+value <span class="math inline">\(\pm\infty\)</span> .</p></li>
+<li><p>Def : [Generalized random variable]</p>
+<p>A function whose domain is <span class="math inline">\(D\in \mathcal
+F\)</span> and range is <span class="math inline">\(\mathbb
+R^*:=[-\infty,+\infty]\)</span> is a random variable if <span
+class="math inline">\(\forall B\in \mathcal R^* , X^{-1}(B)\in \mathcal
+F\)</span> .</p>
+<p>Def : [Extended Borel set ] : <span class="math inline">\(\mathcal
+R^*\)</span> is generated by intervals of form <span
+class="math inline">\([-\infty,a),(a,b),(b,+\infty]\)</span> , <span
+class="math inline">\(a,b\in \mathbb R\)</span> .</p>
+<blockquote>
+<p>extended real line <span class="math inline">\((\mathbb R^*,\mathcal
+R^*)\)</span> is a measurable space</p>
+</blockquote></li>
+</ol></li>
 </ol>
-</li>
-<li><p>(*) Generalization of random variable </p>
-<ol>
-<li><p>Def : [Converges almost surely] </p>
-<p>From Thm above , the following set is a measurable set</p>
-<script type="math/tex; mode=display">
-\Omega_o:=\{w:\lim_{n\to\infty}X_n\text{ exists}\}=\{w:\limsup_{n\to\infty}X_n-\liminf_{n\to\infty}X_n=0\}</script><p>If $P(\Omega_o)=1$ , then $X_n$ converges almost surely ( a.s. ) .</p>
-<blockquote>
-<p>即一列 $X_n$ 是几乎处处收敛的 当且仅当 $X_n$ 不收敛的点集测度为 $0$ </p>
-</blockquote>
-<p>Def : $X_\infty:=\limsup_{n\to \infty} X_n$ </p>
-<p>Problem : $X_{\infty}$ can have value $\pm\infty$ .</p>
-</li>
-<li><p>Def : [Generalized random variable] </p>
-<p>A function whose domain is $D\in \mathcal F$ and range is $\mathbb R^<em>:=[-\infty,+\infty]$ is a random variable if $\forall B\in \mathcal R^</em> , X^{-1}(B)\in \mathcal F$ .</p>
-<p>Def : [Extended Borel set ] : $\mathcal R^*$ is generated by intervals of form $[-\infty,a),(a,b),(b,+\infty]$ , $a,b\in \mathbb R$ .</p>
-<blockquote>
-<p>extended real line $(\mathbb R^<em>,\mathcal R^</em>)$ is a measurable space </p>
-</blockquote>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="1-3-Distribution"><a href="#1-3-Distribution" class="headerlink" title="1.3 Distribution"></a>1.3 Distribution</h3><ol>
+<h3 id="distribution">1.3 Distribution</h3>
+<ol type="1">
 <li><p>Definition of Distribution</p>
-<ol>
-<li><p>Def : [distribution] $X$ is a random variable , then let $\mu=P\circ X^{-1}$ ( $\mu(A)=P(X\in A)$ ) , $\mu$ is a probability measure called distribution .</p>
-</li>
-<li><p>Check $\mu$ is a probability measure $(\mathbb R,\mathcal R)\to (\mathbb R,\mathcal R)$ .</p>
+<ol type="1">
+<li><p>Def : [distribution] <span class="math inline">\(X\)</span> is a
+random variable , then let <span class="math inline">\(\mu=P\circ
+X^{-1}\)</span> ( <span class="math inline">\(\mu(A)=P(X\in A)\)</span>
+) , <span class="math inline">\(\mu\)</span> is a probability measure
+called distribution .</p></li>
+<li><p>Check <span class="math inline">\(\mu\)</span> is a probability
+measure <span class="math inline">\((\mathbb R,\mathcal R)\to (\mathbb
+R,\mathcal R)\)</span> .</p>
 <ul>
-<li><p>$\mu(A)=P(\{w\in \Omega:X(w)\in A\})\ge 0$ </p>
-</li>
-<li><p>If $A_i\in \mathcal R$ are disjoint countable sequence , then $X^{-1}(A_i)$ are also disjoint </p>
-<script type="math/tex; mode=display">
+<li><p><span class="math inline">\(\mu(A)=P(\{w\in \Omega:X(w)\in
+A\})\ge 0\)</span></p></li>
+<li><p>If <span class="math inline">\(A_i\in \mathcal R\)</span> are
+disjoint countable sequence , then <span
+class="math inline">\(X^{-1}(A_i)\)</span> are also disjoint <span
+class="math display">\[
 \begin{aligned}
-\mu(\cup_i A_i)&=P(X^{-1}(\cup_i A_i))\\
-&=P(\cup_i X^{-1}(A_i))\\
-&=\sum_{i} P(X^{-1}(A_i))\\
-&=\sum_{i} \mu(A_i)
-\end{aligned}</script></li>
-</ul>
-</li>
-</ol>
-</li>
+\mu(\cup_i A_i)&amp;=P(X^{-1}(\cup_i A_i))\\
+&amp;=P(\cup_i X^{-1}(A_i))\\
+&amp;=\sum_{i} P(X^{-1}(A_i))\\
+&amp;=\sum_{i} \mu(A_i)
+\end{aligned}
+\]</span></p></li>
+</ul></li>
+</ol></li>
 <li><p>distribution function</p>
-<ol>
-<li><p>Def : [distribution function]  Let $F(x)=P(X\le x)$ , $F(x)$ is the distribution function .</p>
+<ol type="1">
+<li><p>Def : [distribution function] Let <span
+class="math inline">\(F(x)=P(X\le x)\)</span> , <span
+class="math inline">\(F(x)\)</span> is the distribution function .</p>
 <blockquote>
-<p>$F(x)=P(X\le x)$ : Let $A_x=(-\infty,x]$ , $F(x)=P(X^{-1}(A_x))=\mu(A_x)$</p>
-<p>$F(x)$ can be viewed as the CDF of $\mu$ / the Stieltjes measure function </p>
+<p><span class="math inline">\(F(x)=P(X\le x)\)</span> : Let <span
+class="math inline">\(A_x=(-\infty,x]\)</span> , <span
+class="math inline">\(F(x)=P(X^{-1}(A_x))=\mu(A_x)\)</span></p>
 </blockquote>
-</li>
-<li><p>Thm [Props of distribution function] : Let $F$ be a distribution function</p>
+<blockquote>
+<p><span class="math inline">\(F(x)\)</span> can be viewed as the CDF of
+<span class="math inline">\(\mu\)</span> / the Stieltjes measure
+function</p>
+</blockquote></li>
+<li><p>Thm [Props of distribution function] : Let <span
+class="math inline">\(F\)</span> be a distribution function</p>
 <ul>
-<li><p>$F$ : non-decreasing</p>
-</li>
-<li><p>$\lim\limits_{x\to -\infty }F(x)=0$ , $\lim\limits_{x\to+\infty}F(x)=1$</p>
-</li>
+<li><p><span class="math inline">\(F\)</span> : non-decreasing</p></li>
+<li><p><span class="math inline">\(\lim\limits_{x\to -\infty
+}F(x)=0\)</span> , <span
+class="math inline">\(\lim\limits_{x\to+\infty}F(x)=1\)</span></p></li>
 </ul>
 <blockquote>
-<p>$x\to -\infty , \{X\le x\}\downarrow \varnothing$ , $x\to+\infty , \{X\le x\}\uparrow \Omega$</p>
+<p><span class="math inline">\(x\to -\infty , \{X\le x\}\downarrow
+\varnothing\)</span> , <span class="math inline">\(x\to+\infty , \{X\le
+x\}\uparrow \Omega\)</span></p>
 </blockquote>
 <ul>
-<li>$F$ : right continuous , $F(x^+)=\lim_{y\downarrow x}F(y)=F(x)$</li>
+<li><span class="math inline">\(F\)</span> : right continuous , <span
+class="math inline">\(F(x^+)=\lim_{y\downarrow x}F(y)=F(x)\)</span></li>
 </ul>
 <blockquote>
-<p>$y=x+\epsilon$ , $\{X\le y\}=\{X\le x+\epsilon\}\downarrow \{X\le x\}$</p>
+<p><span class="math inline">\(y=x+\epsilon\)</span> , <span
+class="math inline">\(\{X\le y\}=\{X\le x+\epsilon\}\downarrow \{X\le
+x\}\)</span></p>
 </blockquote>
 <ul>
-<li>$F(x^-)=P(X&lt;x)$</li>
+<li><span class="math inline">\(F(x^-)=P(X&lt;x)\)</span></li>
 </ul>
 <blockquote>
-<p>$y=x-\epsilon$ , $\{X\le y\}=\{X\le x-\epsilon\}\uparrow \{X&lt;x\}$</p>
+<p><span class="math inline">\(y=x-\epsilon\)</span> , <span
+class="math inline">\(\{X\le y\}=\{X\le x-\epsilon\}\uparrow
+\{X&lt;x\}\)</span></p>
 </blockquote>
 <ul>
-<li>$P(X=x)=F(x)-F(x^-)$</li>
-</ul>
-</li>
-<li><p>Thm [Judgement of distribution function] : $F$ satisfies (i) , (ii) , (iii) is a distribution function</p>
+<li><span class="math inline">\(P(X=x)=F(x)-F(x^-)\)</span></li>
+</ul></li>
+<li><p>Thm [Judgement of distribution function] : <span
+class="math inline">\(F\)</span> satisfies (i) , (ii) , (iii) is a
+distribution function</p>
 <blockquote>
 <p>Proof : [construction]</p>
-<p>Let $\Omega=(0,1)$ , $\mathcal F$ is the corresponding Borel set , $P$ is Lebesgue measure , so $P((a,b])=b-a$ .</p>
-<p>Let $X(w)=\sup\{y:F(y)&lt;w\}$ , we want to prove that $P(X\le x)=F(x)$ .</p>
-<p>Since $F(x)=P(\{w:w\le F(x)\})$ , we want to prove that :</p>
-<script type="math/tex; mode=display">
-\{w:X(w)\le x\}=\{w:w\le F(x)\} \quad\quad \quad (*)</script><p>$R\subset L$ : $\forall w,w\le F(x)$ , and $X(w)=\sup\{y:F(y)&lt;w\}$ , so $F(X(w))\le w\le F(x)$ , so $X(w)\le x$ .</p>
-<p>$R^c\subset L^c$ : $\forall w,w&gt;F(x)$ , and $X(w)=\sup\{y:F(y)&lt;w\}$ . </p>
-<p>$F$ : right continuous , so $\exists \epsilon&gt;0$ , $F(x+\epsilon)<w$ , so $X(w)\ge x+\epsilon>x$ .</p>
+<p>Let <span class="math inline">\(\Omega=(0,1)\)</span> , <span
+class="math inline">\(\mathcal F\)</span> is the corresponding Borel set
+, <span class="math inline">\(P\)</span> is Lebesgue measure , so <span
+class="math inline">\(P((a,b])=b-a\)</span> .</p>
+<p>Let <span class="math inline">\(X(w)=\sup\{y:F(y)&lt;w\}\)</span> ,
+we want to prove that <span class="math inline">\(P(X\le
+x)=F(x)\)</span> .</p>
+<p>Since <span class="math inline">\(F(x)=P(\{w:w\le F(x)\})\)</span> ,
+we want to prove that : <span class="math display">\[
+\{w:X(w)\le x\}=\{w:w\le F(x)\} \quad\quad \quad (*)
+\]</span> <span class="math inline">\(R\subset L\)</span> : <span
+class="math inline">\(\forall w,w\le F(x)\)</span> , and <span
+class="math inline">\(X(w)=\sup\{y:F(y)&lt;w\}\)</span> , so <span
+class="math inline">\(F(X(w))\le w\le F(x)\)</span> , so <span
+class="math inline">\(X(w)\le x\)</span> .</p>
+<p><span class="math inline">\(R^c\subset L^c\)</span> : <span
+class="math inline">\(\forall w,w&gt;F(x)\)</span> , and <span
+class="math inline">\(X(w)=\sup\{y:F(y)&lt;w\}\)</span> .</p>
+<p><span class="math inline">\(F\)</span> : right continuous , so <span
+class="math inline">\(\exists \epsilon&gt;0\)</span> , <span
+class="math inline">\(F(x+\epsilon)&lt;w\)</span> , so <span
+class="math inline">\(X(w)\ge x+\epsilon&gt;x\)</span> .</p>
 </blockquote>
 <p>Equation (*) means :</p>
-<p><img src="/images/posts/PS2_fig1.png" alt=""></p>
-</li>
-<li><p>Remark </p>
-<p>Each distribution function $F$ corresponds to a unique distribution measure $\mu$ </p>
-<p>One distribution function $F$ can correspond to many different random variables</p>
-<p>Def [equal in distribution] : If $X,Y$ have same distribution measure/function , then $X$ and $Y$ are equal in distribution , denote as $X\overset{d}{=}Y$ or $X=_d Y$ .</p>
-</li>
-</ol>
-</li>
+<p><img src="/images/posts/PS2_fig1.png" /></p></li>
+<li><p>Remark</p>
+<p>Each distribution function <span class="math inline">\(F\)</span>
+corresponds to a unique distribution measure <span
+class="math inline">\(\mu\)</span></p>
+<p>One distribution function <span class="math inline">\(F\)</span> can
+correspond to many different random variables</p>
+<p>Def [equal in distribution] : If <span
+class="math inline">\(X,Y\)</span> have same distribution
+measure/function , then <span class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> are equal in distribution , denote as
+<span class="math inline">\(X\overset{d}{=}Y\)</span> or <span
+class="math inline">\(X=_d Y\)</span> .</p></li>
+</ol></li>
 <li><p>Density function</p>
-<ol>
-<li><p>Def [density function] : when a distribution function $F(x)=P(X\le x)$ has the form </p>
-<script type="math/tex; mode=display">
-F(x)=\int_{-\infty}^x f(y)\ dy</script><p>then $X$ has the density function $f$ , denote as $f_X(x)$ .</p>
+<ol type="1">
+<li><p>Def [density function] : when a distribution function <span
+class="math inline">\(F(x)=P(X\le x)\)</span> has the form <span
+class="math display">\[
+F(x)=\int_{-\infty}^x f(y)\ dy
+\]</span> then <span class="math inline">\(X\)</span> has the density
+function <span class="math inline">\(f\)</span> , denote as <span
+class="math inline">\(f_X(x)\)</span> .</p>
 <blockquote>
-<script type="math/tex; mode=display">
-P(X=x)=\lim_{\epsilon\to0}\int_{x-\epsilon}^{x+\epsilon} f(y)dy=0</script></blockquote>
-</li>
+<p><span class="math display">\[
+P(X=x)=\lim_{\epsilon\to0}\int_{x-\epsilon}^{x+\epsilon} f(y)dy=0
+\]</span></p>
+</blockquote></li>
 <li><p>Prop : (necessary and sufficient)</p>
 <ul>
-<li>$f(x)\ge 0$ </li>
-<li>$\int_{-\infty}^{+\infty}f(x)dx=1$</li>
-</ul>
-</li>
-</ol>
-</li>
+<li><span class="math inline">\(f(x)\ge 0\)</span></li>
+<li><span
+class="math inline">\(\int_{-\infty}^{+\infty}f(x)dx=1\)</span></li>
+</ul></li>
+</ol></li>
 <li><p>Discrete / Continuous</p>
-<p>A probability measure $P$ is discrete if there exists a countable set $S$ that $P(S^c)=0$ ( only non-zero on countable set) .</p>
-<p>Discrete : usually $[a_i,b_i)$ segments like .</p>
-</li>
+<p>A probability measure <span class="math inline">\(P\)</span> is
+discrete if there exists a countable set <span
+class="math inline">\(S\)</span> that <span
+class="math inline">\(P(S^c)=0\)</span> ( only non-zero on countable
+set) .</p>
+<p>Discrete : usually <span class="math inline">\([a_i,b_i)\)</span>
+segments like .</p></li>
 </ol>
-<h3 id="1-4-Integration"><a href="#1-4-Integration" class="headerlink" title="1.4 Integration"></a>1.4 Integration</h3><p>Intuition : Expectation needs Integration .</p>
-<ol>
-<li><p>Notations </p>
-<ol>
-<li><p>Def : $(\Omega,\mathcal F)$ , with measure $\mu$ , $f:(\Omega,\mathcal F)\to(\mathbb R,\mathcal R)$ . Denote the integration as $\int fd\mu$ .</p>
-</li>
-<li><p>Restriction for $\mu$ : should be $\sigma$-finite measure</p>
-<p>e.g. Lebesgue measure is $\sigma$-finite : $A_i=[-i,i]$ , so $\mu(A_i)&lt;\infty$ and $\cup_i{A_i}=\mathbb R$ .</p>
-</li>
-<li><p>Restriction for $\int fd\mu$ :</p>
-<p>(i) $\varphi\ge 0$ $\mu$-a.e. , then $\int\varphi d\mu\ge 0$</p>
-<p>Def [almost everywhere] : $\mu$-a.e. : $\mu(\{w:\varphi(w)&lt;0\})=0$ .</p>
-<p>(ii) $\int a\varphi d\mu=a\int \varphi d\mu$</p>
-<p>(iii) $\int (\varphi+\psi)d\mu=\int \varphi d\mu+\int \psi d\mu$</p>
-<p>(iv) $\varphi\le \psi$ $\mu$-a.e. , then $\int \varphi d\mu\le \int \psi d\mu$</p>
-<p>(v) $\varphi=\psi$ $\mu$-a.e. , then $\int \varphi d\mu=\int \psi d\mu$</p>
-<p>(vi) $\left|\int \varphi d\mu\right|\le \int |\varphi|d\mu$ </p>
-</li>
-<li><p>Thm : (i),(ii),(iii) can derive (iv),(v),(vi)</p>
-</li>
+<h3 id="integration">1.4 Integration</h3>
+<p>Intuition : Expectation needs Integration .</p>
+<ol type="1">
+<li><p>Notations</p>
+<ol type="1">
+<li><p>Def : <span class="math inline">\((\Omega,\mathcal F)\)</span> ,
+with measure <span class="math inline">\(\mu\)</span> , <span
+class="math inline">\(f:(\Omega,\mathcal F)\to(\mathbb R,\mathcal
+R)\)</span> . Denote the integration as <span class="math inline">\(\int
+fd\mu\)</span> .</p></li>
+<li><p>Restriction for <span class="math inline">\(\mu\)</span> : should
+be <span class="math inline">\(\sigma\)</span>-finite measure</p>
+<p>e.g. Lebesgue measure is <span
+class="math inline">\(\sigma\)</span>-finite : <span
+class="math inline">\(A_i=[-i,i]\)</span> , so <span
+class="math inline">\(\mu(A_i)&lt;\infty\)</span> and <span
+class="math inline">\(\cup_i{A_i}=\mathbb R\)</span> .</p></li>
+<li><p>Restriction for <span class="math inline">\(\int fd\mu\)</span>
+:</p>
+<ol type="i">
+<li><span class="math inline">\(\varphi\ge 0\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , then <span
+class="math inline">\(\int\varphi d\mu\ge 0\)</span></li>
 </ol>
-</li>
+<p>Def [almost everywhere] : <span
+class="math inline">\(\mu\)</span>-a.e. : <span
+class="math inline">\(\mu(\{w:\varphi(w)&lt;0\})=0\)</span> .</p>
+<ol start="2" type="i">
+<li><p><span class="math inline">\(\int a\varphi d\mu=a\int \varphi
+d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\int (\varphi+\psi)d\mu=\int \varphi
+d\mu+\int \psi d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\varphi\le \psi\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , then <span
+class="math inline">\(\int \varphi d\mu\le \int \psi
+d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\varphi=\psi\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , then <span
+class="math inline">\(\int \varphi d\mu=\int \psi d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\left|\int \varphi d\mu\right|\le
+\int |\varphi|d\mu\)</span></p></li>
+</ol></li>
+<li><p>Thm : (i),(ii),(iii) can derive (iv),(v),(vi)</p></li>
+</ol></li>
 <li><p>Simple Function</p>
-<ol>
-<li><p>Def [simple function] : If $\varphi(\omega)=\sum_{i=1}^n a_i \mathbb 1_{A_i}$ , and $A_i$ are disjoint sets , $\mu(A_i)&lt;\infty$ </p>
-</li>
-<li><p>Def [simple function integration] : If $\varphi(\omega)=\sum_{i=1}^n a_i \mathbb 1_{A_i}$ , define </p>
-<script type="math/tex; mode=display">
-\int \varphi d\mu=\sum_{i=1}^n a_i \mu(A_i)</script></li>
+<ol type="1">
+<li><p>Def [simple function] : If <span
+class="math inline">\(\varphi(\omega)=\sum_{i=1}^n a_i \mathbb
+1_{A_i}\)</span> , and <span class="math inline">\(A_i\)</span> are
+disjoint sets , <span
+class="math inline">\(\mu(A_i)&lt;\infty\)</span></p></li>
+<li><p>Def [simple function integration] : If <span
+class="math inline">\(\varphi(\omega)=\sum_{i=1}^n a_i \mathbb
+1_{A_i}\)</span> , define <span class="math display">\[
+\int \varphi d\mu=\sum_{i=1}^n a_i \mu(A_i)
+\]</span></p></li>
 <li><p>Check Props</p>
 <blockquote>
-<p>(i) : $\varphi\ge 0$ $\mu$-a.e. , so for all $A_i$ with $\mu(A_i)&gt;0$ , $a_i\ge 0$ .</p>
-<p>(ii) : trivial</p>
-<p>(iii) : Suppose $\varphi=\sum_{i=1}^m a_i \mathbb 1_{A_i}$ , $\psi=\sum_{j=1}^n b_j \mathbb 1_{B_j}$ </p>
-<p>Define $A_0=\cup_{j} B_j-\cup_i A_i$ , $B_0=\cup_i A_i-\cup_j B_j$ . Let $a_0=b_0=0$ .</p>
-<p>Therefore $\cup_{j=1}^n B_j\subset \cup_{i=0}^n A_i$ and $\cup_{i=1}^m A_i\subset \cup_{j=1}^n B_j$ .</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\int(\varphi+\psi)d\mu&=\sum_{i=0}^m \sum_{j=0}^n (a_i+b_j)\mu(A_i\cap B_j)\\
-&=\sum_{i=0}^m a_i\sum_{j=0}^n \mu(A_i\cap B_j)+\sum_{j=0}^nb_j\sum_{i=0}^m \mu(A_i\cup B_j)\\
-&=\sum_{i=0}^m a_i\mu(A_i)+\sum_{j=0}^n b_j\mu(B_j)\\
-&=\int \varphi d\mu +\int \psi d\mu
-\end{aligned}</script></blockquote>
-</li>
+<ol type="i">
+<li><p>: <span class="math inline">\(\varphi\ge 0\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , so for all <span
+class="math inline">\(A_i\)</span> with <span
+class="math inline">\(\mu(A_i)&gt;0\)</span> , <span
+class="math inline">\(a_i\ge 0\)</span> .</p></li>
+<li><p>: trivial</p></li>
 </ol>
-</li>
+</blockquote>
+<blockquote>
+<ol start="3" type="i">
+<li>: Suppose <span class="math inline">\(\varphi=\sum_{i=1}^m a_i
+\mathbb 1_{A_i}\)</span> , <span class="math inline">\(\psi=\sum_{j=1}^n
+b_j \mathbb 1_{B_j}\)</span></li>
+</ol>
+<p>Define <span class="math inline">\(A_0=\cup_{j} B_j-\cup_i
+A_i\)</span> , <span class="math inline">\(B_0=\cup_i A_i-\cup_j
+B_j\)</span> . Let <span class="math inline">\(a_0=b_0=0\)</span> .</p>
+<p>Therefore <span class="math inline">\(\cup_{j=1}^n B_j\subset
+\cup_{i=0}^n A_i\)</span> and <span class="math inline">\(\cup_{i=1}^m
+A_i\subset \cup_{j=1}^n B_j\)</span> . <span class="math display">\[
+\begin{aligned}
+\int(\varphi+\psi)d\mu&amp;=\sum_{i=0}^m \sum_{j=0}^n
+(a_i+b_j)\mu(A_i\cap B_j)\\
+&amp;=\sum_{i=0}^m a_i\sum_{j=0}^n \mu(A_i\cap
+B_j)+\sum_{j=0}^nb_j\sum_{i=0}^m \mu(A_i\cup B_j)\\
+&amp;=\sum_{i=0}^m a_i\mu(A_i)+\sum_{j=0}^n b_j\mu(B_j)\\
+&amp;=\int \varphi d\mu +\int \psi d\mu
+\end{aligned}
+\]</span></p>
+</blockquote></li>
+</ol></li>
 </ol>
 
     </div>
@@ -669,13 +820,13 @@ P(X=x)=\lim_{\epsilon\to0}\int_{x-\epsilon}^{x+\epsilon} f(y)dy=0</script></bloc
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

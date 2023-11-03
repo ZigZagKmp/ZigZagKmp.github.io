@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://zigzagkmp.github.io/images/posts/PS3_fig1.png">
 <meta property="og:image" content="https://zigzagkmp.github.io/images/posts/PS3_fig2.png">
 <meta property="article:published_time" content="2023-10-16T13:51:16.000Z">
-<meta property="article:modified_time" content="2023-11-03T02:21:10.160Z">
+<meta property="article:modified_time" content="2023-11-03T12:19:57.372Z">
 <meta property="article:author" content="ZigZagKmp">
 <meta property="article:tag" content="概率论-概率密度函数">
 <meta property="article:tag" content="实分析-Lebesgue积分">
@@ -147,7 +147,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-Background-in-Probability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 Background in Probability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Integration"><span class="nav-number">1.1.</span> <span class="nav-text">1.4 Integration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Properties-of-Integration"><span class="nav-number">1.2.</span> <span class="nav-text">1.5 Properties of Integration</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-1-background-in-probability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 Background in
+Probability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#integration"><span class="nav-number">1.1.</span> <span class="nav-text">1.4 Integration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#properties-of-integration"><span class="nav-number">1.2.</span> <span class="nav-text">1.5 Properties of Integration</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -162,7 +163,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -173,7 +174,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -254,6 +255,13 @@
       </a>
     </li>
     <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/11/03/Probability-and-Statistics-5/" rel="bookmark">
+        <time class="popular-posts-time">2023-11-03</time>
+        <br>
+      Probability and Statistics 5
+      </a>
+    </li>
+    <li class="popular-posts-item">
       <a class="popular-posts-link" href="/2023/10/07/%E7%AD%94%E7%96%91%E5%9D%8A-%E5%BE%AE%E7%A7%AF%E5%88%86-%E8%B6%A3%E9%A2%98%E8%8B%A5%E5%B9%B2/" rel="bookmark">
         <time class="popular-posts-time">2023-10-07</time>
         <br>
@@ -316,7 +324,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-03 10:21:10" itemprop="dateModified" datetime="2023-11-03T10:21:10+08:00">2023-11-03</time>
+      <time title="修改时间：2023-11-03 20:19:57" itemprop="dateModified" datetime="2023-11-03T20:19:57+08:00">2023-11-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -364,194 +372,351 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-1-Background-in-Probability"><a href="#Chapter-1-Background-in-Probability" class="headerlink" title="Chapter 1 Background in Probability"></a>Chapter 1 Background in Probability</h2><h3 id="1-4-Integration"><a href="#1-4-Integration" class="headerlink" title="1.4 Integration"></a>1.4 Integration</h3><ol>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-1-background-in-probability">Chapter 1 Background in
+Probability</h2>
+<h3 id="integration">1.4 Integration</h3>
+<ol type="1">
 <li><p>Judgement : an integration should satisfies :</p>
-<p>(i) $\varphi\ge 0$ $\mu$-a.e. , then $\int\varphi d\mu\ge 0$</p>
-<p>(ii) $\int a\varphi d\mu=a\int \varphi d\mu$</p>
-<p>(iii) $\int (\varphi+\psi)d\mu=\int \varphi d\mu+\int \psi d\mu$</p>
-</li>
+<ol type="i">
+<li><p><span class="math inline">\(\varphi\ge 0\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , then <span
+class="math inline">\(\int\varphi d\mu\ge 0\)</span></p></li>
+<li><p><span class="math inline">\(\int a\varphi d\mu=a\int \varphi
+d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\int (\varphi+\psi)d\mu=\int \varphi
+d\mu+\int \psi d\mu\)</span></p></li>
+</ol></li>
 <li><p>Basic Properties of integration</p>
-<p>(iv) $\varphi\le \psi$ $\mu$-a.e. , then $\int \varphi d\mu\le \int \psi d\mu$</p>
-<p>(v) $\varphi=\psi$ $\mu$-a.e. , then $\int \varphi d\mu=\int \psi d\mu$</p>
-<p>(vi) $\left|\int \varphi d\mu\right|\le \int |\varphi|d\mu$ </p>
-</li>
+<ol start="4" type="i">
+<li><p><span class="math inline">\(\varphi\le \psi\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , then <span
+class="math inline">\(\int \varphi d\mu\le \int \psi
+d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\varphi=\psi\)</span> <span
+class="math inline">\(\mu\)</span>-a.e. , then <span
+class="math inline">\(\int \varphi d\mu=\int \psi d\mu\)</span></p></li>
+<li><p><span class="math inline">\(\left|\int \varphi d\mu\right|\le
+\int |\varphi|d\mu\)</span></p></li>
+</ol></li>
 <li><p>Bounded Function</p>
-<ol>
-<li><p>Def [ <strong><em>Bounded Function</em></strong> ] : $\exists M&lt;\infty,|f(x)|\le M$ , and $\exists E\subseteq \Omega , \mu(E)&lt;\infty,f(E^c)=0$ .</p>
-</li>
-<li><p>Def [ <strong><em>Integration for Bounded Function</em></strong>  ] : Let $\Phi_s$ be the set of simple functions . If $f$ is a bounded function,</p>
-<script type="math/tex; mode=display">
-\int fd\mu:=\sup_{\varphi\in \Phi_s , \varphi\le f}\int \varphi d\mu =\inf_{\psi\in \Phi_s , \psi\ge f}\int \psi d\mu</script><blockquote>
-<p>$\varphi \le f,\psi\ge f$ : $\mu$-a.e.</p>
-<p>Intuition : Like Darboux’s upper sum and lower sum</p>
+<ol type="1">
+<li><p>Def [ <strong><em>Bounded Function</em></strong> ] : <span
+class="math inline">\(\exists M&lt;\infty,|f(x)|\le M\)</span> , and
+<span class="math inline">\(\exists E\subseteq \Omega ,
+\mu(E)&lt;\infty,f(E^c)=0\)</span> .</p></li>
+<li><p>Def [ <strong><em>Integration for Bounded Function</em></strong>
+] : Let <span class="math inline">\(\Phi_s\)</span> be the set of simple
+functions . If <span class="math inline">\(f\)</span> is a bounded
+function, <span class="math display">\[
+\int fd\mu:=\sup_{\varphi\in \Phi_s , \varphi\le f}\int \varphi d\mu
+=\inf_{\psi\in \Phi_s , \psi\ge f}\int \psi d\mu
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(\varphi \le f,\psi\ge f\)</span> : <span
+class="math inline">\(\mu\)</span>-a.e.</p>
 </blockquote>
-</li>
-<li><p>Proof of $\sup\limits_{\varphi\in \Phi_s , \varphi\le f}\int \varphi d\mu =\inf\limits_{\psi\in \Phi_s , \psi\ge f}\int \psi d\mu$ </p>
-<ol>
-<li><p>By Prop (iv) , $\varphi\le f\le \psi$ , so $\int \varphi d\mu\le \int \psi d\mu$ </p>
-</li>
-<li><p>Prove $\sup\limits_{\varphi\in \Phi_s , \varphi\le f}\int \varphi d\mu \ge \inf\limits_{\psi\in \Phi_s , \psi\ge f}\int \psi d\mu$</p>
-<p>Since $|f|\le M$ , let $E_k:=\{x\in E|\frac{(k-1)M}{n}&lt;f(x)\le \frac{kM}{n}\}$ , $-n\le k\le n$ .</p>
-<p>Let $\varphi_n=\sum\limits_{k=-n}^n \frac{(k-1)M}{n}\mathbb 1_{E_k}$ , $\psi_n=\sum\limits_{k=-n}^n \frac{kM}{n}\mathbb 1_{E_k}$ </p>
-<p>Therefore , $\int (\psi_n-\varphi_n)d\mu=\frac{M}{n}\mu(E)$ ,</p>
-<script type="math/tex; mode=display">
-\sup\limits_{\varphi\in \Phi_s , \varphi\le f}\int \varphi d\mu \ge\int \varphi_nd\mu =-\frac{M}{n}\mu(E)+\int \psi_n d\mu \ge -\frac{M\mu(E)}{n}+\inf\limits_{\psi\in \Phi_s , \psi\ge f}\int \psi d\mu</script><p>When $n\to +\infty$ , $-\frac{M\mu(E)}{n}\to 0$ , so $\sup\limits_{\varphi\in \Phi_s , \varphi\le f}\int \varphi d\mu =\inf\limits_{\psi\in \Phi_s , \psi\ge f}\int \psi d\mu$ .</p>
-<p><img src="/images/posts/PS3_fig1.png" alt="diagram of the proof"></p>
-</li>
-</ol>
-</li>
+<blockquote>
+<p>Intuition : Like Darboux's upper sum and lower sum</p>
+</blockquote></li>
+<li><p>Proof of <span class="math inline">\(\sup\limits_{\varphi\in
+\Phi_s , \varphi\le f}\int \varphi d\mu =\inf\limits_{\psi\in \Phi_s ,
+\psi\ge f}\int \psi d\mu\)</span></p>
+<ol type="1">
+<li><p>By Prop (iv) , <span class="math inline">\(\varphi\le f\le
+\psi\)</span> , so <span class="math inline">\(\int \varphi d\mu\le \int
+\psi d\mu\)</span></p></li>
+<li><p>Prove <span class="math inline">\(\sup\limits_{\varphi\in \Phi_s
+, \varphi\le f}\int \varphi d\mu \ge \inf\limits_{\psi\in \Phi_s ,
+\psi\ge f}\int \psi d\mu\)</span></p>
+<p>Since <span class="math inline">\(|f|\le M\)</span> , let <span
+class="math inline">\(E_k:=\{x\in E|\frac{(k-1)M}{n}&lt;f(x)\le
+\frac{kM}{n}\}\)</span> , <span class="math inline">\(-n\le k\le
+n\)</span> .</p>
+<p>Let <span class="math inline">\(\varphi_n=\sum\limits_{k=-n}^n
+\frac{(k-1)M}{n}\mathbb 1_{E_k}\)</span> , <span
+class="math inline">\(\psi_n=\sum\limits_{k=-n}^n \frac{kM}{n}\mathbb
+1_{E_k}\)</span></p>
+<p>Therefore , <span class="math inline">\(\int
+(\psi_n-\varphi_n)d\mu=\frac{M}{n}\mu(E)\)</span> , <span
+class="math display">\[
+\sup\limits_{\varphi\in \Phi_s , \varphi\le f}\int \varphi d\mu \ge\int
+\varphi_nd\mu =-\frac{M}{n}\mu(E)+\int \psi_n d\mu \ge
+-\frac{M\mu(E)}{n}+\inf\limits_{\psi\in \Phi_s , \psi\ge f}\int \psi
+d\mu
+\]</span> When <span class="math inline">\(n\to +\infty\)</span> , <span
+class="math inline">\(-\frac{M\mu(E)}{n}\to 0\)</span> , so <span
+class="math inline">\(\sup\limits_{\varphi\in \Phi_s , \varphi\le f}\int
+\varphi d\mu =\inf\limits_{\psi\in \Phi_s , \psi\ge f}\int \psi
+d\mu\)</span> .</p>
+<figure>
+<img src="/images/posts/PS3_fig1.png" alt="diagram of the proof" />
+<figcaption aria-hidden="true">diagram of the proof</figcaption>
+</figure></li>
+</ol></li>
 <li><p>Proof of (i)(ii)(iii)</p>
-<p>(i) : Let $\varphi=0$ , trivial</p>
-<p>(ii) : For $a&gt;0$ , $a\varphi\le af\iff \varphi\le f$ </p>
-<script type="math/tex; mode=display">
-\int afd\mu =\sup_{a\varphi\le af}\int a\varphi d\mu =\sup_{\varphi\le f}\int a\varphi d\mu=a\sup_{\varphi\le f}\int \varphi d\mu=a\int fd\mu</script><p>(iii) : Firstly prove $\int (f+g)d\mu\le \int fd\mu +\int gd\mu$ .</p>
-<p>Let $\Phi_s’=\{\psi|\exists \psi_1,\psi_2,\psi=\psi_1+\psi_2,\psi_1\ge f,\psi_2\ge g\}$ , so $\Phi_s’\subseteq \{\psi|\psi\ge f+g\}$ .</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\int(f+g)d\mu&=\inf_{\psi\ge f+g} \psi d\mu\\
-&\le \inf_{\psi=\psi_1+\psi_2\in \Phi_s'} (\psi_1+\psi_2)d\mu\\\
-&=\inf_{\psi_1\ge f,\psi_2\ge g} \int \psi_1d\mu+\int \psi_2d\mu\\
-&=\inf_{\psi_1\ge f} \int \psi_1d\mu+\inf_{\psi_2\ge g}\int \psi_2d\mu\\
-&=\int fd\mu+\int gd\mu
-\end{aligned}</script><p>Use (ii) , let $a=-1$ , so $\int -(f+g)d\mu\le \int (-f)d\mu+\int (-g)d\mu$ , so $\int (f+g)d\mu\ge \int fd\mu+\int gd\mu$ .</p>
-</li>
+<ol type="i">
+<li><p>: Let <span class="math inline">\(\varphi=0\)</span> ,
+trivial</p></li>
+<li><p>: For <span class="math inline">\(a&gt;0\)</span> , <span
+class="math inline">\(a\varphi\le af\iff \varphi\le f\)</span> <span
+class="math display">\[
+\int afd\mu =\sup_{a\varphi\le af}\int a\varphi d\mu =\sup_{\varphi\le
+f}\int a\varphi d\mu=a\sup_{\varphi\le f}\int \varphi d\mu=a\int fd\mu
+\]</span></p></li>
+<li><p>: Firstly prove <span class="math inline">\(\int (f+g)d\mu\le
+\int fd\mu +\int gd\mu\)</span> .</p></li>
 </ol>
-</li>
+<p>Let <span class="math inline">\(\Phi_s&#39;=\{\psi|\exists
+\psi_1,\psi_2,\psi=\psi_1+\psi_2,\psi_1\ge f,\psi_2\ge g\}\)</span> , so
+<span class="math inline">\(\Phi_s&#39;\subseteq \{\psi|\psi\ge
+f+g\}\)</span> . <span class="math display">\[
+\begin{aligned}
+\int(f+g)d\mu&amp;=\inf_{\psi\ge f+g} \psi d\mu\\
+&amp;\le \inf_{\psi=\psi_1+\psi_2\in \Phi_s&#39;} (\psi_1+\psi_2)d\mu\\\
+&amp;=\inf_{\psi_1\ge f,\psi_2\ge g} \int \psi_1d\mu+\int \psi_2d\mu\\
+&amp;=\inf_{\psi_1\ge f} \int \psi_1d\mu+\inf_{\psi_2\ge g}\int
+\psi_2d\mu\\
+&amp;=\int fd\mu+\int gd\mu
+\end{aligned}
+\]</span> Use (ii) , let <span class="math inline">\(a=-1\)</span> , so
+<span class="math inline">\(\int -(f+g)d\mu\le \int (-f)d\mu+\int
+(-g)d\mu\)</span> , so <span class="math inline">\(\int (f+g)d\mu\ge
+\int fd\mu+\int gd\mu\)</span> .</p></li>
+</ol></li>
 <li><p>Non-Negative Function</p>
-<ol>
+<ol type="1">
 <li><p>Compare with bounded function</p>
 <ul>
-<li>can exists $x$ , $f(x)\to\infty$</li>
-<li>the smallest $E$ s.t. $f(E^c)=0$ , may be $\mu(E)\to\infty$ </li>
-</ul>
-</li>
-<li><p>Notation : </p>
+<li>can exists <span class="math inline">\(x\)</span> , <span
+class="math inline">\(f(x)\to\infty\)</span></li>
+<li>the smallest <span class="math inline">\(E\)</span> s.t. <span
+class="math inline">\(f(E^c)=0\)</span> , may be <span
+class="math inline">\(\mu(E)\to\infty\)</span></li>
+</ul></li>
+<li><p>Notation :</p>
 <ul>
-<li><script type="math/tex; mode=display">
-\int_E fd\mu:=\int f\cdot \mathbb 1_{E}d\mu</script></li>
-<li><script type="math/tex; mode=display">
-a\land b:=\min\{a,b\}</script></li>
-<li><p>Def [ <strong><em>Integration for non-negative function</em></strong> ] For non-negative function $f$ , </p>
-<script type="math/tex; mode=display">
-\int fd\mu=\sup\left\{\small\int hd\mu\mid 0\le h\le f,h\text{ bounded function}\right\}</script><blockquote>
-<p>$h$ is bounded function , so $\int hd\mu$ is bounded , but $\sup \int hd\mu$ can be unbounded .</p>
-</blockquote>
-</li>
-</ul>
-</li>
+<li><p><span class="math display">\[
+\int_E fd\mu:=\int f\cdot \mathbb 1_{E}d\mu
+\]</span></p></li>
+<li><p><span class="math display">\[
+a\land b:=\min\{a,b\}
+\]</span></p></li>
+<li><p>Def [ <strong><em>Integration for non-negative
+function</em></strong> ] For non-negative function <span
+class="math inline">\(f\)</span> , <span class="math display">\[
+\int fd\mu=\sup\left\{\small\int hd\mu\mid 0\le h\le f,h\text{ bounded
+function}\right\}
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(h\)</span> is bounded function , so <span
+class="math inline">\(\int hd\mu\)</span> is bounded , but <span
+class="math inline">\(\sup \int hd\mu\)</span> can be unbounded .</p>
+</blockquote></li>
+</ul></li>
 <li><p>Lemma :</p>
-<p>If $E_n\uparrow \Omega , \mu(E_n)&lt;\infty$ , then </p>
-<script type="math/tex; mode=display">
-\int_{E_n}f\land nd\mu\uparrow \int fd\mu</script><blockquote>
-<p>This lemma needs $\mu$ be a $\sigma$-finite measure.</p>
-<p>$(f\land n)\cdot \mathbb 1_E\in \{h|0\le h\le f,h\text{ bounded function}\}$</p>
+<p>If <span class="math inline">\(E_n\uparrow \Omega ,
+\mu(E_n)&lt;\infty\)</span> , then <span class="math display">\[
+\int_{E_n}f\land nd\mu\uparrow \int fd\mu
+\]</span></p>
+<blockquote>
+<p>This lemma needs <span class="math inline">\(\mu\)</span> be a <span
+class="math inline">\(\sigma\)</span>-finite measure.</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\((f\land n)\cdot \mathbb 1_E\in \{h|0\le
+h\le f,h\text{ bounded function}\}\)</span></p>
 </blockquote>
 <p><strong>Proof</strong></p>
-<p>It’s easy to find that $\lim\limits_{n\to\infty}\int_{E_n}f\land n d\mu=\sup\limits_{n\ge 1}\int_{E_n}f\land n d\mu\le \int fd\mu$ .</p>
-<p>We only need to prove that $\forall h,|h|&lt;M,0\le h\le f$ ,  $\lim\limits_{n\to\infty}\int_{E_n}f\land n d\mu\ge \int fd\mu$ .</p>
-<p>$\forall n&gt;M$ , $\int_{E_n} f\land n d\mu\ge \int_{E_n}hd\mu=\int hd\mu-\int_{E_n^c}hd\mu$ .</p>
-<p>And $\int_{E_n^c} hd\mu\le M\mu(E_n^c\cap \{x|h(x)&gt;0\})$ .</p>
-<p>Since $n\to \infty , \mu(E_n^c\cap \{x|h(x)&gt;0\})\to 0$ $(*)$ .</p>
-<p>Therefore , $\liminf\limits_{n\to \infty} \int_{E_n} f\land n d\mu\ge \int hd\mu$ .</p>
-<p><strong>To prove $(*)$</strong></p>
-<p>Let $a_n=\mu(E_n^c\cap \{x|h(x)&gt;0\})$ , we only need to prove that $\lim_{n\to \infty} a_n=0$ .</p>
-<p>Way 1 : $a_n$ non-increasing , $a_n\ge 0$ , so $\lim_{n\to\infty} a_n=c$ </p>
-<pre><code>If $c&gt;0$ , then $\exists \tilde \Omega\subseteq \Omega , \mu(\tilde\Omega)=c$ , $\forall n,\tilde\Omega\cap E_n=\varnothing$ .
-
-Therefore , $\tilde \Omega\cap \bigcup_&#123;n=1&#125;^&#123;\infty&#125;E_n=\varnothing$ , so $\tilde \Omega\cap\Omega=\varnothing$ , contradicts .
-</code></pre><p>Way 2 : By definition , $E_1^c\supset E_2^c \supset\cdots$ , so $E_n^c=\bigcap_{m=1}^n E_m^c$ .</p>
-<pre><code>$\lim_&#123;n\to\infty&#125;a_n=\mu(\bigcap_&#123;m=1&#125;^&#123;\infty&#125;E_m^c\cap\&#123;x|h(x)&gt;0\&#125;)=\mu(\Omega^c\cap\&#123;x|h(x)&gt;0\&#125;)=0$
-</code></pre></li>
+<p>It's easy to find that <span
+class="math inline">\(\lim\limits_{n\to\infty}\int_{E_n}f\land n\
+d\mu=\sup\limits_{n\ge 1}\int_{E_n}f\land n\ d\mu\le \int fd\mu\)</span>
+.</p>
+<p>We only need to prove that <span class="math inline">\(\forall
+h,|h|&lt;M,0\le h\le f\)</span> , <span
+class="math inline">\(\lim\limits_{n\to\infty}\int_{E_n}f\land n\
+d\mu\ge \int fd\mu\)</span> .</p>
+<p><span class="math inline">\(\forall n&gt;M\)</span> , <span
+class="math inline">\(\int_{E_n} f\land n\ d\mu\ge \int_{E_n}hd\mu=\int
+hd\mu-\int_{E_n^c}hd\mu\)</span> .</p>
+<p>And <span class="math inline">\(\int_{E_n^c} hd\mu\le M\mu(E_n^c\cap
+\{x|h(x)&gt;0\})\)</span> .</p>
+<p>Since <span class="math inline">\(n\to \infty , \mu(E_n^c\cap
+\{x|h(x)&gt;0\})\to 0\)</span> <span class="math inline">\((*)\)</span>
+.</p>
+<p>Therefore , <span class="math inline">\(\liminf\limits_{n\to \infty}
+\int_{E_n} f\land n\ d\mu\ge \int hd\mu\)</span> .</p>
+<p><strong>To prove <span
+class="math inline">\((*)\)</span></strong></p>
+<p>Let <span class="math inline">\(a_n=\mu(E_n^c\cap
+\{x|h(x)&gt;0\})\)</span> , we only need to prove that <span
+class="math inline">\(\lim_{n\to \infty} a_n=0\)</span> .</p>
+<p>Way 1 : <span class="math inline">\(a_n\)</span> non-increasing ,
+<span class="math inline">\(a_n\ge 0\)</span> , so <span
+class="math inline">\(\lim_{n\to\infty} a_n=c\)</span></p>
+<p>If <span class="math inline">\(c&gt;0\)</span> , then <span
+class="math inline">\(\exists \tilde \Omega\subseteq \Omega ,
+\mu(\tilde\Omega)=c\)</span> , <span class="math inline">\(\forall
+n,\tilde\Omega\cap E_n=\varnothing\)</span> .</p>
+<p>Therefore , <span class="math inline">\(\tilde \Omega\cap
+\bigcup_{n=1}^{\infty}E_n=\varnothing\)</span> , so <span
+class="math inline">\(\tilde \Omega\cap\Omega=\varnothing\)</span> ,
+contradicts .</p>
+<p>Way 2 : By definition , <span class="math inline">\(E_1^c\supset
+E_2^c \supset\cdots\)</span> , so <span
+class="math inline">\(E_n^c=\bigcap_{m=1}^n E_m^c\)</span> .</p>
+<p><span
+class="math inline">\(\lim_{n\to\infty}a_n=\mu(\bigcap_{m=1}^{\infty}E_m^c\cap\{x|h(x)&gt;0\})=\mu(\Omega^c\cap\{x|h(x)&gt;0\})=0\)</span></p></li>
 <li><p>Proof of (i)(ii)(iii)</p>
-<p>(i) trivial (non-negative)</p>
-<p>(ii) $a&gt;0$ , so $ah\le af\iff h\le f$</p>
-<script type="math/tex; mode=display">
+<ol type="i">
+<li><p>trivial (non-negative)</p></li>
+<li><p><span class="math inline">\(a&gt;0\)</span> , so <span
+class="math inline">\(ah\le af\iff h\le f\)</span> <span
+class="math display">\[
 \begin{aligned}
-\int af\ d\mu&=\sup\{\int ah\ d\mu|0\le ah\le af,ah\text{ bounded function}\}\\
-&=\sup\{a\int h\ d\mu|0\le h\le f,h\text{ bounded function}\}\\
-&=a\int fd\mu
-\end{aligned}</script><p>(iii) Firstly prove $\int (f+g)d\mu\ge \int fd\mu+\int gd\mu$ </p>
-<p>Consider bounded function $k,h$ , $f\ge h,g\ge k$ , so ,</p>
-<p>$\int (f+g)d\mu\ge \sup_{0\le h\le f}\int hd\mu+\sup_{0\le k\le g}\int gd\mu=\int fd\mu+\int gd\mu$</p>
-<p>Secondly prove $\int(f+g)d\mu\le \int fd\mu+\int gd\mu$</p>
-<p>Use Lemma , $(f+g)\land n\le (f\land n)+(g\land n)$ .</p>
-<p>Therefore , $\int_{E_n}(f+g)\land n d\mu\le \int_{E_n}f\land n d\mu+\int_{E_n} g\land n d\mu$ .</p>
-<p>As $n\to\infty$ , $\int (f+g)d\mu\le \int fd\mu+\int gd\mu$</p>
-</li>
+\int af\ d\mu&amp;=\sup\{\int ah\ d\mu|0\le ah\le af,ah\text{ bounded
+function}\}\\
+&amp;=\sup\{a\int h\ d\mu|0\le h\le f,h\text{ bounded function}\}\\
+&amp;=a\int fd\mu
+\end{aligned}
+\]</span></p></li>
+<li><p>Firstly prove <span class="math inline">\(\int (f+g)d\mu\ge \int
+fd\mu+\int gd\mu\)</span></p></li>
 </ol>
-</li>
+<p>Consider bounded function <span class="math inline">\(k,h\)</span> ,
+<span class="math inline">\(f\ge h,g\ge k\)</span> , so ,</p>
+<p><span class="math inline">\(\int (f+g)d\mu\ge \sup_{0\le h\le f}\int
+hd\mu+\sup_{0\le k\le g}\int gd\mu=\int fd\mu+\int gd\mu\)</span></p>
+<p>Secondly prove <span class="math inline">\(\int(f+g)d\mu\le \int
+fd\mu+\int gd\mu\)</span></p>
+<p>Use Lemma , <span class="math inline">\((f+g)\land n\le (f\land
+n)+(g\land n)\)</span> .</p>
+<p>Therefore , <span class="math inline">\(\int_{E_n}(f+g)\land n\
+d\mu\le \int_{E_n}f\land n\ d\mu+\int_{E_n} g\land n\ d\mu\)</span>
+.</p>
+<p>As <span class="math inline">\(n\to\infty\)</span> , <span
+class="math inline">\(\int (f+g)d\mu\le \int fd\mu+\int
+gd\mu\)</span></p></li>
+</ol></li>
 <li><p>General Function</p>
-<ol>
-<li><p>Def [ <strong><em>Integralable</em></strong> ] : $f$ is <strong><em>integralable</em></strong> if $\int |f|d\mu&lt;\infty$</p>
-</li>
-<li><p>Def [ <strong><em>Integration for General Function</em></strong> ] : If $f$ is integralable , define </p>
-<p>$f^+(x):=f(x)\cdot\mathbb 1(f(x)\ge 0)$ , $f^-(x):=|f(x)|\cdot \mathbb 1(f(x)&lt;0)$</p>
-<p>Therefore , $f(x)=f^+(x)-f^-(x)$ , and $f^+,f^-$ non-negative </p>
-<script type="math/tex; mode=display">
-\int fd\mu:=\int f^+d\mu-\int f^-d\mu</script><blockquote>
-<p>Note : If $f$ is not integralable , then $\int f^+d\mu$ , $\int f^-d\mu$ can both be $\infty$ , $\infty-\infty$ not well-defined.</p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><p>Lebesgue Integration</p>
-<ol>
-<li><p>When $\mu$ is Lebesgue measure : $\mu((a,b])=b-a$ .</p>
-<p>$\int fd\mu$ is Lebesgue Integration of $f$ .</p>
-</li>
-<li><p>Compare with Riemann Integration</p>
-<p><img src="/images/posts/PS3_fig2.png" alt="Riemann Integration and Lebesgue Integration"></p>
-<p>Lebesgue is more powerful</p>
-<p>E.g. Dirichlet function $\mathbb 1_{\mathbb Q}$ , $\int_{[0,1]}\mathbb 1_{\mathbb Q}$ </p>
-<ul>
-<li>Riemann integration : not integralable , $\mu(\{x:\mathbb 1_{\mathbb Q}\text{ incontinuous at }x\})&gt;0$</li>
-<li>Lebesgue integration : integralable : $\int_{[0,1]}\mathbb 1_{\mathbb Q}=\mu(\mathbb Q\cap [0,1])=0$</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>Formal Definition of PDF</p>
-<ol>
-<li><p>Def [ <strong><em>Absolutely Continuous</em></strong> ] : $\nu$ is <strong><em>absolutely continuous</em></strong> w.r.t $\mu$ ( denote as $\nu\ll \mu$ ) if</p>
-<p>$\forall A\in \mathcal F$ , $\mu(A)=0\Rightarrow \nu(A)=0$</p>
-</li>
-<li><p>Thm [ Radon-Nikodym ] : measurable space $(\Omega,\mathcal F)$ with $\sigma$-finite measure $\nu,\mu$ , $\nu\ll\mu$ </p>
-<p>Then $\exists g\ge 0,\forall E\in \mathcal F,\int_Egd\mu=\nu(E)$</p>
-<p>$g$ is called Radon-Nikodym derivative</p>
-</li>
-<li><p>Prop : If $\exists g,h$ , $\int_Egd\mu=\int_Ehd\mu=\nu(E)$ , then $g\equiv h$ a.e.</p>
-</li>
-<li><p>Def [ <strong><em>PDF</em></strong> ] : When $\nu$ is a distribution measure , $\mu$ is Lebesgue measure , $g$ is the <strong><em>probability density function</em></strong> for $\nu$ . </p>
+<ol type="1">
+<li><p>Def [ <strong><em>Integralable</em></strong> ] : <span
+class="math inline">\(f\)</span> is
+<strong><em>integralable</em></strong> if <span
+class="math inline">\(\int |f|d\mu&lt;\infty\)</span></p></li>
+<li><p>Def [ <strong><em>Integration for General Function</em></strong>
+] : If <span class="math inline">\(f\)</span> is integralable ,
+define</p>
+<p><span class="math inline">\(f^+(x):=f(x)\cdot\mathbb 1(f(x)\ge
+0)\)</span> , <span class="math inline">\(f^-(x):=|f(x)|\cdot \mathbb
+1(f(x)&lt;0)\)</span></p>
+<p>Therefore , <span class="math inline">\(f(x)=f^+(x)-f^-(x)\)</span> ,
+and <span class="math inline">\(f^+,f^-\)</span> non-negative <span
+class="math display">\[
+\int fd\mu:=\int f^+d\mu-\int f^-d\mu
+\]</span></p>
 <blockquote>
-<p>Observation : $\nu(E)=P(X\in E)=\int gd\mu$</p>
-</blockquote>
-</li>
-<li><p>Prop : $g$ is $\mathcal F$-measurable , i.e. $g$ is a measurable map $(\Omega,\mathcal F)\to(\mathbb R,\mathcal R)$ .</p>
-</li>
+<p>Note : If <span class="math inline">\(f\)</span> is not integralable
+, then <span class="math inline">\(\int f^+d\mu\)</span> , <span
+class="math inline">\(\int f^-d\mu\)</span> can both be <span
+class="math inline">\(\infty\)</span> , <span
+class="math inline">\(\infty-\infty\)</span> not well-defined.</p>
+</blockquote></li>
+</ol></li>
+<li><p>Lebesgue Integration</p>
+<ol type="1">
+<li><p>When <span class="math inline">\(\mu\)</span> is Lebesgue measure
+: <span class="math inline">\(\mu((a,b])=b-a\)</span> .</p>
+<p><span class="math inline">\(\int fd\mu\)</span> is Lebesgue
+Integration of <span class="math inline">\(f\)</span> .</p></li>
+<li><p>Compare with Riemann Integration</p>
+<figure>
+<img src="/images/posts/PS3_fig2.png"
+alt="Riemann Integration and Lebesgue Integration" />
+<figcaption aria-hidden="true">Riemann Integration and Lebesgue
+Integration</figcaption>
+</figure>
+<p>Lebesgue is more powerful</p>
+<p>E.g. Dirichlet function <span class="math inline">\(\mathbb
+1_{\mathbb Q}\)</span> , <span class="math inline">\(\int_{[0,1]}\mathbb
+1_{\mathbb Q}\)</span></p>
+<ul>
+<li>Riemann integration : not integralable , <span
+class="math inline">\(\mu(\{x:\mathbb 1_{\mathbb Q}\text{ incontinuous
+at }x\})&gt;0\)</span></li>
+<li>Lebesgue integration : integralable : <span
+class="math inline">\(\int_{[0,1]}\mathbb 1_{\mathbb Q}=\mu(\mathbb
+Q\cap [0,1])=0\)</span></li>
+</ul></li>
+</ol></li>
+<li><p>Formal Definition of PDF</p>
+<ol type="1">
+<li><p>Def [ <strong><em>Absolutely Continuous</em></strong> ] : <span
+class="math inline">\(\nu\)</span> is <strong><em>absolutely
+continuous</em></strong> w.r.t <span class="math inline">\(\mu\)</span>
+( denote as <span class="math inline">\(\nu\ll \mu\)</span> ) if</p>
+<p><span class="math inline">\(\forall A\in \mathcal F\)</span> , <span
+class="math inline">\(\mu(A)=0\Rightarrow \nu(A)=0\)</span></p></li>
+<li><p>Thm [ Radon-Nikodym ] : measurable space <span
+class="math inline">\((\Omega,\mathcal F)\)</span> with <span
+class="math inline">\(\sigma\)</span>-finite measure <span
+class="math inline">\(\nu,\mu\)</span> , <span
+class="math inline">\(\nu\ll\mu\)</span></p>
+<p>Then <span class="math inline">\(\exists g\ge 0,\forall E\in \mathcal
+F,\int_Egd\mu=\nu(E)\)</span></p>
+<p><span class="math inline">\(g\)</span> is called Radon-Nikodym
+derivative</p></li>
+<li><p>Prop : If <span class="math inline">\(\exists g,h\)</span> ,
+<span class="math inline">\(\int_Egd\mu=\int_Ehd\mu=\nu(E)\)</span> ,
+then <span class="math inline">\(g\equiv h\)</span> a.e.</p></li>
+<li><p>Def [ <strong><em>PDF</em></strong> ] : When <span
+class="math inline">\(\nu\)</span> is a distribution measure , <span
+class="math inline">\(\mu\)</span> is Lebesgue measure , <span
+class="math inline">\(g\)</span> is the <strong><em>probability density
+function</em></strong> for <span class="math inline">\(\nu\)</span>
+.</p>
+<blockquote>
+<p>Observation : <span class="math inline">\(\nu(E)=P(X\in E)=\int
+gd\mu\)</span></p>
+</blockquote></li>
+<li><p>Prop : <span class="math inline">\(g\)</span> is <span
+class="math inline">\(\mathcal F\)</span>-measurable , i.e. <span
+class="math inline">\(g\)</span> is a measurable map <span
+class="math inline">\((\Omega,\mathcal F)\to(\mathbb R,\mathcal
+R)\)</span> .</p></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<h3 id="1-5-Properties-of-Integration"><a href="#1-5-Properties-of-Integration" class="headerlink" title="1.5 Properties of Integration"></a>1.5 Properties of Integration</h3><ol>
-<li><p>Jenson’s Inequality</p>
-<ol>
-<li><p>Def [ <strong><em>convex</em></strong> ] : $\varphi$ is a convex , if $\forall \lambda\in (0,1) , \lambda\varphi(x)+(1-\lambda)\varphi(y)\ge \varphi(\lambda x+(1-\lambda)y)$</p>
-</li>
-<li><p>THM [ <strong><em>Jenson’s Inequality</em></strong> ] : If $\varphi$ is a convex , $\varphi\circ f$ is integralable , $\mu$ is a probability measure ,</p>
-<script type="math/tex; mode=display">
-\varphi\left(\int fd\mu\right)\le \int (\varphi \circ f)d\mu</script></li>
-<li><p>Proof : </p>
-<p>For convex $\varphi$ , we can find a line $L(x)=ax+b$ , s.t. $\varphi(x)\ge ax+b$ , and equal iff $x=\int fd\mu$ .</p>
-<script type="math/tex; mode=display">
+<h3 id="properties-of-integration">1.5 Properties of Integration</h3>
+<ol type="1">
+<li><p>Jenson's Inequality</p>
+<ol type="1">
+<li><p>Def [ <strong><em>convex</em></strong> ] : <span
+class="math inline">\(\varphi\)</span> is a convex , if <span
+class="math inline">\(\forall \lambda\in (0,1) ,
+\lambda\varphi(x)+(1-\lambda)\varphi(y)\ge \varphi(\lambda
+x+(1-\lambda)y)\)</span></p></li>
+<li><p>THM [ <strong><em>Jenson's Inequality</em></strong> ] : If <span
+class="math inline">\(\varphi\)</span> is a convex , <span
+class="math inline">\(\varphi\circ f\)</span> is integralable , <span
+class="math inline">\(\mu\)</span> is a probability measure , <span
+class="math display">\[
+\varphi\left(\int fd\mu\right)\le \int (\varphi \circ f)d\mu
+\]</span></p></li>
+<li><p>Proof :</p>
+<p>For convex <span class="math inline">\(\varphi\)</span> , we can find
+a line <span class="math inline">\(L(x)=ax+b\)</span> , s.t. <span
+class="math inline">\(\varphi(x)\ge ax+b\)</span> , and equal iff <span
+class="math inline">\(x=\int fd\mu\)</span> . <span
+class="math display">\[
 \begin{aligned}
-\int (\varphi \circ f)d\mu&\ge \int (ax+b)\circ fd\mu\\
-&=a\int fd\mu+\int bd\mu\\
-&=a\int fd\mu+b\mu(\Omega)\\
-&=a\int fd\mu+b\\
-&=L\left(\int fd\mu\right)\\
-&=\varphi\left(\int fd\mu\right)
-\end{aligned}</script></li>
-</ol>
-</li>
+\int (\varphi \circ f)d\mu&amp;\ge \int (ax+b)\circ fd\mu\\
+&amp;=a\int fd\mu+\int bd\mu\\
+&amp;=a\int fd\mu+b\mu(\Omega)\\
+&amp;=a\int fd\mu+b\\
+&amp;=L\left(\int fd\mu\right)\\
+&amp;=\varphi\left(\int fd\mu\right)
+\end{aligned}
+\]</span></p></li>
+</ol></li>
 </ol>
 
     </div>
@@ -659,13 +824,13 @@ Therefore , $\tilde \Omega\cap \bigcup_&#123;n=1&#125;^&#123;\infty&#125;E_n=\va
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

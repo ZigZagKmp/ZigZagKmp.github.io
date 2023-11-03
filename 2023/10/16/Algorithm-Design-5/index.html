@@ -148,7 +148,9 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-3-Dynamic-Programming"><span class="nav-number">1.</span> <span class="nav-text">Chapter 3 Dynamic Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-Treewidth-cond"><span class="nav-number">1.1.</span> <span class="nav-text">3.4.2 Treewidth cond.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-Shortest-Path-Bellman-Ford"><span class="nav-number">1.2.</span> <span class="nav-text">3.5 Shortest Path (Bellman-Ford)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-4-NP-Completeness"><span class="nav-number">2.</span> <span class="nav-text">Chapter 4 NP Completeness</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Polynomial-Time-Reduction"><span class="nav-number">2.1.</span> <span class="nav-text">4.1 Polynomial Time Reduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Examples-of-Poly-reduction"><span class="nav-number">2.2.</span> <span class="nav-text">4.2 Examples of Poly-reduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-NP-Complete-Problem"><span class="nav-number">2.3.</span> <span class="nav-text">4.3 NP-Complete Problem</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-3-dynamic-programming"><span class="nav-number">1.</span> <span class="nav-text">Chapter 3 Dynamic
+Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#treewidth-cond."><span class="nav-number">1.1.</span> <span class="nav-text">3.4.2 Treewidth cond.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shortest-path-bellman-ford"><span class="nav-number">1.2.</span> <span class="nav-text">3.5 Shortest Path
+(Bellman-Ford)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-4-np-completeness"><span class="nav-number">2.</span> <span class="nav-text">Chapter 4 NP Completeness</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#polynomial-time-reduction"><span class="nav-number">2.1.</span> <span class="nav-text">4.1 Polynomial Time Reduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#examples-of-poly-reduction"><span class="nav-number">2.2.</span> <span class="nav-text">4.2 Examples of Poly-reduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#np-complete-problem"><span class="nav-number">2.3.</span> <span class="nav-text">4.3 NP-Complete Problem</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -163,7 +165,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,7 +176,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -366,176 +368,298 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-3-Dynamic-Programming"><a href="#Chapter-3-Dynamic-Programming" class="headerlink" title="Chapter 3 Dynamic Programming"></a>Chapter 3 Dynamic Programming</h2><h3 id="3-4-2-Treewidth-cond"><a href="#3-4-2-Treewidth-cond" class="headerlink" title="3.4.2 Treewidth cond."></a>3.4.2 Treewidth cond.</h3><p>Extension : [ Roberson , Seymour  ] [ <strong><em>Graph Minor THM</em></strong> ]</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-3-dynamic-programming">Chapter 3 Dynamic
+Programming</h2>
+<h3 id="treewidth-cond.">3.4.2 Treewidth cond.</h3>
+<p>Extension : [ Roberson , Seymour ] [ <strong><em>Graph Minor
+THM</em></strong> ]</p>
 <blockquote>
 <p>1983 - 2004 , 20 papers , 500 pages</p>
 </blockquote>
-<ol>
-<li><p>Def [ <strong><em>Minor</em></strong> ] : a minor of $G$ can be obtained by contracting edges and deletion of nodes/edges from $G$ </p>
-<p>contract edge : $e=\{u,v\}$ , contract it : then merge ${u,v}$ as a new vertex .</p>
-</li>
-<li><p>Def [ <strong><em>Minor-closed</em></strong> ] : A graph family $\mathcal F$ of graph is <strong><em>minor-closed</em></strong> if $\forall G\in \mathcal F$ , the minor of $G\in \mathcal F$</p>
-<p>E.g. : $\mathcal F=\{\text{forests}\}$ , $\mathcal F=\{\text{planar graph}\}$ , $\mathcal F=\{\text{graphs with }tw\le k\}$ are all minor-closed</p>
-</li>
-<li><p>Thm [ <strong><em>Wagner-Kuratowski THM</em></strong> ] : planar graph $\Leftrightarrow$ no $K_{3,3} , K_5$ as minors </p>
-<p>Likewise : forests $\Leftrightarrow$ no $K_3$ as minors</p>
-</li>
-<li><p>Thm [ <strong><em>Graph Minor THM</em></strong> ] : a minor-closed family $\Leftrightarrow$ no $H$ as minors , $H$ is a finite graph set</p>
-</li>
-<li><p>Application : Fixed Parameter Tractable </p>
-</li>
+<ol type="1">
+<li><p>Def [ <strong><em>Minor</em></strong> ] : a minor of <span
+class="math inline">\(G\)</span> can be obtained by contracting edges
+and deletion of nodes/edges from <span
+class="math inline">\(G\)</span></p>
+<p>contract edge : <span class="math inline">\(e=\{u,v\}\)</span> ,
+contract it : then merge <span class="math inline">\({u,v}\)</span> as a
+new vertex .</p></li>
+<li><p>Def [ <strong><em>Minor-closed</em></strong> ] : A graph family
+<span class="math inline">\(\mathcal F\)</span> of graph is
+<strong><em>minor-closed</em></strong> if <span
+class="math inline">\(\forall G\in \mathcal F\)</span> , the minor of
+<span class="math inline">\(G\in \mathcal F\)</span></p>
+<p>E.g. : <span class="math inline">\(\mathcal
+F=\{\text{forests}\}\)</span> , <span class="math inline">\(\mathcal
+F=\{\text{planar graph}\}\)</span> , <span
+class="math inline">\(\mathcal F=\{\text{graphs with }tw\le k\}\)</span>
+are all minor-closed</p></li>
+<li><p>Thm [ <strong><em>Wagner-Kuratowski THM</em></strong> ] : planar
+graph <span class="math inline">\(\Leftrightarrow\)</span> no <span
+class="math inline">\(K_{3,3} , K_5\)</span> as minors</p>
+<p>Likewise : forests <span
+class="math inline">\(\Leftrightarrow\)</span> no <span
+class="math inline">\(K_3\)</span> as minors</p></li>
+<li><p>Thm [ <strong><em>Graph Minor THM</em></strong> ] : a
+minor-closed family <span class="math inline">\(\Leftrightarrow\)</span>
+no <span class="math inline">\(H\)</span> as minors , <span
+class="math inline">\(H\)</span> is a finite graph set</p></li>
+<li><p>Application : Fixed Parameter Tractable</p></li>
 </ol>
-<h3 id="3-5-Shortest-Path-Bellman-Ford"><a href="#3-5-Shortest-Path-Bellman-Ford" class="headerlink" title="3.5 Shortest Path (Bellman-Ford)"></a>3.5 Shortest Path (Bellman-Ford)</h3><ol>
+<h3 id="shortest-path-bellman-ford">3.5 Shortest Path
+(Bellman-Ford)</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>directed graph $G=(V,E)$ , $w_e\in \mathbb R$ , $G$ has no negative cycle . ( not necessarily $w_e\ge 0$ )</p>
-<p>Find shortest path for all vertices to $t$ . </p>
-</li>
+<p>directed graph <span class="math inline">\(G=(V,E)\)</span> , <span
+class="math inline">\(w_e\in \mathbb R\)</span> , <span
+class="math inline">\(G\)</span> has no negative cycle . ( not
+necessarily <span class="math inline">\(w_e\ge 0\)</span> )</p>
+<p>Find shortest path for all vertices to <span
+class="math inline">\(t\)</span> .</p></li>
 <li><p>Algorithm</p>
-<p>$opt(i,v)$ : using at most $i$ edges , the shortest path from $v$ to $t$ .</p>
-<script type="math/tex; mode=display">
+<p><span class="math inline">\(opt(i,v)\)</span> : using at most <span
+class="math inline">\(i\)</span> edges , the shortest path from <span
+class="math inline">\(v\)</span> to <span
+class="math inline">\(t\)</span> . <span class="math display">\[
 opt(i,v)=\min\begin{cases}
 opt(i-1,v)\\
 \min_u\{opt(i-1,u)+w_{v\to u}\}
-\end{cases}</script><p>Time Complexity : $\mathcal O(nm)$ .</p>
-<p>Memory Complexity : $\mathcal O(n^2)$ . ( at most using $n-1$ edges )</p>
-</li>
-<li><p>Optimize Memory Complexity </p>
-<script type="math/tex; mode=display">
+\end{cases}
+\]</span> Time Complexity : <span class="math inline">\(\mathcal
+O(nm)\)</span> .</p>
+<p>Memory Complexity : <span class="math inline">\(\mathcal
+O(n^2)\)</span> . ( at most using <span
+class="math inline">\(n-1\)</span> edges )</p></li>
+<li><p>Optimize Memory Complexity <span class="math display">\[
 opt(v)=\min\begin{cases}
 opt(v)\\
 \min_{(v,u)\in E}\{opt(u)+w_{v\to u}\}
-\end{cases}</script><p>Iterate the update $n$ times .</p>
+\end{cases}
+\]</span> Iterate the update <span class="math inline">\(n\)</span>
+times .</p>
 <blockquote>
-<p>Note : may using $opt(i,u)$ , but we do not care about the really number of edges in the shortest path .</p>
-<p>Observation : After $i$ iterations , $opt(v)$ is not larger than $opt(i,v)$ </p>
+<p>Note : may using <span class="math inline">\(opt(i,u)\)</span> , but
+we do not care about the really number of edges in the shortest path
+.</p>
 </blockquote>
-</li>
+<blockquote>
+<p>Observation : After <span class="math inline">\(i\)</span> iterations
+, <span class="math inline">\(opt(v)\)</span> is not larger than <span
+class="math inline">\(opt(i,v)\)</span></p>
+</blockquote></li>
 <li><p>Find the Shortest Path</p>
-<p>Construct a pointer graph $P=\{(v,first[v])|v\in V\backslash\{t\}\}$ :</p>
-<p>$\forall v\in V$ , $first[v]$ : the first node on the $v\to t$ path after $v$ .</p>
-<p>Compute $first[v]$ : When $opt(v)$ is updated by $opt(u)+w_{v\to u}$ , let $first[v]=u$ .</p>
+<p>Construct a pointer graph <span
+class="math inline">\(P=\{(v,first[v])|v\in V\backslash\{t\}\}\)</span>
+:</p>
+<p><span class="math inline">\(\forall v\in V\)</span> , <span
+class="math inline">\(first[v]\)</span> : the first node on the <span
+class="math inline">\(v\to t\)</span> path after <span
+class="math inline">\(v\)</span> .</p>
+<p>Compute <span class="math inline">\(first[v]\)</span> : When <span
+class="math inline">\(opt(v)\)</span> is updated by <span
+class="math inline">\(opt(u)+w_{v\to u}\)</span> , let <span
+class="math inline">\(first[v]=u\)</span> .</p>
 <blockquote>
-<p>Observation : After all iterations , $\{(v,first[v])|v\in V\backslash \{t\}\}$ forms a shortest path tree .</p>
-</blockquote>
-</li>
-<li><p>Lemma 1 : Suppose $G$ has no negative cycle . At the termination of the algorithm , $P$ is the a shortest path tree rooted at $t$ .</p>
+<p>Observation : After all iterations , <span
+class="math inline">\(\{(v,first[v])|v\in V\backslash \{t\}\}\)</span>
+forms a shortest path tree .</p>
+</blockquote></li>
+<li><p>Lemma 1 : Suppose <span class="math inline">\(G\)</span> has no
+negative cycle . At the termination of the algorithm , <span
+class="math inline">\(P\)</span> is the a shortest path tree rooted at
+<span class="math inline">\(t\)</span> .</p>
 <p>Proof : [ Induction like ]</p>
-<p>If $first[v]=u$ , then $opt(v)=opt(u)+w_{v\to u}$ </p>
-<p>$opt(u)$ is the shortest $u\to t$ path . Therefore , the cost of $u\to t$ path on $P$ is smallest . Therefore , the cost of $v\to t$ path on $P$ is smallest .</p>
-</li>
-<li><p>Lemma 2 : If $P$ contains a cycle $C$ at any stage , then $cost(C)&lt;0$</p>
-<p>Proof : Let $C=\{v_1,v_2,\cdots,v_k\}$ .</p>
-<p>If $first[v]=u$ , then $opt(v)\ge w_{v\to u} +opt(u)$ .</p>
+<p>If <span class="math inline">\(first[v]=u\)</span> , then <span
+class="math inline">\(opt(v)=opt(u)+w_{v\to u}\)</span></p>
+<p><span class="math inline">\(opt(u)\)</span> is the shortest <span
+class="math inline">\(u\to t\)</span> path . Therefore , the cost of
+<span class="math inline">\(u\to t\)</span> path on <span
+class="math inline">\(P\)</span> is smallest . Therefore , the cost of
+<span class="math inline">\(v\to t\)</span> path on <span
+class="math inline">\(P\)</span> is smallest .</p></li>
+<li><p>Lemma 2 : If <span class="math inline">\(P\)</span> contains a
+cycle <span class="math inline">\(C\)</span> at any stage , then <span
+class="math inline">\(cost(C)&lt;0\)</span></p>
+<p>Proof : Let <span
+class="math inline">\(C=\{v_1,v_2,\cdots,v_k\}\)</span> .</p>
+<p>If <span class="math inline">\(first[v]=u\)</span> , then <span
+class="math inline">\(opt(v)\ge w_{v\to u} +opt(u)\)</span> .</p>
 <blockquote>
-<p>If $opt(v)&lt;w_{v\to u}+opt(u)$ , then $v$ is updated by other $u’$ , so $first[v]\neq u$ .</p>
+<p>If <span class="math inline">\(opt(v)&lt;w_{v\to u}+opt(u)\)</span> ,
+then <span class="math inline">\(v\)</span> is updated by other <span
+class="math inline">\(u&#39;\)</span> , so <span
+class="math inline">\(first[v]\neq u\)</span> .</p>
 </blockquote>
-<p>Therefore , $opt(v_1)\ge w_{v_1\to v_2}+opt(v_2)$ , $opt(v_2)\ge w_{v_2\to v_3}+opt(v_3)$ , $\cdots$ , $opt(v_k)\ge w_{v_k \to v_1} +opt(v_1)$ .</p>
-<p>Therefore , $cost(C)=\sum_{i=1}^k w_{v_i\to v_{i+1}}\le 0$ .</p>
-<p>Consider the time before we update the last cycle edge , suppose that it is $v_k\to v_1$ .</p>
-<p>Therefore , exactly before the update , $opt(v_k)&gt;w_{v_k\to v_1}+opt(v_1)$ , so at this time the inequality is strict .</p>
-</li>
-<li><p>Note : If exists negative cycle , there may still exist finite shortest-path vertices and $+\infty$ shortest-path vertices . </p>
-</li>
+<p>Therefore , <span class="math inline">\(opt(v_1)\ge w_{v_1\to
+v_2}+opt(v_2)\)</span> , <span class="math inline">\(opt(v_2)\ge
+w_{v_2\to v_3}+opt(v_3)\)</span> , <span
+class="math inline">\(\cdots\)</span> , <span
+class="math inline">\(opt(v_k)\ge w_{v_k \to v_1} +opt(v_1)\)</span>
+.</p>
+<p>Therefore , <span class="math inline">\(cost(C)=\sum_{i=1}^k
+w_{v_i\to v_{i+1}}\le 0\)</span> .</p>
+<p>Consider the time before we update the last cycle edge , suppose that
+it is <span class="math inline">\(v_k\to v_1\)</span> .</p>
+<p>Therefore , exactly before the update , <span
+class="math inline">\(opt(v_k)&gt;w_{v_k\to v_1}+opt(v_1)\)</span> , so
+at this time the inequality is strict .</p></li>
+<li><p>Note : If exists negative cycle , there may still exist finite
+shortest-path vertices and <span class="math inline">\(+\infty\)</span>
+shortest-path vertices .</p></li>
 </ol>
-<h2 id="Chapter-4-NP-Completeness"><a href="#Chapter-4-NP-Completeness" class="headerlink" title="Chapter 4 NP Completeness"></a>Chapter 4 NP Completeness</h2><ol>
+<h2 id="chapter-4-np-completeness">Chapter 4 NP Completeness</h2>
+<ol type="1">
 <li><p>[ Cook , Karp ]</p>
-<p>$NPC\subset NP$ , poly-time reduction</p>
-<p>$P\neq NP$ conjecture</p>
-</li>
+<p><span class="math inline">\(NPC\subset NP\)</span> , poly-time
+reduction</p>
+<p><span class="math inline">\(P\neq NP\)</span> conjecture</p></li>
 </ol>
-<h3 id="4-1-Polynomial-Time-Reduction"><a href="#4-1-Polynomial-Time-Reduction" class="headerlink" title="4.1 Polynomial Time Reduction"></a>4.1 Polynomial Time Reduction</h3><ol>
+<h3 id="polynomial-time-reduction">4.1 Polynomial Time Reduction</h3>
+<ol type="1">
 <li><p>using poly-time as measure ?</p>
-<p>different computation model can have different power constant ( $\mathcal O(n^2,n^3,\cdots)$ )</p>
-</li>
-<li><p>Def [ <strong><em>polynomial-time reduction</em></strong> ] : If a problem $Y$ can be solved in poly-time plus an oracle that solves problem $X$ , then $Y$ is <strong><em>poly-time reducible</em></strong> to $X$ , denote as $Y\le_P X$ .</p>
-<ol>
-<li><p>Def [ <strong><em>oracle</em></strong> ] : an oracle for $X$ is a “black-box” , input an instance of $X$ and can output the answer in $\mathcal O(1)$ time .</p>
+<p>different computation model can have different power constant ( <span
+class="math inline">\(\mathcal O(n^2,n^3,\cdots)\)</span> )</p></li>
+<li><p>Def [ <strong><em>polynomial-time reduction</em></strong> ] : If
+a problem <span class="math inline">\(Y\)</span> can be solved in
+poly-time plus an oracle that solves problem <span
+class="math inline">\(X\)</span> , then <span
+class="math inline">\(Y\)</span> is <strong><em>poly-time
+reducible</em></strong> to <span class="math inline">\(X\)</span> ,
+denote as <span class="math inline">\(Y\le_P X\)</span> .</p>
+<ol type="1">
+<li><p>Def [ <strong><em>oracle</em></strong> ] : an oracle for <span
+class="math inline">\(X\)</span> is a "black-box" , input an instance of
+<span class="math inline">\(X\)</span> and can output the answer in
+<span class="math inline">\(\mathcal O(1)\)</span> time .</p>
 <blockquote>
-<p>Even if $X$ itself cannot be solved in $\mathcal O(1)$ .</p>
-</blockquote>
-</li>
-<li><p>$Y\le _P X$ : $X$ is more powerful than $Y$ ( i.e. $Y$ is not harder than $X$ )</p>
-</li>
-</ol>
-</li>
+<p>Even if <span class="math inline">\(X\)</span> itself cannot be
+solved in <span class="math inline">\(\mathcal O(1)\)</span> .</p>
+</blockquote></li>
+<li><p><span class="math inline">\(Y\le _P X\)</span> : <span
+class="math inline">\(X\)</span> is more powerful than <span
+class="math inline">\(Y\)</span> ( i.e. <span
+class="math inline">\(Y\)</span> is not harder than <span
+class="math inline">\(X\)</span> )</p></li>
+</ol></li>
 <li><p>Properties</p>
-<ol>
-<li>If $Y\le_P X$ , $X$ is poly-solvable , then $Y$ is poly-solvable</li>
-<li>If $Y\le_P X$ , $Y$ cannot be solved in poly-time , then $X$ cannot be solved in poly-time </li>
+<ol type="1">
+<li>If <span class="math inline">\(Y\le_P X\)</span> , <span
+class="math inline">\(X\)</span> is poly-solvable , then <span
+class="math inline">\(Y\)</span> is poly-solvable</li>
+<li>If <span class="math inline">\(Y\le_P X\)</span> , <span
+class="math inline">\(Y\)</span> cannot be solved in poly-time , then
+<span class="math inline">\(X\)</span> cannot be solved in
+poly-time</li>
+</ol></li>
+<li><p>[ Cook , Karp ] :</p>
+<p>Intuitive : If <span class="math inline">\(Y\le_P X\)</span> , then
+connect a directed edge <span class="math inline">\(Y\to X\)</span> .
+Then there exists a class of Problems <span
+class="math inline">\(\mathcal C\)</span> . <span
+class="math inline">\(\forall C\in \mathcal C,\forall X\in \mathcal
+P\)</span> , there exists a directed edge <span
+class="math inline">\(X\to C\)</span> .</p></li>
 </ol>
-</li>
-<li><p>[ Cook , Karp ] : </p>
-<p>Intuitive : If $Y\le_P X$ , then connect a directed edge $Y\to X$ . Then there exists a class of Problems $\mathcal C$ . $\forall C\in \mathcal C,\forall X\in \mathcal P$ , there exists a directed edge $X\to C$ . </p>
-</li>
-</ol>
-<h3 id="4-2-Examples-of-Poly-reduction"><a href="#4-2-Examples-of-Poly-reduction" class="headerlink" title="4.2 Examples of Poly-reduction"></a>4.2 Examples of Poly-reduction</h3><ol>
+<h3 id="examples-of-poly-reduction">4.2 Examples of Poly-reduction</h3>
+<ol type="1">
 <li><p>Independent Set Problem</p>
-<p>$IS=(G(V,E),k)$ . </p>
-<p>Independent set :  $I\subseteq V$ , s.t. $\forall u,v\in I,(u,v)\notin E$ .</p>
-<p>Ask whether there exists an Independent Set of size at least $k$ . </p>
-</li>
+<p><span class="math inline">\(IS=(G(V,E),k)\)</span> .</p>
+<p>Independent set : <span class="math inline">\(I\subseteq V\)</span> ,
+s.t. <span class="math inline">\(\forall u,v\in I,(u,v)\notin E\)</span>
+.</p>
+<p>Ask whether there exists an Independent Set of size at least <span
+class="math inline">\(k\)</span> .</p></li>
 <li><p>Vertex Cover Problem</p>
-<p>$VC=(G(V,E),h)$ .</p>
-<p>Vertex Cover : $C\subseteq V$ , s.t. $\forall (u,v)\in E$ , either $u\in C$ or $v\in C$ .</p>
-<p>Ask whether there exists a Vertex Cover of size at most $h$ .</p>
-</li>
-<li><p>$IS\le_P VC$</p>
-<p>Lemma : $I$ is an Independent Set $\Leftrightarrow$ $V\backslash I$ is a Vertex Cover</p>
-</li>
+<p><span class="math inline">\(VC=(G(V,E),h)\)</span> .</p>
+<p>Vertex Cover : <span class="math inline">\(C\subseteq V\)</span> ,
+s.t. <span class="math inline">\(\forall (u,v)\in E\)</span> , either
+<span class="math inline">\(u\in C\)</span> or <span
+class="math inline">\(v\in C\)</span> .</p>
+<p>Ask whether there exists a Vertex Cover of size at most <span
+class="math inline">\(h\)</span> .</p></li>
+<li><p><span class="math inline">\(IS\le_P VC\)</span></p>
+<p>Lemma : <span class="math inline">\(I\)</span> is an Independent Set
+<span class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(V\backslash I\)</span> is a Vertex Cover</p></li>
 <li><p>Set Cover Problem</p>
-<p>$SC=(U,\{S_1,\cdots,S_m\},h)$ .</p>
-<p>$U$ : universe . $S_1,\cdots,S_m\subseteq U$ .</p>
-<p>Set Cover : $I\subseteq [m]$ , s.t. $\bigcup_{i\in I}S_i=U$ .</p>
-<p>Ask whether there exists a Set Cover of size at most $h$ .</p>
-</li>
-<li><p>$VC\le_P SC$</p>
-<p>Let $S_i=\{e\in E|i\in e\}$ , $U=E$ .</p>
-</li>
+<p><span class="math inline">\(SC=(U,\{S_1,\cdots,S_m\},h)\)</span>
+.</p>
+<p><span class="math inline">\(U\)</span> : universe . <span
+class="math inline">\(S_1,\cdots,S_m\subseteq U\)</span> .</p>
+<p>Set Cover : <span class="math inline">\(I\subseteq [m]\)</span> ,
+s.t. <span class="math inline">\(\bigcup_{i\in I}S_i=U\)</span> .</p>
+<p>Ask whether there exists a Set Cover of size at most <span
+class="math inline">\(h\)</span> .</p></li>
+<li><p><span class="math inline">\(VC\le_P SC\)</span></p>
+<p>Let <span class="math inline">\(S_i=\{e\in E|i\in e\}\)</span> ,
+<span class="math inline">\(U=E\)</span> .</p></li>
 </ol>
-<h3 id="4-3-NP-Complete-Problem"><a href="#4-3-NP-Complete-Problem" class="headerlink" title="4.3 NP-Complete Problem"></a>4.3 NP-Complete Problem</h3><ol>
-<li><p>Def [ <strong><em>NP</em></strong> ] : Only consider decision problems ( output Y/N )</p>
-<p>A decision problem $X$ , we can consider $X$ as a collection of YES instances.</p>
-<ol>
-<li><p>Def [ <strong><em>Efficient Verifier</em></strong> ] : $V(x,\pi)$ is an <strong><em>efficient verifier</em></strong> for problem $X$ if</p>
+<h3 id="np-complete-problem">4.3 NP-Complete Problem</h3>
+<ol type="1">
+<li><p>Def [ <strong><em>NP</em></strong> ] : Only consider decision
+problems ( output Y/N )</p>
+<p>A decision problem <span class="math inline">\(X\)</span> , we can
+consider <span class="math inline">\(X\)</span> as a collection of YES
+instances.</p>
+<ol type="1">
+<li><p>Def [ <strong><em>Efficient Verifier</em></strong> ] : <span
+class="math inline">\(V(x,\pi)\)</span> is an <strong><em>efficient
+verifier</em></strong> for problem <span
+class="math inline">\(X\)</span> if</p>
 <ul>
-<li><p>$V$ is a poly-time algorithm with $x$ and $\pi$</p>
-</li>
-<li><p>$x\in X$ $\Leftrightarrow$ $\exists \pi , |\pi|\le poly(|x|) , V(x,\pi)=1$ </p>
-</li>
+<li><p><span class="math inline">\(V\)</span> is a poly-time algorithm
+with <span class="math inline">\(x\)</span> and <span
+class="math inline">\(\pi\)</span></p></li>
+<li><p><span class="math inline">\(x\in X\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(\exists \pi , |\pi|\le poly(|x|) ,
+V(x,\pi)=1\)</span></p></li>
 </ul>
-<p>$\pi$ : certificate / proof</p>
-</li>
-<li><p>Def [ <strong><em>P</em></strong> ] : The class of all problems $X$ , s.t. there exists a poly-time algorithm that solves $X$ .</p>
-</li>
-<li><p>Def [ <strong><em>NP</em></strong> ] : The class of all problems $X$ , s.t. there exists an efficient verifier for $X$ .</p>
-</li>
-</ol>
-</li>
-<li><p>Def [ <strong><em>NP-Complete</em></strong> ] : A problem $X$ is <strong><em>NPC</em></strong> if</p>
+<p><span class="math inline">\(\pi\)</span> : certificate /
+proof</p></li>
+<li><p>Def [ <strong><em>P</em></strong> ] : The class of all problems
+<span class="math inline">\(X\)</span> , s.t. there exists a poly-time
+algorithm that solves <span class="math inline">\(X\)</span> .</p></li>
+<li><p>Def [ <strong><em>NP</em></strong> ] : The class of all problems
+<span class="math inline">\(X\)</span> , s.t. there exists an efficient
+verifier for <span class="math inline">\(X\)</span> .</p></li>
+</ol></li>
+<li><p>Def [ <strong><em>NP-Complete</em></strong> ] : A problem <span
+class="math inline">\(X\)</span> is <strong><em>NPC</em></strong> if</p>
 <ul>
-<li>$X\in NP$</li>
-<li>$\forall Y\in NP$ , $Y\le_P X$ </li>
-</ul>
-</li>
+<li><span class="math inline">\(X\in NP\)</span></li>
+<li><span class="math inline">\(\forall Y\in NP\)</span> , <span
+class="math inline">\(Y\le_P X\)</span></li>
+</ul></li>
 <li><p>Properties of NPC</p>
-<ol>
-<li>$\forall X\in NPC$ , if $X\in P$ , then $P=NP$</li>
-<li>$\forall X,Y\in NPC$ , $X\le_P Y$ and $Y\le_P X$ </li>
-</ol>
-</li>
+<ol type="1">
+<li><span class="math inline">\(\forall X\in NPC\)</span> , if <span
+class="math inline">\(X\in P\)</span> , then <span
+class="math inline">\(P=NP\)</span></li>
+<li><span class="math inline">\(\forall X,Y\in NPC\)</span> , <span
+class="math inline">\(X\le_P Y\)</span> and <span
+class="math inline">\(Y\le_P X\)</span></li>
+</ol></li>
 <li><p>Thm [ Cook-Levin 1971 , the first NPC problem ] : SAT is NPC</p>
-<ol>
-<li><p>Def [ <strong><em>SAT</em></strong> ] : a formula $F$ of $0/1$ variables $\{x_n\}$ and $\land,\lor,\lnot$ . </p>
-<p>Fix some variables , determine whether there exists an assignment of $\{x_n\}$ s.t. $F=true$ .</p>
-</li>
+<ol type="1">
+<li><p>Def [ <strong><em>SAT</em></strong> ] : a formula <span
+class="math inline">\(F\)</span> of <span
+class="math inline">\(0/1\)</span> variables <span
+class="math inline">\(\{x_n\}\)</span> and <span
+class="math inline">\(\land,\lor,\lnot\)</span> .</p>
+<p>Fix some variables , determine whether there exists an assignment of
+<span class="math inline">\(\{x_n\}\)</span> s.t. <span
+class="math inline">\(F=true\)</span> .</p></li>
 <li><p>Proof ( high-level sketch )</p>
-<p>SAT $\in$ NP : given an assignment , can verify </p>
-<p>$\forall X\in NP,X\le_P SAT$ :</p>
-<p>efficient verifier for $X$ : can be write as logic-circuit form </p>
-<p>$V(x,\pi)$ : $x$ as fixed , $\pi$ as assignment .</p>
-</li>
-</ol>
-</li>
+<p>SAT <span class="math inline">\(\in\)</span> NP : given an assignment
+, can verify</p>
+<p><span class="math inline">\(\forall X\in NP,X\le_P SAT\)</span> :</p>
+<p>efficient verifier for <span class="math inline">\(X\)</span> : can
+be write as logic-circuit form</p>
+<p><span class="math inline">\(V(x,\pi)\)</span> : <span
+class="math inline">\(x\)</span> as fixed , <span
+class="math inline">\(\pi\)</span> as assignment .</p></li>
+</ol></li>
 </ol>
 
     </div>
@@ -647,13 +771,13 @@ opt(v)\\
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

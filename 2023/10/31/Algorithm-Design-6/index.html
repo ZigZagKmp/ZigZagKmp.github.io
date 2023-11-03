@@ -156,7 +156,10 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-4-NP-Completeness"><span class="nav-number">1.</span> <span class="nav-text">Chapter 4 NP Completeness</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Other-Problems-in-NPC"><span class="nav-number">1.1.</span> <span class="nav-text">4.4 Other Problems in NPC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-1-3-SAT"><span class="nav-number">1.1.1.</span> <span class="nav-text">4.4.1  3-SAT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-2-Independent-Set-IS"><span class="nav-number">1.1.2.</span> <span class="nav-text">4.4.2 Independent Set ( IS )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-3-Hamiltonian-Cycle-HC"><span class="nav-number">1.1.3.</span> <span class="nav-text">4.4.3 Hamiltonian Cycle ( HC )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-4-3-Dimensional-Matching-3DM"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.4.4 3-Dimensional Matching ( 3DM)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-5-3-Coloring-Problem-3CoL"><span class="nav-number">1.1.5.</span> <span class="nav-text">4.4.5 3-Coloring Problem (3CoL)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-6-Subset-Sum-Problem"><span class="nav-number">1.1.6.</span> <span class="nav-text">4.4.6 Subset Sum Problem</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-4-np-completeness"><span class="nav-number">1.</span> <span class="nav-text">Chapter 4 NP Completeness</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#other-problems-in-npc"><span class="nav-number">1.1.</span> <span class="nav-text">4.4 Other Problems in NPC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sat"><span class="nav-number">1.1.1.</span> <span class="nav-text">4.4.1 3-SAT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#independent-set-is"><span class="nav-number">1.1.2.</span> <span class="nav-text">4.4.2 Independent Set ( IS
+)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hamiltonian-cycle-hc"><span class="nav-number">1.1.3.</span> <span class="nav-text">4.4.3 Hamiltonian Cycle (
+HC )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dimensional-matching-3dm"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.4.4 3-Dimensional Matching (
+3DM)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#coloring-problem-3col"><span class="nav-number">1.1.5.</span> <span class="nav-text">4.4.5 3-Coloring Problem (3CoL)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#subset-sum-problem"><span class="nav-number">1.1.6.</span> <span class="nav-text">4.4.6 Subset Sum Problem</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -171,7 +174,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -182,7 +185,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -374,234 +377,405 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-4-NP-Completeness"><a href="#Chapter-4-NP-Completeness" class="headerlink" title="Chapter 4 NP Completeness"></a>Chapter 4 NP Completeness</h2><h3 id="4-4-Other-Problems-in-NPC"><a href="#4-4-Other-Problems-in-NPC" class="headerlink" title="4.4 Other Problems in NPC"></a>4.4 Other Problems in NPC</h3><p>Intuition : Find problems $L\in NP$ that $SAT\le_p L$ . </p>
-<h4 id="4-4-1-3-SAT"><a href="#4-4-1-3-SAT" class="headerlink" title="4.4.1  3-SAT"></a>4.4.1  3-SAT</h4><ol>
-<li><p>Description : </p>
-<ol>
-<li><p>Def [ <strong><em>literal</em></strong> ] : For $\vec x=(x_1,\cdots,x_n)\in \{0,1\}^n$ , <strong><em>literal</em></strong> is an element of $X=\{x_i|i\in [n]\}\cup\{\bar x_i|i\in [n]\}$ .</p>
-<p>Def [ <strong><em>CNF-clause</em></strong> ] : A <strong><em>CNF-clause</em></strong> $c$ is a formula with form :</p>
-<script type="math/tex; mode=display">
-c=\lor_{j=1}^m a_j</script><p>where $a_1,\cdots,a_m$ are distinct literals .</p>
-<p>Def [ <strong><em>CNF</em></strong> ] : A <strong><em>conjunctive normal formula (CNF)</em></strong> is a formula $\{0,1\}^n\to \{0,1\}$ with following form :</p>
-<script type="math/tex; mode=display">
-f(\vec x)=\land_{i=1}^k c_i(\vec x)</script><p>where $c_i(\vec x)$ is a CNF-clause .</p>
-<p>Def [ <strong><em>3-CNF</em></strong> ] : A <strong><em>3-CNF</em></strong> is a CNF with all clauses having exactly $3$ literals . $c_i=a_{i,1}\lor a_{i,2}\lor a_{i,3}$ , where $a_{i,1},a_{i,2},a_{i,3}$ are distinct literals .</p>
-</li>
-<li><p>Input : a 3-CNF </p>
-<p>Output : Decide whether there exists an assignment for $\vec x$ such that $f(\vec x)=1$ .</p>
-</li>
-</ol>
-</li>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-4-np-completeness">Chapter 4 NP Completeness</h2>
+<h3 id="other-problems-in-npc">4.4 Other Problems in NPC</h3>
+<p>Intuition : Find problems <span class="math inline">\(L\in
+NP\)</span> that <span class="math inline">\(SAT\le_p L\)</span> .</p>
+<h4 id="sat">4.4.1 3-SAT</h4>
+<ol type="1">
+<li><p>Description :</p>
+<ol type="1">
+<li><p>Def [ <strong><em>literal</em></strong> ] : For <span
+class="math inline">\(\vec x=(x_1,\cdots,x_n)\in \{0,1\}^n\)</span> ,
+<strong><em>literal</em></strong> is an element of <span
+class="math inline">\(X=\{x_i|i\in [n]\}\cup\{\bar x_i|i\in
+[n]\}\)</span> .</p>
+<p>Def [ <strong><em>CNF-clause</em></strong> ] : A
+<strong><em>CNF-clause</em></strong> <span
+class="math inline">\(c\)</span> is a formula with form : <span
+class="math display">\[
+c=\lor_{j=1}^m a_j
+\]</span> where <span class="math inline">\(a_1,\cdots,a_m\)</span> are
+distinct literals .</p>
+<p>Def [ <strong><em>CNF</em></strong> ] : A <strong><em>conjunctive
+normal formula (CNF)</em></strong> is a formula <span
+class="math inline">\(\{0,1\}^n\to \{0,1\}\)</span> with following form
+: <span class="math display">\[
+f(\vec x)=\land_{i=1}^k c_i(\vec x)
+\]</span> where <span class="math inline">\(c_i(\vec x)\)</span> is a
+CNF-clause .</p>
+<p>Def [ <strong><em>3-CNF</em></strong> ] : A
+<strong><em>3-CNF</em></strong> is a CNF with all clauses having exactly
+<span class="math inline">\(3\)</span> literals . <span
+class="math inline">\(c_i=a_{i,1}\lor a_{i,2}\lor a_{i,3}\)</span> ,
+where <span class="math inline">\(a_{i,1},a_{i,2},a_{i,3}\)</span> are
+distinct literals .</p></li>
+<li><p>Input : a 3-CNF</p>
+<p>Output : Decide whether there exists an assignment for <span
+class="math inline">\(\vec x\)</span> such that <span
+class="math inline">\(f(\vec x)=1\)</span> .</p></li>
+</ol></li>
 <li><p><strong>3-SAT</strong> is <strong>NPC</strong></p>
 <p>Obviously , <strong>3-SAT</strong> is <strong>NP</strong> .</p>
-<p>Goal : <strong>SAT</strong> $\le_p $ <strong>3-SAT</strong> </p>
-<p>Given a SAT instance $I$ , we construct in poly-time a 3-SAT instance $I’$ , s.t. $I\in SAT\iff I’\in 3-SAT$ .</p>
+<p>Goal : <strong>SAT</strong> $_p $ <strong>3-SAT</strong></p>
+<p>Given a SAT instance <span class="math inline">\(I\)</span> , we
+construct in poly-time a 3-SAT instance <span
+class="math inline">\(I&#39;\)</span> , s.t. <span
+class="math inline">\(I\in SAT\iff I&#39;\in 3-SAT\)</span> .</p>
 <blockquote>
-<p><strong><em>Cook reduction</em></strong> : can use oracle poly times<br><strong><em>Karp reduction</em></strong> : only use oracle once </p>
-<p>Originally , Cook define NPC by Cook reduction , but almost always Karp reduction is enough (though stronger than Cook’s) ,</p>
+<p><strong><em>Cook reduction</em></strong> : can use oracle poly
+times<br />
+<strong><em>Karp reduction</em></strong> : only use oracle once</p>
+<p>Originally , Cook define NPC by Cook reduction , but almost always
+Karp reduction is enough (though stronger than Cook's) ,</p>
 </blockquote>
-<p>For each node $v\in I$ , construct a variable $x_v$ in $I’$ </p>
+<p>For each node <span class="math inline">\(v\in I\)</span> , construct
+a variable <span class="math inline">\(x_v\)</span> in <span
+class="math inline">\(I&#39;\)</span></p>
 <ul>
-<li>If $v=\lnot$ with child $u$ , we need $x_v=\overline{x_u}$ , so add to $I’$ a clause $(x_v\lor x_u)\land (\overline{x_v}\lor\overline{x_u})$ .</li>
-<li>If $v=\lor$ with children $u,w$ , we need $x_v=x_u\lor x_w$ , so add to $I’$ a clause $(x_v\lor \bar x_u)\land (x_v\lor \bar x_w)\land (\bar x_v\lor x_u\lor x_w)$ .</li>
-<li>If $v=\land$ with children $u,v$ , we need  $x_v=x_u\land x_w$ , so add to $I’$ a clause $(\bar x_v\lor x_u)\land (\bar x_v\lor x_w)\land (x_v\lor \bar x_u\lor \bar x_w)$ .</li>
-<li>If $v=0/1$ , add to $I’$ a clause $\bar x_v$ or $x_v$ .</li>
+<li>If <span class="math inline">\(v=\lnot\)</span> with child <span
+class="math inline">\(u\)</span> , we need <span
+class="math inline">\(x_v=\overline{x_u}\)</span> , so add to <span
+class="math inline">\(I&#39;\)</span> a clause <span
+class="math inline">\((x_v\lor x_u)\land
+(\overline{x_v}\lor\overline{x_u})\)</span> .</li>
+<li>If <span class="math inline">\(v=\lor\)</span> with children <span
+class="math inline">\(u,w\)</span> , we need <span
+class="math inline">\(x_v=x_u\lor x_w\)</span> , so add to <span
+class="math inline">\(I&#39;\)</span> a clause <span
+class="math inline">\((x_v\lor \bar x_u)\land (x_v\lor \bar x_w)\land
+(\bar x_v\lor x_u\lor x_w)\)</span> .</li>
+<li>If <span class="math inline">\(v=\land\)</span> with children <span
+class="math inline">\(u,v\)</span> , we need <span
+class="math inline">\(x_v=x_u\land x_w\)</span> , so add to <span
+class="math inline">\(I&#39;\)</span> a clause <span
+class="math inline">\((\bar x_v\lor x_u)\land (\bar x_v\lor x_w)\land
+(x_v\lor \bar x_u\lor \bar x_w)\)</span> .</li>
+<li>If <span class="math inline">\(v=0/1\)</span> , add to <span
+class="math inline">\(I&#39;\)</span> a clause <span
+class="math inline">\(\bar x_v\)</span> or <span
+class="math inline">\(x_v\)</span> .</li>
 </ul>
-<p>Extend each clause into $3$ literals : $(a\lor b)=(a\lor b\lor c)\land (a\lor b\lor \bar c)$ </p>
-<p>Claim : $I\in SAT\iff I’\in 3-SAT$ </p>
-</li>
+<p>Extend each clause into <span class="math inline">\(3\)</span>
+literals : <span class="math inline">\((a\lor b)=(a\lor b\lor c)\land
+(a\lor b\lor \bar c)\)</span></p>
+<p>Claim : <span class="math inline">\(I\in SAT\iff I&#39;\in
+3-SAT\)</span></p></li>
 </ol>
-<h4 id="4-4-2-Independent-Set-IS"><a href="#4-4-2-Independent-Set-IS" class="headerlink" title="4.4.2 Independent Set ( IS )"></a>4.4.2 Independent Set ( <strong>IS</strong> )</h4><p>Obviously , <strong>IS</strong> is <strong>NP</strong></p>
-<p>Goal : <strong>3-SAT</strong> $\le_p$ <strong>IS</strong></p>
-<ol>
+<h4 id="independent-set-is">4.4.2 Independent Set ( <strong>IS</strong>
+)</h4>
+<p>Obviously , <strong>IS</strong> is <strong>NP</strong></p>
+<p>Goal : <strong>3-SAT</strong> <span
+class="math inline">\(\le_p\)</span> <strong>IS</strong></p>
+<ol type="1">
 <li><p>Construction</p>
-<p>Given <strong>3-SAT</strong> instance $I$ , construct an <strong>IS</strong> instance $I’=(G,k)$ , s.t.  $(G,k)\in$ <strong>IS</strong> $\iff I\in $ <strong>3-SAT</strong> .</p>
+<p>Given <strong>3-SAT</strong> instance <span
+class="math inline">\(I\)</span> , construct an <strong>IS</strong>
+instance <span class="math inline">\(I&#39;=(G,k)\)</span> , s.t. <span
+class="math inline">\((G,k)\in\)</span> <strong>IS</strong> $I$
+<strong>3-SAT</strong> .</p>
 <ul>
-<li>Each clause $x_{i,1}\lor x_{i,2}\lor \bar x_{i,3}$ , construct a 3-cycle $(x_{i,1} , x_{i,2} , \bar x_{i,3})$ (finally $3n$ nodes , $3n$ edges). </li>
-<li>Then connecting $x_i$ and $\bar x_i$ for all $i$ .</li>
+<li>Each clause <span class="math inline">\(x_{i,1}\lor x_{i,2}\lor \bar
+x_{i,3}\)</span> , construct a 3-cycle <span
+class="math inline">\((x_{i,1} , x_{i,2} , \bar x_{i,3})\)</span>
+(finally <span class="math inline">\(3n\)</span> nodes , <span
+class="math inline">\(3n\)</span> edges).</li>
+<li>Then connecting <span class="math inline">\(x_i\)</span> and <span
+class="math inline">\(\bar x_i\)</span> for all <span
+class="math inline">\(i\)</span> .</li>
 </ul>
 <blockquote>
-<p>In each triangle , we can choose at most $1$ node .</p>
-</blockquote>
-</li>
-<li><p>Claim : $(G,k)\in$ <strong>IS</strong> $\iff I\in $ <strong>3-SAT</strong>  ( $k$ is the number of clauses )</p>
-<p>Proof : </p>
-<ol>
-<li>If $I\in $ <strong>3-SAT</strong> , then there is a valid assignment $\vec x$ . Each clause has at least one <code>true</code> , so we choose that literal in the clause , this is an independent set in $G$ with size $k$ .</li>
-<li>If $(G,k)\in $ <strong>IS</strong>  , for each literal $x_i$ ($\bar x_i$) chosen , let $x_i=1$ ( $x_i=0$ ) . The rest of variables are assigned arbitrarily . This assignment is a valid assignment for $I$ , so $I\in$ <strong>3-SAT</strong> . </li>
+<p>In each triangle , we can choose at most <span
+class="math inline">\(1\)</span> node .</p>
+</blockquote></li>
+<li><p>Claim : <span class="math inline">\((G,k)\in\)</span>
+<strong>IS</strong> $I$ <strong>3-SAT</strong> ( <span
+class="math inline">\(k\)</span> is the number of clauses )</p>
+<p>Proof :</p>
+<ol type="1">
+<li>If $I$ <strong>3-SAT</strong> , then there is a valid assignment
+<span class="math inline">\(\vec x\)</span> . Each clause has at least
+one <code>true</code> , so we choose that literal in the clause , this
+is an independent set in <span class="math inline">\(G\)</span> with
+size <span class="math inline">\(k\)</span> .</li>
+<li>If $(G,k)$ <strong>IS</strong> , for each literal <span
+class="math inline">\(x_i\)</span> (<span class="math inline">\(\bar
+x_i\)</span>) chosen , let <span class="math inline">\(x_i=1\)</span> (
+<span class="math inline">\(x_i=0\)</span> ) . The rest of variables are
+assigned arbitrarily . This assignment is a valid assignment for <span
+class="math inline">\(I\)</span> , so <span
+class="math inline">\(I\in\)</span> <strong>3-SAT</strong> .</li>
+</ol></li>
+<li><p>Cor : Vertex Coloring , Set Coloring <span
+class="math inline">\(\in\)</span> NPC</p></li>
 </ol>
-</li>
-<li><p>Cor : Vertex Coloring , Set Coloring $\in$ NPC</p>
-</li>
-</ol>
-<h4 id="4-4-3-Hamiltonian-Cycle-HC"><a href="#4-4-3-Hamiltonian-Cycle-HC" class="headerlink" title="4.4.3 Hamiltonian Cycle ( HC )"></a>4.4.3 Hamiltonian Cycle ( <strong>HC</strong> )</h4><ol>
+<h4 id="hamiltonian-cycle-hc">4.4.3 Hamiltonian Cycle (
+<strong>HC</strong> )</h4>
+<ol type="1">
 <li><p>Description</p>
-<ol>
+<ol type="1">
 <li>Input : A directed/undirected graph</li>
-<li>Output : Decide whether there exists a cycle visiting each vertex exactly once</li>
+<li>Output : Decide whether there exists a cycle visiting each vertex
+exactly once</li>
 </ol>
 <blockquote>
-<p><strong>TSP</strong> : weighted , determine the shortest Hamiltonian Cycle </p>
+<p><strong>TSP</strong> : weighted , determine the shortest Hamiltonian
+Cycle</p>
 <p><strong>TSP</strong> is <strong>NP-Hard</strong></p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p><strong>HC</strong> is <strong>NPC</strong></p>
 <p>Obviously , <strong>HC</strong> is <strong>NP</strong></p>
-<p>Goal : <strong>3-SAT</strong> $\le_p$ <strong>HC</strong></p>
-<ol>
+<p>Goal : <strong>3-SAT</strong> <span
+class="math inline">\(\le_p\)</span> <strong>HC</strong></p>
+<ol type="1">
 <li><p>Construction</p>
-<p>Consider an instance $I$ for <strong>3-SAT</strong> , construct $G$ , s.t. $G\in$ <strong>HC</strong> $\iff I\in $ <strong>3-SAT</strong> . </p>
-<p>Suppose $I$ has $n$ variables , $k$ clauses . </p>
+<p>Consider an instance <span class="math inline">\(I\)</span> for
+<strong>3-SAT</strong> , construct <span
+class="math inline">\(G\)</span> , s.t. <span
+class="math inline">\(G\in\)</span> <strong>HC</strong> $I$
+<strong>3-SAT</strong> .</p>
+<p>Suppose <span class="math inline">\(I\)</span> has <span
+class="math inline">\(n\)</span> variables , <span
+class="math inline">\(k\)</span> clauses .</p>
 <ul>
-<li><p>$S,T\in V$ , $(T,S)\in E$</p>
-</li>
-<li><p>$n$ lines ($P_i$) : on line $i$ : $x_{i,0/1}\in V$ , $v_{i,j,0/1/2}\in V$ , $1\le j\le k$ , $(v_{i,j,0},v_{i,j,1}),(v_{i,j,1},v_{i,j,2}),(v_{i,j,2},v_{i,j+1,0})\in E$ </p>
-<p>$(x_{i,0},v_{i,1,0}) , (v_{i,k,2},x_{i,1})\in E$</p>
-</li>
-<li><p>Between two lines :  $(x_{i,0},x_{i+1,0}) , (x_{i,0},x_{i+1},1) , (x_{i,1},x_{i+1,0}),(x_{i,1},x_{i+1,1})\in E$ </p>
-<p>$(S,x_{1,0}),(S,x_{1,1}),(x_{n,0},T),(x_{n,1},T)\in E$</p>
-</li>
-<li><p>Clause : For example $c_a=(x_i\lor \bar x_j\lor x_k)$</p>
-<p>$c_a\in V$ , $(v_{i,a,0},c_a),(c_a,v_{i,a,1})\in E$ , $(v_{j,a,1},c_a),(c_a,v_{j,a,0})\in E$ , $(v_{k,a,0},c_a),(c_a,v_{k,a,1})\in E$</p>
-</li>
+<li><p><span class="math inline">\(S,T\in V\)</span> , <span
+class="math inline">\((T,S)\in E\)</span></p></li>
+<li><p><span class="math inline">\(n\)</span> lines (<span
+class="math inline">\(P_i\)</span>) : on line <span
+class="math inline">\(i\)</span> : <span
+class="math inline">\(x_{i,0/1}\in V\)</span> , <span
+class="math inline">\(v_{i,j,0/1/2}\in V\)</span> , <span
+class="math inline">\(1\le j\le k\)</span> , <span
+class="math inline">\((v_{i,j,0},v_{i,j,1}),(v_{i,j,1},v_{i,j,2}),(v_{i,j,2},v_{i,j+1,0})\in
+E\)</span></p>
+<p><span class="math inline">\((x_{i,0},v_{i,1,0}) ,
+(v_{i,k,2},x_{i,1})\in E\)</span></p></li>
+<li><p>Between two lines : <span
+class="math inline">\((x_{i,0},x_{i+1,0}) , (x_{i,0},x_{i+1},1) ,
+(x_{i,1},x_{i+1,0}),(x_{i,1},x_{i+1,1})\in E\)</span></p>
+<p><span
+class="math inline">\((S,x_{1,0}),(S,x_{1,1}),(x_{n,0},T),(x_{n,1},T)\in
+E\)</span></p></li>
+<li><p>Clause : For example <span class="math inline">\(c_a=(x_i\lor
+\bar x_j\lor x_k)\)</span></p>
+<p><span class="math inline">\(c_a\in V\)</span> , <span
+class="math inline">\((v_{i,a,0},c_a),(c_a,v_{i,a,1})\in E\)</span> ,
+<span class="math inline">\((v_{j,a,1},c_a),(c_a,v_{j,a,0})\in
+E\)</span> , <span
+class="math inline">\((v_{k,a,0},c_a),(c_a,v_{k,a,1})\in
+E\)</span></p></li>
 </ul>
-<p><img src="/images/posts/AD6_fig1.png" alt=""></p>
+<p><img src="/images/posts/AD6_fig1.png" /></p>
 <blockquote>
-<p>$v_{i,j,2}$ for constraining the Hamiltonian cycle be the form $S\to x_{1,0/1}\to x_{1,1/0}\to \cdots\to x_{n,0/1}\to x_{n,1/0}\to T\to S$ .</p>
-</blockquote>
-</li>
-<li><p>Cor : <strong>Hamiltonian Cycle</strong> / <strong>Hamiltonian Path</strong> for directed/undirected graph are all <strong>NPC</strong> .</p>
-</li>
+<p><span class="math inline">\(v_{i,j,2}\)</span> for constraining the
+Hamiltonian cycle be the form <span class="math inline">\(S\to
+x_{1,0/1}\to x_{1,1/0}\to \cdots\to x_{n,0/1}\to x_{n,1/0}\to T\to
+S\)</span> .</p>
+</blockquote></li>
+<li><p>Cor : <strong>Hamiltonian Cycle</strong> / <strong>Hamiltonian
+Path</strong> for directed/undirected graph are all <strong>NPC</strong>
+.</p></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<h4 id="4-4-4-3-Dimensional-Matching-3DM"><a href="#4-4-4-3-Dimensional-Matching-3DM" class="headerlink" title="4.4.4 3-Dimensional Matching ( 3DM)"></a>4.4.4 3-Dimensional Matching ( 3DM)</h4><ol>
+<h4 id="dimensional-matching-3dm">4.4.4 3-Dimensional Matching (
+3DM)</h4>
+<ol type="1">
 <li><p>Description</p>
-<p>Def [ <strong><em>3D graph</em></strong> ] : $G=(X,Y,Z,E)$ , $E=\{e=(x_e,y_e,z_e)|x_e\in X,y_e\in Y,z_e\in Z\}$ .</p>
-<p>Def [ <strong><em>3D Matching</em></strong> ] : $M\subseteq E$ satisfies </p>
+<p>Def [ <strong><em>3D graph</em></strong> ] : <span
+class="math inline">\(G=(X,Y,Z,E)\)</span> , <span
+class="math inline">\(E=\{e=(x_e,y_e,z_e)|x_e\in X,y_e\in Y,z_e\in
+Z\}\)</span> .</p>
+<p>Def [ <strong><em>3D Matching</em></strong> ] : <span
+class="math inline">\(M\subseteq E\)</span> satisfies</p>
 <ul>
-<li>$\forall e_1\neq e_2\in M $, $x_{e_1}\neq x_{e_2}$ , $y_{e_1}\neq y_{e_2}$ , $z_{e_1}\neq z_{e_2}$ </li>
-<li>$\bigcup\limits_{e\in M}x_e=X$ , $\bigcup\limits_{e\in M}y_e=Y$ , $\bigcup\limits_{e\in M}z_e=Z$.</li>
+<li>$e_1e_2M $, <span class="math inline">\(x_{e_1}\neq x_{e_2}\)</span>
+, <span class="math inline">\(y_{e_1}\neq y_{e_2}\)</span> , <span
+class="math inline">\(z_{e_1}\neq z_{e_2}\)</span></li>
+<li><span class="math inline">\(\bigcup\limits_{e\in M}x_e=X\)</span> ,
+<span class="math inline">\(\bigcup\limits_{e\in M}y_e=Y\)</span> ,
+<span class="math inline">\(\bigcup\limits_{e\in M}z_e=Z\)</span>.</li>
 </ul>
 <p>Input : A 3D graph</p>
-<p>Output : Decide whether there is a 3D Matching for this graph. </p>
-</li>
+<p>Output : Decide whether there is a 3D Matching for this
+graph.</p></li>
 <li><p><strong>3DM</strong> is <strong>NPC</strong></p>
 <p>Obviously , <strong>3DM</strong> is <strong>NP</strong></p>
-<p>Goal : <strong>3-SAT</strong> $\le_p$ <strong>3DM</strong></p>
-<p>Consider an instance $I$ for <strong>3-SAT</strong> , construct $G$ , s.t. $G\in$ <strong>3DM</strong> $\iff I\in $ <strong>3-SAT</strong> . </p>
-<p>Suppose $I$ has $n$ variables , $k$ clauses . </p>
+<p>Goal : <strong>3-SAT</strong> <span
+class="math inline">\(\le_p\)</span> <strong>3DM</strong></p>
+<p>Consider an instance <span class="math inline">\(I\)</span> for
+<strong>3-SAT</strong> , construct <span
+class="math inline">\(G\)</span> , s.t. <span
+class="math inline">\(G\in\)</span> <strong>3DM</strong> $I$
+<strong>3-SAT</strong> .</p>
+<p>Suppose <span class="math inline">\(I\)</span> has <span
+class="math inline">\(n\)</span> variables , <span
+class="math inline">\(k\)</span> clauses .</p>
 <p>Construction :</p>
 <p><strong>Vertices :</strong></p>
 <ul>
-<li>For each variable $x_i$ , construct $A_i=\{a_{i,1},\cdots,a_{i,2k}\}$ , $B_i=\{b_{i,1},\cdots,b_{i,k}\}$ , $C_i=\{c_{i,1},\cdots,c_{i,k}\}$ .</li>
-<li>For each clause $c_i$ , construct $d_i,e_i$ .</li>
-<li>Cleanup garget : for $i$-th garget construct $y_i,z_i$ .</li>
+<li>For each variable <span class="math inline">\(x_i\)</span> ,
+construct <span
+class="math inline">\(A_i=\{a_{i,1},\cdots,a_{i,2k}\}\)</span> , <span
+class="math inline">\(B_i=\{b_{i,1},\cdots,b_{i,k}\}\)</span> , <span
+class="math inline">\(C_i=\{c_{i,1},\cdots,c_{i,k}\}\)</span> .</li>
+<li>For each clause <span class="math inline">\(c_i\)</span> , construct
+<span class="math inline">\(d_i,e_i\)</span> .</li>
+<li>Cleanup garget : for <span class="math inline">\(i\)</span>-th
+garget construct <span class="math inline">\(y_i,z_i\)</span> .</li>
 </ul>
-<p>$X=\bigcup A_i$ , $Y=\left(\bigcup B_i \right)\cup \{d_i\}\cup\{y_i\}$ , $Z=\left(\bigcup C_i \right)\cup \{e_i\}\cup\{z_i\}$ </p>
+<p><span class="math inline">\(X=\bigcup A_i\)</span> , <span
+class="math inline">\(Y=\left(\bigcup B_i \right)\cup
+\{d_i\}\cup\{y_i\}\)</span> , <span
+class="math inline">\(Z=\left(\bigcup C_i \right)\cup
+\{e_i\}\cup\{z_i\}\)</span></p>
 <p><strong>Hyperedges</strong> :</p>
 <ul>
-<li>For each variable $x_i$ : $e_{i,2j-1}=(a_{i,2j-1},b_{i,j},c_{i,j})$ , $e_{i,2j}=(a_{i,2j},b_{i,j+1},c_{i,j})$ . ($1\le j\le k$ )</li>
-<li>For each clause $c_t$ : suppose $c_t=x_i\lor \bar x_j\lor x_k$ : $e_{t,1}=(a_{i,2t},d_t,e_t)$ , $e_{t,2}=(a_{j,2t-1},d_t,e_t)$ , $e_{t,3}=(a_{k,2t},d_t,e_t)$ . ($1\le t\le k$)</li>
-<li>For each cleanup garget $g_t$ : $e_{t,i,j}=(a_{i,j},y_t,z_t)$ . ($1\le i\le n,1\le j\le 2k$)</li>
+<li>For each variable <span class="math inline">\(x_i\)</span> : <span
+class="math inline">\(e_{i,2j-1}=(a_{i,2j-1},b_{i,j},c_{i,j})\)</span> ,
+<span
+class="math inline">\(e_{i,2j}=(a_{i,2j},b_{i,j+1},c_{i,j})\)</span> .
+(<span class="math inline">\(1\le j\le k\)</span> )</li>
+<li>For each clause <span class="math inline">\(c_t\)</span> : suppose
+<span class="math inline">\(c_t=x_i\lor \bar x_j\lor x_k\)</span> :
+<span class="math inline">\(e_{t,1}=(a_{i,2t},d_t,e_t)\)</span> , <span
+class="math inline">\(e_{t,2}=(a_{j,2t-1},d_t,e_t)\)</span> , <span
+class="math inline">\(e_{t,3}=(a_{k,2t},d_t,e_t)\)</span> . (<span
+class="math inline">\(1\le t\le k\)</span>)</li>
+<li>For each cleanup garget <span class="math inline">\(g_t\)</span> :
+<span class="math inline">\(e_{t,i,j}=(a_{i,j},y_t,z_t)\)</span> .
+(<span class="math inline">\(1\le i\le n,1\le j\le 2k\)</span>)</li>
 </ul>
-<p><img src="/images/posts/AD6_fig2.png" alt=""></p>
+<p><img src="/images/posts/AD6_fig2.png" /></p>
 <blockquote>
-<p>Cleanup garget : we need $(n-1)k$ gargets to recycle all free $a_{i,j}$ ( tips ) .</p>
-</blockquote>
-</li>
+<p>Cleanup garget : we need <span class="math inline">\((n-1)k\)</span>
+gargets to recycle all free <span class="math inline">\(a_{i,j}\)</span>
+( tips ) .</p>
+</blockquote></li>
 </ol>
-<h4 id="4-4-5-3-Coloring-Problem-3CoL"><a href="#4-4-5-3-Coloring-Problem-3CoL" class="headerlink" title="4.4.5 3-Coloring Problem (3CoL)"></a>4.4.5 3-Coloring Problem (3CoL)</h4><ol>
+<h4 id="coloring-problem-3col">4.4.5 3-Coloring Problem (3CoL)</h4>
+<ol type="1">
 <li><p>Description</p>
-<ol>
-<li><p>Def [ <strong><em>valid coloring</em></strong> ] : Assign each vertex a color , such that no two vertices having same color share an edge</p>
-<p>$\forall e=(u,v)\in E$ , $c(u)\neq c(v)$ .</p>
-</li>
-<li><p>Def [ <strong><em>chromatic number</em></strong> ] $\chi(G)$ :The minimum number of colors that can color the graph validly .</p>
-</li>
-<li><p>Input : A graph $G$</p>
-<p>Output : Decide whether $\chi(G)\le 3$.</p>
-</li>
+<ol type="1">
+<li><p>Def [ <strong><em>valid coloring</em></strong> ] : Assign each
+vertex a color , such that no two vertices having same color share an
+edge</p>
+<p><span class="math inline">\(\forall e=(u,v)\in E\)</span> , <span
+class="math inline">\(c(u)\neq c(v)\)</span> .</p></li>
+<li><p>Def [ <strong><em>chromatic number</em></strong> ] <span
+class="math inline">\(\chi(G)\)</span> :The minimum number of colors
+that can color the graph validly .</p></li>
+<li><p>Input : A graph <span class="math inline">\(G\)</span></p>
+<p>Output : Decide whether <span class="math inline">\(\chi(G)\le
+3\)</span>.</p></li>
 </ol>
 <blockquote>
 <ul>
-<li><p><strong>2CoL</strong> is <strong>P</strong> , using <code>dfs</code></p>
-</li>
-<li><p><strong>4CoL Theorem</strong> : Any planar graph can be $4$-colored.</p>
-<p>Current Proof : need computer assistant ( $\sim 10^2$ cases to verify )</p>
-<p>Open : a proof of <strong>4CoL Theorem</strong> without computer assistant ?</p>
-</li>
+<li><p><strong>2CoL</strong> is <strong>P</strong> , using
+<code>dfs</code></p></li>
+<li><p><strong>4CoL Theorem</strong> : Any planar graph can be <span
+class="math inline">\(4\)</span>-colored.</p>
+<p>Current Proof : need computer assistant ( <span
+class="math inline">\(\sim 10^2\)</span> cases to verify )</p>
+<p>Open : a proof of <strong>4CoL Theorem</strong> without computer
+assistant ?</p></li>
 </ul>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p><strong>3CoL</strong> is <strong>NPC</strong></p>
 <p>Obviously <strong>3CoL</strong> is <strong>NP</strong> .</p>
-<p>Goal : <strong>3CoL</strong> $\le_p$ <strong>3-SAT</strong> .</p>
-<p>Consider an instance $I$ for <strong>3-SAT</strong> , construct $G$ , s.t. $G\in$ <strong>3CoL</strong> $\iff I\in $ <strong>3-SAT</strong> . </p>
-<p>Suppose $I$ has $n$ variables , $k$ clauses . </p>
+<p>Goal : <strong>3CoL</strong> <span
+class="math inline">\(\le_p\)</span> <strong>3-SAT</strong> .</p>
+<p>Consider an instance <span class="math inline">\(I\)</span> for
+<strong>3-SAT</strong> , construct <span
+class="math inline">\(G\)</span> , s.t. <span
+class="math inline">\(G\in\)</span> <strong>3CoL</strong> $I$
+<strong>3-SAT</strong> .</p>
+<p>Suppose <span class="math inline">\(I\)</span> has <span
+class="math inline">\(n\)</span> variables , <span
+class="math inline">\(k\)</span> clauses .</p>
 <p>Construction :</p>
 <p><strong>Vertices</strong> :</p>
 <ul>
-<li>Special garget : $T,F,B$ .</li>
-<li>Variable garget : $v_i$ , $\bar v_i$ .</li>
-<li>Clause garget : $6$ vertices for each clause .</li>
+<li>Special garget : <span class="math inline">\(T,F,B\)</span> .</li>
+<li>Variable garget : <span class="math inline">\(v_i\)</span> , <span
+class="math inline">\(\bar v_i\)</span> .</li>
+<li>Clause garget : <span class="math inline">\(6\)</span> vertices for
+each clause .</li>
 </ul>
 <p><strong>Edges</strong> :</p>
 <ul>
-<li><p>Special garget : $(T,F),(T,B),(F,B)$</p>
+<li><p>Special garget : <span
+class="math inline">\((T,F),(T,B),(F,B)\)</span></p>
 <blockquote>
-<p>To ensure $T,F,B$ having distinct colors</p>
-</blockquote>
-</li>
-<li><p>Variable garget : $(B,v_i)$ , $(v_i,\bar v_i)$ , $(B,\bar v_i)$ </p>
+<p>To ensure <span class="math inline">\(T,F,B\)</span> having distinct
+colors</p>
+</blockquote></li>
+<li><p>Variable garget : <span class="math inline">\((B,v_i)\)</span> ,
+<span class="math inline">\((v_i,\bar v_i)\)</span> , <span
+class="math inline">\((B,\bar v_i)\)</span></p>
 <blockquote>
-<p>To ensure either $c(v_i)=c(T),c(\bar v_i)=c(F)$ , or $c(v_i)=c(F),c(\bar v_i)=c(T)$</p>
-</blockquote>
-</li>
-<li><p>Clause garget : Example $c=(x_i\lor \bar x_j\lor x_k)$ </p>
-<p>$(v_i,a),(T,a),(a,b),(T,b)$</p>
-<p>$(\bar v_j,c),(T,c)$</p>
-<p>$(v_k,d),(T,d),(d,e),(F,e)$</p>
-<p>$(f,a),(f,c),(f,e)$</p>
+<p>To ensure either <span class="math inline">\(c(v_i)=c(T),c(\bar
+v_i)=c(F)\)</span> , or <span class="math inline">\(c(v_i)=c(F),c(\bar
+v_i)=c(T)\)</span></p>
+</blockquote></li>
+<li><p>Clause garget : Example <span class="math inline">\(c=(x_i\lor
+\bar x_j\lor x_k)\)</span></p>
+<p><span class="math inline">\((v_i,a),(T,a),(a,b),(T,b)\)</span></p>
+<p><span class="math inline">\((\bar v_j,c),(T,c)\)</span></p>
+<p><span class="math inline">\((v_k,d),(T,d),(d,e),(F,e)\)</span></p>
+<p><span class="math inline">\((f,a),(f,c),(f,e)\)</span></p>
 <blockquote>
-<p>To ensure that $f$ can be colored if and only if $v_i,\bar v_j,v_k$ are not all colored with $c(F)$.</p>
-<p>Otherwise , $c(v_i)=c(F)$ , so $c(a)=c(B)$ , so $c(b)=c(F)$</p>
-<p>$c(\bar v_j)=c(F)$ , so $c(c)=c(B)$</p>
-<p>$c(v_3)=c(F)$ , so $c(d)=c(B)$ , so $c(e)=c(T)$</p>
-<p>Then $f$ cannot be colored </p>
-</blockquote>
-</li>
+<p>To ensure that <span class="math inline">\(f\)</span> can be colored
+if and only if <span class="math inline">\(v_i,\bar v_j,v_k\)</span> are
+not all colored with <span class="math inline">\(c(F)\)</span>.</p>
+<p>Otherwise , <span class="math inline">\(c(v_i)=c(F)\)</span> , so
+<span class="math inline">\(c(a)=c(B)\)</span> , so <span
+class="math inline">\(c(b)=c(F)\)</span></p>
+<p><span class="math inline">\(c(\bar v_j)=c(F)\)</span> , so <span
+class="math inline">\(c(c)=c(B)\)</span></p>
+<p><span class="math inline">\(c(v_3)=c(F)\)</span> , so <span
+class="math inline">\(c(d)=c(B)\)</span> , so <span
+class="math inline">\(c(e)=c(T)\)</span></p>
+<p>Then <span class="math inline">\(f\)</span> cannot be colored</p>
+</blockquote></li>
 </ul>
-<p><img src="/images/posts/AD6_fig3.png" alt=""></p>
-</li>
+<p><img src="/images/posts/AD6_fig3.png" /></p></li>
 </ol>
-<h4 id="4-4-6-Subset-Sum-Problem"><a href="#4-4-6-Subset-Sum-Problem" class="headerlink" title="4.4.6 Subset Sum Problem"></a>4.4.6 Subset Sum Problem</h4><ol>
+<h4 id="subset-sum-problem">4.4.6 Subset Sum Problem</h4>
+<ol type="1">
 <li><p>Description</p>
-<p>Input : $w_1,\cdots,w_n$ , target $W$ .</p>
-<p>Output : determine whether there exists $S\subseteq [n]$ , s.t. $\sum_{i\in S}w_i=W$ .</p>
+<p>Input : <span class="math inline">\(w_1,\cdots,w_n\)</span> , target
+<span class="math inline">\(W\)</span> .</p>
+<p>Output : determine whether there exists <span
+class="math inline">\(S\subseteq [n]\)</span> , s.t. <span
+class="math inline">\(\sum_{i\in S}w_i=W\)</span> .</p>
 <blockquote>
-<p>Subset Sum can be solved in $\mathcal O(nW)$ with DP method</p>
-</blockquote>
-</li>
+<p>Subset Sum can be solved in <span class="math inline">\(\mathcal
+O(nW)\)</span> with DP method</p>
+</blockquote></li>
 <li><p><strong>Subset Sum</strong> is <strong>NPC</strong></p>
 <p>Obviously <strong>Subset Sum</strong> is <strong>NP</strong>.</p>
 <blockquote>
-<p>$W$ in the reduction must be exponentially large</p>
+<p><span class="math inline">\(W\)</span> in the reduction must be
+exponentially large</p>
 </blockquote>
-<p>Goal : <strong>3DM</strong> $\le_p$ <strong>Subset Sum</strong></p>
-<ol>
+<p>Goal : <strong>3DM</strong> <span
+class="math inline">\(\le_p\)</span> <strong>Subset Sum</strong></p>
+<ol type="1">
 <li><p>Construction</p>
-<p>For each hyperedge $e=(x,y,z)$ , construct $w_e=2^{x-1+|Y|+|Z|}+2^{y-1+|Z|}+2^{z-1}$ </p>
-<p>Let $W=\sum\limits_{x=1}^{|X|}2^{x-1+|Y|+|Z|}+\sum\limits_{y=1}^{|Y|}2^{y-1+|Z|}+\sum\limits_{z=1}^{|Z|}2^{z-1}$ </p>
-<p><strong>Problem : carry ( 进位 )</strong></p>
-</li>
+<p>For each hyperedge <span class="math inline">\(e=(x,y,z)\)</span> ,
+construct <span
+class="math inline">\(w_e=2^{x-1+|Y|+|Z|}+2^{y-1+|Z|}+2^{z-1}\)</span></p>
+<p>Let <span
+class="math inline">\(W=\sum\limits_{x=1}^{|X|}2^{x-1+|Y|+|Z|}+\sum\limits_{y=1}^{|Y|}2^{y-1+|Z|}+\sum\limits_{z=1}^{|Z|}2^{z-1}\)</span></p>
+<p><strong>Problem : carry ( 进位 )</strong></p></li>
 <li><p>Improved Construction</p>
-<p>Let $b=|E|+1$</p>
-<p>For each hyperedge $e=(x,y,z)$ , construct $w_e=b^{x-1+|Y|+|Z|}+b^{y-1+|Z|}+b^{z-1}$ </p>
-<p>Let $W=\sum\limits_{x=1}^{|X|}b^{x-1+|Y|+|Z|}+\sum\limits_{y=1}^{|Y|}b^{y-1+|Z|}+\sum\limits_{z=1}^{|Z|}b^{z-1}$ </p>
-</li>
-</ol>
-</li>
+<p>Let <span class="math inline">\(b=|E|+1\)</span></p>
+<p>For each hyperedge <span class="math inline">\(e=(x,y,z)\)</span> ,
+construct <span
+class="math inline">\(w_e=b^{x-1+|Y|+|Z|}+b^{y-1+|Z|}+b^{z-1}\)</span></p>
+<p>Let <span
+class="math inline">\(W=\sum\limits_{x=1}^{|X|}b^{x-1+|Y|+|Z|}+\sum\limits_{y=1}^{|Y|}b^{y-1+|Z|}+\sum\limits_{z=1}^{|Z|}b^{z-1}\)</span></p></li>
+</ol></li>
 </ol>
 
     </div>
@@ -717,13 +891,13 @@ f(\vec x)=\land_{i=1}^k c_i(\vec x)</script><p>where $c_i(\vec x)$ is a CNF-clau
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

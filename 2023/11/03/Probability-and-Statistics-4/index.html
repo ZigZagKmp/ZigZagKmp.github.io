@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-03T02:20:59.000Z">
-<meta property="article:modified_time" content="2023-11-03T02:28:40.987Z">
+<meta property="article:modified_time" content="2023-11-03T12:19:52.185Z">
 <meta property="article:author" content="ZigZagKmp">
 <meta property="article:tag" content="实分析-积分性质">
 <meta property="article:tag" content="实分析-积分收敛定理">
@@ -149,7 +149,10 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-Background-in-Probability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 Background in Probability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Properties-of-Integration"><span class="nav-number">1.1.</span> <span class="nav-text">1.5 Properties of Integration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-Expected-Value"><span class="nav-number">1.2.</span> <span class="nav-text">1.6 Expected Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-Product-Measure-and-Fubini%E2%80%99s-Theorem"><span class="nav-number">1.3.</span> <span class="nav-text">1.7 Product Measure and Fubini’s Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Laws-of-Large-Numbers"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2 Laws of Large Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Independence"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Independence</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-1-background-in-probability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 Background in
+Probability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#properties-of-integration"><span class="nav-number">1.1.</span> <span class="nav-text">1.5 Properties of Integration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#expected-value"><span class="nav-number">1.2.</span> <span class="nav-text">1.6 Expected Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#product-measure-and-fubinis-theorem"><span class="nav-number">1.3.</span> <span class="nav-text">1.7 Product Measure and
+Fubini&#39;s Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-2-laws-of-large-numbers"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2 Laws of Large
+Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#independence"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Independence</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -164,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -175,7 +178,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -249,6 +252,13 @@
       </a>
     </li>
     <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/11/03/Probability-and-Statistics-5/" rel="bookmark">
+        <time class="popular-posts-time">2023-11-03</time>
+        <br>
+      Probability and Statistics 5
+      </a>
+    </li>
+    <li class="popular-posts-item">
       <a class="popular-posts-link" href="/2023/10/08/Probability-and-Statistics-1/" rel="bookmark">
         <time class="popular-posts-time">2023-10-08</time>
         <br>
@@ -312,7 +322,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-11-03 10:20:59 / 修改时间：10:28:40" itemprop="dateCreated datePublished" datetime="2023-11-03T10:20:59+08:00">2023-11-03</time>
+      <time title="创建时间：2023-11-03 10:20:59 / 修改时间：20:19:52" itemprop="dateCreated datePublished" datetime="2023-11-03T10:20:59+08:00">2023-11-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -360,421 +370,717 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-1-Background-in-Probability"><a href="#Chapter-1-Background-in-Probability" class="headerlink" title="Chapter 1 Background in Probability"></a>Chapter 1 Background in Probability</h2><h3 id="1-5-Properties-of-Integration"><a href="#1-5-Properties-of-Integration" class="headerlink" title="1.5 Properties of Integration"></a>1.5 Properties of Integration</h3><ol>
-<li><p>Holder’s Inequality</p>
-<ol>
-<li><p>Def [ <strong><em>$L_p$ Norm</em></strong> ] : For $p\ge 1$ , we can define $L_p$ Norm :  $||f||_p=\left(\int |f|^p d\mu\right)^{1/p}$</p>
-</li>
-<li><p>THM [ <strong><em>Holder’s Inequality</em></strong> ] : $\forall p,q&gt;1$ , s.t. $\frac{1}{p}+\frac{1}{q}=1$ , then</p>
-<script type="math/tex; mode=display">
-\int |fg|d\mu \le ||f||_p||g||_q</script></li>
-<li><p>Proof </p>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-1-background-in-probability">Chapter 1 Background in
+Probability</h2>
+<h3 id="properties-of-integration">1.5 Properties of Integration</h3>
+<ol start="2" type="1">
+<li><p>Holder's Inequality</p>
+<ol type="1">
+<li><p>Def [ <strong><em><span class="math inline">\(L_p\)</span>
+Norm</em></strong> ] : For <span class="math inline">\(p\ge 1\)</span> ,
+we can define <span class="math inline">\(L_p\)</span> Norm : <span
+class="math inline">\(||f||_p=\left(\int |f|^p
+d\mu\right)^{1/p}\)</span></p></li>
+<li><p>THM [ <strong><em>Holder's Inequality</em></strong> ] : <span
+class="math inline">\(\forall p,q&gt;1\)</span> , s.t. <span
+class="math inline">\(\frac{1}{p}+\frac{1}{q}=1\)</span> , then <span
+class="math display">\[
+\int |fg|d\mu \le ||f||_p||g||_q
+\]</span></p></li>
+<li><p>Proof</p>
 <blockquote>
-<p>Lemma : If $p,q&gt;1,\frac{1}{p}+\frac{1}{q}=1$ , then $\forall x,y\ge 0,xy\le \frac{1}{p}x^p+\frac{1}{q}y^q$ .</p>
-<p>Proof : </p>
-<p>Fix $y$ , let $f(x)=\frac{1}{p}x^p-yx+\frac{1}{q}y^q$ , so $f’(x)=x^{p-1}-y$ </p>
-<p>Therefore , $f(x)_{\min}=f(x=y^{1/(p-1)})=0$ , so $f(x)\ge 0$ . $\Box$</p>
+<p>Lemma : If <span
+class="math inline">\(p,q&gt;1,\frac{1}{p}+\frac{1}{q}=1\)</span> , then
+<span class="math inline">\(\forall x,y\ge 0,xy\le
+\frac{1}{p}x^p+\frac{1}{q}y^q\)</span> .</p>
+<p>Proof :</p>
+<p>Fix <span class="math inline">\(y\)</span> , let <span
+class="math inline">\(f(x)=\frac{1}{p}x^p-yx+\frac{1}{q}y^q\)</span> ,
+so <span class="math inline">\(f&#39;(x)=x^{p-1}-y\)</span></p>
+<p>Therefore , <span
+class="math inline">\(f(x)_{\min}=f(x=y^{1/(p-1)})=0\)</span> , so <span
+class="math inline">\(f(x)\ge 0\)</span> . <span
+class="math inline">\(\Box\)</span></p>
 </blockquote>
-<p>For either $||f||_p=0$ or $||g||_q=0$ , that means $f=0$ a.e. or $g=0$ a.e. , so $\int |fg|d\mu=0$ </p>
-<p>When $||f||_p\neq 0,||g||_q\neq 0$  , we can suppose that $||f||_p=||g||_q=1$ without loss of generality .</p>
-<p>Therefore , using the lemma , </p>
-<script type="math/tex; mode=display">
+<p>For either <span class="math inline">\(||f||_p=0\)</span> or <span
+class="math inline">\(||g||_q=0\)</span> , that means <span
+class="math inline">\(f=0\)</span> a.e. or <span
+class="math inline">\(g=0\)</span> a.e. , so <span
+class="math inline">\(\int |fg|d\mu=0\)</span></p>
+<p>When <span class="math inline">\(||f||_p\neq 0,||g||_q\neq 0\)</span>
+, we can suppose that <span
+class="math inline">\(||f||_p=||g||_q=1\)</span> without loss of
+generality .</p>
+<p>Therefore , using the lemma , <span class="math display">\[
 \begin{aligned}
-\int |fg|d\mu&\le \int \left(\frac{1}{p}|f|^p+\frac{1}{q}|g|^q\right)d\mu\\
-&=\frac{1}{p}||f||_p^p+\frac{1}{q}||g||_q^q\\
-&=\frac{1}{p}+\frac{1}{q}\\
-&=1\\
-&=||f||_p||g||_q
-\end{aligned}</script><blockquote>
-<p>Remark : Here it is necessary to suppose $||f||_p=||g||_q=1$ , or otherwise we will get </p>
-<script type="math/tex; mode=display">
-\frac{1}{p}||f||_p^p+\frac{1}{q}||g||_q^q\ge ||f||_p||g||_q</script><p>Which is not what we want . </p>
-<p>But exactly when $||f||_p=||g||_q=1$ , the above inequality is equality .</p>
-</blockquote>
-</li>
-<li><p>Remark : When $p=q=2$ , Holder’s Inequality becomes <strong><em>Cauchy-Schwarz Inequality</em></strong>.</p>
-<script type="math/tex; mode=display">
-\left(\int |fg|d\mu\right)^2\le \left(\int f^2d\mu\right)\left(\int g^2d\mu\right)</script></li>
-</ol>
-</li>
+\int |fg|d\mu&amp;\le \int
+\left(\frac{1}{p}|f|^p+\frac{1}{q}|g|^q\right)d\mu\\
+&amp;=\frac{1}{p}||f||_p^p+\frac{1}{q}||g||_q^q\\
+&amp;=\frac{1}{p}+\frac{1}{q}\\
+&amp;=1\\
+&amp;=||f||_p||g||_q
+\end{aligned}
+\]</span></p>
+<blockquote>
+<p>Remark : Here it is necessary to suppose <span
+class="math inline">\(||f||_p=||g||_q=1\)</span> , or otherwise we will
+get <span class="math display">\[
+\frac{1}{p}||f||_p^p+\frac{1}{q}||g||_q^q\ge ||f||_p||g||_q
+\]</span> Which is not what we want .</p>
+<p>But exactly when <span
+class="math inline">\(||f||_p=||g||_q=1\)</span> , the above inequality
+is equality .</p>
+</blockquote></li>
+<li><p>Remark : When <span class="math inline">\(p=q=2\)</span> ,
+Holder's Inequality becomes <strong><em>Cauchy-Schwarz
+Inequality</em></strong>. <span class="math display">\[
+\left(\int |fg|d\mu\right)^2\le \left(\int f^2d\mu\right)\left(\int
+g^2d\mu\right)
+\]</span></p></li>
+</ol></li>
 <li><p>Convergence of functions</p>
-<ol>
-<li><p>Def [ <strong><em>converge a.e.</em></strong> ] : $f_1,f_2,\cdots$ is a sequence of functions . If $f_n$ <strong><em>converge to $f$ almost everywhere</em></strong> , it means that </p>
-<script type="math/tex; mode=display">
-\mu\left(\left\{w:\lim_{n\to\infty} f_n(w)\neq f(w)\right\}\right)=0</script></li>
-<li><p>Def [ <strong><em>converge in measure</em></strong> ] : $f_1,f_2,\cdots$ is a sequence of functions . If $f_n$ <strong><em> converge to $f$ in measure</em></strong> , it means that </p>
-<script type="math/tex; mode=display">
-\forall \epsilon>0 , \lim_{n\to\infty}\mu\left(\left\{w:|f_n(w)-f(w)|\ge \epsilon\right\}\right)=0</script></li>
-<li><p>Def [ <strong><em>almost uniform convergence</em></strong> ] : $f_1,f_2,\cdots$ is a sequence of functions . Suppose $f:E\to \mathbb R$ is a function . If $f_n$ <strong><em>converge to $f$ almost uniformly</em></strong> , it means that</p>
-<p>$\forall \epsilon_1&gt;0$ , there exists a measurable set $D\subseteq E$ such that $\mu(D)&lt;\epsilon_1$ , such that </p>
-<script type="math/tex; mode=display">
-\forall \epsilon>0,\exists N>0,\forall n>N,x\in E\backslash D,|f_n(x)-f(x)|<\epsilon</script></li>
-<li><p>THM [ <strong><em>Egovov’s THM</em></strong> ] : If the support set $E$ of $f$ with $\mu(E)&lt;\infty$ , then </p>
-<p>$f_n\to f$ a.e. $\Rightarrow$ $f_n\to f$ almost uniformly</p>
-</li>
-<li><p>THM : $f_n\to f$ almost uniformly $\Rightarrow$ $f_n\to f$ in measure</p>
-</li>
+<ol type="1">
+<li><p>Def [ <strong><em>converge a.e.</em></strong> ] : <span
+class="math inline">\(f_1,f_2,\cdots\)</span> is a sequence of functions
+. If <span class="math inline">\(f_n\)</span> <strong><em>converge to
+<span class="math inline">\(f\)</span> almost everywhere</em></strong> ,
+it means that <span class="math display">\[
+\mu\left(\left\{w:\lim_{n\to\infty} f_n(w)\neq f(w)\right\}\right)=0
+\]</span></p></li>
+<li><p>Def [ <strong><em>converge in measure</em></strong> ] : <span
+class="math inline">\(f_1,f_2,\cdots\)</span> is a sequence of functions
+. If <span class="math inline">\(f_n\)</span> *** converge to <span
+class="math inline">\(f\)</span> in measure*** , it means that <span
+class="math display">\[
+\forall \epsilon&gt;0 ,
+\lim_{n\to\infty}\mu\left(\left\{w:|f_n(w)-f(w)|\ge
+\epsilon\right\}\right)=0
+\]</span></p></li>
+<li><p>Def [ <strong><em>almost uniform convergence</em></strong> ] :
+<span class="math inline">\(f_1,f_2,\cdots\)</span> is a sequence of
+functions . Suppose <span class="math inline">\(f:E\to \mathbb
+R\)</span> is a function . If <span class="math inline">\(f_n\)</span>
+<strong><em>converge to <span class="math inline">\(f\)</span> almost
+uniformly</em></strong> , it means that</p>
+<p><span class="math inline">\(\forall \epsilon_1&gt;0\)</span> , there
+exists a measurable set <span class="math inline">\(D\subseteq
+E\)</span> such that <span
+class="math inline">\(\mu(D)&lt;\epsilon_1\)</span> , such that <span
+class="math display">\[
+\forall \epsilon&gt;0,\exists N&gt;0,\forall n&gt;N,x\in E\backslash
+D,|f_n(x)-f(x)|&lt;\epsilon
+\]</span></p></li>
+<li><p>THM [ <strong><em>Egovov's THM</em></strong> ] : If the support
+set <span class="math inline">\(E\)</span> of <span
+class="math inline">\(f\)</span> with <span
+class="math inline">\(\mu(E)&lt;\infty\)</span> , then</p>
+<p><span class="math inline">\(f_n\to f\)</span> a.e. <span
+class="math inline">\(\Rightarrow\)</span> <span
+class="math inline">\(f_n\to f\)</span> almost uniformly</p></li>
+<li><p>THM : <span class="math inline">\(f_n\to f\)</span> almost
+uniformly <span class="math inline">\(\Rightarrow\)</span> <span
+class="math inline">\(f_n\to f\)</span> in measure</p></li>
 <li><p>Remarks</p>
-<ol>
+<ol type="1">
 <li><p>the difference between convergences</p>
 <ul>
 <li>a.e. : 相当于逐点收敛，但每个点的收敛速度可能不一样</li>
-<li>uniform : 相当于一致收敛，趋于无穷时存在的 $N$ 只和 $\epsilon$ 有关（而不依赖于 $w$ ），相当于衡量一致的收敛速度</li>
-<li>in measure : 类似于一致收敛，但可以允许不收敛的地方依赖 $n$ </li>
+<li>uniform : 相当于一致收敛，趋于无穷时存在的 <span
+class="math inline">\(N\)</span> 只和 <span
+class="math inline">\(\epsilon\)</span> 有关（而不依赖于 <span
+class="math inline">\(w\)</span> ），相当于衡量一致的收敛速度</li>
+<li>in measure : 类似于一致收敛，但可以允许不收敛的地方依赖 <span
+class="math inline">\(n\)</span></li>
 </ul>
 <p>converge almost uniform 强于 converge in measure</p>
-<p>在 $\mu(E)&lt;\infty$ 时，converge a.e. 强于 converge almost uniformly</p>
-</li>
-<li><p>$\mu(E)=\infty$ , Egovov’s THM 可能不成立</p>
-<p>$(\mathbb R,\mathcal R,\lambda)$ , $f_n(x)=\mathbb 1_{[n,n+1]}(x)$ </p>
-<p>$f_n\to 0$ a.e. , but let $\epsilon=\frac{1}{2}$ , $\mu(\{w:|f_n(w)|&gt;\frac{1}{2}\})=1$ </p>
-</li>
+<p>在 <span class="math inline">\(\mu(E)&lt;\infty\)</span> 时，converge
+a.e. 强于 converge almost uniformly</p></li>
+<li><p><span class="math inline">\(\mu(E)=\infty\)</span> , Egovov's THM
+可能不成立</p>
+<p><span class="math inline">\((\mathbb R,\mathcal R,\lambda)\)</span> ,
+<span class="math inline">\(f_n(x)=\mathbb 1_{[n,n+1]}(x)\)</span></p>
+<p><span class="math inline">\(f_n\to 0\)</span> a.e. , but let <span
+class="math inline">\(\epsilon=\frac{1}{2}\)</span> , <span
+class="math inline">\(\mu(\{w:|f_n(w)|&gt;\frac{1}{2}\})=1\)</span></p></li>
 <li><p>Convergence of random variables</p>
-<p>$\mu$ : probability measure , $f$ , $f_1,\cdots$ random variables</p>
-<p>Def [ <strong><em>converge a.s.</em></strong> ] : $f_n\to f$ a.e. , then we say $f_n$ <strong><em>converges to $f$ almost surely</em></strong> .</p>
-<p>Def [ <strong><em>converge in probability</em></strong> ] : $f_n\to f$ in measure , then we say $f_n$ <strong><em>converges to $f$ in probability</em></strong> , denote as $f_n\xrightarrow{P} f$.</p>
-</li>
-</ol>
-</li>
-</ol>
-</li>
+<p><span class="math inline">\(\mu\)</span> : probability measure ,
+<span class="math inline">\(f\)</span> , <span
+class="math inline">\(f_1,\cdots\)</span> random variables</p>
+<p>Def [ <strong><em>converge a.s.</em></strong> ] : <span
+class="math inline">\(f_n\to f\)</span> a.e. , then we say <span
+class="math inline">\(f_n\)</span> <strong><em>converges to <span
+class="math inline">\(f\)</span> almost surely</em></strong> .</p>
+<p>Def [ <strong><em>converge in probability</em></strong> ] : <span
+class="math inline">\(f_n\to f\)</span> in measure , then we say <span
+class="math inline">\(f_n\)</span> <strong><em>converges to <span
+class="math inline">\(f\)</span> in probability</em></strong> , denote
+as <span class="math inline">\(f_n\xrightarrow{P} f\)</span>.</p></li>
+</ol></li>
+</ol></li>
 <li><p>Bounded Convergence Theorem</p>
-<ol>
-<li><p>THM [ <strong><em>Bounded Convergence Theorem (BCT)</em></strong> ] </p>
-<p>Condition : </p>
-<p>(i)  $E\in \mathcal F$ , s.t. $\mu(E)&lt;\infty$ and $\forall n\ge 1,f_n(E^c)=0$ .</p>
-<p>(ii) $\exists M&gt;0$ , $\forall n\ge 1$ , $|f_n(x)|\le M$</p>
-<p>(iii) $f_n\to f$ in measure</p>
-<p>Result : </p>
-<script type="math/tex; mode=display">
-\lim_{n\to\infty}\int f_n d\mu=\int fd\mu</script></li>
-<li><p>Proof</p>
-<p>$\forall \epsilon&gt;0$ , let $G_n=\{x:|f_n(x)-f(x)|&lt;\epsilon\}$ , let $B_n=\Omega-G_n$ </p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\quad\left|\int f_nd\mu-\int fd\mu\right|\\
-&\le \int |f_n-f|d\mu\\
-&=\int_{G_n}|f_n-f|d\mu+\int_{B_n\cap \{|f|\le M+1\}}|f_n-f|d\mu+\int_{B_n\cap \{|f|>M+1\}}|f_n-f|d\mu\\
-&\le \epsilon \mu(G_n)+3M\mu(B_n)+\int_{\{|f|\ge M+\frac{1}{2}\}} (|f|+M)d\mu\\
-&\le \epsilon \mu(G_n)+3M\mu(B_n)+M\mu\left\{|f|\ge M+\frac{1}{2}\right\}+\int_{\{|f|\ge M+\frac{1}{2}\}}|f|d\mu
-\end{aligned}</script><p>Since $f_n\to f$ in measure , $\mu(B_n)\to 0$ as $n\to \infty$ </p>
-<p>If $\mu\{|f|\ge M+\frac{1}{2}\}\neq 0$ ,then as $n\to\infty$ , $\mu\{x:|f_n(x)-f(x)|\ge \frac{1}{2}\} \ge \mu\{|f|\ge M+\frac{1}{2}\}\not\to 0$ , contradict with $f_n\to f$ in measure </p>
-<p>$\int_{\{|f|\ge M+\frac{1}{2}\}}|f|d\mu=0$ ( though I don’t know how to prove it , maybe here is a bug)</p>
-</li>
+<ol type="1">
+<li><p>THM [ <strong><em>Bounded Convergence Theorem (BCT)</em></strong>
+]</p>
+<p>Condition :</p>
+<ol type="i">
+<li><p><span class="math inline">\(E\in \mathcal F\)</span> , s.t. <span
+class="math inline">\(\mu(E)&lt;\infty\)</span> and <span
+class="math inline">\(\forall n\ge 1,f_n(E^c)=0\)</span> .</p></li>
+<li><p><span class="math inline">\(\exists M&gt;0\)</span> , <span
+class="math inline">\(\forall n\ge 1\)</span> , <span
+class="math inline">\(|f_n(x)|\le M\)</span></p></li>
+<li><p><span class="math inline">\(f_n\to f\)</span> in measure</p></li>
 </ol>
-</li>
-<li><p>Fatou’s Lemma</p>
-<ol>
-<li><p>Lemma [ <strong><em>Fatou’s Lemma</em></strong> ] : If $f_n\ge 0$ , then </p>
-<script type="math/tex; mode=display">
-\liminf_{n\to\infty} \int f_nd\mu\ge \int \left(\liminf_{n\to\infty}f_n\right)d\mu</script></li>
+<p>Result : <span class="math display">\[
+\lim_{n\to\infty}\int f_n d\mu=\int fd\mu
+\]</span></p></li>
 <li><p>Proof</p>
-<p>Let $g_n(x)=\inf_{m\ge n} f_m(x)$ , so $f_n(x)\ge g_n(x)$ . And as $n\uparrow\infty$ , $g_n(x)\uparrow g(x)=\liminf\limits_{n\to\infty} f_n(x)$ .</p>
-<p>Therefore , we only need to prove that </p>
-<script type="math/tex; mode=display">
-\lim_{n\to\infty} \int g_nd\mu \ge \int d\mu</script><p>Consider $E_m\uparrow \Omega$ , $E_1\subseteq E_2\subseteq\cdots$ , and $\bigcup_{m=1}^{\infty} E_i=\Omega$ , then</p>
-<p>$\forall m&gt;0$ , $m$ fixed , $(g_n\land m)\mathbb 1_{E_m}\to (g\land m)\mathbb 1_{E_m}$ a.e. </p>
-<p>Therefore , for any fixed $m&gt;0$ , </p>
-<script type="math/tex; mode=display">
+<p><span class="math inline">\(\forall \epsilon&gt;0\)</span> , let
+<span class="math inline">\(G_n=\{x:|f_n(x)-f(x)|&lt;\epsilon\}\)</span>
+, let <span class="math inline">\(B_n=\Omega-G_n\)</span> <span
+class="math display">\[
 \begin{aligned}
-&\quad \lim_{n\to\infty}\int g_nd\mu\\
-&\ge \lim_{n\to\infty} \int_{E_m}(g_n\land m)d\mu\\
-&=\int_{E_m}(g\land m)d\mu\\
-\end{aligned}</script><p>Therefore , </p>
-<script type="math/tex; mode=display">
+&amp;\quad\left|\int f_nd\mu-\int fd\mu\right|\\
+&amp;\le \int |f_n-f|d\mu\\
+&amp;=\int_{G_n}|f_n-f|d\mu+\int_{B_n\cap \{|f|\le
+M+1\}}|f_n-f|d\mu+\int_{B_n\cap \{|f|&gt;M+1\}}|f_n-f|d\mu\\
+&amp;\le \epsilon \mu(G_n)+3M\mu(B_n)+\int_{\{|f|\ge M+\frac{1}{2}\}}
+(|f|+M)d\mu\\
+&amp;\le \epsilon \mu(G_n)+3M\mu(B_n)+M\mu\left\{|f|\ge
+M+\frac{1}{2}\right\}+\int_{\{|f|\ge M+\frac{1}{2}\}}|f|d\mu
+\end{aligned}
+\]</span> Since <span class="math inline">\(f_n\to f\)</span> in measure
+, <span class="math inline">\(\mu(B_n)\to 0\)</span> as <span
+class="math inline">\(n\to \infty\)</span></p>
+<p>If <span class="math inline">\(\mu\{|f|\ge M+\frac{1}{2}\}\neq
+0\)</span> ,then as <span class="math inline">\(n\to\infty\)</span> ,
+<span class="math inline">\(\mu\{x:|f_n(x)-f(x)|\ge \frac{1}{2}\} \ge
+\mu\{|f|\ge M+\frac{1}{2}\}\not\to 0\)</span> , contradict with <span
+class="math inline">\(f_n\to f\)</span> in measure</p>
+<p><span class="math inline">\(\int_{\{|f|\ge
+M+\frac{1}{2}\}}|f|d\mu=0\)</span> ( though I don't know how to prove it
+, maybe here is a bug)</p></li>
+</ol></li>
+<li><p>Fatou's Lemma</p>
+<ol type="1">
+<li><p>Lemma [ <strong><em>Fatou's Lemma</em></strong> ] : If <span
+class="math inline">\(f_n\ge 0\)</span> , then <span
+class="math display">\[
+\liminf_{n\to\infty} \int f_nd\mu\ge \int
+\left(\liminf_{n\to\infty}f_n\right)d\mu
+\]</span></p></li>
+<li><p>Proof</p>
+<p>Let <span class="math inline">\(g_n(x)=\inf_{m\ge n} f_m(x)\)</span>
+, so <span class="math inline">\(f_n(x)\ge g_n(x)\)</span> . And as
+<span class="math inline">\(n\uparrow\infty\)</span> , <span
+class="math inline">\(g_n(x)\uparrow g(x)=\liminf\limits_{n\to\infty}
+f_n(x)\)</span> .</p>
+<p>Therefore , we only need to prove that <span class="math display">\[
+\lim_{n\to\infty} \int g_nd\mu \ge \int d\mu
+\]</span> Consider <span class="math inline">\(E_m\uparrow
+\Omega\)</span> , <span class="math inline">\(E_1\subseteq
+E_2\subseteq\cdots\)</span> , and <span
+class="math inline">\(\bigcup_{m=1}^{\infty} E_i=\Omega\)</span> ,
+then</p>
+<p><span class="math inline">\(\forall m&gt;0\)</span> , <span
+class="math inline">\(m\)</span> fixed , <span
+class="math inline">\((g_n\land m)\mathbb 1_{E_m}\to (g\land m)\mathbb
+1_{E_m}\)</span> a.e.</p>
+<p>Therefore , for any fixed <span class="math inline">\(m&gt;0\)</span>
+, <span class="math display">\[
 \begin{aligned}
-&\quad \lim_{n\to\infty}\int g_nd\mu\\
-&\ge \sup_{m>0}\int_{E_m}(g\land m)d\mu\\
-&=\lim_{m\to\infty} \int_{E_m}(g\land m)d\mu\\
-&=\int gd\mu
-\end{aligned}</script></li>
-</ol>
-</li>
+&amp;\quad \lim_{n\to\infty}\int g_nd\mu\\
+&amp;\ge \lim_{n\to\infty} \int_{E_m}(g_n\land m)d\mu\\
+&amp;=\int_{E_m}(g\land m)d\mu\\
+\end{aligned}
+\]</span> Therefore , <span class="math display">\[
+\begin{aligned}
+&amp;\quad \lim_{n\to\infty}\int g_nd\mu\\
+&amp;\ge \sup_{m&gt;0}\int_{E_m}(g\land m)d\mu\\
+&amp;=\lim_{m\to\infty} \int_{E_m}(g\land m)d\mu\\
+&amp;=\int gd\mu
+\end{aligned}
+\]</span></p></li>
+</ol></li>
 <li><p>Monotone Convergence Theorem</p>
-<ol>
-<li><p>THM [ <strong><em>Monotone Convergence Theorem (MCT)</em></strong> ] </p>
+<ol type="1">
+<li><p>THM [ <strong><em>Monotone Convergence Theorem
+(MCT)</em></strong> ]</p>
 <p>Condition :</p>
-<p>(i) $f_n\ge 0$</p>
-<p>(ii) $f_n\uparrow f$ a.e.</p>
-<p>Result : </p>
-<script type="math/tex; mode=display">
-\int f_nd\mu \uparrow \int fd\mu</script></li>
-<li><p>Proof</p>
-<p>Since $f_n\uparrow f$ , $\limsup\limits_{n\to\infty} \int f_nd\mu\le \int fd\mu$.</p>
-<p>By <strong><em>Fatou’s Lemma</em></strong> ,  </p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\quad \liminf_{n\to\infty}\int f_nd\mu\\
-&\ge \int \left(\liminf_{n\to\infty} f_n\right)d\mu\\
-&=\int \left(\lim_{n\to\infty} f_n\right)d\mu\\
-&=\int fd\mu
-\end{aligned}</script><p>Therefore , $\lim\limits_{n\to\infty} \int f_nd\mu=\int fd\mu$ .</p>
-</li>
+<ol type="i">
+<li><p><span class="math inline">\(f_n\ge 0\)</span></p></li>
+<li><p><span class="math inline">\(f_n\uparrow f\)</span> a.e.</p></li>
 </ol>
-</li>
+<p>Result : <span class="math display">\[
+\int f_nd\mu \uparrow \int fd\mu
+\]</span></p></li>
+<li><p>Proof</p>
+<p>Since <span class="math inline">\(f_n\uparrow f\)</span> , <span
+class="math inline">\(\limsup\limits_{n\to\infty} \int f_nd\mu\le \int
+fd\mu\)</span>.</p>
+<p>By <strong><em>Fatou's Lemma</em></strong> ,<br />
+<span class="math display">\[
+\begin{aligned}
+&amp;\quad \liminf_{n\to\infty}\int f_nd\mu\\
+&amp;\ge \int \left(\liminf_{n\to\infty} f_n\right)d\mu\\
+&amp;=\int \left(\lim_{n\to\infty} f_n\right)d\mu\\
+&amp;=\int fd\mu
+\end{aligned}
+\]</span> Therefore , <span
+class="math inline">\(\lim\limits_{n\to\infty} \int f_nd\mu=\int
+fd\mu\)</span> .</p></li>
+</ol></li>
 <li><p>Dominated Convergence Theorem</p>
-<ol>
-<li><p>THM [ <strong><em>Dominated Convergence Theorem (DCT)</em></strong> ]</p>
+<ol type="1">
+<li><p>THM [ <strong><em>Dominated Convergence Theorem
+(DCT)</em></strong> ]</p>
 <p>Condition :</p>
-<p>(i) $f_n\to f$ a.e.</p>
-<p>(ii) There exists a function $g$ that $\forall n\ge 1,|f_n|\le g$ a.e.</p>
-<p>(iii) $g$ is integrable , i.e. $\int |g|d\mu &lt;\infty$</p>
-<p>Result :</p>
-<script type="math/tex; mode=display">
-\int f_n d\mu\to \int fd\mu</script></li>
+<ol type="i">
+<li><p><span class="math inline">\(f_n\to f\)</span> a.e.</p></li>
+<li><p>There exists a function <span class="math inline">\(g\)</span>
+that <span class="math inline">\(\forall n\ge 1,|f_n|\le g\)</span>
+a.e.</p></li>
+<li><p><span class="math inline">\(g\)</span> is integrable , i.e. <span
+class="math inline">\(\int |g|d\mu &lt;\infty\)</span></p></li>
+</ol>
+<p>Result : <span class="math display">\[
+\int f_n d\mu\to \int fd\mu
+\]</span></p></li>
 <li><p>Proof</p>
-<p>Since $|f_n|\le g$ , $f_n+g\ge 0$ a.e. and $-f_n+g\ge 0$ a.e.</p>
-<p>By <strong><em>Fatou’s Lemma</em></strong> , </p>
-<script type="math/tex; mode=display">
+<p>Since <span class="math inline">\(|f_n|\le g\)</span> , <span
+class="math inline">\(f_n+g\ge 0\)</span> a.e. and <span
+class="math inline">\(-f_n+g\ge 0\)</span> a.e.</p>
+<p>By <strong><em>Fatou's Lemma</em></strong> , <span
+class="math display">\[
 \begin{aligned}
-\liminf_{n\to\infty} \int (f_n+g)d\mu\ge \int (f+g)d\mu \quad&\Rightarrow\quad \liminf_{n\to\infty} \int f_nd\mu \ge \int fd\mu\\
-\liminf_{n\to\infty} \int (-f_n+g)d\mu\ge \int (-f+g)d\mu \quad&\Rightarrow\quad \limsup_{n\to\infty} \int f_nd\mu \le \int fd\mu\\
-\end{aligned}</script></li>
+\liminf_{n\to\infty} \int (f_n+g)d\mu\ge \int (f+g)d\mu
+\quad&amp;\Rightarrow\quad \liminf_{n\to\infty} \int f_nd\mu \ge \int
+fd\mu\\
+\liminf_{n\to\infty} \int (-f_n+g)d\mu\ge \int (-f+g)d\mu
+\quad&amp;\Rightarrow\quad \limsup_{n\to\infty} \int f_nd\mu \le \int
+fd\mu\\
+\end{aligned}
+\]</span></p></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<h3 id="1-6-Expected-Value"><a href="#1-6-Expected-Value" class="headerlink" title="1.6 Expected Value"></a>1.6 Expected Value</h3><ol>
+<h3 id="expected-value">1.6 Expected Value</h3>
+<ol type="1">
 <li><p>Basic concept of Expectation</p>
-<ol>
-<li><p>Def [ <strong><em>Expected Value</em></strong> ] : For $X\ge 0$ be a random variable on $(\Omega,\mathcal F,P)$ , its <strong><em>expected value</em></strong> is </p>
-<script type="math/tex; mode=display">
-E[X]=\int X dP</script><p>For general case , let $X^+=\max\{X,0\}$ , $X^-=\max\{-X,0\}$ .</p>
-<p>Define $E[X]$ when $E[X^+]&lt;\infty$ or $E[X^-]&lt;\infty$ , as $E[X]=E[X^+]-E[X^-]$ .</p>
-</li>
+<ol type="1">
+<li><p>Def [ <strong><em>Expected Value</em></strong> ] : For <span
+class="math inline">\(X\ge 0\)</span> be a random variable on <span
+class="math inline">\((\Omega,\mathcal F,P)\)</span> , its
+<strong><em>expected value</em></strong> is <span
+class="math display">\[
+E[X]=\int X dP
+\]</span> For general case , let <span
+class="math inline">\(X^+=\max\{X,0\}\)</span> , <span
+class="math inline">\(X^-=\max\{-X,0\}\)</span> .</p>
+<p>Define <span class="math inline">\(E[X]\)</span> when <span
+class="math inline">\(E[X^+]&lt;\infty\)</span> or <span
+class="math inline">\(E[X^-]&lt;\infty\)</span> , as <span
+class="math inline">\(E[X]=E[X^+]-E[X^-]\)</span> .</p></li>
 <li><p>Remarks</p>
-<ol>
-<li><p>The definition of expected value is a little bit bigger than <strong><em>integrable</em></strong> , since we also define $E[X]$ when $E[X^+]=\infty$ or $E[X^-]=\infty$ . But usually this does not matter.</p>
-</li>
-<li><p>We can construct an example that $E[X]=\infty$</p>
-<p>$P(X=2^{j})=2^{-j}$ for integer $j\ge 1$ , then $E[X]=\sum_{j=1}^{\infty} 2^jP(X=2^j)=\sum_{j=1}^{\infty}1=\infty$</p>
-</li>
-<li><p>$E[X]$ is often called <strong><em>mean</em></strong> of $X$ , and denoted as $\mu$ (different from measure!).  </p>
-</li>
-</ol>
-</li>
+<ol type="1">
+<li><p>The definition of expected value is a little bit bigger than
+<strong><em>integrable</em></strong> , since we also define <span
+class="math inline">\(E[X]\)</span> when <span
+class="math inline">\(E[X^+]=\infty\)</span> or <span
+class="math inline">\(E[X^-]=\infty\)</span> . But usually this does not
+matter.</p></li>
+<li><p>We can construct an example that <span
+class="math inline">\(E[X]=\infty\)</span></p>
+<p><span class="math inline">\(P(X=2^{j})=2^{-j}\)</span> for integer
+<span class="math inline">\(j\ge 1\)</span> , then <span
+class="math inline">\(E[X]=\sum_{j=1}^{\infty}
+2^jP(X=2^j)=\sum_{j=1}^{\infty}1=\infty\)</span></p></li>
+<li><p><span class="math inline">\(E[X]\)</span> is often called
+<strong><em>mean</em></strong> of <span class="math inline">\(X\)</span>
+, and denoted as <span class="math inline">\(\mu\)</span> (different
+from measure!).</p></li>
+</ol></li>
 <li><p>Basic properties</p>
-<ol>
-<li>$E[X+Y]=E[X]+E[Y]$</li>
-<li>$E[aX+b]=aE[X]+b$</li>
-<li>If $X\ge Y$ , then $E[X]\ge E[Y]$</li>
-</ol>
-</li>
-</ol>
-</li>
+<ol type="1">
+<li><span class="math inline">\(E[X+Y]=E[X]+E[Y]\)</span></li>
+<li><span class="math inline">\(E[aX+b]=aE[X]+b\)</span></li>
+<li>If <span class="math inline">\(X\ge Y\)</span> , then <span
+class="math inline">\(E[X]\ge E[Y]\)</span></li>
+</ol></li>
+</ol></li>
 <li><p>Inequalities</p>
-<ol>
-<li><p>THM [ <strong><em>Jensen’s Inequality</em></strong> ] : Suppose $\varphi$ is a convex , and $E[\varphi(X)],E[X]$ exist , then</p>
-<script type="math/tex; mode=display">
-E[\varphi(X)]\ge \varphi(E[X])</script><blockquote>
-<p>Corollary :  $|E[X]|\le E[|X|]$ , $(E[X])^2\le E[X^2]$</p>
-</blockquote>
-</li>
-<li><p>THM [ <strong><em>Holder’s Inequality</em></strong> ] : If $p,q\in [1,\infty]$ , $\frac{1}{p}+\frac{1}{q}=1$ , then</p>
-<script type="math/tex; mode=display">
-E|XY|\le ||X||_p||Y||_q</script><p>Here define $||X||_r=(E[X^r])^{1/r}$ for $r\in [1,\infty)$ ,</p>
-<p>define $||X||_{\infty}=\inf\{M:P(|X|&gt;M)=0\}$  ( like the maximum )</p>
-</li>
-<li><p>THM [ <strong><em>Chebyshev’s Inequality</em></strong> ] : $\varphi :  \mathbb R\to \mathbb R$ , $\varphi\ge 0$ </p>
-<p>Let $A\in \mathcal R$ , and let $i_A=\inf\{\varphi(y):y\in A\}$ . Therefore ,</p>
-<script type="math/tex; mode=display">
-i_A P(X\in A)\le E[\varphi(X)\mathbb 1(X\in A)]\le E[\varphi(X)]</script><p>Proof :</p>
-<script type="math/tex; mode=display">
-i_A\mathbb 1(X\in A)\le \varphi(X)\mathbb 1(X\in A)\le \varphi(X)</script></li>
-<li><p>THM [ <strong><em>Chebyshev’s Inequality 2</em></strong> ] : Let $\varphi(x)=(x-\mu)^2$ , then</p>
-<script type="math/tex; mode=display">
-\Pr\{|X-\mu|\ge t\}=\frac{Var(X)}{t^2}</script></li>
-<li><p>THM [ <strong><em>Markov’s Inequality</em></strong> ] : If $X\ge 0$ a.s. then </p>
-<script type="math/tex; mode=display">
-\Pr\{X\ge t\}\le \frac{E[X]}{t}</script></li>
-</ol>
-</li>
-<li><p>Convergence</p>
-<ol>
-<li><p>THM [ <strong><em>Egovov’s Theorem</em></strong> ] : $X_1,X_2 \cdots$ is a sequence of random variables , then</p>
-<p>$X_n\to X$ a.s. $\Rightarrow$ $X_n\to X$ in probability</p>
-</li>
-<li><p>THM [ <strong><em>Bounded Convergence Theorem</em></strong> ] :</p>
-<p>Condition :</p>
-<p>(i) $X_n\to X$ a.s.</p>
-<p>(ii) $\exists M&gt;0$ , $\forall n\ge 1,|X_n|\le M$ </p>
-<p>Result : $E[X_n]\to E[X]$</p>
-</li>
-<li><p>THM [ <strong><em>Fatou’s Lemma</em></strong> ] : If $X_n\ge 0$ , then </p>
-<script type="math/tex; mode=display">
-\liminf_{n\to\infty} E[X_n]\ge E\left[\liminf_{n\to\infty} X_n\right]</script></li>
-<li><p>THM [ <strong><em>Monotone Convergence Theorem</em></strong> ] : </p>
-<p>Condition :</p>
-<p>(i) $X_n\ge 0$</p>
-<p>(ii) $X_n\uparrow X$ a.s.</p>
-<p>Result : $E[X_n]\uparrow E[X]$ a.s.</p>
-</li>
-<li><p>THM [ <strong><em>Dominated Convergence Theorem</em></strong> ] : </p>
-<p>Condition : </p>
-<p>(i) $X_n\to X$ a.s.</p>
-<p>(ii) $\exists Y$ , $\forall n\ge 1$ , $|X_n|\le Y$</p>
-<p>(iii) $E[|Y|]&lt;\infty$</p>
-<p>Result : $E[X_n]\to E[X]$</p>
-</li>
-<li><p>THM </p>
-<p>Condition : </p>
-<p>(i) $X_n\to X$ a.s.</p>
-<p>(ii) $g,h$ continuous functions</p>
-<p>(iii) $g\ge 0$ , $g(x)\to\infty$ as $|x|\to\infty$ </p>
-<p>(iv) $|h(x)|/g(x)\to 0$ as $|x|\to\infty$</p>
-<p>(v) $\exists K&gt;0$ , s.t.  $E[g(X)]\le K&lt;\infty$</p>
-<p>Result : $E[h(X_n)]\to E[h(X)]$ . </p>
+<ol type="1">
+<li><p>THM [ <strong><em>Jensen's Inequality</em></strong> ] : Suppose
+<span class="math inline">\(\varphi\)</span> is a convex , and <span
+class="math inline">\(E[\varphi(X)],E[X]\)</span> exist , then <span
+class="math display">\[
+E[\varphi(X)]\ge \varphi(E[X])
+\]</span></p>
 <blockquote>
-<p>Remark : similar to DCT , use $g$ to dominate $h$ </p>
-<p>Proof : see book</p>
-<p>Intuition : truncation , consider $\bar X=X\cdot \mathbb 1(|X|\le M)$ , $M$ to make $g(x)&gt;0$ .</p>
-<script type="math/tex; mode=display">
-E[h(X_n)]\to E[h(\bar X_n)]\to E[h(\bar X)]\to E[h(X)]</script></blockquote>
-</li>
-</ol>
-</li>
-<li><p>Computing Expected Value</p>
-<ol>
-<li><p>THM [ <strong><em>Change of variable formula</em></strong> ] : </p>
+<p>Corollary : <span class="math inline">\(|E[X]|\le E[|X|]\)</span> ,
+<span class="math inline">\((E[X])^2\le E[X^2]\)</span></p>
+</blockquote></li>
+<li><p>THM [ <strong><em>Holder's Inequality</em></strong> ] : If <span
+class="math inline">\(p,q\in [1,\infty]\)</span> , <span
+class="math inline">\(\frac{1}{p}+\frac{1}{q}=1\)</span> , then <span
+class="math display">\[
+E|XY|\le ||X||_p||Y||_q
+\]</span> Here define <span
+class="math inline">\(||X||_r=(E[X^r])^{1/r}\)</span> for <span
+class="math inline">\(r\in [1,\infty)\)</span> ,</p>
+<p>define <span
+class="math inline">\(||X||_{\infty}=\inf\{M:P(|X|&gt;M)=0\}\)</span> (
+like the maximum )</p></li>
+<li><p>THM [ <strong><em>Chebyshev's Inequality</em></strong> ] : <span
+class="math inline">\(\varphi : \mathbb R\to \mathbb R\)</span> , <span
+class="math inline">\(\varphi\ge 0\)</span></p>
+<p>Let <span class="math inline">\(A\in \mathcal R\)</span> , and let
+<span class="math inline">\(i_A=\inf\{\varphi(y):y\in A\}\)</span> .
+Therefore , <span class="math display">\[
+i_A P(X\in A)\le E[\varphi(X)\mathbb 1(X\in A)]\le E[\varphi(X)]
+\]</span> Proof : <span class="math display">\[
+i_A\mathbb 1(X\in A)\le \varphi(X)\mathbb 1(X\in A)\le \varphi(X)
+\]</span></p></li>
+<li><p>THM [ <strong><em>Chebyshev's Inequality 2</em></strong> ] : Let
+<span class="math inline">\(\varphi(x)=(x-\mu)^2\)</span> , then <span
+class="math display">\[
+\Pr\{|X-\mu|\ge t\}=\frac{Var(X)}{t^2}
+\]</span></p></li>
+<li><p>THM [ <strong><em>Markov's Inequality</em></strong> ] : If <span
+class="math inline">\(X\ge 0\)</span> a.s. then <span
+class="math display">\[
+\Pr\{X\ge t\}\le \frac{E[X]}{t}
+\]</span></p></li>
+</ol></li>
+<li><p>Convergence</p>
+<ol type="1">
+<li><p>THM [ <strong><em>Egovov's Theorem</em></strong> ] : <span
+class="math inline">\(X_1,X_2 \cdots\)</span> is a sequence of random
+variables , then</p>
+<p><span class="math inline">\(X_n\to X\)</span> a.s. <span
+class="math inline">\(\Rightarrow\)</span> <span
+class="math inline">\(X_n\to X\)</span> in probability</p></li>
+<li><p>THM [ <strong><em>Bounded Convergence Theorem</em></strong> ]
+:</p>
 <p>Condition :</p>
-<p>(i). $X$ is a random variable on $(S,\mathcal S)$ , with distribution $\mu$ ( i.e. $\mu(A)=P(X\in A)$ )</p>
-<p>(ii). $f$ is a measurable function from $(S,\mathcal S)$ to $(\mathbb R,\mathcal R)$ </p>
-<p>(iii). $f\ge 0$ or $E[|f(X)|]&lt;\infty$</p>
-<p>Result :</p>
-<script type="math/tex; mode=display">
-E[f(X)]=\int_S f(y)\mu(dy)</script><blockquote>
-<p>Remark : let $\mu=P\circ X^{-1}$ , so </p>
-<script type="math/tex; mode=display">
-\int f(X)dP=\int_S f(y)d(P\circ X^{-1})</script></blockquote>
-</li>
+<ol type="i">
+<li><p><span class="math inline">\(X_n\to X\)</span> a.s.</p></li>
+<li><p><span class="math inline">\(\exists M&gt;0\)</span> , <span
+class="math inline">\(\forall n\ge 1,|X_n|\le M\)</span></p></li>
+</ol>
+<p>Result : <span class="math inline">\(E[X_n]\to E[X]\)</span></p></li>
+<li><p>THM [ <strong><em>Fatou's Lemma</em></strong> ] : If <span
+class="math inline">\(X_n\ge 0\)</span> , then <span
+class="math display">\[
+\liminf_{n\to\infty} E[X_n]\ge E\left[\liminf_{n\to\infty} X_n\right]
+\]</span></p></li>
+<li><p>THM [ <strong><em>Monotone Convergence Theorem</em></strong> ]
+:</p>
+<p>Condition :</p>
+<ol type="i">
+<li><p><span class="math inline">\(X_n\ge 0\)</span></p></li>
+<li><p><span class="math inline">\(X_n\uparrow X\)</span> a.s.</p></li>
+</ol>
+<p>Result : <span class="math inline">\(E[X_n]\uparrow E[X]\)</span>
+a.s.</p></li>
+<li><p>THM [ <strong><em>Dominated Convergence Theorem</em></strong> ]
+:</p>
+<p>Condition :</p>
+<ol type="i">
+<li><p><span class="math inline">\(X_n\to X\)</span> a.s.</p></li>
+<li><p><span class="math inline">\(\exists Y\)</span> , <span
+class="math inline">\(\forall n\ge 1\)</span> , <span
+class="math inline">\(|X_n|\le Y\)</span></p></li>
+<li><p><span class="math inline">\(E[|Y|]&lt;\infty\)</span></p></li>
+</ol>
+<p>Result : <span class="math inline">\(E[X_n]\to E[X]\)</span></p></li>
+<li><p>THM</p>
+<p>Condition :</p>
+<ol type="i">
+<li><p><span class="math inline">\(X_n\to X\)</span> a.s.</p></li>
+<li><p><span class="math inline">\(g,h\)</span> continuous
+functions</p></li>
+<li><p><span class="math inline">\(g\ge 0\)</span> , <span
+class="math inline">\(g(x)\to\infty\)</span> as <span
+class="math inline">\(|x|\to\infty\)</span></p></li>
+<li><p><span class="math inline">\(|h(x)|/g(x)\to 0\)</span> as <span
+class="math inline">\(|x|\to\infty\)</span></p></li>
+<li><p><span class="math inline">\(\exists K&gt;0\)</span> , s.t. <span
+class="math inline">\(E[g(X)]\le K&lt;\infty\)</span></p></li>
+</ol>
+<p>Result : <span class="math inline">\(E[h(X_n)]\to E[h(X)]\)</span>
+.</p>
+<blockquote>
+<p>Remark : similar to DCT , use <span class="math inline">\(g\)</span>
+to dominate <span class="math inline">\(h\)</span></p>
+</blockquote>
+<blockquote>
+<p>Proof : see book</p>
+<p>Intuition : truncation , consider <span class="math inline">\(\bar
+X=X\cdot \mathbb 1(|X|\le M)\)</span> , <span
+class="math inline">\(M\)</span> to make <span
+class="math inline">\(g(x)&gt;0\)</span> . <span class="math display">\[
+E[h(X_n)]\to E[h(\bar X_n)]\to E[h(\bar X)]\to E[h(X)]
+\]</span></p>
+</blockquote></li>
+</ol></li>
+<li><p>Computing Expected Value</p>
+<ol type="1">
+<li><p>THM [ <strong><em>Change of variable formula</em></strong> ]
+:</p>
+<p>Condition :</p>
+<p>(i). <span class="math inline">\(X\)</span> is a random variable on
+<span class="math inline">\((S,\mathcal S)\)</span> , with distribution
+<span class="math inline">\(\mu\)</span> ( i.e. <span
+class="math inline">\(\mu(A)=P(X\in A)\)</span> )</p>
+<p>(ii). <span class="math inline">\(f\)</span> is a measurable function
+from <span class="math inline">\((S,\mathcal S)\)</span> to <span
+class="math inline">\((\mathbb R,\mathcal R)\)</span></p>
+<p>(iii). <span class="math inline">\(f\ge 0\)</span> or <span
+class="math inline">\(E[|f(X)|]&lt;\infty\)</span></p>
+<p>Result : <span class="math display">\[
+E[f(X)]=\int_S f(y)\mu(dy)
+\]</span></p>
+<blockquote>
+<p>Remark : let <span class="math inline">\(\mu=P\circ X^{-1}\)</span> ,
+so <span class="math display">\[
+\int f(X)dP=\int_S f(y)d(P\circ X^{-1})
+\]</span></p>
+</blockquote></li>
 <li><p>Further computation</p>
-<p>When $X$ is a continuous random variable , we can use <strong>Radon-Nikodym derivative</strong> to represent <strong>PDF</strong> , so </p>
-<script type="math/tex; mode=display">
+<p>When <span class="math inline">\(X\)</span> is a continuous random
+variable , we can use <strong>Radon-Nikodym derivative</strong> to
+represent <strong>PDF</strong> , so <span class="math display">\[
 \begin{aligned}
-E[f(X)]&=\int_S f(y)d\mu\\
-&=\int_\mathbb R f \frac{d\mu }{d\lambda} d\lambda\\
-&=\int_{-\infty}^{\infty} f(x)p(x)dx
-\end{aligned}</script></li>
-<li><p>Momentum </p>
-<ol>
-<li><p>Def [ <strong><em>$k$-th momentum</em></strong> ] : If $k\in \mathbb N^<em>$ , then $E[X^k]$ is called the **</em>$k$-th moment of $X$<em>*</em> .</p>
-</li>
-<li><p>Def [ <strong><em>Variance</em></strong> ] : $Var(X)=E[(X-E[X])^2]$</p>
-<p>Property : $Var(X)=E[X^2]-(E[X])^2$ </p>
-</li>
-</ol>
-</li>
+E[f(X)]&amp;=\int_S f(y)d\mu\\
+&amp;=\int_\mathbb R f \frac{d\mu }{d\lambda} d\lambda\\
+&amp;=\int_{-\infty}^{\infty} f(x)p(x)dx
+\end{aligned}
+\]</span></p></li>
+<li><p>Momentum</p>
+<ol type="1">
+<li><p>Def [ <strong><em><span class="math inline">\(k\)</span>-th
+momentum</em></strong> ] : If <span class="math inline">\(k\in \mathbb
+N^*\)</span> , then <span class="math inline">\(E[X^k]\)</span> is
+called the <strong><em><span class="math inline">\(k\)</span>-th moment
+of <span class="math inline">\(X\)</span></em></strong> .</p></li>
+<li><p>Def [ <strong><em>Variance</em></strong> ] : <span
+class="math inline">\(Var(X)=E[(X-E[X])^2]\)</span></p>
+<p>Property : <span
+class="math inline">\(Var(X)=E[X^2]-(E[X])^2\)</span></p></li>
+</ol></li>
 <li><p>Examples</p>
-<ol>
-<li><p>Def [ <strong><em>Bernoulli random variable</em></strong> ] : $X\in \{0,1\}$ , $\begin{cases}P(X=0)&amp;=1-p\\P(X=1)&amp;=p\end{cases}$ </p>
-<p>$E[X]=p$ , $Var(X)=p(1-p)$</p>
-</li>
-<li><p>Def [ <strong><em>Poisson random variable</em></strong> ] : with parameter $\lambda$ , </p>
-<script type="math/tex; mode=display">
-P(X=k)=e^{-\lambda} \frac{\lambda^k}{k!} \quad k=0,1,2,\cdots</script><p>Property : </p>
-<script type="math/tex; mode=display">
-E[\prod_{i=0}^{k-1}(X-i)]=\lambda^k</script><p>$Var(X)=\lambda$</p>
-</li>
-<li><p>Def [ <strong><em>Geometric distribution</em></strong> ] : with success probability $p$ , </p>
-<script type="math/tex; mode=display">
-P(X=k)=p(1-p)^{k-1}</script><p>$E[X]=\frac{1}{p}$ , $Var(X)=\frac{1-p}{p^2}$ </p>
-</li>
-<li><p>Def [ <strong><em>Gaussian random variable / Normal distribution</em></strong> ] : with mean $\mu$ and variance $\sigma^2$ , </p>
-<script type="math/tex; mode=display">
-f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)</script><p>$E[X]=\mu$ , $Var[X]=\sigma^2$</p>
-</li>
+<ol type="1">
+<li><p>Def [ <strong><em>Bernoulli random variable</em></strong> ] :
+<span class="math inline">\(X\in \{0,1\}\)</span> , <span
+class="math inline">\(\begin{cases}P(X=0)&amp;=1-p\\P(X=1)&amp;=p\end{cases}\)</span></p>
+<p><span class="math inline">\(E[X]=p\)</span> , <span
+class="math inline">\(Var(X)=p(1-p)\)</span></p></li>
+<li><p>Def [ <strong><em>Poisson random variable</em></strong> ] : with
+parameter <span class="math inline">\(\lambda\)</span> , <span
+class="math display">\[
+P(X=k)=e^{-\lambda} \frac{\lambda^k}{k!} \quad k=0,1,2,\cdots
+\]</span> Property : <span class="math display">\[
+E[\prod_{i=0}^{k-1}(X-i)]=\lambda^k
+\]</span> <span class="math inline">\(Var(X)=\lambda\)</span></p></li>
+<li><p>Def [ <strong><em>Geometric distribution</em></strong> ] : with
+success probability <span class="math inline">\(p\)</span> , <span
+class="math display">\[
+P(X=k)=p(1-p)^{k-1}
+\]</span> <span class="math inline">\(E[X]=\frac{1}{p}\)</span> , <span
+class="math inline">\(Var(X)=\frac{1-p}{p^2}\)</span></p></li>
+<li><p>Def [ <strong><em>Gaussian random variable / Normal
+distribution</em></strong> ] : with mean <span
+class="math inline">\(\mu\)</span> and variance <span
+class="math inline">\(\sigma^2\)</span> , <span class="math display">\[
+f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+\]</span> <span class="math inline">\(E[X]=\mu\)</span> , <span
+class="math inline">\(Var[X]=\sigma^2\)</span></p></li>
+</ol></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="1-7-Product-Measure-and-Fubini’s-Theorem"><a href="#1-7-Product-Measure-and-Fubini’s-Theorem" class="headerlink" title="1.7 Product Measure and Fubini’s Theorem"></a>1.7 Product Measure and Fubini’s Theorem</h3><ol>
+<h3 id="product-measure-and-fubinis-theorem">1.7 Product Measure and
+Fubini's Theorem</h3>
+<ol type="1">
 <li><p>product of measure</p>
-<ol>
+<ol type="1">
 <li><p>Definition</p>
-<p>For measurable space $(X,\mathcal A,\mu_1)$ and $(Y,\mathcal B,\mu_2)$ , </p>
-<p>Let $\Omega=X\times Y=\{(x,y):x\in X,y\in Y\}$</p>
-<p>Let $\mathcal S=\{A\times B:A\in \mathcal A,B\in \mathcal B\}$ , so $\mathcal S$ is a semi-algebra since $(A\times B)^c=(A^c\times B)\cup (A\times B^c)\cup (A^c\times B^c)$ .</p>
-<p>Let $\mathcal F=\sigma(\mathcal S)$ , that is the $\sigma$-field generated by $\mathcal S$ , denote as $\mathcal F=\mathcal A\times\mathcal B$ .</p>
-</li>
-<li><p>THM [ <strong><em>measure for measurable space product</em></strong> ] :</p>
-<p>There is a unique measure $\mu$ on $\mathcal F$ , s.t. $\mu(A\times B)=\mu_1(A)\mu_2(B)$ .</p>
+<p>For measurable space <span class="math inline">\((X,\mathcal
+A,\mu_1)\)</span> and <span class="math inline">\((Y,\mathcal
+B,\mu_2)\)</span> ,</p>
+<p>Let <span class="math inline">\(\Omega=X\times Y=\{(x,y):x\in X,y\in
+Y\}\)</span></p>
+<p>Let <span class="math inline">\(\mathcal S=\{A\times B:A\in \mathcal
+A,B\in \mathcal B\}\)</span> , so <span class="math inline">\(\mathcal
+S\)</span> is a semi-algebra since <span class="math inline">\((A\times
+B)^c=(A^c\times B)\cup (A\times B^c)\cup (A^c\times B^c)\)</span> .</p>
+<p>Let <span class="math inline">\(\mathcal F=\sigma(\mathcal
+S)\)</span> , that is the <span
+class="math inline">\(\sigma\)</span>-field generated by <span
+class="math inline">\(\mathcal S\)</span> , denote as <span
+class="math inline">\(\mathcal F=\mathcal A\times\mathcal B\)</span>
+.</p></li>
+<li><p>THM [ <strong><em>measure for measurable space
+product</em></strong> ] :</p>
+<p>There is a unique measure <span class="math inline">\(\mu\)</span> on
+<span class="math inline">\(\mathcal F\)</span> , s.t. <span
+class="math inline">\(\mu(A\times B)=\mu_1(A)\mu_2(B)\)</span> .</p>
 <p>(*) Proof :</p>
-<p>By the property of $\sigma$-field generation , we only need to prove that :</p>
-<p>If $A\times B=+_i (A_i\times B_i)$ is a finite or countable disjoint union , then</p>
-<script type="math/tex; mode=display">
-\mu(A\times B)=\sum_{i} \mu(A_i\times B_i)</script><p>For each $x\in A$ , let $I(x)=\{i:x\in A_i\}$ , firstly consider $B=+_{i\in I(x)}B_i$ , so</p>
-<script type="math/tex; mode=display">
-\mathbb 1_A(x)\mu_2(B)=\sum_{i}\mathbb 1_{A_i}(x)\mu_2(B_i)</script><p>Integrate it with $\mu_1$ , so</p>
-<script type="math/tex; mode=display">
+<p>By the property of <span class="math inline">\(\sigma\)</span>-field
+generation , we only need to prove that :</p>
+<p>If <span class="math inline">\(A\times B=+_i (A_i\times B_i)\)</span>
+is a finite or countable disjoint union , then <span
+class="math display">\[
+\mu(A\times B)=\sum_{i} \mu(A_i\times B_i)
+\]</span> For each <span class="math inline">\(x\in A\)</span> , let
+<span class="math inline">\(I(x)=\{i:x\in A_i\}\)</span> , firstly
+consider <span class="math inline">\(B=+_{i\in I(x)}B_i\)</span> , so
+<span class="math display">\[
+\mathbb 1_A(x)\mu_2(B)=\sum_{i}\mathbb 1_{A_i}(x)\mu_2(B_i)
+\]</span> Integrate it with <span class="math inline">\(\mu_1\)</span> ,
+so <span class="math display">\[
 \begin{aligned}
-\int \mathbb 1_A(x)\mu_2(B)d\mu_1&=\int \sum_{i}\mathbb 1_{A_i}(x)\mu_2(B_i)d\mu_1\\
-\iff\quad\quad\quad\mu_1(A)\mu_2(B)&=\sum_{i}\mu_2(B_i)\int\mathbb 1_{A_i}(x)d\mu_1\\
-\iff\quad\quad\quad\mu_1(A)\mu_2(B)&=\sum_{i}\mu_1(A_i)\mu_2(B_i)\\
-\end{aligned}</script></li>
-<li><p>Remark </p>
-<ol>
-<li><p>$\mu$ is often denoted as $\mu=\mu_1\times \mu_2$</p>
-</li>
-<li><p>We can generate this result to $n$ measurable space product , so </p>
-<p>Consider measurable space $(\Omega_i,\mathcal F_i,\mu_i)$ , Let $\Omega=\times_{i=1}^n \Omega_i$ , $\mathcal F=\times_{i=1}^n \mathcal F_i$ , so there is a unique measure $\mu$ that for $A=\times_{i=1}^n A_i$ , where $A_i\in \mathcal F_i$ , </p>
-<script type="math/tex; mode=display">
-\mu(\times_{i=1}^n A_i)=\prod_{i=1}^n \mu_i(A_i)</script></li>
-<li><p>When $(\Omega_i,\mathcal F_i,\mu_i)=(\mathbb R,\mathcal R,\lambda)$ , then $\mu$ is the <strong><em>Lebesgue measure</em></strong> on the Borel subsets of $\mathbb R^n$ </p>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>Fubini’s Theorem</p>
-<ol>
-<li><p>THM [ <strong><em>Fubini’s Theorem</em></strong> ] : For measurable space $(X,\mathcal A,\mu_1)$ and $(Y,\mathcal B,\mu_2)$. If $f\ge 0$ or $\int |f|d\mu&lt;\infty$ , then</p>
-<script type="math/tex; mode=display">
-\int_X\int_Y f(x,y)\mu_2(dy)\mu_1(dx)=\int_{X\times Y} fd\mu=\int_Y\int_X f(x,y)\mu_1(dx)\mu_2(dy)</script></li>
-<li><p>(*) Proof </p>
-<p>Firstly , we need to make sure that </p>
+\int \mathbb 1_A(x)\mu_2(B)d\mu_1&amp;=\int \sum_{i}\mathbb
+1_{A_i}(x)\mu_2(B_i)d\mu_1\\
+\iff\quad\quad\quad\mu_1(A)\mu_2(B)&amp;=\sum_{i}\mu_2(B_i)\int\mathbb
+1_{A_i}(x)d\mu_1\\
+\iff\quad\quad\quad\mu_1(A)\mu_2(B)&amp;=\sum_{i}\mu_1(A_i)\mu_2(B_i)\\
+\end{aligned}
+\]</span></p></li>
+<li><p>Remark</p>
+<ol type="1">
+<li><p><span class="math inline">\(\mu\)</span> is often denoted as
+<span class="math inline">\(\mu=\mu_1\times \mu_2\)</span></p></li>
+<li><p>We can generate this result to <span
+class="math inline">\(n\)</span> measurable space product , so</p>
+<p>Consider measurable space <span
+class="math inline">\((\Omega_i,\mathcal F_i,\mu_i)\)</span> , Let <span
+class="math inline">\(\Omega=\times_{i=1}^n \Omega_i\)</span> , <span
+class="math inline">\(\mathcal F=\times_{i=1}^n \mathcal F_i\)</span> ,
+so there is a unique measure <span class="math inline">\(\mu\)</span>
+that for <span class="math inline">\(A=\times_{i=1}^n A_i\)</span> ,
+where <span class="math inline">\(A_i\in \mathcal F_i\)</span> , <span
+class="math display">\[
+\mu(\times_{i=1}^n A_i)=\prod_{i=1}^n \mu_i(A_i)
+\]</span></p></li>
+<li><p>When <span class="math inline">\((\Omega_i,\mathcal
+F_i,\mu_i)=(\mathbb R,\mathcal R,\lambda)\)</span> , then <span
+class="math inline">\(\mu\)</span> is the <strong><em>Lebesgue
+measure</em></strong> on the Borel subsets of <span
+class="math inline">\(\mathbb R^n\)</span></p></li>
+</ol></li>
+</ol></li>
+<li><p>Fubini's Theorem</p>
+<ol type="1">
+<li><p>THM [ <strong><em>Fubini's Theorem</em></strong> ] : For
+measurable space <span class="math inline">\((X,\mathcal
+A,\mu_1)\)</span> and <span class="math inline">\((Y,\mathcal
+B,\mu_2)\)</span>. If <span class="math inline">\(f\ge 0\)</span> or
+<span class="math inline">\(\int |f|d\mu&lt;\infty\)</span> , then <span
+class="math display">\[
+\int_X\int_Y f(x,y)\mu_2(dy)\mu_1(dx)=\int_{X\times Y}
+fd\mu=\int_Y\int_X f(x,y)\mu_1(dx)\mu_2(dy)
+\]</span></p></li>
+<li><p>(*) Proof</p>
+<p>Firstly , we need to make sure that</p>
 <ul>
-<li>Fixing $x$ , $y\to f(x,y)$ is a measurable map on $\mathcal B$</li>
-<li>$x\to\int_Y f(x,y)\mu_2(dy)$ is a measurable map on $\mathcal A$</li>
+<li>Fixing <span class="math inline">\(x\)</span> , <span
+class="math inline">\(y\to f(x,y)\)</span> is a measurable map on <span
+class="math inline">\(\mathcal B\)</span></li>
+<li><span class="math inline">\(x\to\int_Y f(x,y)\mu_2(dy)\)</span> is a
+measurable map on <span class="math inline">\(\mathcal A\)</span></li>
 </ul>
-<p>We have the following lemma , dealing with $f=\mathbb 1_{E}$ </p>
+<p>We have the following lemma , dealing with <span
+class="math inline">\(f=\mathbb 1_{E}\)</span></p>
 <ul>
-<li><p>Lemma 1 : Let $E_x=\{y:(x,y)\in E\}$ . If $E\in \mathcal A\times \mathcal B$ , then $E_x\in \mathcal B$</p>
-</li>
-<li><p>Lemma 2 : If $E\in \mathcal A\times \mathcal B$ , then $g(x):=\mu_2(E_x)$ is a measurable map on $\mathcal A$ , and </p>
-<script type="math/tex; mode=display">
-\int_X gd\mu_1=\mu(E)</script></li>
+<li><p>Lemma 1 : Let <span class="math inline">\(E_x=\{y:(x,y)\in
+E\}\)</span> . If <span class="math inline">\(E\in \mathcal A\times
+\mathcal B\)</span> , then <span class="math inline">\(E_x\in \mathcal
+B\)</span></p></li>
+<li><p>Lemma 2 : If <span class="math inline">\(E\in \mathcal A\times
+\mathcal B\)</span> , then <span
+class="math inline">\(g(x):=\mu_2(E_x)\)</span> is a measurable map on
+<span class="math inline">\(\mathcal A\)</span> , and <span
+class="math display">\[
+\int_X gd\mu_1=\mu(E)
+\]</span></p></li>
 </ul>
-<p>By these lemma , we can prove Fubini’s Theorem on $f=\mathbb 1_E$ for any $E\in \mathcal A\times \mathcal B$</p>
-<p>Using the linearity of integration , we can prove Fubini’s Theorem holds for all simple functions.</p>
-<p>For non-negative function , we can let $f_n(x,y)=([2^nf(x,y)]/2^n)\land n$ , so $f_n$ is simple function and $f_n\uparrow f$ . By MCT , Fubini’s Theorem holds for all non-negative functions.</p>
-<p>For general function , we can compute $f=f^+-f^-$ each . Then Fubini’s Theorem holds for all integrable functions.</p>
-</li>
+<p>By these lemma , we can prove Fubini's Theorem on <span
+class="math inline">\(f=\mathbb 1_E\)</span> for any <span
+class="math inline">\(E\in \mathcal A\times \mathcal B\)</span></p>
+<p>Using the linearity of integration , we can prove Fubini's Theorem
+holds for all simple functions.</p>
+<p>For non-negative function , we can let <span
+class="math inline">\(f_n(x,y)=([2^nf(x,y)]/2^n)\land n\)</span> , so
+<span class="math inline">\(f_n\)</span> is simple function and <span
+class="math inline">\(f_n\uparrow f\)</span> . By MCT , Fubini's Theorem
+holds for all non-negative functions.</p>
+<p>For general function , we can compute <span
+class="math inline">\(f=f^+-f^-\)</span> each . Then Fubini's Theorem
+holds for all integrable functions.</p></li>
 <li><p>Remarks</p>
-<ol>
-<li><p>Toneli’s Theorem : proved that Fubini’s Theorem holds for $f\ge 0$ .</p>
-</li>
-<li><p>When $f$ is not non-negative and not integrable , Fubini’s Theorem may fail :</p>
-<p>Let $X=Y=\mathbb N^<em>$ , $\mathcal A=\mathcal B=\{S:S\subseteq \mathbb N^</em>\}$ , $\mu_1=\mu_2=\text{counting measure}$ .</p>
-<p>Let $f(m,n)=\begin{cases}1&amp;m=n\-1&amp;m=n+1\\0&amp;otherwise\end{cases}$ for all $m,n\ge 1$ , so </p>
-<script type="math/tex; mode=display">
-\sum_m\sum_n f(m,n)=1,\sum_{n}\sum_{m}f(m,n)=0</script></li>
+<ol type="1">
+<li><p>Toneli's Theorem : proved that Fubini's Theorem holds for <span
+class="math inline">\(f\ge 0\)</span> .</p></li>
+<li><p>When <span class="math inline">\(f\)</span> is not non-negative
+and not integrable , Fubini's Theorem may fail :</p>
+<p>Let <span class="math inline">\(X=Y=\mathbb N^*\)</span> , <span
+class="math inline">\(\mathcal A=\mathcal B=\{S:S\subseteq \mathbb
+N^*\}\)</span> , <span class="math inline">\(\mu_1=\mu_2=\text{counting
+measure}\)</span> .</p>
+<p>Let <span class="math inline">\(f(m,n)=\begin{cases}1&amp;m=n\\
+-1&amp;m=n+1\\ 0&amp;otherwise\end{cases}\)</span> for all <span
+class="math inline">\(m,n\ge 1\)</span> , so <span
+class="math display">\[
+\sum_m\sum_n f(m,n)=1,\sum_{n}\sum_{m}f(m,n)=0
+\]</span></p></li>
+</ol></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="Chapter-2-Laws-of-Large-Numbers"><a href="#Chapter-2-Laws-of-Large-Numbers" class="headerlink" title="Chapter 2 Laws of Large Numbers"></a>Chapter 2 Laws of Large Numbers</h2><h3 id="2-1-Independence"><a href="#2-1-Independence" class="headerlink" title="2.1 Independence"></a>2.1 Independence</h3><ol>
-<li>Definition ( for probability space $(\Omega,\mathcal F,P)$ )<ol>
-<li>Def [ <strong><em>Independence of Events</em></strong> ] : Let $A,B\in \mathcal F$ , $A$ and $B$ are <strong><em>independent</em></strong> if $P(A\cap B)=P(A)P(B)$, denote as $A\perp!!!\perp B$.</li>
-<li>Def [ <strong><em>Independence of Random Variables</em></strong> ] : Let $X,Y$ be two random variables , $X$ and $Y$ are <strong><em>independent</em></strong> if $\forall C,D\in \mathcal R$ , $P(\{X\in C\}\cap \{Y\in D\})=P(\{X\in C\})P(\{Y\in D\})$, denote as $X\perp!!!\perp Y$.</li>
-<li>Def [ <strong><em>Independence of $\sigma$-field</em></strong> ] : Two $\sigma$-field $\mathcal F,\mathcal G$ are <strong><em>independent</em></strong> if $\forall A\in \mathcal F$ , $\forall B\in \mathcal G$ , $A,B$ are independent, denote as $\mathcal F\perp!!!\perp \mathcal G$.</li>
-</ol>
-</li>
-<li>THM [ <strong><em>Independence of r.v. is a special case of $\sigma$-field</em></strong> ] <ol>
-<li>If random variables $X,Y$ are independent , then $\sigma(X),\sigma(Y)$ are independent</li>
-<li>If $\mathcal F$ and $\mathcal G$ are independent , $X\in \mathcal F,Y\in \mathcal G$ , then $X,Y$ are independent</li>
-</ol>
-</li>
+<h2 id="chapter-2-laws-of-large-numbers">Chapter 2 Laws of Large
+Numbers</h2>
+<h3 id="independence">2.1 Independence</h3>
+<ol type="1">
+<li>Definition ( for probability space <span
+class="math inline">\((\Omega,\mathcal F,P)\)</span> )
+<ol type="1">
+<li>Def [ <strong><em>Independence of Events</em></strong> ] : Let <span
+class="math inline">\(A,B\in \mathcal F\)</span> , <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> are
+<strong><em>independent</em></strong> if <span
+class="math inline">\(P(A\cap B)=P(A)P(B)\)</span>, denote as <span
+class="math inline">\(A\perp\!\!\!\perp B\)</span>.</li>
+<li>Def [ <strong><em>Independence of Random Variables</em></strong> ] :
+Let <span class="math inline">\(X,Y\)</span> be two random variables ,
+<span class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> are
+<strong><em>independent</em></strong> if <span
+class="math inline">\(\forall C,D\in \mathcal R\)</span> , <span
+class="math inline">\(P(\{X\in C\}\cap \{Y\in D\})=P(\{X\in C\})P(\{Y\in
+D\})\)</span>, denote as <span class="math inline">\(X\perp\!\!\!\perp
+Y\)</span>.</li>
+<li>Def [ <strong><em>Independence of <span
+class="math inline">\(\sigma\)</span>-field</em></strong> ] : Two <span
+class="math inline">\(\sigma\)</span>-field <span
+class="math inline">\(\mathcal F,\mathcal G\)</span> are
+<strong><em>independent</em></strong> if <span
+class="math inline">\(\forall A\in \mathcal F\)</span> , <span
+class="math inline">\(\forall B\in \mathcal G\)</span> , <span
+class="math inline">\(A,B\)</span> are independent, denote as <span
+class="math inline">\(\mathcal F\perp\!\!\!\perp \mathcal
+G\)</span>.</li>
+</ol></li>
+<li>THM [ <strong><em>Independence of r.v. is a special case of <span
+class="math inline">\(\sigma\)</span>-field</em></strong> ]
+<ol type="1">
+<li>If random variables <span class="math inline">\(X,Y\)</span> are
+independent , then <span
+class="math inline">\(\sigma(X),\sigma(Y)\)</span> are independent</li>
+<li>If <span class="math inline">\(\mathcal F\)</span> and <span
+class="math inline">\(\mathcal G\)</span> are independent , <span
+class="math inline">\(X\in \mathcal F,Y\in \mathcal G\)</span> , then
+<span class="math inline">\(X,Y\)</span> are independent</li>
+</ol></li>
 </ol>
 
     </div>
@@ -848,6 +1154,9 @@ f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)<
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/11/03/Probability-and-Statistics-5/" rel="next" title="Probability and Statistics 5">
+                  Probability and Statistics 5 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -884,13 +1193,13 @@ f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)<
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

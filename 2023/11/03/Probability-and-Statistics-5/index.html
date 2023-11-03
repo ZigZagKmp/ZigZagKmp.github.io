@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar/avatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zigzagkmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Probability and Statistics 5">
+<meta property="og:url" content="https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-5/index.html">
+<meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-03T11:46:15.000Z">
+<meta property="article:modified_time" content="2023-11-03T12:20:00.460Z">
+<meta property="article:author" content="ZigZagKmp">
+<meta property="article:tag" content="概率论-独立性">
+<meta property="article:tag" content="概率论-独立性-独立充分条件">
+<meta property="article:tag" content="概率论-独立性-独立变量分布与期望">
+<meta property="article:tag" content="实分析-卷积">
+<meta property="article:tag" content="概率论-条件概率">
+<meta property="article:tag" content="概率论-条件概率-条件期望">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-5/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-5/","path":"2023/11/03/Probability-and-Statistics-5/","title":"Probability and Statistics 5"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Probability and Statistics 5 | ZigZagKmp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZigZagKmp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Mainly for study materials</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-2-laws-of-large-numbers"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2 Laws of Large
+Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#independence"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 Independence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conditional-expectation"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 Conditional Expectation</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZigZagKmp"
+      src="/images/avatar/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ZigZagKmp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ZigZagKmp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ZigZagKmp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zigzagkmp@qq.com" title="E-Mail → mailto:zigzagkmp@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/35871" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;35871" rel="noopener me" target="_blank"><i class="fa fa-code fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/ZigZagKmp/" title="cnblogs → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ZigZagKmp&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-blog fa-fw"></i>cnblogs</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com" rel="noopener" target="_blank">Github</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;www.tsinghua.edu.cn" rel="noopener" target="_blank">THU</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://iiis.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;iiis.tsinghua.edu.cn" rel="noopener" target="_blank">IIIS</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.luogu.com.cn/" title="https:&#x2F;&#x2F;www.luogu.com.cn" rel="noopener" target="_blank">Luogu</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/08/Probability-and-Statistics-2/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-08</time>
+        <br>
+      Probability and Statistics 2
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/08/Probability-and-Statistics-1/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-08</time>
+        <br>
+      Probability and Statistics 1
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/11/03/Probability-and-Statistics-4/" rel="bookmark">
+        <time class="popular-posts-time">2023-11-03</time>
+        <br>
+      Probability and Statistics 4
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/16/Probability-and-Statistics-3/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-16</time>
+        <br>
+      Probability and Statistics 3
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/07/%E7%AD%94%E7%96%91%E5%9D%8A-%E5%BE%AE%E7%A7%AF%E5%88%86-%E8%B6%A3%E9%A2%98%E8%8B%A5%E5%B9%B2/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-07</time>
+        <br>
+      答疑坊 微积分 趣题若干
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.jpg">
+      <meta itemprop="name" content="ZigZagKmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZigZagKmp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Probability and Statistics 5 | ZigZagKmp's Blog">
+      <meta itemprop="description" content="[2023 秋] 概率与统计 第五课课堂笔记 / [2023 Fall] Probability and Statistics Lecture 5 Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Probability and Statistics 5
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-11-03 19:46:15 / 修改时间：20:20:00" itemprop="dateCreated datePublished" datetime="2023-11-03T19:46:15+08:00">2023-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E4%B8%8E%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率与统计</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">[2023 秋] 概率与统计 第五课课堂笔记 / [2023 Fall] Probability and Statistics Lecture 5 Notes</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-2-laws-of-large-numbers">Chapter 2 Laws of Large
+Numbers</h2>
+<h3 id="independence">2.1 Independence</h3>
+<ol start="2" type="1">
+<li><p>THM [ <strong><em>Independence of r.v. is a special case of <span
+class="math inline">\(\sigma\)</span>-field</em></strong> ]</p>
+<ol type="1">
+<li><p>THM</p>
+<ol type="1">
+<li>If random variables <span class="math inline">\(X,Y\)</span> are
+independent , then <span
+class="math inline">\(\sigma(X),\sigma(Y)\)</span> are independent</li>
+<li>If <span class="math inline">\(\mathcal F\)</span> and <span
+class="math inline">\(\mathcal G\)</span> are independent , <span
+class="math inline">\(X\in \mathcal F,Y\in \mathcal G\)</span> , then
+<span class="math inline">\(X,Y\)</span> are independent</li>
+</ol></li>
+<li><p>Proof</p>
+<ol type="1">
+<li><p>We want to show that <span class="math inline">\(\forall A\in
+\sigma(X),B\in \sigma(Y)\)</span> , <span class="math inline">\(P(A\cap
+B)=P(A)P(B)\)</span></p>
+<p>By definition of <span class="math inline">\(\sigma(X)\)</span> , we
+can find <span class="math inline">\(C\in \mathcal R\)</span> s.t. <span
+class="math inline">\(A=\{X\in C\}\)</span> . Similarly , we can find
+<span class="math inline">\(D\in \mathcal R\)</span> s.t. <span
+class="math inline">\(B=\{Y\in D\}\)</span>. Therefore , <span
+class="math display">\[
+P(A\cap B)=P(\{X\in C\}\cap \{Y\in D\})=P(\{X\in C\})P(\{Y\in
+D\})=P(A)P(B)
+\]</span></p></li>
+<li><p>We want to show that <span class="math inline">\(\forall C,D\in
+\mathcal R\)</span> , <span class="math inline">\(P(\{X\in C\}\cap
+\{Y\in D\})=P(\{X\in C\})P(\{Y\in D\})\)</span>.</p>
+<p>Let <span class="math inline">\(A=\{X\in C\}\)</span> , <span
+class="math inline">\(B=\{Y\in D\}\)</span> , so <span
+class="math inline">\(A\in \mathcal F,B\in \mathcal G\)</span> , so
+<span class="math inline">\(A,B\)</span> are independent, so <span
+class="math display">\[
+P(\{X\in C\}\cap \{Y\in D\})=P(A\cap B)=P(A)P(B)=P(\{X\in C\})P(\{Y\in
+D\})
+\]</span></p></li>
+</ol></li>
+<li><p>Remark</p>
+<p>This means that <span class="math inline">\(X,Y\)</span> independent
+is equivalent to <span
+class="math inline">\(\sigma(X),\sigma(Y)\)</span> independent , which
+is a special case of independence of <span
+class="math inline">\(\sigma\)</span>-field.</p></li>
+</ol></li>
+<li><p>THM [ <strong><em>Independence of events is a special case of
+r.v.</em></strong> ]</p>
+<ol type="1">
+<li><p>THM</p>
+<ol type="1">
+<li>If <span class="math inline">\(A,B\)</span> are independent , then
+<span class="math inline">\(A\perp\!\!\!\perp B^c\)</span> , <span
+class="math inline">\(A^c\perp\!\!\!\perp B\)</span> , <span
+class="math inline">\(A^c\perp\!\!\!\perp B^c\)</span>.</li>
+<li><span class="math inline">\(A\perp\!\!\!\perp B\iff \mathbb
+1_A\perp\!\!\!\perp\mathbb 1_B\)</span></li>
+</ol></li>
+<li><p>Proof</p>
+<ol type="1">
+<li><p><span class="math inline">\(P(A\cap B^c)=P(A)-P(A\cap B)\)</span>
+, and <span class="math inline">\(P(A\cap B)=P(A)P(B)\)</span> , so
+<span class="math display">\[
+P(A\cap B^c)=P(A)(1-P(B))=P(A)P(B^c)
+\]</span> Similar to prove the rest.</p></li>
+<li><p>Firstly, If <span class="math inline">\(\mathbb
+1_A\perp\!\!\!\perp\mathbb 1_B\)</span> , then let <span
+class="math inline">\(C=D=\{1\}\)</span> , so <span
+class="math inline">\(\{\mathbb 1_A\in C\}=A\)</span> , <span
+class="math inline">\(\{\mathbb 1_B\in D\}=B\)</span> , so <span
+class="math inline">\(P(A\cap B)=P(A)P(B)\)</span>.</p>
+<p>Secondly, if <span class="math inline">\(A\perp\!\!\!\perp B\)</span>
+, we want to prove that <span class="math inline">\(\forall C,D\in
+\mathcal R\)</span> , <span class="math inline">\(P(\{\mathbb 1_A\in
+C\}\{\mathbb 1_B\in D\})=P(\{\mathbb 1_A\in C\})P(\{\mathbb 1_B\in
+D\})\)</span>.</p>
+<p><span class="math inline">\(\{\mathbb 1_A\in
+C\}\in\{\varnothing.A.A^c,\Omega\}\)</span> , <span
+class="math inline">\(\{\mathbb 1_B\in D\}\in
+\{\varnothing,B,B^c,\Omega\}\)</span>.</p>
+<p>For <span class="math inline">\(\varnothing,\Omega\)</span> the
+statement is trivial.</p>
+<p>For <span class="math inline">\(A,A^c\)</span> and <span
+class="math inline">\(B,B^c\)</span> , by (1) , they are all independent
+, so <span class="math inline">\(\mathbb 1_A\perp\!\!\!\perp\mathbb
+1_B\)</span>.</p></li>
+</ol></li>
+<li><p>Remark</p>
+<p>This means that <span class="math inline">\(A,B\)</span> independent
+is equivalent to <span class="math inline">\(\mathbb 1_A,\mathbb
+1_B\)</span> independent , which is a special case of independence of
+random variables.</p></li>
+</ol></li>
+<li><p>Independence of finite collection of objects</p>
+<ol type="1">
+<li><p>Def [ <strong><em>Independence of finite <span
+class="math inline">\(\sigma\)</span>-fields</em></strong> ] : <span
+class="math inline">\(\mathcal F_1,\cdots,\mathcal F_n\)</span> are
+independent , if <span class="math inline">\(\forall A_i\in \mathcal
+F_i\)</span>, <span class="math display">\[
+P\left(\bigcap_{i=1}^n A_i\right)=\prod_{i=1}^n P(A_i)
+\]</span></p></li>
+<li><p>Def [ <strong><em>Independence of finite random
+variables</em></strong> ] : <span
+class="math inline">\(X_1,\cdots,X_n\)</span> are independent , if <span
+class="math inline">\(\forall B_i\in \mathcal R\)</span>, <span
+class="math display">\[
+P\left(\bigcap_{i=1}^n \{X_i\in B_i\}\right)=\prod_{i=1}^n P(\{X_i\in
+B_i\})
+\]</span></p></li>
+<li><p>Def [ <strong><em>Independence of finite events</em></strong> ] :
+<span class="math inline">\(A_1,\cdots,A_n\)</span> are independent , if
+<span class="math inline">\(\forall I\subseteq [n]\)</span>, <span
+class="math display">\[
+P\left(\bigcap_{i\in I} A_i\right)=\prod_{i\in I}P(A_i)
+\]</span> Remark : we need to enumerate all subset of events, not just
+<span class="math inline">\(I=[n]\)</span>.</p>
+<p>This is indeed reasonable since we can let <span
+class="math inline">\(X_i=\mathbb 1_{A_i}\)</span> , let <span
+class="math inline">\(B_i=\begin{cases}\{1\}&amp;i\in I\\\mathbb
+R&amp;i\notin I\end{cases}\)</span> .</p></li>
+<li><p>Def [ <strong><em>pairwise independence</em></strong> ] : <span
+class="math inline">\(A_1,\cdots,A_n\)</span> are <strong><em>pairwise
+independent</em></strong> , if <span class="math inline">\(\forall i\neq
+j\in [n]\)</span> , <span class="math inline">\(A_i\perp\!\!\!\perp
+A_j\)</span>.</p></li>
+<li><p>Exp [ <strong><em>pairwise independence <span
+class="math inline">\(\not\Rightarrow\)</span> joint
+independence</em></strong> ]</p>
+<p>When <span class="math inline">\(A_1,A_2,A_3\)</span> are pairwise
+independent , <span class="math inline">\(A_1,A_2,A_3\)</span> may not
+be independent.</p>
+<p>Let <span class="math inline">\(X_1,X_2,X_3\)</span> be independent
+random variables , <span
+class="math inline">\(P(X_i=0)=P(X_i=1)=\frac{1}{2}\)</span>.</p>
+<p>Let <span class="math inline">\(A_1=\{X_1=X_2\}\)</span> , <span
+class="math inline">\(A_2=\{X_2=X_3\}\)</span> , <span
+class="math inline">\(A_3=\{X_1=X_3\}\)</span>.</p>
+<p><span class="math inline">\(P(A_i)=\frac{1}{2}\)</span> , <span
+class="math inline">\(P(A_i\cap A_j)=\frac{1}{4}\)</span> , <span
+class="math inline">\(P(A_1\cap A_2\cap
+A_3)=\frac{1}{4}\)</span>.</p></li>
+<li><p>Prop : If <span class="math inline">\(A_1,\cdots,A_n\)</span> are
+independent,</p>
+<ol type="1">
+<li><span class="math inline">\(A_1^c,A_2,\cdots,A_n\)</span> are
+independent</li>
+<li><span class="math inline">\(\mathbb 1_{A_1},\mathbb
+1_{A_2},\cdots,\mathbb 1_{A_n}\)</span> are independent</li>
+</ol></li>
+</ol></li>
+<li><p>Independence of infinite collection of objects</p>
+<p><span class="math inline">\(O_1,O_2,\cdots\)</span> are independent ,
+if any finite sub-collection is independent. ( <span
+class="math inline">\(O_n\)</span> can be <span
+class="math inline">\(\sigma\)</span>-field , r.v. , event ).</p>
+<p>THM : <span class="math inline">\(X_1,X_2,\cdots\)</span> are
+independent <span class="math inline">\(\iff\)</span> <span
+class="math inline">\(\sigma(X_1),\sigma(X_2),\cdots\)</span> are
+independent</p></li>
+<li><p>Sufficient condition of independence</p>
+<ol type="1">
+<li><p>(*) Def [ <span class="math inline">\(\pi\)</span>-system ] :
+<span class="math inline">\(\mathcal A\)</span> is a <span
+class="math inline">\(\pi\)</span>-system , if <span
+class="math inline">\(\forall A,B\in \mathcal A\)</span> , <span
+class="math inline">\(A\cap B\in \mathcal A\)</span>.</p></li>
+<li><p>(*) THM : Suppose <span class="math inline">\(\mathcal
+A_1,\cdots,A_n\)</span> are independent , and each <span
+class="math inline">\(A_i\)</span> is a <span
+class="math inline">\(\pi\)</span>-system , then <span
+class="math inline">\(\sigma(\mathcal A_1),\sigma(\mathcal
+A_2),\cdots,\sigma(\mathcal A_n)\)</span> are independent.</p>
+<blockquote>
+<p><span class="math inline">\(\mathcal A_1,\cdots,\mathcal A_n\)</span>
+here are not necessarily <span
+class="math inline">\(\sigma\)</span>-field , we define its independence
+similar to definition of <span
+class="math inline">\(\sigma\)</span>-field.</p>
+</blockquote></li>
+<li><p>Cor : If <span class="math inline">\(\forall x_1,\cdots,x_n\in
+(-\infty,\infty]\)</span> , <span class="math display">\[
+P\left(\bigcap_{i=1}^n \{X_i\le x_i\}\right)=\prod_{i=1}^n P(\{X_i\le
+x_i\})
+\]</span> Then <span class="math inline">\(X_1,\cdots,X_n\)</span> are
+independent.</p>
+<blockquote>
+<p>Let <span class="math inline">\(\mathcal A_i=\left\{\{X_i\le
+x_i\}:x_i\in (-\infty,\infty]\right\}\)</span> , so <span
+class="math inline">\(\{X_i\le x\}\cap \{X_i\le y\}=\{X_i\le x\land
+y\}\)</span> , so <span class="math inline">\(\mathcal A_i\)</span> is
+<span class="math inline">\(\pi\)</span>-system.</p>
+<p>Since we allow <span class="math inline">\(x_i=\infty\)</span> ( that
+is <span class="math inline">\(\Omega\in A_i\)</span> ) , so <span
+class="math inline">\(\sigma(\mathcal A_i)=\sigma(X_i)\)</span> , so
+<span class="math inline">\(X_i\)</span> are independent.</p>
+</blockquote></li>
+<li><p>Cor : Suppose <span class="math inline">\(\mathcal
+F_{i,j}\)</span> ( <span class="math inline">\(1\le i\le n,1\le j\le
+m(i)\)</span> ) are independent , let <span
+class="math inline">\(\mathcal G_i=\sigma(\cup_{j}\mathcal
+F_{i,j})\)</span> , so <span class="math inline">\(\mathcal
+G_1,\cdots,\mathcal G_n\)</span> are independent.</p>
+<blockquote>
+<p>Let <span class="math inline">\(\mathcal A_i=\left\{\cap_j
+A_{i,j}:A_{i,j}\in \mathcal F_{i,j}\right\}\)</span> , so <span
+class="math inline">\(\mathcal A_i\)</span> is a <span
+class="math inline">\(\pi\)</span>-system containing <span
+class="math inline">\(\Omega\)</span> and <span
+class="math inline">\(\cup_{j}\mathcal F_{i,j}\)</span> , so <span
+class="math inline">\(\sigma(\mathcal A_i)=\mathcal G_i\)</span>.</p>
+</blockquote></li>
+<li><p>Cor : Suppose <span class="math inline">\(X_{i,j}\)</span> (
+<span class="math inline">\(1\le i\le n,1\le j\le m(i)\)</span> ) are
+independent , <span class="math inline">\(f_i:\mathbb R^{m(i)}\to
+\mathbb R\)</span> are measurable, then</p>
+<p><span
+class="math inline">\(Y_i=f_i(X_{i,1},\cdots,X_{i,m(i)})\)</span> are
+independent.</p>
+<blockquote>
+<p>Let <span class="math inline">\(\mathcal
+F_{i,j}=\sigma(X_{i,j})\)</span> , <span class="math inline">\(\mathcal
+G_i=\sigma(\cup_{j}\mathcal F_{i,j})\)</span> , so <span
+class="math inline">\(Y_i\in \mathcal G_i\)</span>.</p>
+</blockquote>
+<p>Remark : when <span class="math inline">\(X_1,\cdots,X_n\)</span> are
+independent , let <span class="math inline">\(X=X_1,Y=X_2X_3\cdots
+X_n\)</span> , so <span class="math inline">\(X\perp\!\!\!\perp
+Y\)</span>.</p></li>
+</ol></li>
+<li><p>Distribution, Expectation of independent random variables</p>
+<ol type="1">
+<li><p>THM [ <strong><em>Distribution of Independent r.v.</em></strong>
+] : Suppose <span class="math inline">\(X_1,\cdots,X_n\)</span> are
+independent , and <span class="math inline">\(X_i\)</span> has
+distribution <span class="math inline">\(\mu_i\)</span> , then</p>
+<p><span class="math inline">\((X_1,\cdots,X_n)\)</span> has
+distribution <span class="math inline">\(\mu=\mu_1\times\cdots\times
+\mu_n\)</span></p>
+<p>Proof : <span class="math display">\[
+\begin{aligned}
+&amp;\quad P((X_1,\cdots,X_n)\in (A_1,\cdots,A_n))\\
+&amp;=P\left(\bigcap_{i=1}^n \{X_i\in A_i\}\right)\\
+&amp;=\prod_{i=1}^n P(\{X_i\in A_i\})\\
+&amp;=\prod_{i=1}^n \mu_i(A_i)\\
+&amp;=\mu(A_1\times\cdots\times A_n)
+\end{aligned}
+\]</span></p></li>
+<li><p>THM [ <strong><em>Expectation of Independent r.v.</em></strong> ]
+:</p>
+<ol type="1">
+<li><p>THM</p>
+<p>Suppose <span class="math inline">\(X\perp\!\!\!\perp Y\)</span> ,
+and have distribution <span class="math inline">\(\mu,\nu\)</span> . If
+<span class="math inline">\(h:\mathbb R^2\to\mathbb R\)</span> is a
+measurable function, and either <span class="math inline">\(h\ge
+0\)</span> or <span class="math inline">\(E[|h(X,Y)|]&lt;\infty\)</span>
+, then <span class="math display">\[
+E[h(X,Y)]=\iint h(x,y)\mu(dx)\nu(dy)
+\]</span> In particular , if <span
+class="math inline">\(h(x,y)=f(x)g(y)\)</span> , where <span
+class="math inline">\(f,g:\mathbb R\to\mathbb R\)</span> are measurable
+functions , and either <span class="math inline">\(f,g\ge 0\)</span> or
+<span class="math inline">\(E[|f(X)|],E[|g(Y)|]&lt;\infty\)</span> ,
+then <span class="math display">\[
+E[f(X)g(Y)]=E[f(X)]E[g(Y)]
+\]</span></p></li>
+<li><p>Proof</p>
+<p>Since <span class="math inline">\(X,Y\)</span> are independent ,
+<span class="math inline">\(\mu\times \nu\)</span> is the distribution
+of <span class="math inline">\(X\times Y\)</span> . By
+<strong><em>Fubini's Theorem</em></strong> , <span
+class="math display">\[
+E[h(X,Y)]=\int hd(\mu\times \nu)=\iint h(x,y)\mu(dx)\nu(dy)
+\]</span> When <span class="math inline">\(f,g\ge 0\)</span> , <span
+class="math inline">\(h=fg\ge 0\)</span> , so <span
+class="math display">\[
+E[f(X)g(Y)]=\iint f(x)g(y)\mu(dx)\nu(dy)=\int
+g(y)E[f(X)]\nu(dy)=E[f(X)]E[g(Y)]
+\]</span> When <span
+class="math inline">\(E[|f(X)|],E[|g(Y)|]&lt;\infty\)</span> , <span
+class="math inline">\(E[|f(X)g(Y)|]=E[|f(X)|]E[|g(Y)|]&lt;\infty\)</span>
+(by above) , so <span class="math display">\[
+E[f(X)g(Y)]=\iint f(x)g(y)\mu(dx)\nu(dy)=\int
+g(y)E[f(X)]\nu(dy)=E[f(X)]E[g(Y)]
+\]</span></p></li>
+<li><p>Loophole : when <span class="math inline">\(f,g\ge 0\)</span> ,
+<span class="math inline">\(E[f(X)]=\infty\)</span> , <span
+class="math inline">\(E[g(Y)]=0\)</span> , what's the result ?</p>
+<p>Fix : <span class="math inline">\(E[g(Y)]=0\)</span> , so <span
+class="math inline">\(g(Y)=0\)</span> a.s. , so <span
+class="math inline">\(f(X)g(Y)=0\)</span> a.s. , so <span
+class="math inline">\(E[f(X)g(Y)]=0\)</span></p></li>
+<li><p>Remarks :</p>
+<ol type="1">
+<li><p>This holds for <span class="math inline">\(n\)</span> independent
+r.v. . If <span class="math inline">\(X_1,\cdots,X_n\)</span> are
+independent , either <span class="math inline">\(\forall i\in [n],X_i\ge
+0\)</span> or <span class="math inline">\(\forall i\in [n] ,
+E[|X_i|]&lt;\infty\)</span> , then <span class="math display">\[
+E\left[\prod_{i=1}^n X_i\right]=\prod_{i=1}^n E[X_i]
+\]</span></p></li>
+<li><p>Even if <span class="math inline">\(X,Y\)</span> are not
+independent , <span class="math inline">\(E[XY]=E[X]E[Y]\)</span> can
+still hold .</p>
+<p>Def [ <strong><em>uncorrelated</em></strong> ] : If <span
+class="math inline">\(E[X^2],E[Y^2]&lt;\infty\)</span> , and <span
+class="math inline">\(E[XY]=E[X]E[Y]\)</span> , then <span
+class="math inline">\(X,Y\)</span> are
+<strong><em>uncorrelated</em></strong>.</p></li>
+</ol></li>
+</ol></li>
+</ol></li>
+<li><p>Sum of Independent Random Variables</p>
+<ol type="1">
+<li><p>THM : If <span class="math inline">\(X,Y\)</span> are independent
+, <span class="math inline">\(F(x)=P(X\le x) , G(y)=P(Y\le y)\)</span> ,
+then <span class="math display">\[
+P(X+Y\le Z)=\int F(z-y)d G(y)
+\]</span> Suppose that <span class="math inline">\(\nu\)</span> is the
+distribution of <span class="math inline">\(Y\)</span> , <span
+class="math inline">\(dG(y)\)</span> means <span
+class="math inline">\(\nu(dy)\)</span> .</p>
+<p>Remark : this is also called the convolution of <span
+class="math inline">\(F\)</span> and <span
+class="math inline">\(G\)</span> , denoted as <span
+class="math inline">\(F*G\)</span> . <span class="math display">\[
+(F*G)(z)=\int F(z-y)dG(y)
+\]</span></p></li>
+<li><p>THM : Suppose <span class="math inline">\(X\)</span> with density
+<span class="math inline">\(f\)</span> , <span
+class="math inline">\(Y\)</span> with distribution <span
+class="math inline">\(G\)</span> , <span
+class="math inline">\(X,Y\)</span> are independent , then <span
+class="math inline">\(X+Y\)</span> has density <span
+class="math inline">\(h\)</span> : <span class="math display">\[
+h(x)=\int f(x-y)dG(y)
+\]</span> Moreover , when <span class="math inline">\(Y\)</span> with
+density <span class="math inline">\(g\)</span> , <span
+class="math display">\[
+h(x)=\int f(x-y)g(y)dy
+\]</span></p></li>
+</ol></li>
+</ol>
+<h3 id="conditional-expectation">2.2 Conditional Expectation</h3>
+<ol type="1">
+<li><p>Conditioning on set</p>
+<p>Def [ <strong><em>conditioning on set</em></strong> ] : <span
+class="math inline">\(A,B\)</span> be two events , the probability of
+<span class="math inline">\(A\)</span> given <span
+class="math inline">\(B\)</span> is : <span
+class="math inline">\(P(A|B)=\frac{P(A\cap B)}{P(B)}\)</span>.</p></li>
+<li><p>Conditioning on discrete random variables</p>
+<ol type="1">
+<li><p>Derivation :</p>
+<p>Considering <span class="math inline">\(X,Z\)</span> : discrete ,
+with finite possibilities .</p>
+<p><span class="math inline">\(X\in \{x_1,\cdots,x_m\},Z\in
+\{z_1,\cdots,z_n\}\)</span> <span class="math display">\[
+P(X=x_i|Z=z_j)=\frac{P(X=x_i,Z=z_j)}{P(Z=z_j)}
+\]</span></p>
+<blockquote>
+<p>Remark : <span class="math inline">\(\sum\limits_{i=1}^m
+P(X=x_i|Z=z_j)=1\)</span></p>
+</blockquote>
+<p>We can define <span class="math display">\[
+E[X|Z=z_j]=\sum_{i=1}^m x_iP(X=x_i|Z=z_j)=h(z_j)
+\]</span> which is a function of <span
+class="math inline">\(z_j\)</span> . Therefore , we define <span
+class="math inline">\(Y=E[X|Z]\)</span> is a random variable s.t.</p>
+<p><span class="math inline">\(\forall w\in
+\Omega,Y(w)=h(Z(w))\)</span></p></li>
+<li><p>Properties</p>
+<ol type="1">
+<li><span class="math inline">\(E[X|Z]\)</span> is a function of <span
+class="math inline">\(Z\)</span></li>
+<li><span class="math inline">\(\forall G\in \sigma(Z)\)</span> , <span
+class="math inline">\(\int_G YdP=\int_G XdP\)</span></li>
+</ol></li>
+<li><p>Proof of Prop. 2</p>
+<p>Consider <span class="math inline">\(G_i=\{w:Z(w)=z_i\}\)</span> , so
+by definition , there exists <span class="math inline">\(I\subseteq
+[n]\)</span> , s.t. <span class="math inline">\(G=\cup_{i\in
+I}G_i\)</span>.</p>
+<p>We only need to prove that <span
+class="math inline">\(\int_{G_i}YdP=\int_{G_i}XdP\)</span> <span
+class="math display">\[
+\begin{aligned}
+&amp;\quad\int_{Z=z_i}YdP\\
+&amp;=h(z_i)P(Z=z_i)\\
+&amp;=\sum_{j=1}^m x_j P(X=x_j|Z=z_i)P(Z=z_i)\\
+&amp;=\sum_{j=1}^m x_j P(X=x_j,Z=z_i)\\
+&amp;=\int_{G_i}XdP
+\end{aligned}
+\]</span></p></li>
+</ol></li>
+<li><p>Conditioning on continuous random variables</p>
+<ol type="1">
+<li><p>Derivation</p>
+<ol type="1">
+<li><p>Def [ <strong><em>joint PDF</em></strong> ] : <span
+class="math inline">\(f_{X,Z}\)</span> is joint PDF , if <span
+class="math inline">\(\forall B\in \mathcal R^2\)</span> , <span
+class="math display">\[
+P((X,Z)\in B)=\int_{(x,z)\in B}f_{X,Z}(x,z)dxdz
+\]</span></p></li>
+<li><p>Def [ <strong><em>marginal PDF</em></strong> ] : <span
+class="math inline">\(f_Z\)</span> is marginal PDF for <span
+class="math inline">\(Z\)</span> , defined as <span
+class="math display">\[
+f_Z(z)=\int_{-\infty}^{\infty}f_{X,Z}(x,z)dx
+\]</span></p></li>
+<li><p>Prop : <span class="math display">\[
+\begin{aligned}
+P(Z\in A)&amp;=P(Z\in A,X\in (-\infty,\infty))\\
+&amp;=\int_{Z\in A}\int_{-\infty}^{\infty} f_{X,Z}(x,z)dxdz\\
+&amp;=\int_{Z\in A}f_Z(z)dz
+\end{aligned}
+\]</span></p></li>
+<li><p>Def [ <strong><em>conditional PDF</em></strong> ] : <span
+class="math inline">\(f_{X|Z}\)</span> is a conditional PDF , defined as
+<span class="math display">\[
+f_{X|Z}(x|z)=\frac{f_{X,Z}(x,z)}{f_Z(z)}
+\]</span> Therefore <span class="math display">\[
+\begin{aligned}
+P(X\in A,Z\in B)&amp;=\int_{Z\in B}\int_{X\in A}f_{X,Z}(x,z)dxdz\\
+&amp;=\int_{Z\in B}\int_{X\in A}f_{X|Z}(x|z)f_Z(z)dxdz\\
+&amp;=\int_{Z\in B} f_Z(z)\left(\int_{X\in A}f_{X|Z}(x,z)dx\right)dz\\
+&amp;\sim \int_{Z\in B}f_Z(z)P(X\in A|Z=z) dz
+\end{aligned}
+\]</span> Compare to discrete version : <span class="math display">\[
+P(X\in A,Z\in B)=\sum_{z_i\in B}P(X\in A|Z=z_i) P(Z=z_i)
+\]</span> We can use <span class="math inline">\(\int_{X\in A}
+f_{X|Z}(x,z)dx\)</span> to denote <span class="math inline">\(P(X\in
+A|Z=z)\)</span></p></li>
+<li><p>Def [ <strong><em>conditional expected value for continuous
+r.v.</em></strong> ] : <span class="math display">\[
+h(z)=E[X|Z=z]=\int xf_{X|Z}(x|z)dx
+\]</span> which is a function of <span class="math inline">\(z\)</span>
+. Let <span class="math inline">\(Y=h\circ Z\)</span> .</p></li>
+</ol></li>
+<li><p>Properties</p>
+<ol type="1">
+<li><span class="math inline">\(E[X|Z]\)</span> is a function of <span
+class="math inline">\(Z\)</span></li>
+<li><span class="math inline">\(\forall G\in \sigma(Z)\)</span> , <span
+class="math inline">\(\int_G YdP=\int_G XdP\)</span></li>
+</ol></li>
+<li><p>Proof of Prop.2</p>
+<p>Let <span class="math inline">\(Z_G=\{z:\exists w\in
+G,Z(w)=z\}\)</span> <span class="math display">\[
+\begin{aligned}
+\int_{G}YdP&amp;=\int_{G}h\circ ZdP\\
+&amp;=\int_{Z_G}h(z)f_Z(z)dz\quad\quad\text{using change of variable
+formula}\\
+&amp;=\int_{Z_G}f_Z(z)\int_{-\infty}^{\infty} xf_{X|Z}(x|z)dxdz\\
+&amp;=\int_{Z_G}\int_{-\infty}^{\infty} xf_{X,Z}(x,z)dxdz\\
+&amp;=\int_{(X,Z)\in R\times Z_G} xf_{X,Z}(x,z)dxdz\\
+&amp;=\int_{(X,Z)\in R\times Z_G} x\mu_{X,Z}(dxdz)\\
+&amp;=\int_{\tilde G}XdP\quad\quad\quad\quad\quad\text{using change of
+variable formula}
+\end{aligned}
+\]</span> Where <span class="math inline">\(\tilde G=(X,Z)^{-1}(R\times
+Z_G)=\{w:(X(w),Z(w))\in R\times Z_G\}=\{w:Z(w)\in Z_G\}\)</span>.</p>
+<p>Firstly , For any <span class="math inline">\(w\in G\)</span> , <span
+class="math inline">\(Z(w)\in Z_G\)</span> , so <span
+class="math inline">\(w\in \tilde G\)</span> .</p>
+<p>Secondly , For any <span class="math inline">\(w\in \tilde G\)</span>
+, <span class="math inline">\(Z(w)\in Z_G\)</span> , so <span
+class="math inline">\(\exists w_0\in G\)</span> , <span
+class="math inline">\(Z(w)=Z(w_0)\)</span> .</p>
+<p>Lemma : <span class="math inline">\(\forall G\in \sigma(Z)\)</span>
+for random variable <span class="math inline">\(Z\)</span> , If <span
+class="math inline">\(\exists w,w&#39;\in \Omega\)</span> with <span
+class="math inline">\(Z(w)=Z(w&#39;)\)</span> , then <span
+class="math inline">\(w\in G\iff w&#39;\in G\)</span>.</p>
+<p>Proof : Let <span class="math inline">\(G_z=\{w:Z(w)=z\}\)</span> ,
+Let <span class="math inline">\(\mathcal G=\{\cup_{z\in B}G_z:B\in
+\mathcal R\}\)</span> .</p>
+<p>Since <span class="math inline">\(\forall B\in \mathcal R\)</span> ,
+<span class="math inline">\(\{w:Z(w)\in B\}=\cup_{z\in B}G_z\in \mathcal
+G\)</span> , <span class="math inline">\(Z(w)\)</span> is a measurable
+map from <span class="math inline">\((\Omega,\mathcal G)\)</span> to
+<span class="math inline">\((\mathbb R,\mathcal R)\)</span></p>
+<p>Therefore , <span class="math inline">\(\sigma(Z)\subseteq \mathcal
+G\)</span> ( since <span class="math inline">\(\sigma(Z)\)</span> is the
+smallest ). Therefore , all sets in <span
+class="math inline">\(\sigma(Z)\)</span> is of the form <span
+class="math inline">\(\cup_{z\in B}G_z:B\in \mathcal R\)</span> , so
+<span class="math inline">\(G\)</span> will contain either both of <span
+class="math inline">\(w,w&#39;\)</span> or neither of <span
+class="math inline">\(w,w&#39;\)</span>. <span
+class="math inline">\(\Box\)</span></p>
+<p>Therefore , if <span class="math inline">\(w_0\in G\)</span> , then
+<span class="math inline">\(w\in G\)</span>. Finally <span
+class="math inline">\(G=\tilde G\)</span>.</p></li>
+</ol></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ZigZagKmp
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-5/" title="Probability and Statistics 5">https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-5/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/ZigZagKmp">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.luogu.com.cn/user/35871">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Luogu</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E7%8B%AC%E7%AB%8B%E6%80%A7/" rel="tag"># 概率论-独立性</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E7%8B%AC%E7%AB%8B%E6%80%A7-%E7%8B%AC%E7%AB%8B%E5%85%85%E5%88%86%E6%9D%A1%E4%BB%B6/" rel="tag"># 概率论-独立性-独立充分条件</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E7%8B%AC%E7%AB%8B%E6%80%A7-%E7%8B%AC%E7%AB%8B%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83%E4%B8%8E%E6%9C%9F%E6%9C%9B/" rel="tag"># 概率论-独立性-独立变量分布与期望</a>
+              <a href="/tags/%E5%AE%9E%E5%88%86%E6%9E%90-%E5%8D%B7%E7%A7%AF/" rel="tag"># 实分析-卷积</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87/" rel="tag"># 概率论-条件概率</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87-%E6%9D%A1%E4%BB%B6%E6%9C%9F%E6%9C%9B/" rel="tag"># 概率论-条件概率-条件期望</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/03/Probability-and-Statistics-4/" rel="prev" title="Probability and Statistics 4">
+                  <i class="fa fa-angle-left"></i> Probability and Statistics 4
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZigZagKmp</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">25k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:31</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/ZigZagKmp" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"ZigZagKmp/zigzagkmp.github.io","repo_id":"R_kgDOKcVJdQ","category":"Announcements","category_id":"DIC_kwDOKcVJdc4CZ58w","mapping":"pathname","reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

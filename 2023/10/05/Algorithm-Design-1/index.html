@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-0-Logistics"><span class="nav-number">1.</span> <span class="nav-text">Chapter 0 Logistics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1"><span class="nav-number">2.</span> <span class="nav-text">Chapter 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Stable-matching"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 Stable matching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-BFS-amp-DFS"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 BFS &amp; DFS</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-0-logistics"><span class="nav-number">1.</span> <span class="nav-text">Chapter 0 Logistics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-1"><span class="nav-number">2.</span> <span class="nav-text">Chapter 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stable-matching"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 Stable matching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bfs-dfs"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 BFS &amp; DFS</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -170,7 +170,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -368,7 +368,9 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-0-Logistics"><a href="#Chapter-0-Logistics" class="headerlink" title="Chapter 0 Logistics"></a>Chapter 0 Logistics</h2><p><strong>Content</strong> : discrete(combinatorial) algorithm  ,  Theoretical </p>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-0-logistics">Chapter 0 Logistics</h2>
+<p><strong>Content</strong> : discrete(combinatorial) algorithm ,
+Theoretical</p>
 <ul>
 <li>[minority] Complexity , NP-Completeness</li>
 <li>Basic Graph Algorithm , DFS / BFS</li>
@@ -380,132 +382,149 @@
 <li>Randomized Algorithm (Probability Analysis)</li>
 <li><ul>
 <li>Computational Geometry</li>
-</ul>
-</li>
+</ul></li>
 <li><ul>
 <li>Streaming Algorithm (online)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><strong>Textbook</strong> : [Kleinberg&amp;Tardos] Algorithm Design </p>
+<p><strong>Textbook</strong> : [Kleinberg&amp;Tardos] Algorithm
+Design</p>
 <p><strong>Reference Book</strong> : [CLRS] Intro to Algorithm</p>
-<h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="1-1-Stable-matching"><a href="#1-1-Stable-matching" class="headerlink" title="1.1 Stable matching"></a>1.1 Stable matching</h3><ol>
+<h2 id="chapter-1">Chapter 1</h2>
+<h3 id="stable-matching">1.1 Stable matching</h3>
+<ol type="1">
 <li><p>Def</p>
 <ul>
-<li><p>Input : $boys=\{B_1,\cdots,B_n\} , girls=\{G_1,\cdots,G_n\}$</p>
-<p>Preference List : $BP_i$ : a permutation of $girls$ , $GP_i$ : a permutation of $boys$</p>
-</li>
-<li><p>output : a stable matching </p>
-</li>
-<li><p>stable matching : no unstable pairs</p>
-</li>
-<li><p>unstable pair : $(B_i,G_j)$ s.t.  $M(B_i)$ after $G_j$ in $BP_i$ and $M(G_j)$ after $B_i$ in $GP_j$</p>
-</li>
-</ul>
-</li>
-<li><p>Efficient Algorithm : Gale &amp; Shapley Algorithm ( propose-reject )</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( exists sb. single )&#123;</span><br><span class="line">    A &lt;- an arbitrary single boy</span><br><span class="line">    X &lt;- <span class="function">first girl A has <span class="keyword">not</span> proposed yet</span></span><br><span class="line"><span class="function">    <span class="title">if</span> <span class="params">( X is single )</span></span></span><br><span class="line"><span class="function">        A-X engage</span></span><br><span class="line"><span class="function">    <span class="keyword">else</span></span></span><br><span class="line"><span class="function">        <span class="title">if</span> <span class="params">( A is better than M(X) )</span></span></span><br><span class="line"><span class="function">            A-X engage</span></span><br><span class="line"><span class="function">        <span class="keyword">else</span></span></span><br><span class="line"><span class="function">            X reject A</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
+<li><p>Input : <span class="math inline">\(boys=\{B_1,\cdots,B_n\} ,
+girls=\{G_1,\cdots,G_n\}\)</span></p>
+<p>Preference List : <span class="math inline">\(BP_i\)</span> : a
+permutation of <span class="math inline">\(girls\)</span> , <span
+class="math inline">\(GP_i\)</span> : a permutation of <span
+class="math inline">\(boys\)</span></p></li>
+<li><p>output : a stable matching</p></li>
+<li><p>stable matching : no unstable pairs</p></li>
+<li><p>unstable pair : <span class="math inline">\((B_i,G_j)\)</span>
+s.t. <span class="math inline">\(M(B_i)\)</span> after <span
+class="math inline">\(G_j\)</span> in <span
+class="math inline">\(BP_i\)</span> and <span
+class="math inline">\(M(G_j)\)</span> after <span
+class="math inline">\(B_i\)</span> in <span
+class="math inline">\(GP_j\)</span></p></li>
+</ul></li>
+<li><p>Efficient Algorithm : Gale &amp; Shapley Algorithm (
+propose-reject )</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( exists sb. single )&#123;</span><br><span class="line">    A &lt;- an arbitrary single boy</span><br><span class="line">    X &lt;- <span class="function">first girl A has <span class="keyword">not</span> proposed yet</span></span><br><span class="line"><span class="function">    <span class="title">if</span> <span class="params">( X is single )</span></span></span><br><span class="line"><span class="function">        A-X engage</span></span><br><span class="line"><span class="function">    <span class="keyword">else</span></span></span><br><span class="line"><span class="function">        <span class="title">if</span> <span class="params">( A is better than M(X) )</span></span></span><br><span class="line"><span class="function">            A-X engage</span></span><br><span class="line"><span class="function">        <span class="keyword">else</span></span></span><br><span class="line"><span class="function">            X reject A</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>Analysis</p>
-<ol>
-<li><p>Proof of Termination </p>
-<ol>
-<li>For girl : once engaged , engaged forever </li>
-<li>For one boy : If used all preference list : then all girls must be engaged</li>
-</ol>
-</li>
+<ol type="1">
+<li><p>Proof of Termination</p>
+<ol type="1">
+<li>For girl : once engaged , engaged forever</li>
+<li>For one boy : If used all preference list : then all girls must be
+engaged</li>
+</ol></li>
 <li><p>Proof of Correctness</p>
 <p>Prove by Contradiction</p>
-<p>$(B_i,G_j)$ : an unstable pair</p>
-<p>$B_i$ preference list : $\cdots G_j \cdots M(B_i)$</p>
-<p>$G_j$ preference list : $\cdots B_i \cdots Z=M(G_j)$</p>
-<p>$\therefore$ $G_j$ rejected $B_i$ , but $G_j$ should not reject $B_i$ compared with $Z$</p>
-</li>
-<li><p>Running Time : $\mathcal O(n^2)$ ( All boys used up their preference list)</p>
-</li>
-</ol>
-</li>
+<p><span class="math inline">\((B_i,G_j)\)</span> : an unstable pair</p>
+<p><span class="math inline">\(B_i\)</span> preference list : <span
+class="math inline">\(\cdots G_j \cdots M(B_i)\)</span></p>
+<p><span class="math inline">\(G_j\)</span> preference list : <span
+class="math inline">\(\cdots B_i \cdots Z=M(G_j)\)</span></p>
+<p><span class="math inline">\(\therefore\)</span> <span
+class="math inline">\(G_j\)</span> rejected <span
+class="math inline">\(B_i\)</span> , but <span
+class="math inline">\(G_j\)</span> should not reject <span
+class="math inline">\(B_i\)</span> compared with <span
+class="math inline">\(Z\)</span></p></li>
+<li><p>Running Time : <span class="math inline">\(\mathcal
+O(n^2)\)</span> ( All boys used up their preference list)</p></li>
+</ol></li>
 <li><p>Random ver.</p>
-<ol>
-<li><p>def : $BP_i$ , $GP_i$ are all random permutations (uniformly distributed) </p>
-</li>
+<ol type="1">
+<li><p>def : <span class="math inline">\(BP_i\)</span> , <span
+class="math inline">\(GP_i\)</span> are all random permutations
+(uniformly distributed)</p></li>
 <li><p>How to get a uniformly distributed random permutation ?</p>
-<p>draw-likely process</p>
-</li>
-<li><p>THM : $\mathbb E[T]\le n\cdot H_n$  ($\mathbb E[T]=\mathcal O(n\log n)$)</p>
-</li>
-<li><p>Proof </p>
-<ol>
-<li><p>key observation : </p>
-<p>G-S’ : each time a boy propose to a random girl not proposed yet</p>
-<p><strong>This is equivalent as generate a uniformly distributed random permutation</strong></p>
-<p>G-S’’ : each time a boy propose to a random girl (can be proposed yet)</p>
-<p>$\therefore $ $T(G-S)=T(G-S’)\le T(G-S’’)$</p>
-</li>
-<li><p>Coupon Collector Problem ( Bins-Balls ) </p>
-<p>$n$ bins , each time throw a ball to a random bin . </p>
-<p>Q : $\mathbb E[\text{balls}]$ s.t. every bin is nonempty .</p>
-<p>A : $\mathbb E[\text{balls}]=n\cdot H_n$</p>
-<p>Construct Sequence $a_i\in \{0,1\}$ , $a_i=1\Leftrightarrow$ a ball falls in an empty bin</p>
-<p>Exactly $n$ number of $1$s . -&gt; $n$ segments like $0\cdots 01$</p>
-<script type="math/tex; mode=display">
+<p>draw-likely process</p></li>
+<li><p>THM : <span class="math inline">\(\mathbb E[T]\le n\cdot
+H_n\)</span> (<span class="math inline">\(\mathbb E[T]=\mathcal O(n\log
+n)\)</span>)</p></li>
+<li><p>Proof</p>
+<ol type="1">
+<li><p>key observation :</p>
+<p>G-S' : each time a boy propose to a random girl not proposed yet</p>
+<p><strong>This is equivalent as generate a uniformly distributed random
+permutation</strong></p>
+<p>G-S'' : each time a boy propose to a random girl (can be proposed
+yet)</p>
+<p>$$ <span class="math inline">\(T(G-S)=T(G-S&#39;)\le
+T(G-S&#39;&#39;)\)</span></p></li>
+<li><p>Coupon Collector Problem ( Bins-Balls )</p>
+<p><span class="math inline">\(n\)</span> bins , each time throw a ball
+to a random bin .</p>
+<p>Q : <span class="math inline">\(\mathbb E[\text{balls}]\)</span> s.t.
+every bin is nonempty .</p>
+<p>A : <span class="math inline">\(\mathbb E[\text{balls}]=n\cdot
+H_n\)</span></p>
+<p>Construct Sequence <span class="math inline">\(a_i\in
+\{0,1\}\)</span> , <span
+class="math inline">\(a_i=1\Leftrightarrow\)</span> a ball falls in an
+empty bin</p>
+<p>Exactly <span class="math inline">\(n\)</span> number of <span
+class="math inline">\(1\)</span>s . -&gt; <span
+class="math inline">\(n\)</span> segments like <span
+class="math inline">\(0\cdots 01\)</span> <span class="math display">\[
 \begin{aligned}
-\mathbb E[T]&=\mathbb E\left[\sum_{i=1}^n \text{len of i-th segment}\right]\\
-&=\sum_{i=1}^n\mathbb E\left[ \text{len of i-th segment}\right]\\
-&=\sum_{i=1}^n \frac{1}{\Pr\{\text{in i-th seg , choosed empty bin}\}}\\
-&=\sum_{i=1}^n \frac{n}{n-i+1}\\
-&=n\cdot H_n
-\end{aligned}</script></li>
+\mathbb E[T]&amp;=\mathbb E\left[\sum_{i=1}^n \text{len of i-th
+segment}\right]\\
+&amp;=\sum_{i=1}^n\mathbb E\left[ \text{len of i-th segment}\right]\\
+&amp;=\sum_{i=1}^n \frac{1}{\Pr\{\text{in i-th seg , choosed empty
+bin}\}}\\
+&amp;=\sum_{i=1}^n \frac{n}{n-i+1}\\
+&amp;=n\cdot H_n
+\end{aligned}
+\]</span></p></li>
 <li><p>Consider boy -&gt; ball , girl -&gt; bin</p>
-<p>G-S’’ -&gt; Bins-Balls Problem</p>
-</li>
+<p>G-S'' -&gt; Bins-Balls Problem</p></li>
 <li><ul>
 <li><p>Concentration inequality for Coupon Collection Running Time</p>
-<p>Same as Chernoff Bound</p>
-</li>
-</ul>
-</li>
+<p>Same as Chernoff Bound</p></li>
+</ul></li>
+</ol></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="1-2-BFS-amp-DFS"><a href="#1-2-BFS-amp-DFS" class="headerlink" title="1.2 BFS &amp; DFS"></a>1.2 BFS &amp; DFS</h3><ol>
+<h3 id="bfs-dfs">1.2 BFS &amp; DFS</h3>
+<ol type="1">
 <li><p>BFS</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bfs</span></span><br><span class="line">q.<span class="built_in">clear</span>();</span><br><span class="line"><span class="keyword">for</span>(u in Vertices)&#123;</span><br><span class="line">    dep[u]=inf;</span><br><span class="line">    prev[u]=<span class="literal">NULL</span>;</span><br><span class="line">    col[u]=white;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dep[s]=<span class="number">0</span>;</span><br><span class="line">prev[s]=<span class="literal">NULL</span>;</span><br><span class="line">col[s]=grey;</span><br><span class="line">q.<span class="built_in">push</span>(s);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">    u=q.<span class="built_in">front</span>();q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            dep[v]=dep[u]+<span class="number">1</span>;</span><br><span class="line">            prev[v]=u;</span><br><span class="line">            col[v]=grey;</span><br><span class="line">            q.<span class="built_in">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[v]=black;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>BFS Tree Property : no edges with depth difference $\ge 2$ .</p>
-</li>
+<p>BFS Tree Property : no edges with depth difference <span
+class="math inline">\(\ge 2\)</span> .</p></li>
 <li><p>DFS</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(u)</span></span>&#123;</span><br><span class="line">    ++time;</span><br><span class="line">    discover[u]=time;</span><br><span class="line">    col[u]=grey;</span><br><span class="line">    <span class="keyword">for</span>(v in <span class="built_in">Neighbour</span>(u) )&#123;</span><br><span class="line">        <span class="keyword">if</span>(col[v]==white)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    col[u]=black;</span><br><span class="line">    ++time;</span><br><span class="line">    finish[u]=time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>DFS Tree Properties</p>
 <p>Time stamp intervals</p>
-<ol>
+<ol type="1">
 <li>non-crossing : only non-intersect / totally include</li>
-<li>Tree Structure $\Leftrightarrow$ Time stamp intervals Structure </li>
-</ol>
-</li>
+<li>Tree Structure <span class="math inline">\(\Leftrightarrow\)</span>
+Time stamp intervals Structure</li>
+</ol></li>
 <li><p>Connectivity</p>
-<ol>
-<li><p>undirected graph : connected component</p>
-</li>
+<ol type="1">
+<li><p>undirected graph : connected component</p></li>
 <li><p>directed graph : strongly connected component (SCC)</p>
-<p>every vertex can reach other vertex</p>
-</li>
+<p>every vertex can reach other vertex</p></li>
 <li><p>directed acyclic graph (DAG)</p>
 <p>i.e. no directed cycle</p>
-<p>i.e. no SCC has $\ge 2$ vertices</p>
+<p>i.e. no SCC has <span class="math inline">\(\ge 2\)</span>
+vertices</p>
 <ul>
 <li>DAG has a topological order</li>
-</ul>
-</li>
+</ul></li>
 <li><p>A useful view of directed graph : a DAG of SCC</p>
-<p>a.k.a. 缩点</p>
-</li>
+<p>a.k.a. 缩点</p></li>
 <li><p>DAG has a topological order</p>
-<p>get topological order : use bfs/dfs starting from $InDeg=0$ </p>
-</li>
-</ol>
-</li>
+<p>get topological order : use bfs/dfs starting from <span
+class="math inline">\(InDeg=0\)</span></p></li>
+</ol></li>
 </ol>
 
     </div>
@@ -613,13 +632,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">25k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:22</span>
+    <span title="站点阅读时长">1:31</span>
   </span>
 </div>
 <div class="busuanzi-count">
