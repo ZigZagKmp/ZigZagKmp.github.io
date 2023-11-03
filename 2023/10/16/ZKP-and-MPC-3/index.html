@@ -148,12 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lec02-zero-knowledge-proof-under-composition"><span class="nav-number">1.</span> <span class="nav-text">Lec02
-Zero-Knowledge Proof under Composition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sequential-composition"><span class="nav-number">1.1.</span> <span class="nav-text">2.3 Sequential Composition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#construction"><span class="nav-number">1.1.1.</span> <span class="nav-text">Construction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#proof-of-mxzequiv-braketpyvzx"><span class="nav-number">1.1.2.</span> <span class="nav-text">Proof of \(M^*(x,z)\equiv
-\braket{P(y),V^*(z)}(x)\)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lec03-commitment-scheme-zk-proof-for-general-np"><span class="nav-number">2.</span> <span class="nav-text">Lec03
-Commitment Scheme , zk-proof for general NP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#important"><span class="nav-number">2.1.</span> <span class="nav-text">3.0 Important</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#commitment"><span class="nav-number">2.2.</span> <span class="nav-text">3.1 Commitment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#perfect-binding-computationally-hiding-commitment"><span class="nav-number">2.3.</span> <span class="nav-text">3.2 Perfect
-Binding &amp; Computationally Hiding Commitment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computationally-binding-perfect-hiding-commitment"><span class="nav-number">2.4.</span> <span class="nav-text">3.3
-Computationally Binding &amp; Perfect Hiding Commitment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#general-np-problem"><span class="nav-number">2.5.</span> <span class="nav-text">3.4 General NP Problem</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lec02-Zero-Knowledge-Proof-under-Composition"><span class="nav-number">1.</span> <span class="nav-text">Lec02  Zero-Knowledge Proof under Composition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Sequential-Composition"><span class="nav-number">1.1.</span> <span class="nav-text">2.3 Sequential Composition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Construction"><span class="nav-number">1.1.1.</span> <span class="nav-text">Construction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof-of-M-x-z-equiv-braket-P-y-V-z-x"><span class="nav-number">1.1.2.</span> <span class="nav-text">Proof of $M^(x,z)\equiv \braket{P(y),V^(z)}(x)$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lec03-Commitment-Scheme-zk-proof-for-general-NP"><span class="nav-number">2.</span> <span class="nav-text">Lec03  Commitment Scheme , zk-proof for general NP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-0-Important"><span class="nav-number">2.1.</span> <span class="nav-text">3.0 Important</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Commitment"><span class="nav-number">2.2.</span> <span class="nav-text">3.1 Commitment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Perfect-Binding-amp-Computationally-Hiding-Commitment"><span class="nav-number">2.3.</span> <span class="nav-text">3.2 Perfect Binding &amp; Computationally Hiding Commitment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Computationally-Binding-amp-Perfect-Hiding-Commitment"><span class="nav-number">2.4.</span> <span class="nav-text">3.3 Computationally Binding &amp; Perfect Hiding Commitment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-General-NP-Problem"><span class="nav-number">2.5.</span> <span class="nav-text">3.4 General NP Problem</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -168,7 +163,7 @@ Computationally Binding &amp; Perfect Hiding Commitment</span></a></li><li class
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,7 +174,7 @@ Computationally Binding &amp; Perfect Hiding Commitment</span></a></li><li class
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -356,428 +351,234 @@ Computationally Binding &amp; Perfect Hiding Commitment</span></a></li><li class
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="lec02-zero-knowledge-proof-under-composition">Lec02
-Zero-Knowledge Proof under Composition</h2>
-<h3 id="sequential-composition">2.3 Sequential Composition</h3>
-<blockquote>
-<p><span class="math inline">\(V^*\)</span> : should be viewed as a
-black box , input <span
-class="math inline">\((input,randomness,messages)\)</span> , output
-response</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="Lec02-Zero-Knowledge-Proof-under-Composition"><a href="#Lec02-Zero-Knowledge-Proof-under-Composition" class="headerlink" title="Lec02  Zero-Knowledge Proof under Composition"></a>Lec02  Zero-Knowledge Proof under Composition</h2><h3 id="2-3-Sequential-Composition"><a href="#2-3-Sequential-Composition" class="headerlink" title="2.3 Sequential Composition"></a>2.3 Sequential Composition</h3><blockquote>
+<p>$V^*$ : should be viewed as a black box , input $(input,randomness,messages)$ , output response</p>
+<p>If guess wrong at $m_i$ , we can rewind $V^*$ to the time when it receives $m_i$ , using the same input , randomness , first $i-1$ messages</p>
 </blockquote>
-<blockquote>
-<p>If guess wrong at <span class="math inline">\(m_i\)</span> , we can
-rewind <span class="math inline">\(V^*\)</span> to the time when it
-receives <span class="math inline">\(m_i\)</span> , using the same input
-, randomness , first <span class="math inline">\(i-1\)</span>
-messages</p>
-</blockquote>
-<ol type="1">
-<li><p>Def [ <strong><em>Zero-Knowledge Proof with Auxiliary
-Input</em></strong> ] :</p>
-<p><span class="math inline">\((P,V)\)</span> is an
-<strong><em>interactive zero-knowledge proof with auxiliary
-input</em></strong> for <span class="math inline">\(L\)</span> if</p>
+<ol>
+<li><p>Def [ <strong><em>Zero-Knowledge Proof with Auxiliary Input</em></strong> ] : </p>
+<p>$(P,V)$ is an <strong><em>interactive zero-knowledge proof with auxiliary input</em></strong> for $L$ if </p>
 <ul>
-<li><p><span class="math inline">\(V\)</span> is an efficient algorithm
-( poly-time )</p></li>
-<li><p><strong><em>Completeness</em></strong> : <span
-class="math inline">\(\forall x\in L,\forall y,z\in \{0,1\}^*\)</span>
-<span class="math display">\[
-\Pr\{\braket{P(y),V(z)}(x)=1\}=1
-\]</span></p></li>
-<li><p><strong><em>Soundness with error <span
-class="math inline">\(\epsilon\)</span></em></strong> : <span
-class="math inline">\(\forall x\notin L,\forall y,z\in
-\{0,1\}^*\)</span> <span class="math display">\[
-\forall P^*,\Pr\{\braket{P^*(y),V(z)}(x)=1\}&lt;\epsilon
-\]</span></p></li>
-<li><p><strong><em>Zero-Knowledge</em></strong> : <span
-class="math inline">\(\forall V^*\)</span> in P.P.T. , <span
-class="math inline">\(\exists\)</span> expected poly-time algorithm
-<span class="math inline">\(M^*\)</span> , <span
-class="math inline">\(\forall x\in L,\forall y,z\in \{0,1\}^*\)</span> ,
-<span class="math display">\[
-M^*(x,z)\sim View_{V^*(z)}^{P(y)}(x)
-\]</span></p></li>
+<li><p>$V$ is an efficient algorithm ( poly-time )</p>
+</li>
+<li><p><strong><em>Completeness</em></strong> : $\forall x\in L,\forall y,z\in \{0,1\}^*$</p>
+<script type="math/tex; mode=display">
+\Pr\{\braket{P(y),V(z)}(x)=1\}=1</script></li>
+<li><p><strong><em>Soundness with error $\epsilon$</em></strong> : $\forall x\notin L,\forall y,z\in \{0,1\}^*$ </p>
+<script type="math/tex; mode=display">
+\forall P^*,\Pr\{\braket{P^*(y),V(z)}(x)=1\}<\epsilon</script></li>
+<li><p><strong><em>Zero-Knowledge</em></strong> : $\forall V^<em>$ in P.P.T. , $\exists$ expected poly-time algorithm $M^</em>$ , $\forall x\in L,\forall y,z\in \{0,1\}^*$ ,</p>
+<script type="math/tex; mode=display">
+M^*(x,z)\sim View_{V^*(z)}^{P(y)}(x)</script></li>
 </ul>
 <blockquote>
-<p><span class="math inline">\(y\)</span> is indeed redundant since
-<span class="math inline">\(P\)</span> is not computationally
-bounded</p>
-</blockquote>
-<blockquote>
-<p>Alternating Form of Zero-Knowledge : <span
-class="math inline">\(\forall V^*,\exists M^*,\forall x\in L,\forall
-y,z\in \{0,1\}^*\)</span> <span class="math display">\[
-M^*(x,z)\sim \braket{P(y),V^*(z)}(x)
-\]</span></p>
-</blockquote></li>
+<p>$y$ is indeed redundant since $P$ is not computationally bounded</p>
+<p>Alternating Form of Zero-Knowledge : $\forall V^<em>,\exists M^</em>,\forall x\in L,\forall y,z\in \{0,1\}^*$ </p>
+<script type="math/tex; mode=display">
+M^*(x,z)\sim \braket{P(y),V^*(z)}(x)</script></blockquote>
+</li>
 <li><p>Lemma [ <strong><em>Composition Lemma</em></strong> ] :</p>
-<p><span class="math inline">\((P,V)\)</span> : zero-knowledge proof
-with auxiliary input for <span class="math inline">\(L\)</span> , <span
-class="math inline">\(q\)</span> is a polynomial of <span
-class="math inline">\(\kappa\)</span></p>
-<p><span class="math inline">\((P_q,V_q)\)</span> : An IP runs <span
-class="math inline">\((P,V)\)</span> <span
-class="math inline">\(q\)</span> times</p>
-<p>Claim : <span class="math inline">\((P_q,V_q)\)</span> are still
-zero-knowledge .</p></li>
-<li><p>Proof of Composition Lemma</p>
+<p>$(P,V)$ : zero-knowledge proof with auxiliary input for $L$ , $q$ is a polynomial of $\kappa$ </p>
+<p>$(P_q,V_q)$ : An IP runs $(P,V)$ $q$ times</p>
+<p>Claim : $(P_q,V_q)$ are still zero-knowledge .</p>
+</li>
+<li><p>Proof of Composition Lemma </p>
 <blockquote>
 <p>Only Proof for perfect zero-knowledge</p>
 <p>Using Alternating Form of Zero-Knowledge</p>
 </blockquote>
-<h4 id="construction">Construction</h4>
-<ol type="1">
-<li><p><span class="math inline">\(M^*\)</span> inputs <span
-class="math inline">\((x,z)\)</span> , <span
-class="math inline">\(st_0=\varnothing\)</span> .</p></li>
-<li><p>For <span class="math inline">\(i=1,2,\cdots q\)</span> :</p>
-<ol type="1">
-<li><p>Construct <span class="math inline">\(V_i^*\)</span> : <span
-class="math inline">\(V_i^*(x,st_{i-1},z)=\begin{cases}V^*(x,z)&amp;i=1\\V^*(st_{i-1})&amp;i\ge
-2\end{cases}\)</span> , output state of <span
-class="math inline">\(V^*\)</span> as <span
-class="math inline">\(st_i\)</span></p>
+<h4 id="Construction"><a href="#Construction" class="headerlink" title="Construction"></a>Construction</h4><ol>
+<li><p>$M^*$ inputs $(x,z)$ , $st_0=\varnothing$ . </p>
+</li>
+<li><p>For $i=1,2,\cdots q$ :</p>
+<ol>
+<li><p>Construct $V_i^<em>$ : $V_i^</em>(x,st_{i-1},z)=\begin{cases}V^<em>(x,z)&amp;i=1\\V^</em>(st_{i-1})&amp;i\ge 2\end{cases}$ , output state of $V^*$ as $st_i$ </p>
 <blockquote>
-<p>Note : for <span class="math inline">\(i\ge 2\)</span> , <span
-class="math inline">\(x,z\)</span> are contained in <span
-class="math inline">\(st_{i-1}\)</span> , so we do not need to input
-them.</p>
-</blockquote></li>
-<li><p>By zero-knowledge , <span class="math inline">\(\exists
-M_i^*(x,st_{i-1}|z)\)</span> that can simulate the output of <span
-class="math inline">\(V_i^*\)</span>.</p></li>
-<li><p><span class="math inline">\(M^*\)</span> runs <span
-class="math inline">\(M_i^*(x,st_{i-1}|z)\)</span> to obtain <span
-class="math inline">\(st_i\)</span>.</p></li>
-</ol></li>
-<li><p><span class="math inline">\(M^*\)</span> invokes <span
-class="math inline">\(V^*\)</span> with <span
-class="math inline">\(st_q\)</span> to obtain final output.</p></li>
-</ol>
-<h4 id="proof-of-mxzequiv-braketpyvzx">Proof of <span
-class="math inline">\(M^*(x,z)\equiv
-\braket{P(y),V^*(z)}(x)\)</span></h4>
-<ol start="0" type="1">
-<li><p><span class="math inline">\(Hyb_0\)</span> : Real Execution <span
-class="math inline">\(\braket{P(y),V^*(z)}(x)\)</span></p></li>
-<li><p><span class="math inline">\(Hyb_1\)</span> :</p>
-<ol type="1">
-<li>Run <span class="math inline">\(P(y)\)</span> and <span
-class="math inline">\(V^*(z)\)</span> until the last phase .</li>
-<li>Record the state of <span class="math inline">\(V^*\)</span> as
-<span class="math inline">\(st_{q-1}\)</span> .</li>
-<li>Invoke <span class="math inline">\(M_q^*(x,st_{q-1}|z)\)</span> to
-obtain <span class="math inline">\(st_q\)</span> .</li>
-<li>Invoke <span class="math inline">\(V^*\)</span> with <span
-class="math inline">\(st_q\)</span> to obtain final output .</li>
-</ol>
-<p><strong>Proof of <span class="math inline">\(Hyb_0\equiv
-Hyb_1\)</span></strong> :</p>
-<p>Fix state <span class="math inline">\(st_{q-1}\)</span> . For <span
-class="math inline">\(Hyb_0\)</span> , its distribution is the same
-as</p>
-<ol type="1">
-<li>Run <span class="math inline">\(V_q^*(x,st_{q-1},z)\)</span> to
-obtain <span class="math inline">\(st_q\)</span></li>
-<li>Run <span class="math inline">\(V^*\)</span> with <span
-class="math inline">\(st_q\)</span> to obtain final output</li>
-</ol>
-<p>By zk , given <span class="math inline">\(x,st_{q-1},z\)</span> ,
-<span class="math inline">\(V_q^*(x,st_{q-1},z)\equiv
-M_q^*(x,st_{q-1}|z)\)</span>.</p>
-<p>Therefore , <span class="math inline">\(Hyb_0\equiv
-Hyb_1\)</span>.</p></li>
-<li><p><span class="math inline">\(Hyb_i\)</span> : Change to <span
-class="math inline">\(M^*\)</span> after the first <span
-class="math inline">\(q-i\)</span> phases</p>
-<p><span class="math inline">\(Hyb_{i-1}\)</span> : using <span
-class="math inline">\(V^*_{q-i+1}\)</span> , <span
-class="math inline">\(Hyb_i\)</span> : using <span
-class="math inline">\(M^*_{q-i+1}\)</span></p>
-<p>Therefore , <span class="math inline">\(Hyb_{i-1}\equiv
-Hyb_i\)</span></p></li>
-<li><p><span class="math inline">\(Hyb_{q+1}\)</span> : The execution of
-<span class="math inline">\(M^*\)</span> .</p></li>
-</ol></li>
-</ol>
-<h2 id="lec03-commitment-scheme-zk-proof-for-general-np">Lec03
-Commitment Scheme , zk-proof for general NP</h2>
-<h3 id="important">3.0 Important</h3>
-<p><strong><em>In the next lecture , we re-defined commitment in a more
-simple way .</em></strong></p>
-<h3 id="commitment">3.1 Commitment</h3>
-<blockquote>
-<p>Intuition :</p>
-<p>Binding : make some choice , then won't change it . (change will be
-rejected)</p>
-<p>Hiding : like "safe" , until open it , not knowing the choice .
-(uniform distribution)</p>
+<p>Note : for $i\ge 2$ , $x,z$ are contained in $st_{i-1}$ , so we do not need to input them.</p>
 </blockquote>
-<ol type="1">
-<li><p>Def [ <strong><em>Commitment</em></strong> ] : Three P.P.T.
-algorithms</p>
+</li>
+<li><p>By zero-knowledge , $\exists M_i^<em>(x,st_{i-1}|z)$ that can simulate the output of $V_i^</em>$.</p>
+</li>
+<li><p>$M^<em>$ runs $M_i^</em>(x,st_{i-1}|z)$ to obtain $st_i$.</p>
+</li>
+</ol>
+</li>
+<li><p>$M^<em>$ invokes $V^</em>$ with $st_q$ to obtain final output.</p>
+</li>
+</ol>
+<h4 id="Proof-of-M-x-z-equiv-braket-P-y-V-z-x"><a href="#Proof-of-M-x-z-equiv-braket-P-y-V-z-x" class="headerlink" title="Proof of $M^(x,z)\equiv \braket{P(y),V^(z)}(x)$"></a>Proof of $M^<em>(x,z)\equiv \braket{P(y),V^</em>(z)}(x)$</h4><ol>
+<li><p>$Hyb_0$ : Real Execution $\braket{P(y),V^*(z)}(x)$</p>
+</li>
+<li><p>$Hyb_1$ : </p>
+<ol>
+<li>Run $P(y)$ and $V^*(z)$ until the last phase .</li>
+<li>Record the state of $V^*$ as $st_{q-1}$ .</li>
+<li>Invoke $M_q^*(x,st_{q-1}|z)$ to obtain $st_q$ .</li>
+<li>Invoke $V^*$ with $st_q$ to obtain final output .</li>
+</ol>
+<p><strong>Proof of $Hyb_0\equiv Hyb_1$</strong> : </p>
+<p>Fix state $st_{q-1}$ . For $Hyb_0$ , its distribution is the same as </p>
+<ol>
+<li>Run $V_q^*(x,st_{q-1},z)$ to obtain $st_q$</li>
+<li>Run $V^*$ with $st_q$ to obtain final output</li>
+</ol>
+<p>By zk , given $x,st_{q-1},z$ , $V_q^<em>(x,st_{q-1},z)\equiv M_q^</em>(x,st_{q-1}|z)$.</p>
+<p>Therefore , $Hyb_0\equiv Hyb_1$.</p>
+</li>
+<li><p>$Hyb_i$ : Change to $M^*$ after the first $q-i$ phases</p>
+<p>$Hyb_{i-1}$ : using $V^<em>_{q-i+1}$  ,  $Hyb_i$ : using $M^</em>_{q-i+1}$</p>
+<p>Therefore , $Hyb_{i-1}\equiv Hyb_i$</p>
+</li>
+<li><p>$Hyb_{q+1}$ : The execution of $M^*$ .</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Lec03-Commitment-Scheme-zk-proof-for-general-NP"><a href="#Lec03-Commitment-Scheme-zk-proof-for-general-NP" class="headerlink" title="Lec03  Commitment Scheme , zk-proof for general NP"></a>Lec03  Commitment Scheme , zk-proof for general NP</h2><h3 id="3-0-Important"><a href="#3-0-Important" class="headerlink" title="3.0 Important"></a>3.0 Important</h3><p><strong><em>In the next lecture , we re-defined commitment in a more simple way .</em></strong></p>
+<h3 id="3-1-Commitment"><a href="#3-1-Commitment" class="headerlink" title="3.1 Commitment"></a>3.1 Commitment</h3><blockquote>
+<p>Intuition : </p>
+<p>Binding : make some choice , then won’t change it . (change will be rejected)</p>
+<p>Hiding : like “safe” , until open it , not knowing the choice . (uniform distribution)</p>
+</blockquote>
+<ol>
+<li><p>Def [ <strong><em>Commitment</em></strong> ] : Three P.P.T. algorithms</p>
 <ul>
-<li><span class="math inline">\(Gen(1^\kappa)\to pp\)</span> ( public
-parameter )</li>
-<li><span class="math inline">\(Commit_{pp}(m,r)\to
-(c,aux)\)</span></li>
-<li><span
-class="math inline">\(Verify_{pp}(m,c,aux)\to\{Accept,Reject\}\)</span></li>
+<li>$Gen(1^\kappa)\to pp$ ( public parameter )</li>
+<li>$Commit_{pp}(m,r)\to (c,aux)$</li>
+<li>$Verify_{pp}(m,c,aux)\to\{Accept,Reject\}$ </li>
 </ul>
 <p>Satisfying properties :</p>
 <ul>
-<li><strong><em>Hiding</em></strong> : <span
-class="math inline">\(\forall m,m&#39;\)</span> , the following
-distributions are identical/statistically
-indistinguishable/computationally indistinguishable</li>
+<li><strong><em>Hiding</em></strong> : $\forall m,m’$ , the following distributions are identical/statistically indistinguishable/computationally indistinguishable</li>
 </ul>
-<p><span class="math display">\[
-Dist\{pp\gets Gen(1^\kappa),(c,aux)\gets Commit_{pp}(m,r) : (pp,c)\}
-\]</span></p>
-<p><span class="math display">\[
-Dist\{pp\gets Gen(1^\kappa),(c,aux)\gets Commit_{pp}(m&#39;,r) :
-(pp,c)\}
-\]</span></p>
-<ul>
-<li><p><strong><em>Binding</em></strong> : <span
-class="math inline">\(\forall m\neq m&#39;\)</span> , <span
-class="math inline">\(\forall pp\gets Gen(1^\kappa)\)</span> ,</p>
-<p><strong><em>Perfect Binding</em></strong> : <span
-class="math display">\[
-\{c|(c,aux)\gets Commit_{pp}(m,r)\}\cap\{c|(c,aux)\gets
-Commit_{pp}(m&#39;,r)\}=\varnothing
-\]</span> <strong><em>Computationally Binding</em></strong> : <span
-class="math inline">\(\forall P^*\)</span> in P.P.T.</p></li>
-</ul></li>
+<script type="math/tex; mode=display">
+Dist\{pp\gets Gen(1^\kappa),(c,aux)\gets Commit_{pp}(m,r) : (pp,c)\}</script><script type="math/tex; mode=display">
+Dist\{pp\gets Gen(1^\kappa),(c,aux)\gets Commit_{pp}(m',r) : (pp,c)\}</script><ul>
+<li><p><strong><em>Binding</em></strong> : $\forall m\neq m’$ , $\forall pp\gets Gen(1^\kappa)$ , </p>
+<p><strong><em>Perfect Binding</em></strong> :</p>
+<script type="math/tex; mode=display">
+\{c|(c,aux)\gets Commit_{pp}(m,r)\}\cap\{c|(c,aux)\gets Commit_{pp}(m',r)\}=\varnothing</script><p><strong><em>Computationally Binding</em></strong> : $\forall P^*$ in P.P.T.  </p>
+</li>
+</ul>
+</li>
 </ol>
-<p><span class="math display">\[
-\small{\Pr\{pp\gets Gen(1^\kappa) , (c,m,aux,m&#39;,aux&#39;)\gets
-P^*(pp) :
-Verify_{pp}(c,m,aux)=Verify(c,m&#39;,aux&#39;)=Accept\}&lt;\epsilon}
-\]</span></p>
-<ol start="2" type="1">
-<li><p>Open Commitment ( implement <span
-class="math inline">\(Verify_{pp}\)</span> )</p>
-<p>One general way : let <span class="math inline">\(aux=r\)</span></p>
-<p>Verify checks whether <span
-class="math inline">\((c,aux)=Commit_{pp}(m,r=aux)\)</span></p>
+<script type="math/tex; mode=display">
+\small{\Pr\{pp\gets Gen(1^\kappa) , (c,m,aux,m',aux')\gets P^*(pp) : Verify_{pp}(c,m,aux)=Verify(c,m',aux')=Accept\}<\epsilon}</script><ol>
+<li><p>Open Commitment ( implement $Verify_{pp}$ )</p>
+<p>One general way : let $aux=r$ </p>
+<p>Verify checks whether $(c,aux)=Commit_{pp}(m,r=aux)$ </p>
 <blockquote>
 <p>There exists faster Verify for some specific problems.</p>
-</blockquote></li>
+</blockquote>
+</li>
 <li><p>Note : hiding and binding are incompatible</p>
-<p>hiding : <span class="math inline">\(c\)</span> can from different
-<span class="math inline">\(m\)</span></p>
-<p>binding : <span class="math inline">\(c\)</span> cannot from
-different <span class="math inline">\(m\)</span></p></li>
+<p>hiding : $c$ can from different $m$</p>
+<p>binding : $c$ cannot from different $m$</p>
+</li>
 </ol>
-<h3 id="perfect-binding-computationally-hiding-commitment">3.2 Perfect
-Binding &amp; Computationally Hiding Commitment</h3>
-<ol type="1">
+<h3 id="3-2-Perfect-Binding-amp-Computationally-Hiding-Commitment"><a href="#3-2-Perfect-Binding-amp-Computationally-Hiding-Commitment" class="headerlink" title="3.2 Perfect Binding &amp; Computationally Hiding Commitment"></a>3.2 Perfect Binding &amp; Computationally Hiding Commitment</h3><ol>
 <li><p>DDH assumption</p>
-<p><span class="math inline">\(G=\braket g\)</span> , <span
-class="math inline">\(|g|=p\)</span> , <span class="math inline">\(p\sim
-\kappa\)</span> , The following distributions are computationally
-indistinguishable <span class="math display">\[
-Dist\{a,b\gets \mathbb Z_p :(g,g^a,g^b,g^{ab})\}
-\]</span></p>
-<p><span class="math display">\[
-Dist\{a,b,c\gets\mathbb Z_p:(g,g^a,g^b,g^c)\}
-\]</span></p></li>
+<p>$G=\braket g$ , $|g|=p$ , $p\sim \kappa$ , The following distributions are computationally indistinguishable</p>
+<script type="math/tex; mode=display">
+Dist\{a,b\gets \mathbb Z_p :(g,g^a,g^b,g^{ab})\}</script><script type="math/tex; mode=display">
+Dist\{a,b,c\gets\mathbb Z_p:(g,g^a,g^b,g^c)\}</script></li>
 <li><p>Construction</p>
-<p>Suppose that <span class="math inline">\(m\in G\)</span> <span
-class="math display">\[
-Gen(1^\kappa)\to(G,p,g)
-\]</span></p>
-<p><span class="math display">\[
-Commit_{pp}(m,(a,b))\to c=(g^a,g^b,mg^{ab}),aux=(a,b)
-\]</span></p>
-<p><span class="math display">\[
-Verify_{pp}(c,m,aux):\text{check }c_1=g^a\land c_2=g^b\land c_3=g^{ab}
-\]</span></p></li>
+<p>Suppose that $m\in G$ </p>
+<script type="math/tex; mode=display">
+Gen(1^\kappa)\to(G,p,g)</script><script type="math/tex; mode=display">
+Commit_{pp}(m,(a,b))\to c=(g^a,g^b,mg^{ab}),aux=(a,b)</script><script type="math/tex; mode=display">
+Verify_{pp}(c,m,aux):\text{check }c_1=g^a\land c_2=g^b\land c_3=g^{ab}</script></li>
 <li><p>Perfect Binding</p>
-<p>For <span class="math inline">\(c=(c_1,c_2,c_3)\)</span> , <span
-class="math inline">\(\exists \ \)</span> unique <span
-class="math inline">\(a,b\)</span> , s.t. <span
-class="math inline">\(c_1=g^a,c_2=g^b\)</span> .</p>
-<p>Therefore , <span class="math inline">\(m=\frac{c_3}{g^{ab}}\)</span>
-, which is uniquely determined</p></li>
-<li><p>Computationally Hiding [Prove by Hybrid Proof]</p>
-<p>We want to prove that <span class="math display">\[
-\{a,b\gets \mathbb Z_p:(g^a,g^b,mg^{ab})\}\sim \{a,b\gets \mathbb
-Z_p:(g^a,g^b,m&#39;g^{ab})\}
-\]</span></p>
-<ol start="0" type="1">
-<li><span class="math inline">\(Hyb_0\)</span> : <span
-class="math inline">\(a,b\gets \mathbb Z_p
-:(g^a,g^b,mg^{ab})\)</span></li>
-<li><span class="math inline">\(Hyb_1\)</span> : <span
-class="math inline">\(a,b,c\gets \mathbb
-Z_p:(g^a,g^b,mg^c)\)</span></li>
-<li><span class="math inline">\(Hyb_2\)</span> : <span
-class="math inline">\(a,b,c\gets \mathbb
-Z_p:(g^a,g^b,m&#39;g^c)\)</span>\</li>
-<li><span class="math inline">\(Hyb_3\)</span> : <span
-class="math inline">\(a,b,c\gets \mathbb
-Z_p:(g^a,g^b,m&#39;g^{ab})\)</span></li>
+<p>For $c=(c_1,c_2,c_3)$ , $\exists  $ unique $a,b$ , s.t. $c_1=g^a,c_2=g^b$ . </p>
+<p>Therefore , $m=\frac{c_3}{g^{ab}}$ , which is uniquely determined</p>
+</li>
+<li><p>Computationally Hiding  [Prove by Hybrid Proof]</p>
+<p>We want to prove that </p>
+<script type="math/tex; mode=display">
+\{a,b\gets \mathbb Z_p:(g^a,g^b,mg^{ab})\}\sim \{a,b\gets \mathbb Z_p:(g^a,g^b,m'g^{ab})\}</script><ol>
+<li>$Hyb_0$ : $a,b\gets \mathbb Z_p :(g^a,g^b,mg^{ab})$</li>
+<li>$Hyb_1$ : $a,b,c\gets \mathbb Z_p:(g^a,g^b,mg^c)$</li>
+<li>$Hyb_2$ : $a,b,c\gets \mathbb Z_p:(g^a,g^b,m’g^c)$\\</li>
+<li>$Hyb_3$ : $a,b,c\gets \mathbb Z_p:(g^a,g^b,m’g^{ab})$</li>
 </ol>
-<p><span class="math display">\[
-Hyb_0\sim Hyb_1\equiv Hyb_2\sim Hyb_3
-\]</span></p></li>
+<script type="math/tex; mode=display">
+Hyb_0\sim Hyb_1\equiv Hyb_2\sim Hyb_3</script></li>
 </ol>
-<h3 id="computationally-binding-perfect-hiding-commitment">3.3
-Computationally Binding &amp; Perfect Hiding Commitment</h3>
-<ol type="1">
-<li><p>Discrete Log Assumption</p>
-<p><span class="math inline">\(G=\braket{g}\)</span> , <span
-class="math inline">\(|g|=p\)</span> . <span
-class="math inline">\(\forall A\)</span> in P.P.T. , <span
-class="math display">\[
-\Pr\{a\gets \mathbb Z_p:A(G,p,g,g^a)=a\}&lt;\epsilon
-\]</span></p></li>
+<h3 id="3-3-Computationally-Binding-amp-Perfect-Hiding-Commitment"><a href="#3-3-Computationally-Binding-amp-Perfect-Hiding-Commitment" class="headerlink" title="3.3 Computationally Binding &amp; Perfect Hiding Commitment"></a>3.3 Computationally Binding &amp; Perfect Hiding Commitment</h3><ol>
+<li><p>Discrete Log Assumption </p>
+<p>$G=\braket{g}$ , $|g|=p$ . $\forall A$ in P.P.T. , </p>
+<script type="math/tex; mode=display">
+\Pr\{a\gets \mathbb Z_p:A(G,p,g,g^a)=a\}<\epsilon</script></li>
 <li><p>Construction</p>
-<p>Suppose that <span class="math inline">\(m\in \mathbb Z_p\)</span>
-<span class="math display">\[
-Gen(1^\kappa)\to (G,p,g,h=g^a)
-\]</span> <span class="math inline">\(a\gets \mathbb Z_p\)</span> , and
-we need to "forget" <span class="math inline">\(a\)</span> . <span
-class="math display">\[
-Commit_{pp}(m,r):r\gets \mathbb Z_p,c=g^rh^m,aux=r
-\]</span></p>
-<p><span class="math display">\[
-Verify_{pp}(c,m,aux):\text{ check } c=g^{aux}h^m
-\]</span></p></li>
+<p>Suppose that $m\in \mathbb Z_p$ </p>
+<script type="math/tex; mode=display">
+Gen(1^\kappa)\to (G,p,g,h=g^a)</script><p>$a\gets \mathbb Z_p$ , and we need to “forget” $a$ .</p>
+<script type="math/tex; mode=display">
+Commit_{pp}(m,r):r\gets \mathbb Z_p,c=g^rh^m,aux=r</script><script type="math/tex; mode=display">
+Verify_{pp}(c,m,aux):\text{ check } c=g^{aux}h^m</script></li>
 <li><p>Perfect Hiding</p>
-<p><span class="math inline">\(c=g^rh^m\)</span> , which is the same
-distribution as <span class="math inline">\(g^r\)</span> , since <span
-class="math inline">\(r\)</span> is random .</p></li>
+<p>$c=g^rh^m$ , which is the same distribution as $g^r$ , since $r$ is random .</p>
+</li>
 <li><p>Computationally Binding</p>
-<p>Suppose that we have P.P.T. <span class="math inline">\(A\)</span>
-that <span class="math inline">\(A(G,p,g,h)\to
-(c,m,aux,m&#39;,aux&#39;)\)</span> , s.t. <span class="math display">\[
-c=g^{aux}h^m=g^{aux&#39;}h^{m&#39;}
-\]</span> Therefore : <span class="math display">\[
-aux+am=aux&#39;+am&#39;
-\]</span> Therefore : <span class="math display">\[
-a=\frac{aux-aux&#39;}{m&#39;-m}
-\]</span> which contradicts with Discrete Log assumption</p></li>
-<li><p>How to generate <span class="math inline">\(h=g^a\)</span></p>
+<p>Suppose that we have P.P.T. $A$ that $A(G,p,g,h)\to (c,m,aux,m’,aux’)$ , s.t. </p>
+<script type="math/tex; mode=display">
+c=g^{aux}h^m=g^{aux'}h^{m'}</script><p>Therefore : </p>
+<script type="math/tex; mode=display">
+aux+am=aux'+am'</script><p>Therefore :</p>
+<script type="math/tex; mode=display">
+a=\frac{aux-aux'}{m'-m}</script><p>which contradicts with Discrete Log assumption</p>
+</li>
+<li><p>How to generate $h=g^a$</p>
 <ul>
 <li><p>Generate by Sender ? NO</p>
-<p>knows <span class="math inline">\(a\)</span> , then <span
-class="math inline">\(c=g^{r+am}\)</span> . Sender can choose proper
-<span class="math inline">\(r\)</span> to reconstruct <span
-class="math inline">\(m\)</span> .</p></li>
+<p>knows $a$ , then $c=g^{r+am}$ . Sender can choose proper $r$ to reconstruct $m$ . </p>
+</li>
 <li><p>Generate by Receiver ? YES</p>
-<p>knows <span class="math inline">\(a\)</span> not affect
-hiding</p></li>
+<p>knows $a$ not affect hiding</p>
+</li>
 </ul>
 <blockquote>
 <p>perfect binding + computationally hiding : Sender runs Gen</p>
 <p>computationally binding + perfect hiding : Receiver runs Gen</p>
-</blockquote></li>
+</blockquote>
+</li>
 </ol>
-<h3 id="general-np-problem">3.4 General NP Problem</h3>
-<ol type="1">
+<h3 id="3-4-General-NP-Problem"><a href="#3-4-General-NP-Problem" class="headerlink" title="3.4 General NP Problem"></a>3.4 General NP Problem</h3><ol>
 <li><p>NP , NPC</p>
-<ol type="1">
-<li><p>Def [ <strong><em>NP</em></strong> ] : <span
-class="math inline">\(L\in NP\)</span> if <span
-class="math inline">\(\exists\ \)</span> poly-time algorithm <span
-class="math inline">\(D\)</span> ,</p>
-<p><span class="math inline">\(x\in L\Leftrightarrow \exists w\ ,\
-D(x,w)=1\)</span></p>
-<p><span class="math inline">\(w\)</span> is called the proof .</p></li>
-<li><p>Def [ <strong><em>NP-Complete</em></strong> ] : <span
-class="math inline">\(L&#39;\in NP-Complete\)</span> if <span
-class="math inline">\(\forall L\in NP\)</span> , <span
-class="math inline">\(\exists\ \)</span> poly-time algorithm <span
-class="math inline">\(Q\)</span> , s.t.</p>
-<p><span class="math inline">\(Q(x,w)=(x&#39;,w&#39;)\)</span> , and
-<span class="math inline">\(x\in L\equiv x&#39;\in L&#39;\)</span> .</p>
-<p>i.e. all NP problems can be poly-reducible to NP-Complete
-Problem</p></li>
-</ol></li>
-<li><p>Graph Hamiltonicity</p>
-<ol type="1">
-<li><p>Def [ <strong><em>Hamiltonian</em></strong> ] : A graph <span
-class="math inline">\(G\)</span> is
-<strong><em>Hamiltonian</em></strong> , if there exists a cycle visiting
-each node exactly once.</p></li>
-<li><p>Construct zk-proof for Graph Hamiltonicity</p>
-<ol type="1">
-<li><p>Like GI :</p>
-<p>Step 1 : send <span class="math inline">\(\tilde G\)</span> , where
-<span class="math inline">\(G\sim \tilde G\)</span></p>
-<p>Step 2 : give a cycle of <span class="math inline">\(\tilde
-G\)</span> to prove its Hamiltonian</p>
-<p>Traditional ways : we cannot realize both</p></li>
-<li><p>Protocol with commitment</p></li>
+<ol>
+<li><p>Def [ <strong><em>NP</em></strong> ] : $L\in NP$ if $\exists $ poly-time algorithm $D$ , </p>
+<p>$x\in L\Leftrightarrow \exists w , D(x,w)=1$</p>
+<p>$w$ is called the proof .</p>
+</li>
+<li><p>Def [ <strong><em>NP-Complete</em></strong> ] : $L’\in NP-Complete$ if $\forall L\in NP$ , $\exists $ poly-time algorithm $Q$ , s.t.</p>
+<p>$Q(x,w)=(x’,w’)$ , and $x\in L\equiv x’\in L’$ .</p>
+<p>i.e. all NP problems can be poly-reducible to NP-Complete Problem</p>
+</li>
 </ol>
-<p>Commitment of a graph <span class="math inline">\(G\)</span> : <span
-class="math inline">\(\forall i,j\in [n]\)</span> , <span
-class="math display">\[
+</li>
+<li><p>Graph Hamiltonicity</p>
+<ol>
+<li><p>Def [ <strong><em>Hamiltonian</em></strong> ] : A graph $G$ is <strong><em>Hamiltonian</em></strong> , if there exists a cycle visiting each node exactly once.</p>
+</li>
+<li><p>Construct zk-proof for Graph Hamiltonicity</p>
+<ol>
+<li><p>Like GI :</p>
+<p>Step 1 : send $\tilde G$ , where $G\sim \tilde G$</p>
+<p>Step 2 : give a cycle of $\tilde G$ to prove its Hamiltonian</p>
+<p>Traditional ways : we cannot realize both</p>
+</li>
+<li><p>Protocol with commitment</p>
+</li>
+</ol>
+<p>Commitment of a graph $G$ : $\forall i,j\in [n]$ ,</p>
+<script type="math/tex; mode=display">
 (c_{i,j},aux_{i,j})\gets\begin{cases}
-Commit_{pp}(1,r)&amp;(i,j)\in E\\
-Commit_{pp}(0,r)&amp;(i,j)\notin E
-\end{cases}
-\]</span></p>
-<table>
-<colgroup>
-<col style="width: 28%" />
-<col style="width: 46%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Prover</th>
-<th style="text-align: center;"></th>
-<th style="text-align: center;">Verifier</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\pi\gets
-S_n\)</span> , <span class="math inline">\(\tilde
-G:=\pi(G)\)</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Commit <span
-class="math inline">\(\tilde G\)</span> :</td>
-<td style="text-align: center;">---<span
-class="math inline">\(c_{i,j}\)</span>--&gt;</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: center;">&lt;--<span
-class="math inline">\(b\)</span>---</td>
-<td style="text-align: center;"><span class="math inline">\(b\gets
-\{0,1\}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">If <span
-class="math inline">\(b=0\)</span></td>
-<td style="text-align: center;">---<span
-class="math inline">\(\pi,m_{i,j},aux_{i,j}\)</span>--&gt;</td>
-<td style="text-align: center;">Checks <span
-class="math inline">\(\tilde G=\pi(G)\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">If <span
-class="math inline">\(b=1\)</span></td>
-<td style="text-align: center;">---cycle for <span
-class="math inline">\(\tilde G\)</span> , <span
-class="math inline">\(m_{i,j},aux_{i,j}\)</span> in cycle---&gt;</td>
-<td style="text-align: center;">Checks cycle and edges existence</td>
-</tr>
-</tbody>
-</table></li>
-</ol></li>
+Commit_{pp}(1,r)&(i,j)\in E\\
+Commit_{pp}(0,r)&(i,j)\notin E
+\end{cases}</script><p>|               Prover                |                                                            |             Verifier             |<br>| :————————————————-: | :————————————————————————————: | :———————————————: |<br>| $\pi\gets S_n$ , $\tilde G:=\pi(G)$ |                                                            |                                  |<br>|         Commit $\tilde G$ :         |                      —-$c_{i,j}$—&gt;                       |                                  |<br>|                                     |                         &lt;—$b$—-                          |         $b\gets \{0,1\}$         |<br>|              If $b=0$               |               —-$\pi,m_{i,j},aux_{i,j}$—&gt;                |     Checks $\tilde G=\pi(G)$     |<br>|              If $b=1$               | —-cycle for $\tilde G$ , $m_{i,j},aux_{i,j}$ in cycle—-&gt; | Checks cycle and edges existence |</p>
+</li>
+</ol>
+</li>
 </ol>
 
     </div>
@@ -889,13 +690,13 @@ class="math inline">\(m_{i,j},aux_{i,j}\)</span> in cycle---&gt;</td>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">19k</span>
+    <span title="站点总字数">22k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:10</span>
+    <span title="站点阅读时长">1:22</span>
   </span>
 </div>
 <div class="busuanzi-count">

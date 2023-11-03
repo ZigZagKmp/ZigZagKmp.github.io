@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar/avatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zigzagkmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Probability and Statistics 4">
+<meta property="og:url" content="https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-4/index.html">
+<meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-03T02:20:59.000Z">
+<meta property="article:modified_time" content="2023-11-03T02:28:40.987Z">
+<meta property="article:author" content="ZigZagKmp">
+<meta property="article:tag" content="实分析-积分性质">
+<meta property="article:tag" content="实分析-积分收敛定理">
+<meta property="article:tag" content="概率论-期望">
+<meta property="article:tag" content="概率论-期望-期望性质">
+<meta property="article:tag" content="概率论-期望-换元公式">
+<meta property="article:tag" content="实分析-测度积">
+<meta property="article:tag" content="实分析-Fubini定理">
+<meta property="article:tag" content="概率论-独立性">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-4/","path":"2023/11/03/Probability-and-Statistics-4/","title":"Probability and Statistics 4"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Probability and Statistics 4 | ZigZagKmp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZigZagKmp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Mainly for study materials</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-Background-in-Probability"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 Background in Probability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Properties-of-Integration"><span class="nav-number">1.1.</span> <span class="nav-text">1.5 Properties of Integration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-Expected-Value"><span class="nav-number">1.2.</span> <span class="nav-text">1.6 Expected Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-Product-Measure-and-Fubini%E2%80%99s-Theorem"><span class="nav-number">1.3.</span> <span class="nav-text">1.7 Product Measure and Fubini’s Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Laws-of-Large-Numbers"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2 Laws of Large Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Independence"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Independence</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZigZagKmp"
+      src="/images/avatar/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ZigZagKmp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ZigZagKmp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ZigZagKmp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zigzagkmp@qq.com" title="E-Mail → mailto:zigzagkmp@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/35871" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;35871" rel="noopener me" target="_blank"><i class="fa fa-code fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/ZigZagKmp/" title="cnblogs → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ZigZagKmp&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-blog fa-fw"></i>cnblogs</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com" rel="noopener" target="_blank">Github</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;www.tsinghua.edu.cn" rel="noopener" target="_blank">THU</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://iiis.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;iiis.tsinghua.edu.cn" rel="noopener" target="_blank">IIIS</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.luogu.com.cn/" title="https:&#x2F;&#x2F;www.luogu.com.cn" rel="noopener" target="_blank">Luogu</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/08/Probability-and-Statistics-2/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-08</time>
+        <br>
+      Probability and Statistics 2
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/16/Probability-and-Statistics-3/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-16</time>
+        <br>
+      Probability and Statistics 3
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/08/Probability-and-Statistics-1/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-08</time>
+        <br>
+      Probability and Statistics 1
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/07/%E7%AD%94%E7%96%91%E5%9D%8A-%E5%BE%AE%E7%A7%AF%E5%88%86-%E8%B6%A3%E9%A2%98%E8%8B%A5%E5%B9%B2/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-07</time>
+        <br>
+      答疑坊 微积分 趣题若干
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.jpg">
+      <meta itemprop="name" content="ZigZagKmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZigZagKmp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Probability and Statistics 4 | ZigZagKmp's Blog">
+      <meta itemprop="description" content="[2023 秋] 概率与统计 第四课课堂笔记 / [2023 Fall] Probability and Statistics Lecture 4 Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Probability and Statistics 4
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-11-03 10:20:59 / 修改时间：10:28:40" itemprop="dateCreated datePublished" datetime="2023-11-03T10:20:59+08:00">2023-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E4%B8%8E%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率与统计</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>12 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">[2023 秋] 概率与统计 第四课课堂笔记 / [2023 Fall] Probability and Statistics Lecture 4 Notes</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-1-Background-in-Probability"><a href="#Chapter-1-Background-in-Probability" class="headerlink" title="Chapter 1 Background in Probability"></a>Chapter 1 Background in Probability</h2><h3 id="1-5-Properties-of-Integration"><a href="#1-5-Properties-of-Integration" class="headerlink" title="1.5 Properties of Integration"></a>1.5 Properties of Integration</h3><ol>
+<li><p>Holder’s Inequality</p>
+<ol>
+<li><p>Def [ <strong><em>$L_p$ Norm</em></strong> ] : For $p\ge 1$ , we can define $L_p$ Norm :  $||f||_p=\left(\int |f|^p d\mu\right)^{1/p}$</p>
+</li>
+<li><p>THM [ <strong><em>Holder’s Inequality</em></strong> ] : $\forall p,q&gt;1$ , s.t. $\frac{1}{p}+\frac{1}{q}=1$ , then</p>
+<script type="math/tex; mode=display">
+\int |fg|d\mu \le ||f||_p||g||_q</script></li>
+<li><p>Proof </p>
+<blockquote>
+<p>Lemma : If $p,q&gt;1,\frac{1}{p}+\frac{1}{q}=1$ , then $\forall x,y\ge 0,xy\le \frac{1}{p}x^p+\frac{1}{q}y^q$ .</p>
+<p>Proof : </p>
+<p>Fix $y$ , let $f(x)=\frac{1}{p}x^p-yx+\frac{1}{q}y^q$ , so $f’(x)=x^{p-1}-y$ </p>
+<p>Therefore , $f(x)_{\min}=f(x=y^{1/(p-1)})=0$ , so $f(x)\ge 0$ . $\Box$</p>
+</blockquote>
+<p>For either $||f||_p=0$ or $||g||_q=0$ , that means $f=0$ a.e. or $g=0$ a.e. , so $\int |fg|d\mu=0$ </p>
+<p>When $||f||_p\neq 0,||g||_q\neq 0$  , we can suppose that $||f||_p=||g||_q=1$ without loss of generality .</p>
+<p>Therefore , using the lemma , </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\int |fg|d\mu&\le \int \left(\frac{1}{p}|f|^p+\frac{1}{q}|g|^q\right)d\mu\\
+&=\frac{1}{p}||f||_p^p+\frac{1}{q}||g||_q^q\\
+&=\frac{1}{p}+\frac{1}{q}\\
+&=1\\
+&=||f||_p||g||_q
+\end{aligned}</script><blockquote>
+<p>Remark : Here it is necessary to suppose $||f||_p=||g||_q=1$ , or otherwise we will get </p>
+<script type="math/tex; mode=display">
+\frac{1}{p}||f||_p^p+\frac{1}{q}||g||_q^q\ge ||f||_p||g||_q</script><p>Which is not what we want . </p>
+<p>But exactly when $||f||_p=||g||_q=1$ , the above inequality is equality .</p>
+</blockquote>
+</li>
+<li><p>Remark : When $p=q=2$ , Holder’s Inequality becomes <strong><em>Cauchy-Schwarz Inequality</em></strong>.</p>
+<script type="math/tex; mode=display">
+\left(\int |fg|d\mu\right)^2\le \left(\int f^2d\mu\right)\left(\int g^2d\mu\right)</script></li>
+</ol>
+</li>
+<li><p>Convergence of functions</p>
+<ol>
+<li><p>Def [ <strong><em>converge a.e.</em></strong> ] : $f_1,f_2,\cdots$ is a sequence of functions . If $f_n$ <strong><em>converge to $f$ almost everywhere</em></strong> , it means that </p>
+<script type="math/tex; mode=display">
+\mu\left(\left\{w:\lim_{n\to\infty} f_n(w)\neq f(w)\right\}\right)=0</script></li>
+<li><p>Def [ <strong><em>converge in measure</em></strong> ] : $f_1,f_2,\cdots$ is a sequence of functions . If $f_n$ <strong><em> converge to $f$ in measure</em></strong> , it means that </p>
+<script type="math/tex; mode=display">
+\forall \epsilon>0 , \lim_{n\to\infty}\mu\left(\left\{w:|f_n(w)-f(w)|\ge \epsilon\right\}\right)=0</script></li>
+<li><p>Def [ <strong><em>almost uniform convergence</em></strong> ] : $f_1,f_2,\cdots$ is a sequence of functions . Suppose $f:E\to \mathbb R$ is a function . If $f_n$ <strong><em>converge to $f$ almost uniformly</em></strong> , it means that</p>
+<p>$\forall \epsilon_1&gt;0$ , there exists a measurable set $D\subseteq E$ such that $\mu(D)&lt;\epsilon_1$ , such that </p>
+<script type="math/tex; mode=display">
+\forall \epsilon>0,\exists N>0,\forall n>N,x\in E\backslash D,|f_n(x)-f(x)|<\epsilon</script></li>
+<li><p>THM [ <strong><em>Egovov’s THM</em></strong> ] : If the support set $E$ of $f$ with $\mu(E)&lt;\infty$ , then </p>
+<p>$f_n\to f$ a.e. $\Rightarrow$ $f_n\to f$ almost uniformly</p>
+</li>
+<li><p>THM : $f_n\to f$ almost uniformly $\Rightarrow$ $f_n\to f$ in measure</p>
+</li>
+<li><p>Remarks</p>
+<ol>
+<li><p>the difference between convergences</p>
+<ul>
+<li>a.e. : 相当于逐点收敛，但每个点的收敛速度可能不一样</li>
+<li>uniform : 相当于一致收敛，趋于无穷时存在的 $N$ 只和 $\epsilon$ 有关（而不依赖于 $w$ ），相当于衡量一致的收敛速度</li>
+<li>in measure : 类似于一致收敛，但可以允许不收敛的地方依赖 $n$ </li>
+</ul>
+<p>converge almost uniform 强于 converge in measure</p>
+<p>在 $\mu(E)&lt;\infty$ 时，converge a.e. 强于 converge almost uniformly</p>
+</li>
+<li><p>$\mu(E)=\infty$ , Egovov’s THM 可能不成立</p>
+<p>$(\mathbb R,\mathcal R,\lambda)$ , $f_n(x)=\mathbb 1_{[n,n+1]}(x)$ </p>
+<p>$f_n\to 0$ a.e. , but let $\epsilon=\frac{1}{2}$ , $\mu(\{w:|f_n(w)|&gt;\frac{1}{2}\})=1$ </p>
+</li>
+<li><p>Convergence of random variables</p>
+<p>$\mu$ : probability measure , $f$ , $f_1,\cdots$ random variables</p>
+<p>Def [ <strong><em>converge a.s.</em></strong> ] : $f_n\to f$ a.e. , then we say $f_n$ <strong><em>converges to $f$ almost surely</em></strong> .</p>
+<p>Def [ <strong><em>converge in probability</em></strong> ] : $f_n\to f$ in measure , then we say $f_n$ <strong><em>converges to $f$ in probability</em></strong> , denote as $f_n\xrightarrow{P} f$.</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Bounded Convergence Theorem</p>
+<ol>
+<li><p>THM [ <strong><em>Bounded Convergence Theorem (BCT)</em></strong> ] </p>
+<p>Condition : </p>
+<p>(i)  $E\in \mathcal F$ , s.t. $\mu(E)&lt;\infty$ and $\forall n\ge 1,f_n(E^c)=0$ .</p>
+<p>(ii) $\exists M&gt;0$ , $\forall n\ge 1$ , $|f_n(x)|\le M$</p>
+<p>(iii) $f_n\to f$ in measure</p>
+<p>Result : </p>
+<script type="math/tex; mode=display">
+\lim_{n\to\infty}\int f_n d\mu=\int fd\mu</script></li>
+<li><p>Proof</p>
+<p>$\forall \epsilon&gt;0$ , let $G_n=\{x:|f_n(x)-f(x)|&lt;\epsilon\}$ , let $B_n=\Omega-G_n$ </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\quad\left|\int f_nd\mu-\int fd\mu\right|\\
+&\le \int |f_n-f|d\mu\\
+&=\int_{G_n}|f_n-f|d\mu+\int_{B_n\cap \{|f|\le M+1\}}|f_n-f|d\mu+\int_{B_n\cap \{|f|>M+1\}}|f_n-f|d\mu\\
+&\le \epsilon \mu(G_n)+3M\mu(B_n)+\int_{\{|f|\ge M+\frac{1}{2}\}} (|f|+M)d\mu\\
+&\le \epsilon \mu(G_n)+3M\mu(B_n)+M\mu\left\{|f|\ge M+\frac{1}{2}\right\}+\int_{\{|f|\ge M+\frac{1}{2}\}}|f|d\mu
+\end{aligned}</script><p>Since $f_n\to f$ in measure , $\mu(B_n)\to 0$ as $n\to \infty$ </p>
+<p>If $\mu\{|f|\ge M+\frac{1}{2}\}\neq 0$ ,then as $n\to\infty$ , $\mu\{x:|f_n(x)-f(x)|\ge \frac{1}{2}\} \ge \mu\{|f|\ge M+\frac{1}{2}\}\not\to 0$ , contradict with $f_n\to f$ in measure </p>
+<p>$\int_{\{|f|\ge M+\frac{1}{2}\}}|f|d\mu=0$ ( though I don’t know how to prove it , maybe here is a bug)</p>
+</li>
+</ol>
+</li>
+<li><p>Fatou’s Lemma</p>
+<ol>
+<li><p>Lemma [ <strong><em>Fatou’s Lemma</em></strong> ] : If $f_n\ge 0$ , then </p>
+<script type="math/tex; mode=display">
+\liminf_{n\to\infty} \int f_nd\mu\ge \int \left(\liminf_{n\to\infty}f_n\right)d\mu</script></li>
+<li><p>Proof</p>
+<p>Let $g_n(x)=\inf_{m\ge n} f_m(x)$ , so $f_n(x)\ge g_n(x)$ . And as $n\uparrow\infty$ , $g_n(x)\uparrow g(x)=\liminf\limits_{n\to\infty} f_n(x)$ .</p>
+<p>Therefore , we only need to prove that </p>
+<script type="math/tex; mode=display">
+\lim_{n\to\infty} \int g_nd\mu \ge \int d\mu</script><p>Consider $E_m\uparrow \Omega$ , $E_1\subseteq E_2\subseteq\cdots$ , and $\bigcup_{m=1}^{\infty} E_i=\Omega$ , then</p>
+<p>$\forall m&gt;0$ , $m$ fixed , $(g_n\land m)\mathbb 1_{E_m}\to (g\land m)\mathbb 1_{E_m}$ a.e. </p>
+<p>Therefore , for any fixed $m&gt;0$ , </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\quad \lim_{n\to\infty}\int g_nd\mu\\
+&\ge \lim_{n\to\infty} \int_{E_m}(g_n\land m)d\mu\\
+&=\int_{E_m}(g\land m)d\mu\\
+\end{aligned}</script><p>Therefore , </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\quad \lim_{n\to\infty}\int g_nd\mu\\
+&\ge \sup_{m>0}\int_{E_m}(g\land m)d\mu\\
+&=\lim_{m\to\infty} \int_{E_m}(g\land m)d\mu\\
+&=\int gd\mu
+\end{aligned}</script></li>
+</ol>
+</li>
+<li><p>Monotone Convergence Theorem</p>
+<ol>
+<li><p>THM [ <strong><em>Monotone Convergence Theorem (MCT)</em></strong> ] </p>
+<p>Condition :</p>
+<p>(i) $f_n\ge 0$</p>
+<p>(ii) $f_n\uparrow f$ a.e.</p>
+<p>Result : </p>
+<script type="math/tex; mode=display">
+\int f_nd\mu \uparrow \int fd\mu</script></li>
+<li><p>Proof</p>
+<p>Since $f_n\uparrow f$ , $\limsup\limits_{n\to\infty} \int f_nd\mu\le \int fd\mu$.</p>
+<p>By <strong><em>Fatou’s Lemma</em></strong> ,  </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\quad \liminf_{n\to\infty}\int f_nd\mu\\
+&\ge \int \left(\liminf_{n\to\infty} f_n\right)d\mu\\
+&=\int \left(\lim_{n\to\infty} f_n\right)d\mu\\
+&=\int fd\mu
+\end{aligned}</script><p>Therefore , $\lim\limits_{n\to\infty} \int f_nd\mu=\int fd\mu$ .</p>
+</li>
+</ol>
+</li>
+<li><p>Dominated Convergence Theorem</p>
+<ol>
+<li><p>THM [ <strong><em>Dominated Convergence Theorem (DCT)</em></strong> ]</p>
+<p>Condition :</p>
+<p>(i) $f_n\to f$ a.e.</p>
+<p>(ii) There exists a function $g$ that $\forall n\ge 1,|f_n|\le g$ a.e.</p>
+<p>(iii) $g$ is integrable , i.e. $\int |g|d\mu &lt;\infty$</p>
+<p>Result :</p>
+<script type="math/tex; mode=display">
+\int f_n d\mu\to \int fd\mu</script></li>
+<li><p>Proof</p>
+<p>Since $|f_n|\le g$ , $f_n+g\ge 0$ a.e. and $-f_n+g\ge 0$ a.e.</p>
+<p>By <strong><em>Fatou’s Lemma</em></strong> , </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\liminf_{n\to\infty} \int (f_n+g)d\mu\ge \int (f+g)d\mu \quad&\Rightarrow\quad \liminf_{n\to\infty} \int f_nd\mu \ge \int fd\mu\\
+\liminf_{n\to\infty} \int (-f_n+g)d\mu\ge \int (-f+g)d\mu \quad&\Rightarrow\quad \limsup_{n\to\infty} \int f_nd\mu \le \int fd\mu\\
+\end{aligned}</script></li>
+</ol>
+</li>
+</ol>
+<h3 id="1-6-Expected-Value"><a href="#1-6-Expected-Value" class="headerlink" title="1.6 Expected Value"></a>1.6 Expected Value</h3><ol>
+<li><p>Basic concept of Expectation</p>
+<ol>
+<li><p>Def [ <strong><em>Expected Value</em></strong> ] : For $X\ge 0$ be a random variable on $(\Omega,\mathcal F,P)$ , its <strong><em>expected value</em></strong> is </p>
+<script type="math/tex; mode=display">
+E[X]=\int X dP</script><p>For general case , let $X^+=\max\{X,0\}$ , $X^-=\max\{-X,0\}$ .</p>
+<p>Define $E[X]$ when $E[X^+]&lt;\infty$ or $E[X^-]&lt;\infty$ , as $E[X]=E[X^+]-E[X^-]$ .</p>
+</li>
+<li><p>Remarks</p>
+<ol>
+<li><p>The definition of expected value is a little bit bigger than <strong><em>integrable</em></strong> , since we also define $E[X]$ when $E[X^+]=\infty$ or $E[X^-]=\infty$ . But usually this does not matter.</p>
+</li>
+<li><p>We can construct an example that $E[X]=\infty$</p>
+<p>$P(X=2^{j})=2^{-j}$ for integer $j\ge 1$ , then $E[X]=\sum_{j=1}^{\infty} 2^jP(X=2^j)=\sum_{j=1}^{\infty}1=\infty$</p>
+</li>
+<li><p>$E[X]$ is often called <strong><em>mean</em></strong> of $X$ , and denoted as $\mu$ (different from measure!).  </p>
+</li>
+</ol>
+</li>
+<li><p>Basic properties</p>
+<ol>
+<li>$E[X+Y]=E[X]+E[Y]$</li>
+<li>$E[aX+b]=aE[X]+b$</li>
+<li>If $X\ge Y$ , then $E[X]\ge E[Y]$</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Inequalities</p>
+<ol>
+<li><p>THM [ <strong><em>Jensen’s Inequality</em></strong> ] : Suppose $\varphi$ is a convex , and $E[\varphi(X)],E[X]$ exist , then</p>
+<script type="math/tex; mode=display">
+E[\varphi(X)]\ge \varphi(E[X])</script><blockquote>
+<p>Corollary :  $|E[X]|\le E[|X|]$ , $(E[X])^2\le E[X^2]$</p>
+</blockquote>
+</li>
+<li><p>THM [ <strong><em>Holder’s Inequality</em></strong> ] : If $p,q\in [1,\infty]$ , $\frac{1}{p}+\frac{1}{q}=1$ , then</p>
+<script type="math/tex; mode=display">
+E|XY|\le ||X||_p||Y||_q</script><p>Here define $||X||_r=(E[X^r])^{1/r}$ for $r\in [1,\infty)$ ,</p>
+<p>define $||X||_{\infty}=\inf\{M:P(|X|&gt;M)=0\}$  ( like the maximum )</p>
+</li>
+<li><p>THM [ <strong><em>Chebyshev’s Inequality</em></strong> ] : $\varphi :  \mathbb R\to \mathbb R$ , $\varphi\ge 0$ </p>
+<p>Let $A\in \mathcal R$ , and let $i_A=\inf\{\varphi(y):y\in A\}$ . Therefore ,</p>
+<script type="math/tex; mode=display">
+i_A P(X\in A)\le E[\varphi(X)\mathbb 1(X\in A)]\le E[\varphi(X)]</script><p>Proof :</p>
+<script type="math/tex; mode=display">
+i_A\mathbb 1(X\in A)\le \varphi(X)\mathbb 1(X\in A)\le \varphi(X)</script></li>
+<li><p>THM [ <strong><em>Chebyshev’s Inequality 2</em></strong> ] : Let $\varphi(x)=(x-\mu)^2$ , then</p>
+<script type="math/tex; mode=display">
+\Pr\{|X-\mu|\ge t\}=\frac{Var(X)}{t^2}</script></li>
+<li><p>THM [ <strong><em>Markov’s Inequality</em></strong> ] : If $X\ge 0$ a.s. then </p>
+<script type="math/tex; mode=display">
+\Pr\{X\ge t\}\le \frac{E[X]}{t}</script></li>
+</ol>
+</li>
+<li><p>Convergence</p>
+<ol>
+<li><p>THM [ <strong><em>Egovov’s Theorem</em></strong> ] : $X_1,X_2 \cdots$ is a sequence of random variables , then</p>
+<p>$X_n\to X$ a.s. $\Rightarrow$ $X_n\to X$ in probability</p>
+</li>
+<li><p>THM [ <strong><em>Bounded Convergence Theorem</em></strong> ] :</p>
+<p>Condition :</p>
+<p>(i) $X_n\to X$ a.s.</p>
+<p>(ii) $\exists M&gt;0$ , $\forall n\ge 1,|X_n|\le M$ </p>
+<p>Result : $E[X_n]\to E[X]$</p>
+</li>
+<li><p>THM [ <strong><em>Fatou’s Lemma</em></strong> ] : If $X_n\ge 0$ , then </p>
+<script type="math/tex; mode=display">
+\liminf_{n\to\infty} E[X_n]\ge E\left[\liminf_{n\to\infty} X_n\right]</script></li>
+<li><p>THM [ <strong><em>Monotone Convergence Theorem</em></strong> ] : </p>
+<p>Condition :</p>
+<p>(i) $X_n\ge 0$</p>
+<p>(ii) $X_n\uparrow X$ a.s.</p>
+<p>Result : $E[X_n]\uparrow E[X]$ a.s.</p>
+</li>
+<li><p>THM [ <strong><em>Dominated Convergence Theorem</em></strong> ] : </p>
+<p>Condition : </p>
+<p>(i) $X_n\to X$ a.s.</p>
+<p>(ii) $\exists Y$ , $\forall n\ge 1$ , $|X_n|\le Y$</p>
+<p>(iii) $E[|Y|]&lt;\infty$</p>
+<p>Result : $E[X_n]\to E[X]$</p>
+</li>
+<li><p>THM </p>
+<p>Condition : </p>
+<p>(i) $X_n\to X$ a.s.</p>
+<p>(ii) $g,h$ continuous functions</p>
+<p>(iii) $g\ge 0$ , $g(x)\to\infty$ as $|x|\to\infty$ </p>
+<p>(iv) $|h(x)|/g(x)\to 0$ as $|x|\to\infty$</p>
+<p>(v) $\exists K&gt;0$ , s.t.  $E[g(X)]\le K&lt;\infty$</p>
+<p>Result : $E[h(X_n)]\to E[h(X)]$ . </p>
+<blockquote>
+<p>Remark : similar to DCT , use $g$ to dominate $h$ </p>
+<p>Proof : see book</p>
+<p>Intuition : truncation , consider $\bar X=X\cdot \mathbb 1(|X|\le M)$ , $M$ to make $g(x)&gt;0$ .</p>
+<script type="math/tex; mode=display">
+E[h(X_n)]\to E[h(\bar X_n)]\to E[h(\bar X)]\to E[h(X)]</script></blockquote>
+</li>
+</ol>
+</li>
+<li><p>Computing Expected Value</p>
+<ol>
+<li><p>THM [ <strong><em>Change of variable formula</em></strong> ] : </p>
+<p>Condition :</p>
+<p>(i). $X$ is a random variable on $(S,\mathcal S)$ , with distribution $\mu$ ( i.e. $\mu(A)=P(X\in A)$ )</p>
+<p>(ii). $f$ is a measurable function from $(S,\mathcal S)$ to $(\mathbb R,\mathcal R)$ </p>
+<p>(iii). $f\ge 0$ or $E[|f(X)|]&lt;\infty$</p>
+<p>Result :</p>
+<script type="math/tex; mode=display">
+E[f(X)]=\int_S f(y)\mu(dy)</script><blockquote>
+<p>Remark : let $\mu=P\circ X^{-1}$ , so </p>
+<script type="math/tex; mode=display">
+\int f(X)dP=\int_S f(y)d(P\circ X^{-1})</script></blockquote>
+</li>
+<li><p>Further computation</p>
+<p>When $X$ is a continuous random variable , we can use <strong>Radon-Nikodym derivative</strong> to represent <strong>PDF</strong> , so </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+E[f(X)]&=\int_S f(y)d\mu\\
+&=\int_\mathbb R f \frac{d\mu }{d\lambda} d\lambda\\
+&=\int_{-\infty}^{\infty} f(x)p(x)dx
+\end{aligned}</script></li>
+<li><p>Momentum </p>
+<ol>
+<li><p>Def [ <strong><em>$k$-th momentum</em></strong> ] : If $k\in \mathbb N^<em>$ , then $E[X^k]$ is called the **</em>$k$-th moment of $X$<em>*</em> .</p>
+</li>
+<li><p>Def [ <strong><em>Variance</em></strong> ] : $Var(X)=E[(X-E[X])^2]$</p>
+<p>Property : $Var(X)=E[X^2]-(E[X])^2$ </p>
+</li>
+</ol>
+</li>
+<li><p>Examples</p>
+<ol>
+<li><p>Def [ <strong><em>Bernoulli random variable</em></strong> ] : $X\in \{0,1\}$ , $\begin{cases}P(X=0)&amp;=1-p\\P(X=1)&amp;=p\end{cases}$ </p>
+<p>$E[X]=p$ , $Var(X)=p(1-p)$</p>
+</li>
+<li><p>Def [ <strong><em>Poisson random variable</em></strong> ] : with parameter $\lambda$ , </p>
+<script type="math/tex; mode=display">
+P(X=k)=e^{-\lambda} \frac{\lambda^k}{k!} \quad k=0,1,2,\cdots</script><p>Property : </p>
+<script type="math/tex; mode=display">
+E[\prod_{i=0}^{k-1}(X-i)]=\lambda^k</script><p>$Var(X)=\lambda$</p>
+</li>
+<li><p>Def [ <strong><em>Geometric distribution</em></strong> ] : with success probability $p$ , </p>
+<script type="math/tex; mode=display">
+P(X=k)=p(1-p)^{k-1}</script><p>$E[X]=\frac{1}{p}$ , $Var(X)=\frac{1-p}{p^2}$ </p>
+</li>
+<li><p>Def [ <strong><em>Gaussian random variable / Normal distribution</em></strong> ] : with mean $\mu$ and variance $\sigma^2$ , </p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)</script><p>$E[X]=\mu$ , $Var[X]=\sigma^2$</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-7-Product-Measure-and-Fubini’s-Theorem"><a href="#1-7-Product-Measure-and-Fubini’s-Theorem" class="headerlink" title="1.7 Product Measure and Fubini’s Theorem"></a>1.7 Product Measure and Fubini’s Theorem</h3><ol>
+<li><p>product of measure</p>
+<ol>
+<li><p>Definition</p>
+<p>For measurable space $(X,\mathcal A,\mu_1)$ and $(Y,\mathcal B,\mu_2)$ , </p>
+<p>Let $\Omega=X\times Y=\{(x,y):x\in X,y\in Y\}$</p>
+<p>Let $\mathcal S=\{A\times B:A\in \mathcal A,B\in \mathcal B\}$ , so $\mathcal S$ is a semi-algebra since $(A\times B)^c=(A^c\times B)\cup (A\times B^c)\cup (A^c\times B^c)$ .</p>
+<p>Let $\mathcal F=\sigma(\mathcal S)$ , that is the $\sigma$-field generated by $\mathcal S$ , denote as $\mathcal F=\mathcal A\times\mathcal B$ .</p>
+</li>
+<li><p>THM [ <strong><em>measure for measurable space product</em></strong> ] :</p>
+<p>There is a unique measure $\mu$ on $\mathcal F$ , s.t. $\mu(A\times B)=\mu_1(A)\mu_2(B)$ .</p>
+<p>(*) Proof :</p>
+<p>By the property of $\sigma$-field generation , we only need to prove that :</p>
+<p>If $A\times B=+_i (A_i\times B_i)$ is a finite or countable disjoint union , then</p>
+<script type="math/tex; mode=display">
+\mu(A\times B)=\sum_{i} \mu(A_i\times B_i)</script><p>For each $x\in A$ , let $I(x)=\{i:x\in A_i\}$ , firstly consider $B=+_{i\in I(x)}B_i$ , so</p>
+<script type="math/tex; mode=display">
+\mathbb 1_A(x)\mu_2(B)=\sum_{i}\mathbb 1_{A_i}(x)\mu_2(B_i)</script><p>Integrate it with $\mu_1$ , so</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\int \mathbb 1_A(x)\mu_2(B)d\mu_1&=\int \sum_{i}\mathbb 1_{A_i}(x)\mu_2(B_i)d\mu_1\\
+\iff\quad\quad\quad\mu_1(A)\mu_2(B)&=\sum_{i}\mu_2(B_i)\int\mathbb 1_{A_i}(x)d\mu_1\\
+\iff\quad\quad\quad\mu_1(A)\mu_2(B)&=\sum_{i}\mu_1(A_i)\mu_2(B_i)\\
+\end{aligned}</script></li>
+<li><p>Remark </p>
+<ol>
+<li><p>$\mu$ is often denoted as $\mu=\mu_1\times \mu_2$</p>
+</li>
+<li><p>We can generate this result to $n$ measurable space product , so </p>
+<p>Consider measurable space $(\Omega_i,\mathcal F_i,\mu_i)$ , Let $\Omega=\times_{i=1}^n \Omega_i$ , $\mathcal F=\times_{i=1}^n \mathcal F_i$ , so there is a unique measure $\mu$ that for $A=\times_{i=1}^n A_i$ , where $A_i\in \mathcal F_i$ , </p>
+<script type="math/tex; mode=display">
+\mu(\times_{i=1}^n A_i)=\prod_{i=1}^n \mu_i(A_i)</script></li>
+<li><p>When $(\Omega_i,\mathcal F_i,\mu_i)=(\mathbb R,\mathcal R,\lambda)$ , then $\mu$ is the <strong><em>Lebesgue measure</em></strong> on the Borel subsets of $\mathbb R^n$ </p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Fubini’s Theorem</p>
+<ol>
+<li><p>THM [ <strong><em>Fubini’s Theorem</em></strong> ] : For measurable space $(X,\mathcal A,\mu_1)$ and $(Y,\mathcal B,\mu_2)$. If $f\ge 0$ or $\int |f|d\mu&lt;\infty$ , then</p>
+<script type="math/tex; mode=display">
+\int_X\int_Y f(x,y)\mu_2(dy)\mu_1(dx)=\int_{X\times Y} fd\mu=\int_Y\int_X f(x,y)\mu_1(dx)\mu_2(dy)</script></li>
+<li><p>(*) Proof </p>
+<p>Firstly , we need to make sure that </p>
+<ul>
+<li>Fixing $x$ , $y\to f(x,y)$ is a measurable map on $\mathcal B$</li>
+<li>$x\to\int_Y f(x,y)\mu_2(dy)$ is a measurable map on $\mathcal A$</li>
+</ul>
+<p>We have the following lemma , dealing with $f=\mathbb 1_{E}$ </p>
+<ul>
+<li><p>Lemma 1 : Let $E_x=\{y:(x,y)\in E\}$ . If $E\in \mathcal A\times \mathcal B$ , then $E_x\in \mathcal B$</p>
+</li>
+<li><p>Lemma 2 : If $E\in \mathcal A\times \mathcal B$ , then $g(x):=\mu_2(E_x)$ is a measurable map on $\mathcal A$ , and </p>
+<script type="math/tex; mode=display">
+\int_X gd\mu_1=\mu(E)</script></li>
+</ul>
+<p>By these lemma , we can prove Fubini’s Theorem on $f=\mathbb 1_E$ for any $E\in \mathcal A\times \mathcal B$</p>
+<p>Using the linearity of integration , we can prove Fubini’s Theorem holds for all simple functions.</p>
+<p>For non-negative function , we can let $f_n(x,y)=([2^nf(x,y)]/2^n)\land n$ , so $f_n$ is simple function and $f_n\uparrow f$ . By MCT , Fubini’s Theorem holds for all non-negative functions.</p>
+<p>For general function , we can compute $f=f^+-f^-$ each . Then Fubini’s Theorem holds for all integrable functions.</p>
+</li>
+<li><p>Remarks</p>
+<ol>
+<li><p>Toneli’s Theorem : proved that Fubini’s Theorem holds for $f\ge 0$ .</p>
+</li>
+<li><p>When $f$ is not non-negative and not integrable , Fubini’s Theorem may fail :</p>
+<p>Let $X=Y=\mathbb N^<em>$ , $\mathcal A=\mathcal B=\{S:S\subseteq \mathbb N^</em>\}$ , $\mu_1=\mu_2=\text{counting measure}$ .</p>
+<p>Let $f(m,n)=\begin{cases}1&amp;m=n\-1&amp;m=n+1\\0&amp;otherwise\end{cases}$ for all $m,n\ge 1$ , so </p>
+<script type="math/tex; mode=display">
+\sum_m\sum_n f(m,n)=1,\sum_{n}\sum_{m}f(m,n)=0</script></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Chapter-2-Laws-of-Large-Numbers"><a href="#Chapter-2-Laws-of-Large-Numbers" class="headerlink" title="Chapter 2 Laws of Large Numbers"></a>Chapter 2 Laws of Large Numbers</h2><h3 id="2-1-Independence"><a href="#2-1-Independence" class="headerlink" title="2.1 Independence"></a>2.1 Independence</h3><ol>
+<li>Definition ( for probability space $(\Omega,\mathcal F,P)$ )<ol>
+<li>Def [ <strong><em>Independence of Events</em></strong> ] : Let $A,B\in \mathcal F$ , $A$ and $B$ are <strong><em>independent</em></strong> if $P(A\cap B)=P(A)P(B)$, denote as $A\perp!!!\perp B$.</li>
+<li>Def [ <strong><em>Independence of Random Variables</em></strong> ] : Let $X,Y$ be two random variables , $X$ and $Y$ are <strong><em>independent</em></strong> if $\forall C,D\in \mathcal R$ , $P(\{X\in C\}\cap \{Y\in D\})=P(\{X\in C\})P(\{Y\in D\})$, denote as $X\perp!!!\perp Y$.</li>
+<li>Def [ <strong><em>Independence of $\sigma$-field</em></strong> ] : Two $\sigma$-field $\mathcal F,\mathcal G$ are <strong><em>independent</em></strong> if $\forall A\in \mathcal F$ , $\forall B\in \mathcal G$ , $A,B$ are independent, denote as $\mathcal F\perp!!!\perp \mathcal G$.</li>
+</ol>
+</li>
+<li>THM [ <strong><em>Independence of r.v. is a special case of $\sigma$-field</em></strong> ] <ol>
+<li>If random variables $X,Y$ are independent , then $\sigma(X),\sigma(Y)$ are independent</li>
+<li>If $\mathcal F$ and $\mathcal G$ are independent , $X\in \mathcal F,Y\in \mathcal G$ , then $X,Y$ are independent</li>
+</ol>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ZigZagKmp
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-4/" title="Probability and Statistics 4">https://zigzagkmp.github.io/2023/11/03/Probability-and-Statistics-4/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/ZigZagKmp">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.luogu.com.cn/user/35871">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Luogu</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%9E%E5%88%86%E6%9E%90-%E7%A7%AF%E5%88%86%E6%80%A7%E8%B4%A8/" rel="tag"># 实分析-积分性质</a>
+              <a href="/tags/%E5%AE%9E%E5%88%86%E6%9E%90-%E7%A7%AF%E5%88%86%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/" rel="tag"># 实分析-积分收敛定理</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E6%9C%9F%E6%9C%9B/" rel="tag"># 概率论-期望</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E6%9C%9F%E6%9C%9B-%E6%9C%9F%E6%9C%9B%E6%80%A7%E8%B4%A8/" rel="tag"># 概率论-期望-期望性质</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E6%9C%9F%E6%9C%9B-%E6%8D%A2%E5%85%83%E5%85%AC%E5%BC%8F/" rel="tag"># 概率论-期望-换元公式</a>
+              <a href="/tags/%E5%AE%9E%E5%88%86%E6%9E%90-%E6%B5%8B%E5%BA%A6%E7%A7%AF/" rel="tag"># 实分析-测度积</a>
+              <a href="/tags/%E5%AE%9E%E5%88%86%E6%9E%90-Fubini%E5%AE%9A%E7%90%86/" rel="tag"># 实分析-Fubini定理</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA-%E7%8B%AC%E7%AB%8B%E6%80%A7/" rel="tag"># 概率论-独立性</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/10/31/Algorithm-Design-7/" rel="prev" title="Algorithm Design 7">
+                  <i class="fa fa-angle-left"></i> Algorithm Design 7
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZigZagKmp</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">22k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:22</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/ZigZagKmp" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"ZigZagKmp/zigzagkmp.github.io","repo_id":"R_kgDOKcVJdQ","category":"Announcements","category_id":"DIC_kwDOKcVJdc4CZ58w","mapping":"pathname","reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

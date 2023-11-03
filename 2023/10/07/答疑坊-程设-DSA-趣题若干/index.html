@@ -145,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#p1"><span class="nav-number">1.</span> <span class="nav-text">P1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">算法分析</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1"><span class="nav-number">1.</span> <span class="nav-text">P1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">算法分析</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,7 +160,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,7 +171,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -324,28 +324,10 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="p1">P1</h3>
-<h4 id="问题描述">问题描述</h4>
-<p>输入 <span class="math inline">\(3n-1\)</span> 个数，其中 <span
-class="math inline">\(n-1\)</span> 个数出现恰好 <span
-class="math inline">\(3\)</span> 次，<span
-class="math inline">\(1\)</span> 个数恰好出现 <span
-class="math inline">\(2\)</span> 次。求这个出现 <span
-class="math inline">\(2\)</span> 次的数。</p>
-<p>要求，时间复杂度 <span class="math inline">\(\tilde {\mathcal
-O}(n)\)</span> , 空间复杂度 <span class="math inline">\(\mathcal
-O(1)\)</span> .</p>
-<h4 id="算法分析">算法分析</h4>
-<p>考虑使用三进制不进位加法，显然满足交换律、结合律，且 <span
-class="math inline">\(a\oplus a\oplus a=0\)</span> ，出现 <span
-class="math inline">\(3\)</span> 次的数都抵消掉，只剩下恰好出现 <span
-class="math inline">\(2\)</span> 次的那个数 <span
-class="math inline">\(a\)</span> 的 "2倍"。</p>
-<p>对最后结果 <span class="math inline">\(sum\)</span> 求 <span
-class="math inline">\(sum\oplus sum\)</span> 。因 <span
-class="math inline">\(sum=a\oplus a\)</span> , 故 <span
-class="math inline">\(sum\oplus sum=a\oplus a\oplus a\oplus a=a\)</span>
-。</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="P1"><a href="#P1" class="headerlink" title="P1"></a>P1</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>输入 $3n-1$ 个数，其中 $n-1$ 个数出现恰好 $3$ 次，$1$ 个数恰好出现 $2$ 次。求这个出现 $2$ 次的数。</p>
+<p>要求，时间复杂度 $\tilde {\mathcal O}(n)$ , 空间复杂度 $\mathcal O(1)$ .</p>
+<h4 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h4><p>考虑使用三进制不进位加法，显然满足交换律、结合律，且 $a\oplus a\oplus a=0$ ，出现 $3$ 次的数都抵消掉，只剩下恰好出现 $2$ 次的那个数 $a$ 的 “2倍”。</p>
+<p>对最后结果 $sum$ 求 $sum\oplus sum$ 。因 $sum=a\oplus a$ , 故 $sum\oplus sum=a\oplus a\oplus a\oplus a=a$ 。</p>
 
     </div>
 
@@ -453,13 +435,13 @@ class="math inline">\(sum\oplus sum=a\oplus a\oplus a\oplus a=a\)</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">19k</span>
+    <span title="站点总字数">22k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:10</span>
+    <span title="站点阅读时长">1:22</span>
   </span>
 </div>
 <div class="busuanzi-count">
