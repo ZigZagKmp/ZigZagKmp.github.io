@@ -1,6 +1,510 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Probability and Statistics 6</title>
+    <url>/2023/11/04/Probability-and-Statistics-6/</url>
+    <content><![CDATA[<h2 id="chapter-2-laws-of-large-numbers">Chapter 2 Laws of Large
+Numbers</h2>
+<h3 id="conditional-expectation">2.2 Conditional Expectation</h3>
+<ol start="4" type="1">
+<li><p>Conditioning on general random variables</p>
+<ol type="1">
+<li><p>Def [ <strong><em>conditional expected value</em></strong> ]
+:</p>
+<p>Let <span class="math inline">\(X,Z\)</span> be random variables ,
+<span class="math inline">\(E[|X|]&lt;\infty\)</span> , define <span
+class="math inline">\(Y=E[X|Z]\)</span> with following properties:</p>
+<p>(i). <span class="math inline">\(Y\)</span> is a function of <span
+class="math inline">\(Z\)</span></p>
+<p>(ii). <span class="math inline">\(E[|Y|]&lt;\infty\)</span></p>
+<p>(iii). <span class="math inline">\(\forall G\in \sigma(Z)\)</span> ,
+<span class="math inline">\(\int_{G}YdP=\int_GXdP\)</span></p>
+<p>Moreover , if <span class="math inline">\(\tilde Y\)</span> is a
+random variable satisfying (i)(ii)(iii) , then <span
+class="math inline">\(\tilde Y=Y\)</span> a.s.</p>
+<blockquote>
+<p>This definition is given by <strong>Kolmogorov</strong> in 1933 :
+"<em>Fundamental Concepts of Probability Theory</em>"</p>
+</blockquote></li>
+<li><p>Def [ <strong><em>(regular) conditional probability</em></strong>
+] <span class="math display">\[
+P(X\in A|Z):=E[\mathbb 1(X\in A)|Z]
+\]</span> Def [ <strong><em>(regular) conditional density</em></strong>
+] <span class="math display">\[
+\exists f_{X|Z}(x|z) \text{ s.t. } P(X\in
+A|Z)(w)=\int_Af_{X|Z}(x|Z(w))dx
+\]</span></p>
+<blockquote>
+<p>Here <em>regular</em> means this definition only holds in general
+cases. There may exist loophole in some special cases.</p>
+</blockquote></li>
+</ol></li>
+<li><p>Famous Results</p>
+<ol type="1">
+<li><p>Bayes rule <span class="math display">\[
+\begin{aligned}
+P(B|A)&amp;=\frac{P(A|B)P(B)}{P(A)}\\
+P(X=x|Z=z)&amp;=\frac{P(Z=z|X=x)P(X=x)}{P(Z=z)}\\
+f_{X|Z}(x|z)&amp;=\frac{f_{Z|X}(z|x)f_X(x)}{f_Z(z)}
+\end{aligned}
+\]</span></p></li>
+<li><p>Correlation</p>
+<ol type="1">
+<li><p>Intuition</p>
+<p><span class="math inline">\(X\perp\!\!\!\perp Y\Rightarrow
+E[(X-EX)(Y-EY)]=E[X-EX]E[Y-EY]=0\)</span></p>
+<p><span class="math inline">\(E[(X-EX)(Y-EY)]\not\Rightarrow
+X\perp\!\!\!\perp Y\)</span></p></li>
+<li><p>Def [ <strong><em>uncorrelated</em></strong> ] <span
+class="math inline">\(X,Y\)</span> are
+<strong><em>uncorrelated</em></strong> random variables , if <span
+class="math inline">\(E[(X-EX)(Y-EY)]=0\)</span></p>
+<blockquote>
+<p>This definition is equivalent as <span
+class="math inline">\(E[XY]=E[X]E[Y]\)</span></p>
+</blockquote></li>
+<li><p>Def [ <strong><em>correlation coefficient</em></strong> ] <span
+class="math display">\[
+\rho=\frac{E[(X-EX)(Y-EY)]}{\sqrt{Var(X)}\sqrt{Var(Y)}}
+\]</span> Def [ <strong><em>covariance</em></strong> ] : <span
+class="math inline">\(E[(X-EX)(Y-EY)]\)</span></p></li>
+<li><p>THM : Let <span class="math inline">\(X_1,\cdots,X_n\)</span>
+have <span class="math inline">\(E[X_i^2]&lt;\infty\)</span> and be
+uncorrelated , then <span class="math display">\[
+Var(X_1+\cdots+X_n)=\sum_{i=1}^n Var(X_i)
+\]</span> Proof : Let <span
+class="math inline">\(S_n=X_1+\cdots+X_n\)</span> <span
+class="math display">\[
+\begin{aligned}
+Var(S_n)&amp;=E[(S_n-E[S_n])^2)]\\
+&amp;=E\left[\sum_{i=1}^n(X_i-\mu_i)\right]^2\\
+&amp;=E\left[\sum_{i=1}^n (X_i-\mu_i)^2+\sum_{i\neq
+j}(X_i-\mu_i)(X_j-\mu_j)\right]\\
+&amp;=\sum_{i=1}^n E[(X_i-\mu_i)^2]+\sum_{i\neq
+j}E[(X_i-\mu_i)(X_j-\mu_j)]\\
+&amp;=\sum_{i=1}^n Var(X_i)
+\end{aligned}
+\]</span></p></li>
+<li><p>THM : <span class="math inline">\(Var(cX)=c^2Var(X)\)</span></p>
+<p>Remark : for "totally correlated" r.v.</p></li>
+</ol></li>
+</ol></li>
+</ol>
+<h3 id="introduction-of-lln">2.3 Introduction of LLN</h3>
+<ol type="1">
+<li><p>Def [ <strong><em>i.i.d.</em></strong> ] i.i.d. means independent
+and identically distributed</p></li>
+<li><p>THM [ <strong><em>week law of large numbers (WLLN)</em></strong>
+]</p>
+<ol type="1">
+<li><p>THM : Let <span class="math inline">\(X_1,X_2,\cdots\)</span> be
+i.i.d. , with <span
+class="math inline">\(\lim\limits_{x\to\infty}xP(|X_1|&gt;x)=0\)</span>.
+Let <span class="math inline">\(\mu_n=E[X_1\mathbb 1(|X_1|\le
+n)]\)</span> , so <span class="math display">\[
+\frac{1}{n}\sum_{i=1}^n X_i\xrightarrow{P} 0
+\]</span></p></li>
+<li><p>Remarks</p>
+<ol type="1">
+<li><p>A sufficient condition for <span
+class="math inline">\(\lim\limits_{x\to\infty} xP(|X_1|&gt;x)=0\)</span>
+is <span class="math inline">\(E[|X_1|]&lt;\infty\)</span></p>
+<p>Proof : <span class="math display">\[
+\begin{aligned}
+&amp;\quad xP(|X_1|&gt;x)\\
+&amp;=x\int \mathbb 1(|X_1|&gt;x)dP\\
+&amp;\le\int |X_1|\mathbb 1(|X_1|&gt;x)dP\\
+&amp;=E[|X_1|\mathbb 1(|X_1|&gt;x)]\\
+&amp;\to 0\qquad\qquad\qquad\qquad\qquad\text{since }E[|X_1|]&lt;\infty
+\end{aligned}
+\]</span></p></li>
+<li><p>When <span class="math inline">\(E[|X_1|]&lt;\infty\)</span> ,
+using Dominated Convergence Theorem , <span class="math display">\[
+\mu_n=E[X_1\mathbb 1(|X_1|\le n)]\to E[X_1]=\mu
+\]</span></p></li>
+</ol></li>
+<li><p>THM [ <strong><em>WLLN in common</em></strong> ] :</p>
+<p>Let <span class="math inline">\(X_1,X_2,\cdots\)</span> be i.i.d. ,
+with <span class="math inline">\(\mu=E[|X_i|]&lt;\infty\)</span> , then
+as <span class="math inline">\(n\to\infty\)</span> , <span
+class="math display">\[
+\frac{1}{n}\sum_{i=1}^n X_i\xrightarrow{P}\mu
+\]</span></p></li>
+</ol></li>
+<li><p>THM [ <strong><em>strong law of large numbers
+(SLLN)</em></strong> ]</p>
+<p>Let <span class="math inline">\(X_1,X_2,\cdots\)</span> be pairwise
+independent and identically distributed , <span
+class="math inline">\(\mu=E[|X_i|]&lt;\infty\)</span> , therefore, as
+<span class="math inline">\(n\to\infty\)</span>, <span
+class="math display">\[
+\frac{1}{n}\sum_{i=1}^n X_i\to\mu\qquad a.s.
+\]</span></p></li>
+</ol>
+<h3 id="weak-laws-of-large-numbers">2.4 Weak Laws of Large Numbers</h3>
+<ol type="1">
+<li><p>(*) <span class="math inline">\(L^2\)</span> Weak Laws</p>
+<ol type="1">
+<li><p>THM [ <strong><em><span class="math inline">\(L^2\)</span> weak
+law</em></strong> ] : Let <span
+class="math inline">\(X_1,X_2,\cdots\)</span> be uncorrelated r.v. ,
+with <span class="math inline">\(E[X_i]=\mu\)</span> and <span
+class="math inline">\(Var(X_i)\le C&lt;\infty\)</span>. Then as <span
+class="math inline">\(n\to\infty\)</span>, <span class="math display">\[
+\frac{1}{n}\sum_{i=1}^n X_i\to \mu
+\]</span> In <span class="math inline">\(L^2\)</span> and in
+probability</p>
+<blockquote>
+<p><span class="math inline">\(L^2\)</span>-convergence : <span
+class="math inline">\(A\to B\)</span> in <span
+class="math inline">\(L^2\)</span> means <span
+class="math inline">\(E[(A-B)^2]\to 0\)</span>.</p>
+</blockquote></li>
+<li><p>Lemma : If <span class="math inline">\(p&gt;0\)</span> , and
+<span class="math inline">\(E[|Z_n|^p]\to 0\)</span> , then <span
+class="math inline">\(Z_n\xrightarrow{P} 0\)</span>.</p>
+<p>Proof : Use Chebyshev's Lemma for <span
+class="math inline">\(\varphi(x)=x^p\)</span> , so <span
+class="math inline">\(P(|Z_n|&gt;\epsilon)\le \epsilon^{-p}
+E[|Z_n|^p]\to 0\)</span>.</p></li>
+<li><p>Proof : Let <span class="math inline">\(S_n=\sum_{i=1}^n
+X_i\)</span>,</p>
+<p><span class="math inline">\(L^2\)</span> convergence : <span
+class="math display">\[
+E[(S_n/n-\mu)^2]=Var(S_n/n)=\frac{1}{n^2}\sum_{i=1}^n
+Var(X_i)\le  \frac{C}{n}\to\infty
+\]</span> In probability : Let <span
+class="math inline">\(Z_n=S_n/n-\mu\)</span> , let <span
+class="math inline">\(p=2\)</span> , use the lemma above.</p></li>
+<li><p>Application : see book</p></li>
+</ol></li>
+<li><p>Triangular Arrays</p>
+<ol type="1">
+<li><p>(*) THM</p>
+<p>Let <span class="math inline">\(X_1,X_2\cdots,\)</span> be random
+variables, <span class="math inline">\(S_n=\sum_{i=1}^n X_i\)</span> ,
+<span class="math inline">\(\mu_n=E[S_n]\)</span> , <span
+class="math inline">\(\sigma^2_n=Var[S_n]\)</span>. Let <span
+class="math inline">\(b_1,b_2,\cdots\)</span> be a sequence, with <span
+class="math inline">\(\frac{\sigma_n^2}{b_n^2}\to 0\)</span> , then
+<span class="math display">\[
+\frac{S_n-\mu_n}{b_n}\xrightarrow{P}0
+\]</span> Proof :</p>
+<p>Since <span
+class="math inline">\(E[(S_n-\mu_n)/b_n]^2=Var(S_n)/b_n^2\to 0\)</span>
+, by Lemma above , this conclusion holds.</p></li>
+<li><p>Def [ <strong><em>truncation</em></strong> ] : To
+<strong><em>truncate r.v. <span class="math inline">\(X\)</span> at
+level <span class="math inline">\(M\)</span></em></strong> , means <span
+class="math display">\[
+\bar X=X\mathbb 1(|X|\le M)=\begin{cases}X&amp;|X|\le
+M\\0&amp;|X|&gt;M\end{cases}
+\]</span></p></li>
+<li><p>THM [ <strong><em>Weak Law for Triangular Arrays</em></strong> ]
+:</p>
+<p>Conditions</p>
+<ol type="1">
+<li><p>For each <span class="math inline">\(n\)</span> , <span
+class="math inline">\(X_{n,1},\cdots,X_{n,n}\)</span> are
+independent</p></li>
+<li><p><span class="math inline">\(b_1,b_2,\cdots\)</span> is a sequence
+s.t. <span class="math inline">\(b_n&gt;0\)</span> and <span
+class="math inline">\(b_n\to\infty\)</span> as <span
+class="math inline">\(n\to\infty\)</span> . Let <span
+class="math inline">\(\bar X_{n,k}=X_{n,k}\mathbb 1(|X_{n,k}|\le
+b_n)\)</span>.</p></li>
+<li><p>As <span class="math inline">\(n\to\infty\)</span></p>
+<p>(i). <span class="math inline">\(\sum_{k=1}^n P(|X_{n,k}|&gt;b_n)\to
+0\)</span></p>
+<p>(ii). <span class="math inline">\(\frac{1}{b_n^2}\sum_{k=1}^n E[\bar
+X_{n,k}^2]\to 0\)</span></p></li>
+</ol>
+<p>Result: Let <span class="math inline">\(S_n=\sum_{k=1}^n
+X_{n,k}\)</span> , let <span class="math inline">\(a_n=\sum_{k=1}^n
+E[\bar X_{n,k}]\)</span> , then <span class="math display">\[
+\frac{S_n-a_n}{b_n}\xrightarrow{P}0
+\]</span> Proof :</p>
+<ol type="1">
+<li><p>Let <span class="math inline">\(\bar S_n=\sum_{k=1}^n \bar
+X_{n,k}\)</span> , so <span class="math display">\[
+P\left(|\frac{S_n-a_n}{b_n}|&gt;\epsilon\right)\le P(S_n\neq \bar
+S_n)+P\left(|\frac{\bar S_n-a_n}{b_n}|&gt;\epsilon\right)
+\]</span></p></li>
+<li><p><span class="math display">\[
+P(S_n\neq \bar S_n)\le P\left(\bigcup_{k=1}^n\{\bar X_{n,k}\neq
+X_{n,k}\}\right)\le \sum_{k=1}^n P(|X_{n,k}|&gt;b_n)\to 0
+\]</span></p></li>
+<li><p><span class="math display">\[
+\begin{aligned}
+&amp;\quad P\left(|\frac{\bar S_n-a_n}{b_n}|&gt;\epsilon\right)\\
+&amp;\le \frac{1}{\epsilon^2} E\left[\frac{\bar
+S_n-a_n}{b_n}\right]^2\qquad\text{using Chebyshev&#39;s Inequality}\\
+&amp;=\frac{1}{\epsilon^2b_n^2}Var(\bar S_n)\\
+&amp;=\frac{1}{\epsilon^2b_n^2}\sum_{k=1}^n Var(\bar
+X_{n,k})\qquad{\text{using uncorrelated property}}\\
+&amp;\le \frac{1}{\epsilon^2b_n^2}\sum_{k=1}^n E[\bar X_{n,k}^2]\to0
+\end{aligned}
+\]</span></p></li>
+</ol></li>
+</ol></li>
+<li><p>Weak Law of Large Numbers</p>
+<ol type="1">
+<li><p>THM [ <strong><em>week law of large numbers (WLLN)</em></strong>
+]</p>
+<p>Let <span class="math inline">\(X_1,X_2,\cdots\)</span> be i.i.d. ,
+with <span
+class="math inline">\(\lim\limits_{x\to\infty}xP(|X_1|&gt;x)=0\)</span>.
+Let <span class="math inline">\(\mu_n=E[X_1\mathbb 1(|X_1|\le
+n)]\)</span> , so <span class="math display">\[
+\frac{1}{n}\sum_{i=1}^n X_i\xrightarrow{P} 0
+\]</span></p></li>
+<li><p>Proof:</p>
+<p>Let <span class="math inline">\(X_{n,k}=X_k,b_n=n\)</span>, we want
+to use <strong><em>Weak Law for Triangular Arrays</em></strong>.</p>
+<ol type="1">
+<li><p>For condition (i) , <span class="math display">\[
+\sum_{k=1}^n P(|X_{n,k}|&gt;b_n)=\sum_{k=1}^n
+P(|X_k|&gt;n)=nP(|X_k|&gt;n)\to 0
+\]</span></p></li>
+<li><p>Lemma [ <strong><em>expected value of <span
+class="math inline">\(t\)</span>-th momentum</em></strong> ] : For
+random variable <span class="math inline">\(Y\ge 0\)</span> and <span
+class="math inline">\(t&gt;0\)</span>, <span class="math display">\[
+E[Y^t]=\int_{0}^{\infty}ty^{t-1}P(Y&gt;y)dy
+\]</span> Proof : <span class="math display">\[
+\begin{aligned}
+&amp;\quad \int_{0}^{\infty}ty^{t-1}P(Y&gt;y)dy\\
+&amp;=\int_{0}^{\infty}\int_{\Omega}ty^{t-1}\mathbb 1(Y&gt;y)dPdy\\
+&amp;=\int_{\Omega}\int_{0}^{\infty}ty^{t-1}\mathbb 1(Y&gt;y)dydP\\
+&amp;=\int_{\Omega}\int_{0}^{Y}ty^{t-1}dydP\\
+&amp;=\int_{\Omega}y^tdP\\
+&amp;=E[Y^t]
+\end{aligned}
+\]</span></p></li>
+<li><p>For condition (ii) , <span class="math display">\[
+\begin{aligned}
+&amp;\quad \frac{1}{b_n^2}\sum_{k=1}^n E[\bar X_{n,k}^2]\\
+&amp;=\frac{1}{b_n^2}\sum_{k=1}^n E[(X_{n,k}\mathbb 1(|X_{n,k}|\le
+b_n))^2]\\
+&amp;=\frac{1}{n^2}\sum_{k=1}^n E[(X_k\mathbb 1(|X_k|\le n))^2]\\
+&amp;=\frac{1}{n}E[(X_1\mathbb 1(|X_1|\le n))^2]\\
+&amp;=\frac{1}{n} E[\bar X_{n,1}^2]\\
+&amp;=\frac{1}{n}\int_{0}^{\infty} 2yP(\bar X_{n,1}&gt;y)dy\\
+&amp;=\frac{2}{n}\int_{0}^{n} yP(|X_1|&gt;y)dy
+\end{aligned}
+\]</span> Let <span class="math inline">\(g(y)=yP(|X_1|&gt;y)\)</span> ,
+since <span class="math inline">\(xP(|X_1|&gt;x)\to 0\)</span> , <span
+class="math inline">\(g(y)\)</span> is bounded.</p>
+<p>Let <span class="math inline">\(g_n(y):=g(ny)\)</span> , so <span
+class="math inline">\(\forall y&gt;0\)</span> , <span
+class="math inline">\(g_n\)</span> is bounded and <span
+class="math inline">\(\to 0\)</span> <span class="math display">\[
+\begin{aligned}
+&amp;\quad\frac{2}{n}\int_{0}^n g(y)dy\\
+&amp;=2\int_0^1 g_n(y)dy\\
+&amp;\to 0\qquad\qquad\qquad\text{using Dominated Convergence Theorem}
+\end{aligned}
+\]</span></p></li>
+</ol></li>
+<li><p>Remark :</p>
+<p>Use lemma with <span class="math inline">\(t=1-\epsilon\)</span> , so
+<span class="math inline">\(xP(|X_1|&gt;x)\to 0\)</span> implies <span
+class="math inline">\(E[|X_1|^{1-\epsilon}]&lt;\infty\)</span> .</p>
+<p>Which means that <span class="math inline">\(xP(|X_1|&gt;x)\to
+0\)</span> is not much weak than <span
+class="math inline">\(E[|X_1|]&lt;\infty\)</span> .</p></li>
+<li><p>THM [ <strong><em>WLLN in common</em></strong> ] :</p>
+<p>Let <span class="math inline">\(X_1,X_2,\cdots\)</span> be i.i.d. ,
+with <span class="math inline">\(\mu=E[|X_i|]&lt;\infty\)</span> , then
+as <span class="math inline">\(n\to\infty\)</span> , <span
+class="math display">\[
+\frac{1}{n}\sum_{i=1}^n X_i\xrightarrow{P}\mu
+\]</span></p></li>
+<li><p>(*) Remarks :</p>
+<ol type="1">
+<li><p>Weak Law does not hold : [ <strong><em>Cauchy
+Distribution</em></strong> ]</p>
+<p><span class="math inline">\(P(X_i\le x)=\int_{-\infty}^x
+\frac{dt}{\pi(1+t^2)}\)</span></p>
+<p>As <span class="math inline">\(x\to\infty\)</span> , <span
+class="math display">\[
+P(|X_1|&gt;x)=2\int_{x}^{\infty} \frac{dt}{\pi(1+t^2)}\sim
+\frac{2}{\pi}\int_{x}^{\infty} t^{-2}dt= \frac{2}{\pi} x^{-1}
+\]</span> Therefore , <span
+class="math inline">\(xP(|X_1|&gt;x)=\frac{2}{\pi}\not\to 0\)</span>
+.</p></li>
+<li><p>Weak Law holds but <span
+class="math inline">\(E[X_1]=\infty\)</span></p>
+<p>E.g. <span class="math inline">\(P(X_i=2^j)=2^{-j}\)</span> for <span
+class="math inline">\(j=1,2,\cdots\)</span></p>
+<p>SOL : back to <strong><em>weak law for triangular
+arrays</em></strong> , choose better <span
+class="math inline">\(b_n\)</span></p>
+<p><span class="math inline">\(S_n/(n\log n)\xrightarrow P
+1\)</span></p></li>
+</ol></li>
+</ol></li>
+</ol>
+<h3 id="borel-cantelli-lemma">2.5 Borel-Cantelli Lemma</h3>
+<ol type="1">
+<li><p><span class="math inline">\(\limsup,\liminf\)</span> of sets</p>
+<ol type="1">
+<li><p>Def [ <strong><em>limsup of events</em></strong> ] Let <span
+class="math inline">\(A_1,A_2,\cdots\)</span> be events , <span
+class="math display">\[
+\limsup A_n:=\lim_{m\to\infty}\cup_{n=m}^{\infty}A_n
+\]</span> THM : <span class="math inline">\(\limsup A_n=\{w:w\text{ in
+infinitely many }A_n\}\)</span></p>
+<p>Proof :</p>
+<p><span class="math inline">\(\supseteq\)</span> : Since <span
+class="math inline">\(w\)</span> is in infinitely many <span
+class="math inline">\(A_n\)</span> , <span class="math inline">\(\forall
+m&gt;0\)</span> , <span class="math inline">\(w\in
+B_m=\cup_{n=m}^{\infty} A_n\)</span> , so <span
+class="math inline">\(w\in \limsup A_n\)</span></p>
+<p><span class="math inline">\(\subseteq\)</span> : If <span
+class="math inline">\(w\)</span> is not in infinitely many <span
+class="math inline">\(A_n\)</span> , then suppose <span
+class="math inline">\(w\in A_{n_1},A_{n_2},\cdots,A_{n_k}\)</span> , let
+<span class="math inline">\(m\ge n_k+1\)</span> , so <span
+class="math inline">\(w\notin B_m\)</span> , so <span
+class="math inline">\(w\notin \limsup A_n\)</span>.</p></li>
+<li><p>Def [ <strong><em>liminf of events</em></strong> ] Let <span
+class="math inline">\(A_1,A_2,\cdots\)</span> be events , <span
+class="math display">\[
+\liminf A_n:=\lim_{m\to\infty}\cap_{n=m}^{\infty}A_n
+\]</span> THM : <span class="math inline">\(\liminf A_n=\{w:w\text{ in
+all but finitely many }A_n\}\)</span></p>
+<p>Proof :</p>
+<p><span class="math inline">\(\supseteq\)</span> : Suppose <span
+class="math inline">\(w\notin A_{n_1},\cdots,A_{n_k}\)</span> , so <span
+class="math inline">\(\forall m\ge n_k+1,w\in C_m=\cap_{n=m}^{\infty}
+A_n\)</span>, so <span class="math inline">\(w\in \liminf
+A_n\)</span>.</p>
+<p><span class="math inline">\(\subseteq\)</span> : Suppose <span
+class="math inline">\(w\notin A_{n_1},A_{n_2},\cdots\)</span> , so <span
+class="math inline">\(\forall m&gt;0,\exists n_k&gt;m,w\notin
+A_{n_k}\)</span> , so <span class="math inline">\(w\notin C_m\)</span> ,
+so <span class="math inline">\(w\notin \liminf A_n\)</span>.</p></li>
+<li><p>Def [ <strong><em>infinitely often (i.o.)</em></strong> ]
+<strong><em>infinitely often</em></strong> : appears infinitely times
+<span class="math display">\[
+\limsup A_n=\{w:w\in A_n\text{ i.o.}\}
+\]</span></p></li>
+<li><p>(*) Property</p>
+<p><span class="math inline">\(P(\limsup A_n)\ge \limsup P(A_n)\)</span>
+, <span class="math inline">\(P(\liminf A_n)\le \liminf
+P(A_n)\)</span></p></li>
+<li><p>THM : The following three statements are equivalent</p>
+<p>(i). <span class="math inline">\(X_n\to 0\)</span> a.s.</p>
+<p>(ii). <span class="math inline">\(\forall \epsilon&gt;0\)</span> ,
+<span class="math inline">\(P(w:|X_n(w)|&gt;\epsilon \text{
+i.o.})=0\)</span></p>
+<p>(iii). Let <span
+class="math inline">\(A_n(\epsilon)=\{w:|X_n(w)|&gt;\epsilon\}\)</span>
+, <span class="math inline">\(P\left(\bigcup_{\epsilon&gt;0} \limsup
+A_n(\epsilon)\right)=0\)</span></p>
+<p>Proof :</p>
+<p>(i)<span class="math inline">\(\to\)</span> (ii) : <span
+class="math inline">\(X_n\to 0\)</span> a.s. means <span
+class="math inline">\(P\{w:X_n(w)\not\to 0\}=0\)</span> .</p>
+<p>Let <span class="math inline">\(S=\{w:X_n(w)\to 0\}\)</span> , so
+<span class="math inline">\(\forall w\in S\)</span> , <span
+class="math inline">\(\forall \epsilon&gt;0\)</span> , <span
+class="math inline">\(\exists N_{w,\epsilon}&gt;0\)</span> , <span
+class="math inline">\(\forall n&gt;N_{w,\epsilon}\)</span> , <span
+class="math inline">\(|X_n(w)|\le \epsilon\)</span> . Therefore , <span
+class="math inline">\(w\notin \{w:|X_n(w)|&gt;\epsilon\text{
+i.o.}\}\)</span>. Therefore , <span
+class="math inline">\(\{w:X_n(w)\not\to 0\}\supseteq
+\{w:|X_n(w)|&gt;\epsilon\text{ i.o.}\}\)</span>.</p>
+<p>(ii)<span class="math inline">\(\to\)</span>(iii) : <span
+class="math inline">\(\forall 0&lt;\epsilon_1&lt;\epsilon_2\)</span> ,
+<span class="math inline">\(\limsup A_n(\epsilon_1)\supseteq \limsup
+A_n(\epsilon_2)\)</span></p>
+<p>Let <span class="math inline">\(\epsilon_1,\epsilon_2,\cdots\)</span>
+be a sequence , <span class="math inline">\(\lim_{i\to\infty}
+\epsilon_i=0\)</span> , so <span class="math display">\[
+\bigcup_{\epsilon&gt;0}\limsup A_n(\epsilon)=\lim_{I\to\infty}
+\bigcup_{i=1}^I\limsup A_n(\epsilon_i)
+\]</span> Therefore , <span class="math display">\[
+\begin{aligned}
+&amp;\quad P\left(\bigcup_{\epsilon&gt;0}\limsup A_n(\epsilon)\right)\\
+&amp;\le\lim_{I\to\infty}\sum_{i=1}^I P(\limsup A_n(\epsilon_i))\\
+&amp;=\lim_{I\to\infty}\sum_{i=1}^I P(\{w:|X_n(w)|&gt;\epsilon_i\text{
+i.o.}\})\\
+&amp;=0
+\end{aligned}
+\]</span> (iii)<span class="math inline">\(\to\)</span>(i) : Let <span
+class="math inline">\(\Omega_0=\{w:X_n(w)\not\to 0\}\)</span> , we only
+need to prove that <span class="math inline">\(\bigcup_{\epsilon&gt;0}
+\limsup A_n(\epsilon)=\Omega_0\)</span>.</p>
+<ol type="1">
+<li><p><span class="math inline">\(\forall \epsilon&gt;0\)</span> ,
+<span class="math inline">\(\limsup
+A_n(\epsilon)=\{w:|X_n(w)|&gt;\epsilon\text{ i.o.}\}\)</span></p>
+<p>For <span class="math inline">\(w\in \limsup A_n(\epsilon)\)</span> ,
+<span class="math inline">\(X_n(w)\not\to 0\)</span> , so <span
+class="math inline">\(w\in \Omega_0\)</span>.</p></li>
+<li><p><span class="math inline">\(\forall w\in \Omega_0\)</span> ,
+<span class="math inline">\(\exists \epsilon_0&gt;0\)</span> , <span
+class="math inline">\(\forall N&gt;0\)</span> , <span
+class="math inline">\(\exists n_N&gt;N\)</span> , s.t. <span
+class="math inline">\(|X_n(w)|&gt;\epsilon_0\)</span> .</p>
+<p>Therefore , <span class="math inline">\(w\in\)</span> infinitely many
+<span class="math inline">\(A_n(\epsilon_0)\)</span></p>
+<p>Therefore , <span class="math inline">\(w\in \limsup
+A_n(\epsilon_0)\)</span></p></li>
+</ol></li>
+</ol></li>
+<li><p>Borel-Cantelli Lemma</p>
+<ol type="1">
+<li><p>THM [ <strong><em>Borel-Cantelli Lemma</em></strong> ] : <span
+class="math inline">\(A_1,A_2,\cdots\)</span> be a sequence of events ,
+<span class="math display">\[
+\sum_{n=1}^{\infty}P(A_n)&lt;\infty\Rightarrow P(w:w\in A_n\text{
+i.o.})=0
+\]</span></p></li>
+<li><p>Proof :</p>
+<p>Let <span class="math inline">\(N(w)=\sum_{n=1}^{\infty}\mathbb
+1_{A_k}(w)\)</span> , ( which indicates the number of <span
+class="math inline">\(A_n\)</span> that <span
+class="math inline">\(w\)</span> appears ) , therefore, <span
+class="math display">\[
+\begin{aligned}
+E[N]&amp;=E\left[\sum_{n=1}^{\infty}\mathbb 1_{A_k}\right]\\
+&amp;=\sum_{n=1}^{\infty} E[\mathbb 1_{A_k}]\qquad \text{using
+Fubini&#39;s Theorem}\\
+&amp;=\sum_{k=1}^{\infty}P(A_k)\\
+&amp;&lt;\infty
+\end{aligned}
+\]</span> Therefore , <span
+class="math inline">\(N(w)&lt;\infty\)</span> a.s.</p>
+<p>Therefore , <span class="math display">\[
+P(w:w\in A_n\text{ i.o.})=P(w:N(w)=\infty)=0
+\]</span></p></li>
+</ol></li>
+</ol>
+]]></content>
+      <categories>
+        <category>课程笔记</category>
+        <category>概率与统计</category>
+      </categories>
+      <tags>
+        <tag>概率论-条件概率</tag>
+        <tag>概率论-条件概率-条件期望</tag>
+        <tag>概率论-条件概率-Bayes公式</tag>
+        <tag>概率论-条件概率-相关性</tag>
+        <tag>概率论-条件概率-协方差</tag>
+        <tag>概率论-大数定理</tag>
+        <tag>概率论-大数定理-弱大数定理</tag>
+        <tag>概率论-大数定理-L2弱大数定理</tag>
+        <tag>概率论-大数定理-三角阵弱大数定理</tag>
+        <tag>概率论-大数定理-Borel-Cantelli引理</tag>
+        <tag>实分析-集合的上下极限</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Probability and Statistics 5</title>
     <url>/2023/11/03/Probability-and-Statistics-5/</url>
     <content><![CDATA[<h2 id="chapter-2-laws-of-large-numbers">Chapter 2 Laws of Large
