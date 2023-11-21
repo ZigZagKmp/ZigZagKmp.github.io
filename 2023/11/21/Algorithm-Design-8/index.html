@@ -147,7 +147,9 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-6-Approximation-Problem"><span class="nav-number">1.</span> <span class="nav-text">Chapter 6  Approximation Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-Knapsack"><span class="nav-number">1.1.</span> <span class="nav-text">6.4 Knapsack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-Set-Cover"><span class="nav-number">1.2.</span> <span class="nav-text">6.5 Set Cover</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-Linear-Programming-amp-Approximation"><span class="nav-number">1.3.</span> <span class="nav-text">6.6 Linear Programming &amp; Approximation</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-6-approximation-problem"><span class="nav-number">1.</span> <span class="nav-text">Chapter 6 Approximation
+Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#knapsack"><span class="nav-number">1.1.</span> <span class="nav-text">6.4 Knapsack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-cover"><span class="nav-number">1.2.</span> <span class="nav-text">6.5 Set Cover</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-programming-approximation"><span class="nav-number">1.3.</span> <span class="nav-text">6.6 Linear Programming &amp;
+Approximation</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -365,162 +367,264 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-6-Approximation-Problem"><a href="#Chapter-6-Approximation-Problem" class="headerlink" title="Chapter 6  Approximation Problem"></a>Chapter 6  Approximation Problem</h2><h3 id="6-4-Knapsack"><a href="#6-4-Knapsack" class="headerlink" title="6.4 Knapsack"></a>6.4 Knapsack</h3><ol>
-<li><p>Description </p>
-<p>$n$ items , each have value $v_i$ and weight $w_i\le W$ . Maximum capacity $W$ .</p>
-<p>Find a subset $I\subseteq [n]$ , s.t. $\sum_{i\in I}w_i\le W$ , and $\sum_{i\in I}v_i$ is maximized .</p>
-</li>
-<li><p>By DP : $\mathcal O(nW)$</p>
-</li>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-6-approximation-problem">Chapter 6 Approximation
+Problem</h2>
+<h3 id="knapsack">6.4 Knapsack</h3>
+<ol type="1">
+<li><p>Description</p>
+<p><span class="math inline">\(n\)</span> items , each have value <span
+class="math inline">\(v_i\)</span> and weight <span
+class="math inline">\(w_i\le W\)</span> . Maximum capacity <span
+class="math inline">\(W\)</span> .</p>
+<p>Find a subset <span class="math inline">\(I\subseteq [n]\)</span> ,
+s.t. <span class="math inline">\(\sum_{i\in I}w_i\le W\)</span> , and
+<span class="math inline">\(\sum_{i\in I}v_i\)</span> is maximized
+.</p></li>
+<li><p>By DP : <span class="math inline">\(\mathcal
+O(nW)\)</span></p></li>
 <li><p>Discretization</p>
-<p>Let $b=\frac{\epsilon}{2n}\cdot \max_{i\in [n]}v_i$ , let $\bar v_i=\lceil\frac{v_i}{b}\rceil b$ .  Therefore , $\hat v_i:=\lceil \frac{v_i}{b}\rceil \in [0,\frac{2n}{\epsilon}]$ .</p>
+<p>Let <span class="math inline">\(b=\frac{\epsilon}{2n}\cdot \max_{i\in
+[n]}v_i\)</span> , let <span class="math inline">\(\bar
+v_i=\lceil\frac{v_i}{b}\rceil b\)</span> . Therefore , <span
+class="math inline">\(\hat v_i:=\lceil \frac{v_i}{b}\rceil \in
+[0,\frac{2n}{\epsilon}]\)</span> .</p>
 <p>New DP method :</p>
-<p>$OPT(i,V)$ : the smallest weight one can obtain from first $i$ items with total value of $\hat v_i$  $\ge V$ .</p>
+<p><span class="math inline">\(OPT(i,V)\)</span> : the smallest weight
+one can obtain from first <span class="math inline">\(i\)</span> items
+with total value of <span class="math inline">\(\hat v_i\)</span> <span
+class="math inline">\(\ge V\)</span> .</p>
 <blockquote>
-<p>Originally : $OPT(i,w)=\max v$ , now : $OPT(i,v)=\min w$</p>
+<p>Originally : <span class="math inline">\(OPT(i,w)=\max v\)</span> ,
+now : <span class="math inline">\(OPT(i,v)=\min w\)</span></p>
 </blockquote>
-<script type="math/tex; mode=display">
-OPT(i,V)=\min\begin{cases}OPT(i-1,V)\\OPT(i-1,V-\hat v_i)+w_i\end{cases}</script><p>Time complexity : $\max V=n\cdot 2n/\epsilon$ , so total time is $\mathcal O(n^3/\epsilon)$ .</p>
-</li>
+<p><span class="math display">\[
+OPT(i,V)=\min\begin{cases}OPT(i-1,V)\\OPT(i-1,V-\hat v_i)+w_i\end{cases}
+\]</span></p>
+<p>Time complexity : <span class="math inline">\(\max V=n\cdot
+2n/\epsilon\)</span> , so total time is <span
+class="math inline">\(\mathcal O(n^3/\epsilon)\)</span> .</p></li>
 <li><p>Approximation analysis</p>
-<p>Goal : Let $S^<em>$ is OPT solution , $S$ is our solution , then $\sum_{i\in S}v_i\ge (1-\epsilon)\sum_{i\in S^</em>} v_i$ </p>
-<p>Proof :</p>
-<script type="math/tex; mode=display">
+<p>Goal : Let <span class="math inline">\(S^*\)</span> is OPT solution ,
+<span class="math inline">\(S\)</span> is our solution , then <span
+class="math inline">\(\sum_{i\in S}v_i\ge (1-\epsilon)\sum_{i\in S^*}
+v_i\)</span></p>
+<p>Proof : <span class="math display">\[
 \begin{aligned}
-&\quad \sum_{i\in S^*}v_i\\
-&\le \sum_{i\in S^*}\bar v_i\\
-&\le \sum_{i\in S}\bar v_i\\
-&\le \sum_{i\in S}(v_i+b)\\
-&\le nb+\sum_{i\in S}v_i\\
-&\le \frac{\epsilon}{2}\max_i v_i +\sum_{i\in S}v_i\\
-&\le \frac{\epsilon}{2}\sum_{i\in S^*}v_i+\sum_{i\in S}v_i
-\end{aligned}</script><p>Therefore , $\sum_{i\in S}v_i\ge (1-\epsilon/2) \sum_{i\in S^*}v_i$</p>
-<p>We can reach $(1+\epsilon)$-approximation</p>
-<p>FPTAS , running time $\mathcal O(poly(n,1/\epsilon))$ .</p>
+&amp;\quad \sum_{i\in S^*}v_i\\
+&amp;\le \sum_{i\in S^*}\bar v_i\\
+&amp;\le \sum_{i\in S}\bar v_i\\
+&amp;\le \sum_{i\in S}(v_i+b)\\
+&amp;\le nb+\sum_{i\in S}v_i\\
+&amp;\le \frac{\epsilon}{2}\max_i v_i +\sum_{i\in S}v_i\\
+&amp;\le \frac{\epsilon}{2}\sum_{i\in S^*}v_i+\sum_{i\in S}v_i
+\end{aligned}
+\]</span> Therefore , <span class="math inline">\(\sum_{i\in S}v_i\ge
+(1-\epsilon/2) \sum_{i\in S^*}v_i\)</span></p>
+<p>We can reach <span
+class="math inline">\((1+\epsilon)\)</span>-approximation</p>
+<p>FPTAS , running time <span class="math inline">\(\mathcal
+O(poly(n,1/\epsilon))\)</span> .</p>
 <blockquote>
-<p>Note : Here we over-estimate the value of each items , and find valid solution ( $\sum w_i\le W$ ) . Then because we don’t over-estimate much , our solution is not much worse than the optimal solution .</p>
-<p>Reversely , we can also under-estimate the weight of each items , and find more optimal solution ($\sum v_i\ge V$) . Then because we don’t under-estimate much , our solution is not exceed much than the weight restriction ($\sum w_i\le (1+\epsilon)W$) </p>
-</blockquote>
-</li>
+<p>Note : Here we over-estimate the value of each items , and find valid
+solution ( <span class="math inline">\(\sum w_i\le W\)</span> ) . Then
+because we don't over-estimate much , our solution is not much worse
+than the optimal solution .</p>
+<p>Reversely , we can also under-estimate the weight of each items , and
+find more optimal solution (<span class="math inline">\(\sum v_i\ge
+V\)</span>) . Then because we don't under-estimate much , our solution
+is not exceed much than the weight restriction (<span
+class="math inline">\(\sum w_i\le (1+\epsilon)W\)</span>)</p>
+</blockquote></li>
 </ol>
-<h3 id="6-5-Set-Cover"><a href="#6-5-Set-Cover" class="headerlink" title="6.5 Set Cover"></a>6.5 Set Cover</h3><ol>
+<h3 id="set-cover">6.5 Set Cover</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Universe $U$ , $|U|=n$ . $\mathcal F=\{S_1,\cdots,S_m\}$ , $S_i\subseteq U$ , each with weight $w_i\ge 0$ .</p>
-<p>Find a set cover $I$ , s.t. $\bigcup_{i\in I}S_i=U$ , and minimize $\sum_{i\in I}w_i$ .</p>
-</li>
+<p>Universe <span class="math inline">\(U\)</span> , <span
+class="math inline">\(|U|=n\)</span> . <span
+class="math inline">\(\mathcal F=\{S_1,\cdots,S_m\}\)</span> , <span
+class="math inline">\(S_i\subseteq U\)</span> , each with weight <span
+class="math inline">\(w_i\ge 0\)</span> .</p>
+<p>Find a set cover <span class="math inline">\(I\)</span> , s.t. <span
+class="math inline">\(\bigcup_{i\in I}S_i=U\)</span> , and minimize
+<span class="math inline">\(\sum_{i\in I}w_i\)</span> .</p></li>
 <li><p>Greedy for SC</p>
-<p>选“性价比”最高的 , $|S_i|/w_i$ like </p>
+<p>选“性价比”最高的 , <span class="math inline">\(|S_i|/w_i\)</span>
+like</p>
 <p>Algorithm :</p>
-<p>repeat choose the subset $s_i$ , s.t. $w_i/|\{\text{newly covered elements by }S_i\}|$ is smallest</p>
-</li>
+<p>repeat choose the subset <span class="math inline">\(s_i\)</span> ,
+s.t. <span class="math inline">\(w_i/|\{\text{newly covered elements by
+}S_i\}|\)</span> is smallest</p></li>
 <li><p>Approximation analysis</p>
-<p>Goal : achieves $\alpha=\ln n$</p>
+<p>Goal : achieves <span class="math inline">\(\alpha=\ln n\)</span></p>
 <p>Proof :</p>
-<p>Suppose our solution picks $S_{i_1},S_{i_2},\cdots,S_{i_k}$ , $R_j:=U\backslash \bigcup_{l\le j}S_{i_l}$ , let $n_j=|R_j|$ .</p>
-<p>Let $T_j:=R_{j-1}\cap S_{i_j}$ , $t_j=|T_j|$ . ( $T_j$ is newly added elements in $j$-th iteration) </p>
-<p>Key inequality : $w_{i_j}/t_j\le OPT/n_{j-1}$ (*)</p>
-<p>Therefore , $w_{i_j}\le OPT\cdot t_j/n_{j-1}$ . Since $t_j=n_{j-1}-n_j$ , we have</p>
-<script type="math/tex; mode=display">
+<p>Suppose our solution picks <span
+class="math inline">\(S_{i_1},S_{i_2},\cdots,S_{i_k}\)</span> , <span
+class="math inline">\(R_j:=U\backslash \bigcup_{l\le j}S_{i_l}\)</span>
+, let <span class="math inline">\(n_j=|R_j|\)</span> .</p>
+<p>Let <span class="math inline">\(T_j:=R_{j-1}\cap S_{i_j}\)</span> ,
+<span class="math inline">\(t_j=|T_j|\)</span> . ( <span
+class="math inline">\(T_j\)</span> is newly added elements in <span
+class="math inline">\(j\)</span>-th iteration)</p>
+<p>Key inequality : <span class="math inline">\(w_{i_j}/t_j\le
+OPT/n_{j-1}\)</span> (*)</p>
+<p>Therefore , <span class="math inline">\(w_{i_j}\le OPT\cdot
+t_j/n_{j-1}\)</span> . Since <span
+class="math inline">\(t_j=n_{j-1}-n_j\)</span> , we have <span
+class="math display">\[
 \begin{aligned}
-SOL&= \sum_{j=1}^{k}w_{i_j}\\
-&\le OPT\sum_{j=1}^k (t_j/n_{j-1})\\
-&\le OPT \sum_{j=1}^k \frac{n_{j-1}-n_j}{n_{j-1}}\\
-&= OPT\sum_{j=1}^k \sum_{i=n_j+1}^{n_{j-1}}\frac{1}{n_{j-1}}\\
-&\le OPT \sum_{j=1}^k \sum_{i=n_j+1}^{n_{j-1}} \frac{1}{i}\\
-&=OPT\sum_{i=1}^n \frac{1}{i}
-\end{aligned}</script><p>(*) proof : 在第 $j$ 轮 ，$OPT$ 一定可以覆盖完 $R_{j-1}$ ，设 $OPT\backslash\{i_1,\cdots,i_{j-1}\}=\{o_1,\cdots,o_l\}$ ，则 $\forall o$ , $w_o/|S_o\cap R_{j-1}|\ge w_{i_j}/t_j$ .   </p>
-</li>
-<li><p>Approximation with $(1-\delta)\ln n$ for Set Cover is NP-Hard</p>
+SOL&amp;= \sum_{j=1}^{k}w_{i_j}\\
+&amp;\le OPT\sum_{j=1}^k (t_j/n_{j-1})\\
+&amp;\le OPT \sum_{j=1}^k \frac{n_{j-1}-n_j}{n_{j-1}}\\
+&amp;= OPT\sum_{j=1}^k \sum_{i=n_j+1}^{n_{j-1}}\frac{1}{n_{j-1}}\\
+&amp;\le OPT \sum_{j=1}^k \sum_{i=n_j+1}^{n_{j-1}} \frac{1}{i}\\
+&amp;=OPT\sum_{i=1}^n \frac{1}{i}
+\end{aligned}
+\]</span> (*) proof : 在第 <span class="math inline">\(j\)</span> 轮
+，<span class="math inline">\(OPT\)</span> 一定可以覆盖完 <span
+class="math inline">\(R_{j-1}\)</span> ，设 <span
+class="math inline">\(OPT\backslash\{i_1,\cdots,i_{j-1}\}=\{o_1,\cdots,o_l\}\)</span>
+，则 <span class="math inline">\(\forall o\)</span> , <span
+class="math inline">\(w_o/|S_o\cap R_{j-1}|\ge w_{i_j}/t_j\)</span>
+.</p></li>
+<li><p>Approximation with <span class="math inline">\((1-\delta)\ln
+n\)</span> for Set Cover is NP-Hard</p>
 <p>Proof : PCP Theorem ( probabilistic checkable proof )</p>
-<p>$NP=PCP(\mathcal O(\log n),\mathcal O(1))$ </p>
-<p>PCP : read $\log n$ bits of proof , then decide whether to accept </p>
-<p>Used for approximation : easy to make $h\sim \alpha h$ gap </p>
-</li>
-<li><p>Extension : Pricing Model ( see KT’s Book )</p>
-<p>For partition problem : partition original instance into multiple parts , each has a “center” . We consider all points are dominated by a center $c$ , and each center can have a dominating set $D_c$ .</p>
-<p>Then we amortize the cost of part $c$ to all points in $D_c$ , and let this be our greedy reference.  Each iteration , we only consider the remaining points , and choose the part with minimized amortized cost . Then usually we can get an inequality like (*) , leading to $\mathcal O(\log n)$ approximation .</p>
-</li>
+<p><span class="math inline">\(NP=PCP(\mathcal O(\log n),\mathcal
+O(1))\)</span></p>
+<p>PCP : read <span class="math inline">\(\log n\)</span> bits of proof
+, then decide whether to accept</p>
+<p>Used for approximation : easy to make <span
+class="math inline">\(h\sim \alpha h\)</span> gap</p></li>
+<li><p>Extension : Pricing Model ( see KT's Book )</p>
+<p>For partition problem : partition original instance into multiple
+parts , each has a "center" . We consider all points are dominated by a
+center <span class="math inline">\(c\)</span> , and each center can have
+a dominating set <span class="math inline">\(D_c\)</span> .</p>
+<p>Then we amortize the cost of part <span
+class="math inline">\(c\)</span> to all points in <span
+class="math inline">\(D_c\)</span> , and let this be our greedy
+reference. Each iteration , we only consider the remaining points , and
+choose the part with minimized amortized cost . Then usually we can get
+an inequality like (*) , leading to <span class="math inline">\(\mathcal
+O(\log n)\)</span> approximation .</p></li>
 </ol>
-<h3 id="6-6-Linear-Programming-amp-Approximation"><a href="#6-6-Linear-Programming-amp-Approximation" class="headerlink" title="6.6 Linear Programming &amp; Approximation"></a>6.6 Linear Programming &amp; Approximation</h3><ol>
+<h3 id="linear-programming-approximation">6.6 Linear Programming &amp;
+Approximation</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>$n$ variables , $m$ linear constraints $M_i=\sum_{j=1}^n a_{i,j}x_j\ge b_i$ . Maximize $\sum_{i=1}^n c_i x_i$ .</p>
+<p><span class="math inline">\(n\)</span> variables , <span
+class="math inline">\(m\)</span> linear constraints <span
+class="math inline">\(M_i=\sum_{j=1}^n a_{i,j}x_j\ge b_i\)</span> .
+Maximize <span class="math inline">\(\sum_{i=1}^n c_i x_i\)</span> .</p>
 <p>Variants:</p>
 <ul>
-<li>$\sum_{i=1}^n a_{i,j}x_j\le b_i$ $\to$ $\sum_{i=1}^n (-a_{i,j})x_j \ge -b_i$ </li>
-<li>$\sum_{i=1}^n a_{i,j}x_j=b_i$ $\to$ $\sum_{i=1}^n a_{i,j}x_j\ge b_i$ &amp; $\sum_{i=1}^n a_{i,j}x_j\le b_i$</li>
-<li>Minimize $\sum_{i=1}^n c_ix_i$ $\to$ Maximize $\sum_{i=1}^n (-c_i)x_i$</li>
-</ul>
-</li>
+<li><span class="math inline">\(\sum_{i=1}^n a_{i,j}x_j\le b_i\)</span>
+<span class="math inline">\(\to\)</span> <span
+class="math inline">\(\sum_{i=1}^n (-a_{i,j})x_j \ge -b_i\)</span></li>
+<li><span class="math inline">\(\sum_{i=1}^n a_{i,j}x_j=b_i\)</span>
+<span class="math inline">\(\to\)</span> <span
+class="math inline">\(\sum_{i=1}^n a_{i,j}x_j\ge b_i\)</span> &amp;
+<span class="math inline">\(\sum_{i=1}^n a_{i,j}x_j\le b_i\)</span></li>
+<li>Minimize <span class="math inline">\(\sum_{i=1}^n c_ix_i\)</span>
+<span class="math inline">\(\to\)</span> Maximize <span
+class="math inline">\(\sum_{i=1}^n (-c_i)x_i\)</span></li>
+</ul></li>
 <li><p>Geometry view</p>
-<p>One constraint $\to$ one side of $n-1$ dim hyperplane</p>
+<p>One constraint <span class="math inline">\(\to\)</span> one side of
+<span class="math inline">\(n-1\)</span> dim hyperplane</p>
 <p>Finally : form a polyhedron / polytope (bounded polyhedron)</p>
 <p>Only need to check the vertices of polytope .</p>
-<p>$n$ dim polytope : surface is $n-1$ dim polytope , connection between two $k$ dim polytope is $k-1$ dim polytope .</p>
-<p>Each vertex : solution of linear system with $n$ constraints</p>
-</li>
+<p><span class="math inline">\(n\)</span> dim polytope : surface is
+<span class="math inline">\(n-1\)</span> dim polytope , connection
+between two <span class="math inline">\(k\)</span> dim polytope is <span
+class="math inline">\(k-1\)</span> dim polytope .</p>
+<p>Each vertex : solution of linear system with <span
+class="math inline">\(n\)</span> constraints</p></li>
 <li><p>theoretical results</p>
-<p>[Danzig] simplex algorithm </p>
-<p>​    idea : find one vertex , choose one edge to move to increase the goal .</p>
-<p>​    worst case : exponential time (enumerate all possible vertex)</p>
-<p>​    OPEN : how to solve simplex in poly-time (choose which edge)</p>
-<p>​    Current Results : poly-time path exists ; sub-exponential time</p>
+<p>[Danzig] simplex algorithm</p>
+<p>​ idea : find one vertex , choose one edge to move to increase the
+goal .</p>
+<p>​ worst case : exponential time (enumerate all possible vertex)</p>
+<p>​ OPEN : how to solve simplex in poly-time (choose which edge)</p>
+<p>​ Current Results : poly-time path exists ; sub-exponential time</p>
 <p>interior point method : theoretical poly-time , applicable</p>
-<p>ellipsoid method : theoretical poly-time , not-applicable</p>
-</li>
-<li><p>Vertex Cover $\to$ integer linear programming</p>
-<ol>
+<p>ellipsoid method : theoretical poly-time , not-applicable</p></li>
+<li><p>Vertex Cover <span class="math inline">\(\to\)</span> integer
+linear programming</p>
+<ol type="1">
 <li><p>integer linear programming</p>
-<p>$x_v=\begin{cases}0&amp;v\notin VC\\1&amp;v\in VC\end{cases}$ </p>
-<p>constraints : $\forall e=(u,v)\in E$ , $x_u+x_v\ge 1$ </p>
-<p>integer constraint :  $x_v\in \{0,1\}$</p>
-<p>goal : minimize $\sum_{v\in V} w_vx_v$</p>
-</li>
-<li><p>Linear Programming relaxation : relax ILP to LP </p>
-<p>replace $x_v\in \{0,1\}$ by $0\le x_v\le 1$</p>
+<p><span class="math inline">\(x_v=\begin{cases}0&amp;v\notin
+VC\\1&amp;v\in VC\end{cases}\)</span></p>
+<p>constraints : <span class="math inline">\(\forall e=(u,v)\in
+E\)</span> , <span class="math inline">\(x_u+x_v\ge 1\)</span></p>
+<p>integer constraint : <span class="math inline">\(x_v\in
+\{0,1\}\)</span></p>
+<p>goal : minimize <span class="math inline">\(\sum_{v\in V}
+w_vx_v\)</span></p></li>
+<li><p>Linear Programming relaxation : relax ILP to LP</p>
+<p>replace <span class="math inline">\(x_v\in \{0,1\}\)</span> by <span
+class="math inline">\(0\le x_v\le 1\)</span></p>
 <p>feasible region of LP contains feasible region of ILP</p>
-<p>Obs: $OPT(LP)\le OPT(ILP)$</p>
-</li>
+<p>Obs: <span class="math inline">\(OPT(LP)\le
+OPT(ILP)\)</span></p></li>
 <li><p>Approximation Algorithm</p>
-<p>Step 1 : solve $LP$ , denote the fractional solution by $\vec x$ </p>
-<p>Step 2 : rounding : $\bar x_v=\begin{cases}1&amp;x_v\ge 0.5\\0&amp;otherwise\end{cases}$ </p>
-<ol>
-<li><p>Proof 1 : $\bar x_v$ is a valid solution for ILP</p>
-<p>Since $x_u+x_v\ge 1$ , at least one of $x_u$ and $x_v$ is $\ge 0.5$ , then at least one of them is rounded to $1$ .</p>
-</li>
-<li><p>Proof 2 : $SOL\le 2\cdot OPT$</p>
-<script type="math/tex; mode=display">
+<p>Step 1 : solve <span class="math inline">\(LP\)</span> , denote the
+fractional solution by <span class="math inline">\(\vec x\)</span></p>
+<p>Step 2 : rounding : <span class="math inline">\(\bar
+x_v=\begin{cases}1&amp;x_v\ge
+0.5\\0&amp;otherwise\end{cases}\)</span></p>
+<ol type="1">
+<li><p>Proof 1 : <span class="math inline">\(\bar x_v\)</span> is a
+valid solution for ILP</p>
+<p>Since <span class="math inline">\(x_u+x_v\ge 1\)</span> , at least
+one of <span class="math inline">\(x_u\)</span> and <span
+class="math inline">\(x_v\)</span> is <span class="math inline">\(\ge
+0.5\)</span> , then at least one of them is rounded to <span
+class="math inline">\(1\)</span> .</p></li>
+<li><p>Proof 2 : <span class="math inline">\(SOL\le 2\cdot OPT\)</span>
+<span class="math display">\[
 \begin{aligned}
-SOL&=\sum_{v}w_v\bar x_v\\
-&\le \sum_{v}w_v 2x_v\\
-&=2\cdot OPT(LP)\\
-&\le 2\cdot OPT(ILP)
-\end{aligned}</script></li>
-</ol>
-</li>
-<li><p>assuming UGC , it is hard to improve to $\alpha=2-\epsilon$ .</p>
-</li>
-</ol>
-</li>
-<li><p>Set Cover $\to$ integer linear programming</p>
-<ol>
+SOL&amp;=\sum_{v}w_v\bar x_v\\
+&amp;\le \sum_{v}w_v 2x_v\\
+&amp;=2\cdot OPT(LP)\\
+&amp;\le 2\cdot OPT(ILP)
+\end{aligned}
+\]</span></p></li>
+</ol></li>
+<li><p>assuming UGC , it is hard to improve to <span
+class="math inline">\(\alpha=2-\epsilon\)</span> .</p></li>
+</ol></li>
+<li><p>Set Cover <span class="math inline">\(\to\)</span> integer linear
+programming</p>
+<ol type="1">
 <li><p>integer linear programming</p>
-<p>constraints : $\forall e\in U$ , $\sum_{e\in S_i} x_i\ge 1$ </p>
-<p>integer constraint : $x_i\in \{0,1\}$</p>
-<p>goal : minimize $\sum_{i=1}^m w_ix_i$ </p>
-</li>
+<p>constraints : <span class="math inline">\(\forall e\in U\)</span> ,
+<span class="math inline">\(\sum_{e\in S_i} x_i\ge 1\)</span></p>
+<p>integer constraint : <span class="math inline">\(x_i\in
+\{0,1\}\)</span></p>
+<p>goal : minimize <span class="math inline">\(\sum_{i=1}^m
+w_ix_i\)</span></p></li>
 <li><p>How to round ?</p>
-<p>randomized rounding scheme : take $\bar x_i=\begin{cases}1&amp;w.p.  x_i\\0&amp;w.p. 1-x_i\end{cases}$</p>
-<p>$E[SOL]=\sum_{i}w_i\Pr\{\text{we choose }S_i\}=\sum_{i}w_ix_i=OPT(LP)\le OPT$</p>
-<p>feasible probability </p>
-<p>$\Pr\{e\text{ is not covered}\}=\prod_{i:e\in S_i}(1-x_i)\le \exp\left(\sum_{i:e\in S_i}-x_i\right)\le \frac{1}{e}$</p>
-<p>We need to repeat $T=2\ln n$ times , take the union of all rounds .</p>
-<p>$\Pr\{e\text{ is not covered in all }T\text{ rounds}\}\le \frac{1}{e^T}=\frac{1}{n^2}$ .</p>
-<p>$\Pr\{\exists e:e\text{ is not covered in all }T\text{ rounds}\}\le \frac{1}{n}$ .</p>
-<p>feasible probability : $1-\frac{1}{n}$ </p>
-<p>approximation : $\alpha=2\ln n$</p>
-</li>
-</ol>
-</li>
+<p>randomized rounding scheme : take <span class="math inline">\(\bar
+x_i=\begin{cases}1&amp;w.p.\  x_i\\0&amp;w.p.\
+1-x_i\end{cases}\)</span></p>
+<p><span class="math inline">\(E[SOL]=\sum_{i}w_i\Pr\{\text{we choose
+}S_i\}=\sum_{i}w_ix_i=OPT(LP)\le OPT\)</span></p>
+<p>feasible probability</p>
+<p><span class="math inline">\(\Pr\{e\text{ is not
+covered}\}=\prod_{i:e\in S_i}(1-x_i)\le \exp\left(\sum_{i:e\in
+S_i}-x_i\right)\le \frac{1}{e}\)</span></p>
+<p>We need to repeat <span class="math inline">\(T=2\ln n\)</span> times
+, take the union of all rounds .</p>
+<p><span class="math inline">\(\Pr\{e\text{ is not covered in all
+}T\text{ rounds}\}\le \frac{1}{e^T}=\frac{1}{n^2}\)</span> .</p>
+<p><span class="math inline">\(\Pr\{\exists e:e\text{ is not covered in
+all }T\text{ rounds}\}\le \frac{1}{n}\)</span> .</p>
+<p>feasible probability : <span
+class="math inline">\(1-\frac{1}{n}\)</span></p>
+<p>approximation : <span class="math inline">\(\alpha=2\ln
+n\)</span></p></li>
+</ol></li>
 </ol>
 
     </div>

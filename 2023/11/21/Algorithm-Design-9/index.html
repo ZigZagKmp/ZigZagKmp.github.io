@@ -26,7 +26,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zigzagkmp.github.io/images/posts/AD9_fig1.png">
 <meta property="article:published_time" content="2023-11-21T08:01:11.000Z">
-<meta property="article:modified_time" content="2023-11-21T08:28:03.799Z">
+<meta property="article:modified_time" content="2023-11-21T08:52:28.198Z">
 <meta property="article:author" content="ZigZagKmp">
 <meta property="article:tag" content="算法-分治">
 <meta property="article:tag" content="算法-分治-归并排序">
@@ -149,7 +149,9 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-7-Divide-and-Conquer"><span class="nav-number">1.</span> <span class="nav-text">Chapter 7 Divide and Conquer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-Merge-Sort-amp-inversions"><span class="nav-number">1.1.</span> <span class="nav-text">7.1 Merge Sort &amp; #inversions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-Counting-inversions"><span class="nav-number">1.2.</span> <span class="nav-text">7.2 Counting inversions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#inversion"><span class="nav-number"></span> <span class="nav-text">inversion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-Find-the-Closest-pair-of-points-in-mathbb-R-2"><span class="nav-number">0.1.</span> <span class="nav-text">7.3 Find the Closest pair of points in $\mathbb R^2$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-k-th-smallest-number"><span class="nav-number">0.2.</span> <span class="nav-text">7.4 $k$-th smallest number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-Fast-Fourier-Transform"><span class="nav-number">0.3.</span> <span class="nav-text">7.5 Fast Fourier Transform</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-7-divide-and-conquer"><span class="nav-number">1.</span> <span class="nav-text">Chapter 7 Divide and Conquer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#merge-sort-inversions"><span class="nav-number">1.1.</span> <span class="nav-text">7.1 Merge Sort &amp; #inversions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#counting-inversions"><span class="nav-number">1.2.</span> <span class="nav-text">7.2 Counting inversions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find-the-closest-pair-of-points-in-mathbb-r2"><span class="nav-number">1.3.</span> <span class="nav-text">7.3 Find the
+Closest pair of points in \(\mathbb
+R^2\)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-th-smallest-number"><span class="nav-number">1.4.</span> <span class="nav-text">7.4 \(k\)-th smallest number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fast-fourier-transform"><span class="nav-number">1.5.</span> <span class="nav-text">7.5 Fast Fourier Transform</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -319,7 +321,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-11-21 16:01:11 / 修改时间：16:28:03" itemprop="dateCreated datePublished" datetime="2023-11-21T16:01:11+08:00">2023-11-21</time>
+      <time title="创建时间：2023-11-21 16:01:11 / 修改时间：16:52:28" itemprop="dateCreated datePublished" datetime="2023-11-21T16:01:11+08:00">2023-11-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -367,173 +369,247 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Chapter-7-Divide-and-Conquer"><a href="#Chapter-7-Divide-and-Conquer" class="headerlink" title="Chapter 7 Divide and Conquer"></a>Chapter 7 Divide and Conquer</h2><h3 id="7-1-Merge-Sort-amp-inversions"><a href="#7-1-Merge-Sort-amp-inversions" class="headerlink" title="7.1 Merge Sort &amp; #inversions"></a>7.1 Merge Sort &amp; #inversions</h3><ol>
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-7-divide-and-conquer">Chapter 7 Divide and Conquer</h2>
+<h3 id="merge-sort-inversions">7.1 Merge Sort &amp; #inversions</h3>
+<ol type="1">
 <li><p>Merge Sort</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Initial : array a[1,...,n]</span></span><br><span class="line"><span class="function">function <span class="title">sort</span><span class="params">(s.t)</span></span>&#123; <span class="comment">// sort a[s,...,t]</span></span><br><span class="line">    <span class="keyword">if</span>(s&gt;=t) <span class="keyword">return</span> a[s,...,t];</span><br><span class="line">    mid=(s+t)/<span class="number">2</span>;</span><br><span class="line">    list1=<span class="built_in">sort</span>(s,mid);</span><br><span class="line">    list2=<span class="built_in">sort</span>(mid+<span class="number">1</span>,t);</span><br><span class="line">    list=<span class="built_in">merge</span>(list1,list2);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">function <span class="title">merge</span><span class="params">(list1,list2)</span></span>&#123; <span class="comment">// merge two sorted sequence into a sorted sequence</span></span><br><span class="line">    list=[];</span><br><span class="line">    <span class="keyword">while</span>(!list1.<span class="built_in">empty</span>()&amp;&amp;!list2.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        a=list1.<span class="built_in">front</span>();</span><br><span class="line">        b=list2.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">if</span>(a&lt;b)&#123;</span><br><span class="line">            list.<span class="built_in">push_back</span>(a);</span><br><span class="line">            list1.<span class="built_in">pop_front</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            list.<span class="built_in">push_back</span>(b);</span><br><span class="line">            list2.<span class="built_in">pop_front</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!list1.<span class="built_in">empty</span>())list.<span class="built_in">append_back</span>(list1);</span><br><span class="line">    <span class="keyword">if</span>(!list2.<span class="built_in">empty</span>())list.<span class="built_in">append_back</span>(list2);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Initial : array a[1,...,n]</span></span><br><span class="line"><span class="function">function <span class="title">sort</span><span class="params">(s.t)</span></span>&#123; <span class="comment">// sort a[s,...,t]</span></span><br><span class="line">    <span class="keyword">if</span>(s&gt;=t) <span class="keyword">return</span> a[s,...,t];</span><br><span class="line">    mid=(s+t)/<span class="number">2</span>;</span><br><span class="line">    list1=<span class="built_in">sort</span>(s,mid);</span><br><span class="line">    list2=<span class="built_in">sort</span>(mid+<span class="number">1</span>,t);</span><br><span class="line">    list=<span class="built_in">merge</span>(list1,list2);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">function <span class="title">merge</span><span class="params">(list1,list2)</span></span>&#123; <span class="comment">// merge two sorted sequence into a sorted sequence</span></span><br><span class="line">    list=[];</span><br><span class="line">    <span class="keyword">while</span>(!list1.<span class="built_in">empty</span>()&amp;&amp;!list2.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        a=list1.<span class="built_in">front</span>();</span><br><span class="line">        b=list2.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">if</span>(a&lt;b)&#123;</span><br><span class="line">            list.<span class="built_in">push_back</span>(a);</span><br><span class="line">            list1.<span class="built_in">pop_front</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            list.<span class="built_in">push_back</span>(b);</span><br><span class="line">            list2.<span class="built_in">pop_front</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!list1.<span class="built_in">empty</span>())list.<span class="built_in">append_back</span>(list1);</span><br><span class="line">    <span class="keyword">if</span>(!list2.<span class="built_in">empty</span>())list.<span class="built_in">append_back</span>(list2);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>Time analysis</p>
-<p>$T(n)$ : time to sort $n$ elements .</p>
-<p>$T(n)=2T(\frac{n}{2})+cn$</p>
+<p><span class="math inline">\(T(n)\)</span> : time to sort <span
+class="math inline">\(n\)</span> elements .</p>
+<p><span class="math inline">\(T(n)=2T(\frac{n}{2})+cn\)</span></p>
 <ul>
 <li><p>Method 1 : unrolling</p>
-<p>Draw the recursive tree </p>
-<p><img src="/images/posts/AD9_fig1.png" alt=""></p>
-</li>
+<p>Draw the recursive tree</p>
+<p><img src="/images/posts/AD9_fig1.png" /></p></li>
 <li><p>Method 2 : substitution</p>
-<p>Guess : $T(n)\le cn\log_2 n$ </p>
-<p>Inductive Proof :</p>
-<script type="math/tex; mode=display">
+<p>Guess : <span class="math inline">\(T(n)\le cn\log_2 n\)</span></p>
+<p>Inductive Proof : <span class="math display">\[
 \begin{aligned}
-T(n)&\le 2T(\frac{n}{2})+cn\\
-&\le 2c\frac{n}{2}\log_2(\frac{n}{2})+cn\\
-&=cn\log_2n-cn+cn\\
-&=cn\log_2n
-\end{aligned}</script><blockquote>
+T(n)&amp;\le 2T(\frac{n}{2})+cn\\
+&amp;\le 2c\frac{n}{2}\log_2(\frac{n}{2})+cn\\
+&amp;=cn\log_2n-cn+cn\\
+&amp;=cn\log_2n
+\end{aligned}
+\]</span></p>
+<blockquote>
 <p>Note : we need to consider precise coefficient here .</p>
-<p>Wrong Proof : $T(n)=O(n)$</p>
-<script type="math/tex; mode=display">
-T(n)=2T(\frac{n}{2})+O(n)=2O(\frac{n}{2})+O(n)=O(n)</script><p>Approximate constant for $\log_2 n$ times .</p>
-</blockquote>
-</li>
-<li><p>Method 3 : Master Theorem</p>
-<script type="math/tex; mode=display">
+<p>Wrong Proof : <span class="math inline">\(T(n)=O(n)\)</span> <span
+class="math display">\[
+T(n)=2T(\frac{n}{2})+O(n)=2O(\frac{n}{2})+O(n)=O(n)
+\]</span> Approximate constant for <span class="math inline">\(\log_2
+n\)</span> times .</p>
+</blockquote></li>
+<li><p>Method 3 : Master Theorem <span class="math display">\[
 T(n)=\begin{cases}
-\Theta (1)&n\le n_0\\
-aT(\frac{n}{b})+f(n)&n>n_0
-\end{cases}</script><p>We can solve $T(n)$ </p>
-<script type="math/tex; mode=display">
-c_{crit}=\log_{b}a</script><script type="math/tex; mode=display">
+\Theta (1)&amp;n\le n_0\\
+aT(\frac{n}{b})+f(n)&amp;n&gt;n_0
+\end{cases}
+\]</span> We can solve <span class="math inline">\(T(n)\)</span> <span
+class="math display">\[
+c_{crit}=\log_{b}a
+\]</span></p>
+<p><span class="math display">\[
 T(n)=\begin{cases}
-\Theta(n^{c_{crit}})&f(n)=\mathcal O(n^c),c<c_{crit}\\
-\Theta(n^{c_{crit}}\log^{k+1}n)&f(n)=\Theta(n^{c_{crit}}\log^k n),k\ge 0\\
-\Theta(f(n))&f(n)=\Omega(n^c),c>c_{crit}
-\end{cases}</script></li>
-</ul>
-</li>
+\Theta(n^{c_{crit}})&amp;f(n)=\mathcal O(n^c),c&lt;c_{crit}\\
+\Theta(n^{c_{crit}}\log^{k+1}n)&amp;f(n)=\Theta(n^{c_{crit}}\log^k
+n),k\ge 0\\
+\Theta(f(n))&amp;f(n)=\Omega(n^c),c&gt;c_{crit}
+\end{cases}
+\]</span></p></li>
+</ul></li>
 </ol>
-<h3 id="7-2-Counting-inversions"><a href="#7-2-Counting-inversions" class="headerlink" title="7.2 Counting inversions"></a>7.2 Counting inversions</h3><ol>
-<li><h1 id="inversion"><a href="#inversion" class="headerlink" title="inversion"></a>inversion</h1><p>Given $a_1,\cdots,a_n$ , count number of pairs $(i,j)$ s.t. $i<j$ and $a_i>a_j$ </p>
-<p>View : matching sorted sequence and original sequence , #crossings</p>
-</li>
+<h3 id="counting-inversions">7.2 Counting inversions</h3>
+<ol type="1">
+<li><p>#inversion</p>
+<p>Given <span class="math inline">\(a_1,\cdots,a_n\)</span> , count
+number of pairs <span class="math inline">\((i,j)\)</span> s.t. <span
+class="math inline">\(i&lt;j\)</span> and <span
+class="math inline">\(a_i&gt;a_j\)</span></p>
+<p>View : matching sorted sequence and original sequence ,
+#crossings</p></li>
 <li><p>counting inversion based on merge sort</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Initial : array a[1,...,n]</span></span><br><span class="line"><span class="function">function <span class="title">sort</span><span class="params">(s.t)</span></span>&#123; <span class="comment">// sort a[s,...,t]</span></span><br><span class="line">    <span class="keyword">if</span>(s&gt;=t) <span class="keyword">return</span> a[s,...,t];</span><br><span class="line">    mid=(s+t)/<span class="number">2</span>;</span><br><span class="line">    (list1,n1)=<span class="built_in">sort</span>(s,mid);			<span class="comment">// inversions only in left part</span></span><br><span class="line">    (list2,n2)=<span class="built_in">sort</span>(mid+<span class="number">1</span>,t);		<span class="comment">// inversions only in right part</span></span><br><span class="line">    (list,n3)=<span class="built_in">merge</span>(list1,list2);	<span class="comment">// inversions between two parts</span></span><br><span class="line">    <span class="keyword">return</span> (list,n1+n2+n3);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">function <span class="title">merge</span><span class="params">(list1,list2)</span></span>&#123;</span><br><span class="line">    <span class="comment">// we only count a\in list1 , b\in list2 , a&gt;b</span></span><br><span class="line">    list=[]; n3=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!list1.<span class="built_in">empty</span>()&amp;&amp;!list2.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        a=list1.<span class="built_in">front</span>();</span><br><span class="line">        b=list2.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">if</span>(a&lt;=b)&#123;</span><br><span class="line">            list.<span class="built_in">push_back</span>(a);</span><br><span class="line">            list1.<span class="built_in">pop_front</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            list.<span class="built_in">push_back</span>(b);</span><br><span class="line">            list2.<span class="built_in">pop_front</span>();</span><br><span class="line">            n3+=list1.<span class="built_in">size</span>(); <span class="comment">// for each b , count all valid a</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!list1.<span class="built_in">empty</span>())list.<span class="built_in">append_back</span>(list1);</span><br><span class="line">    <span class="keyword">if</span>(!list2.<span class="built_in">empty</span>())list.<span class="built_in">append_back</span>(list2);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Initial : array a[1,...,n]</span></span><br><span class="line"><span class="function">function <span class="title">sort</span><span class="params">(s.t)</span></span>&#123; <span class="comment">// sort a[s,...,t]</span></span><br><span class="line">    <span class="keyword">if</span>(s&gt;=t) <span class="keyword">return</span> a[s,...,t];</span><br><span class="line">    mid=(s+t)/<span class="number">2</span>;</span><br><span class="line">    (list1,n1)=<span class="built_in">sort</span>(s,mid);			<span class="comment">// inversions only in left part</span></span><br><span class="line">    (list2,n2)=<span class="built_in">sort</span>(mid+<span class="number">1</span>,t);		<span class="comment">// inversions only in right part</span></span><br><span class="line">    (list,n3)=<span class="built_in">merge</span>(list1,list2);	<span class="comment">// inversions between two parts</span></span><br><span class="line">    <span class="keyword">return</span> (list,n1+n2+n3);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">function <span class="title">merge</span><span class="params">(list1,list2)</span></span>&#123;</span><br><span class="line">    <span class="comment">// we only count a\in list1 , b\in list2 , a&gt;b</span></span><br><span class="line">    list=[]; n3=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!list1.<span class="built_in">empty</span>()&amp;&amp;!list2.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        a=list1.<span class="built_in">front</span>();</span><br><span class="line">        b=list2.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">if</span>(a&lt;=b)&#123;</span><br><span class="line">            list.<span class="built_in">push_back</span>(a);</span><br><span class="line">            list1.<span class="built_in">pop_front</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            list.<span class="built_in">push_back</span>(b);</span><br><span class="line">            list2.<span class="built_in">pop_front</span>();</span><br><span class="line">            n3+=list1.<span class="built_in">size</span>(); <span class="comment">// for each b , count all valid a</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!list1.<span class="built_in">empty</span>())list.<span class="built_in">append_back</span>(list1);</span><br><span class="line">    <span class="keyword">if</span>(!list2.<span class="built_in">empty</span>())list.<span class="built_in">append_back</span>(list2);</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="7-3-Find-the-Closest-pair-of-points-in-mathbb-R-2"><a href="#7-3-Find-the-Closest-pair-of-points-in-mathbb-R-2" class="headerlink" title="7.3 Find the Closest pair of points in $\mathbb R^2$"></a>7.3 Find the Closest pair of points in $\mathbb R^2$</h3><ol>
+<h3 id="find-the-closest-pair-of-points-in-mathbb-r2">7.3 Find the
+Closest pair of points in <span class="math inline">\(\mathbb
+R^2\)</span></h3>
+<ol type="1">
 <li><p>Current</p>
 <ul>
-<li>naive : $\mathcal O(n^2)$</li>
-<li>deterministic : $\mathcal O(n\log n)$ [Shamos &amp; Hoey]</li>
-<li>randomized : $\mathcal O(n)$ (with Hash)</li>
-</ul>
-</li>
+<li>naive : <span class="math inline">\(\mathcal O(n^2)\)</span></li>
+<li>deterministic : <span class="math inline">\(\mathcal O(n\log
+n)\)</span> [Shamos &amp; Hoey]</li>
+<li>randomized : <span class="math inline">\(\mathcal O(n)\)</span>
+(with Hash)</li>
+</ul></li>
 <li><p>D&amp;C Algorithm</p>
-<ol>
-<li>sort all points according to $x$-coordinate , divide into Left side and Right side , each with $\frac{n}{2}$ points</li>
+<ol type="1">
+<li>sort all points according to <span
+class="math inline">\(x\)</span>-coordinate , divide into Left side and
+Right side , each with <span class="math inline">\(\frac{n}{2}\)</span>
+points</li>
 <li>solve each part</li>
-<li>merge the two parts , compute pairs with one point in Left and the other in Right</li>
+<li>merge the two parts , compute pairs with one point in Left and the
+other in Right</li>
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">solve</span><span class="params">(s,t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s&gt;=t) <span class="keyword">return</span> +inf;</span><br><span class="line">    <span class="type">int</span> mid=(s+t)/<span class="number">2</span>;</span><br><span class="line">    dl=<span class="built_in">solve</span>(s,mid);</span><br><span class="line">    dr=<span class="built_in">solve</span>(mid+<span class="number">1</span>,t);</span><br><span class="line">   	d=<span class="built_in">merge</span>(s,t,<span class="built_in">min</span>(dl,dr));</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">functino <span class="title">merge</span><span class="params">(s,t,delta)</span></span>&#123;</span><br><span class="line">    <span class="comment">//	divide R^2 plane with (delta/2)*(delta/2) grids</span></span><br><span class="line">    <span class="comment">//	observation : at most 1 point in one grid </span></span><br><span class="line">    <span class="comment">//  we only need to consider 3 rows upper and 3 rows lower</span></span><br><span class="line">    <span class="comment">//  columns : 2 columns left and 2 columns right</span></span><br><span class="line">    <span class="type">int</span> d=delta;</span><br><span class="line">    list=<span class="built_in">sort_y</span>(s,t);</span><br><span class="line">    list.<span class="built_in">filter</span>(a:halfline-delta&lt;=a.x&lt;=halfline+delta)</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;list.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="built_in">max</span>(<span class="number">0</span>,i<span class="number">-12</span>);j&lt;=<span class="built_in">min</span>(list.<span class="built_in">size</span>()<span class="number">-1</span>,i+<span class="number">12</span>);j++)&#123;</span><br><span class="line">            d=<span class="built_in">min</span>(d,<span class="built_in">dist</span>(a[i],a[j]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Note : we can firstly sort the points according to $x$-coordinate , then within solving and merging , we sort the points according to $y$-coordinate . (instead of using a $\mathcal O(n\log n)$ sorting in <code>list=sort_y(s,t)</code> ) . The total time can be $\mathcal O(n\log n)$ .</p>
-</li>
+<p>Note : we can firstly sort the points according to <span
+class="math inline">\(x\)</span>-coordinate , then within solving and
+merging , we sort the points according to <span
+class="math inline">\(y\)</span>-coordinate . (instead of using a <span
+class="math inline">\(\mathcal O(n\log n)\)</span> sorting in
+<code>list=sort_y(s,t)</code> ) . The total time can be <span
+class="math inline">\(\mathcal O(n\log n)\)</span> .</p></li>
 </ol>
-<h3 id="7-4-k-th-smallest-number"><a href="#7-4-k-th-smallest-number" class="headerlink" title="7.4 $k$-th smallest number"></a>7.4 $k$-th smallest number</h3><ol>
+<h3 id="k-th-smallest-number">7.4 <span
+class="math inline">\(k\)</span>-th smallest number</h3>
+<ol type="1">
 <li><p>Description</p>
-<p>Given a sequence $a[1,\cdots,n]$ , find the $k$-th smallest number</p>
-</li>
-<li><p>D&amp;C Algorithm  </p>
+<p>Given a sequence <span class="math inline">\(a[1,\cdots,n]\)</span> ,
+find the <span class="math inline">\(k\)</span>-th smallest
+number</p></li>
+<li><p>D&amp;C Algorithm</p>
 <blockquote>
-<p>[Blum , Floyd , Pratt , Rivest , Tarjan  1973]</p>
-<p>deterministic , $\mathcal O(n)$ </p>
+<p>[Blum , Floyd , Pratt , Rivest , Tarjan 1973]</p>
+<p>deterministic , <span class="math inline">\(\mathcal
+O(n)\)</span></p>
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">Pick</span><span class="params">(A,k)</span></span>&#123;</span><br><span class="line">    x=<span class="built_in">GenBaseline</span>(A,k);</span><br><span class="line">    listl=A.<span class="built_in">filter</span>(a&lt;x);</span><br><span class="line">    listr=A.<span class="built_in">filter</span>(a&gt;x);</span><br><span class="line">    numx=A.<span class="built_in">count</span>(a==x);</span><br><span class="line">    <span class="keyword">if</span>(k&lt;=listl.<span class="built_in">size</span>()) <span class="keyword">return</span> <span class="built_in">Pick</span>(listl,k);</span><br><span class="line">    <span class="keyword">if</span>(k&gt;listl.<span class="built_in">size</span>()&amp;&amp;k&lt;=listl.<span class="built_in">size</span>()+numx) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">if</span>(k&gt;listl.<span class="built_in">size</span>()+numx) <span class="keyword">return</span> <span class="built_in">Pick</span>(list2,k-listl.<span class="built_in">size</span>()-numx);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">function <span class="title">GenBaseline</span><span class="params">(A,k)</span></span>&#123;</span><br><span class="line">    Divide n elements into n/<span class="number">5</span> groups</span><br><span class="line">    sort each group</span><br><span class="line">    listm=all group median</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Pick</span>(listm,n/<span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Observation : $\max\{|listl|,|listr|\}\le \frac{7}{10}n$</p>
+<p>Observation : <span class="math inline">\(\max\{|listl|,|listr|\}\le
+\frac{7}{10}n\)</span></p>
 <blockquote>
-<p>If we sort the $\frac{n}{5}$ groups according to the median , let $x$ be the median of the medians of the groups .</p>
-<p>Then $x$ is larger than the previous $\frac{n}{10}$ groups’ first $3$ elements , so $|listr|\le \frac{7}{10}n$ </p>
-<p>And $x$ is smaller than the later $\frac{n}{10}$ groups’ last $3$ elements , so $|listl|\le \frac{7}{10}n$</p>
+<p>If we sort the <span class="math inline">\(\frac{n}{5}\)</span>
+groups according to the median , let <span
+class="math inline">\(x\)</span> be the median of the medians of the
+groups .</p>
+<p>Then <span class="math inline">\(x\)</span> is larger than the
+previous <span class="math inline">\(\frac{n}{10}\)</span> groups' first
+<span class="math inline">\(3\)</span> elements , so <span
+class="math inline">\(|listr|\le \frac{7}{10}n\)</span></p>
+<p>And <span class="math inline">\(x\)</span> is smaller than the later
+<span class="math inline">\(\frac{n}{10}\)</span> groups' last <span
+class="math inline">\(3\)</span> elements , so <span
+class="math inline">\(|listl|\le \frac{7}{10}n\)</span></p>
 </blockquote>
-<script type="math/tex; mode=display">
-T(n)\le cn+T(\frac{n}{5})+T(\frac{7}{10}n)</script><p>Key : $\frac{1}{5}+\frac{7}{10}&lt;1$ </p>
-</li>
+<p><span class="math display">\[
+T(n)\le cn+T(\frac{n}{5})+T(\frac{7}{10}n)
+\]</span></p>
+<p>Key : <span
+class="math inline">\(\frac{1}{5}+\frac{7}{10}&lt;1\)</span></p></li>
 </ol>
-<h3 id="7-5-Fast-Fourier-Transform"><a href="#7-5-Fast-Fourier-Transform" class="headerlink" title="7.5 Fast Fourier Transform"></a>7.5 Fast Fourier Transform</h3><ol>
+<h3 id="fast-fourier-transform">7.5 Fast Fourier Transform</h3>
+<ol type="1">
 <li><p>Convolution</p>
-<p>Sequence $a[0,\cdots,n-1],b[0,\cdots,m-1]$ .</p>
-<p>$(a*b)_k=\sum_{i+j=k}a_ib_j$ </p>
-</li>
+<p>Sequence <span
+class="math inline">\(a[0,\cdots,n-1],b[0,\cdots,m-1]\)</span> .</p>
+<p><span
+class="math inline">\((a*b)_k=\sum_{i+j=k}a_ib_j\)</span></p></li>
 <li><p>Applications</p>
 <ul>
-<li><p>polynomial multiplication</p>
-<script type="math/tex; mode=display">
+<li><p>polynomial multiplication <span class="math display">\[
 \begin{aligned}
-A(x)&=\sum_{i=0}^{n-1} a_i x^i\\
-B(x)&=\sum_{j=0}^{m-1} b_j x^j\\
-C(x)=A(x)B(x)&=\sum_{k=0}^{n+m-2}c_kx^k\\
-&=\sum_{k=0}^{n+m-2}\sum_{i+j=k}a_ib_jx^k
-\end{aligned}</script></li>
+A(x)&amp;=\sum_{i=0}^{n-1} a_i x^i\\
+B(x)&amp;=\sum_{j=0}^{m-1} b_j x^j\\
+C(x)=A(x)B(x)&amp;=\sum_{k=0}^{n+m-2}c_kx^k\\
+&amp;=\sum_{k=0}^{n+m-2}\sum_{i+j=k}a_ib_jx^k
+\end{aligned}
+\]</span></p></li>
 <li><p>signal processing</p>
-<p>time $\to$ frequency</p>
+<p>time <span class="math inline">\(\to\)</span> frequency</p>
 <ul>
-<li>remove high-frequency $\to$ remove noise</li>
-<li>multiplication in frequency $\leftrightarrow$ convolution in time</li>
+<li>remove high-frequency <span class="math inline">\(\to\)</span>
+remove noise</li>
+<li>multiplication in frequency <span
+class="math inline">\(\leftrightarrow\)</span> convolution in time</li>
 <li>filter : smoothing , denoising</li>
-</ul>
-</li>
+</ul></li>
 <li><p>sum of two independent r.v.</p>
-<p>$X$ : PDF $f$ , $Y$ : PDF $g$ , $X+Y$ : PDF $h$</p>
-<script type="math/tex; mode=display">
-h(z)=\int_{-\infty}^{\infty} f(x)g(z-x)dx</script></li>
-</ul>
-</li>
+<p><span class="math inline">\(X\)</span> : PDF <span
+class="math inline">\(f\)</span> , <span
+class="math inline">\(Y\)</span> : PDF <span
+class="math inline">\(g\)</span> , <span
+class="math inline">\(X+Y\)</span> : PDF <span
+class="math inline">\(h\)</span> <span class="math display">\[
+h(z)=\int_{-\infty}^{\infty} f(x)g(z-x)dx
+\]</span></p></li>
+</ul></li>
 <li><p>Algorithm (poly multiplication)</p>
 <ul>
-<li>Choose $n+m-1$ values $x_1,\cdots,x_{n+m-1}$ , evaluate $A(x_i),B(x_i)$     (DFT , $\mathcal O(n\log n)$)</li>
-<li>Let $C(x_i)=A(x_i)B(x_i)$        ($\mathcal O(n)$)</li>
-<li>Interpolation , reconstruct $C(x)$ from $C(x_i)$       (IDFT , $\mathcal O(n\log n)$)</li>
-</ul>
-</li>
+<li>Choose <span class="math inline">\(n+m-1\)</span> values <span
+class="math inline">\(x_1,\cdots,x_{n+m-1}\)</span> , evaluate <span
+class="math inline">\(A(x_i),B(x_i)\)</span> (DFT , <span
+class="math inline">\(\mathcal O(n\log n)\)</span>)</li>
+<li>Let <span class="math inline">\(C(x_i)=A(x_i)B(x_i)\)</span> (<span
+class="math inline">\(\mathcal O(n)\)</span>)</li>
+<li>Interpolation , reconstruct <span
+class="math inline">\(C(x)\)</span> from <span
+class="math inline">\(C(x_i)\)</span> (IDFT , <span
+class="math inline">\(\mathcal O(n\log n)\)</span>)</li>
+</ul></li>
 <li><p>DFT</p>
-<p>$\{x_0,\cdots,x_{N-1}\}\to \{\bar x_0,\cdots,\bar x_{N-1}\}$ , where $N=2^t$ for some positive integer $t$ .</p>
-<script type="math/tex; mode=display">
-\bar x_k=\sum_{n=0}^{N-1}x_n\exp(-\frac{2\pi \mathrm{i}kn}{N})</script><p>$\bar x_k$ can be viewed as $f(\exp(-\frac{2\pi \mathrm{i}k}{N}))$ .</p>
-<p>Denote $w_k^j=\exp(\frac{2\pi \mathrm{i}j}{k})$ : $j$-th root of $x^k=1$ . </p>
-</li>
-<li><p>Divide and Conquer for DFT</p>
-<script type="math/tex; mode=display">
+<p><span class="math inline">\(\{x_0,\cdots,x_{N-1}\}\to \{\bar
+x_0,\cdots,\bar x_{N-1}\}\)</span> , where <span
+class="math inline">\(N=2^t\)</span> for some positive integer <span
+class="math inline">\(t\)</span> . <span class="math display">\[
+\bar x_k=\sum_{n=0}^{N-1}x_n\exp(-\frac{2\pi \mathrm{i}kn}{N})
+\]</span> <span class="math inline">\(\bar x_k\)</span> can be viewed as
+<span class="math inline">\(f(\exp(-\frac{2\pi
+\mathrm{i}k}{N}))\)</span> .</p>
+<p>Denote <span class="math inline">\(w_k^j=\exp(\frac{2\pi
+\mathrm{i}j}{k})\)</span> : <span class="math inline">\(j\)</span>-th
+root of <span class="math inline">\(x^k=1\)</span> .</p></li>
+<li><p>Divide and Conquer for DFT <span class="math display">\[
 \begin{aligned}
-A_{even}(x)&=a_0+a_2x+a_4x^2+\cdots+a_{N-2}x^{\frac{N-2}{2}}\\
-A_{odd}(x)&=a_1+a_3x+a_5x^2+\cdots+a_{N-1}x^{\frac{N-2}{2}}\\
-A(x)&=A_{even}(x^2)+xA_{odd}(x^2)
-\end{aligned}</script><p>Goal : compute $A(w_{2N}^0),A(w_{2N}^1),\cdots A(w_{2N}^{2N-1})$ .</p>
-<p>Divide : $A_{even}(w_{N}^0),A_{even}(w_N^1),\cdots,A_{even}(w_N^{N-1})$ , $A_{odd}(w_N^0) , A_{odd}(w_N^1) , \cdots,A_{odd}(w_N^{N-1})$ </p>
-<p>Merge : $A(w_{2N}^k)=A_{even}(w_N^k)+w_{2N}^k A_{odd}(w_N^k)$ , $A(w_{2N}^{N+k})=A_{even}(w_N^k)-w_{2N}^{k}A_{odd}(w_N^k)$ , for $0\le k\le N-1$ .</p>
-</li>
-<li><p>IDFT</p>
-<script type="math/tex; mode=display">
+A_{even}(x)&amp;=a_0+a_2x+a_4x^2+\cdots+a_{N-2}x^{\frac{N-2}{2}}\\
+A_{odd}(x)&amp;=a_1+a_3x+a_5x^2+\cdots+a_{N-1}x^{\frac{N-2}{2}}\\
+A(x)&amp;=A_{even}(x^2)+xA_{odd}(x^2)
+\end{aligned}
+\]</span> Goal : compute <span
+class="math inline">\(A(w_{2N}^0),A(w_{2N}^1),\cdots
+A(w_{2N}^{2N-1})\)</span> .</p>
+<p>Divide : <span
+class="math inline">\(A_{even}(w_{N}^0),A_{even}(w_N^1),\cdots,A_{even}(w_N^{N-1})\)</span>
+, <span class="math inline">\(A_{odd}(w_N^0) , A_{odd}(w_N^1) ,
+\cdots,A_{odd}(w_N^{N-1})\)</span></p>
+<p>Merge : <span
+class="math inline">\(A(w_{2N}^k)=A_{even}(w_N^k)+w_{2N}^k
+A_{odd}(w_N^k)\)</span> , <span
+class="math inline">\(A(w_{2N}^{N+k})=A_{even}(w_N^k)-w_{2N}^{k}A_{odd}(w_N^k)\)</span>
+, for <span class="math inline">\(0\le k\le N-1\)</span> .</p></li>
+<li><p>IDFT <span class="math display">\[
 \begin{pmatrix}
-(w_{N}^{0})^0&(w_{N}^{0})^1&\cdots &(w_{N}^{0})^{N-1}\\
-(w_{N}^{1})^0&(w_{N}^{1})^1&\cdots &(w_{N}^{1})^{N-1}\\
-\vdots&\vdots&\ddots&\vdots\\
-(w_{N}^{N-1})^0&(w_{N}^{N-1})^1&\cdots &(w_{N}^{N-1})^{N-1}
+(w_{N}^{0})^0&amp;(w_{N}^{0})^1&amp;\cdots &amp;(w_{N}^{0})^{N-1}\\
+(w_{N}^{1})^0&amp;(w_{N}^{1})^1&amp;\cdots &amp;(w_{N}^{1})^{N-1}\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+(w_{N}^{N-1})^0&amp;(w_{N}^{N-1})^1&amp;\cdots &amp;(w_{N}^{N-1})^{N-1}
 \end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_{N-1}
 \end{pmatrix}=\begin{pmatrix}A(w_{N}^0)\\A(w_{N}^1)\\\vdots\\A(w_{N}^{N-1})
-\end{pmatrix}</script><script type="math/tex; mode=display">
+\end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
 W=\begin{pmatrix}
-(w_{N}^{0})^0&(w_{N}^{0})^1&\cdots &(w_{N}^{0})^{N-1}\\
-(w_{N}^{1})^0&(w_{N}^{1})^1&\cdots &(w_{N}^{1})^{N-1}\\
-\vdots&\vdots&\ddots&\vdots\\
-(w_{N}^{N-1})^0&(w_{N}^{N-1})^1&\cdots &(w_{N}^{N-1})^{N-1}
-\end{pmatrix}</script><p>Orthogonal basis : $WW^\dagger=NI$ , so $W^{-1}=\frac{1}{N}W^\dagger$ , therefore ,</p>
-<script type="math/tex; mode=display">
+(w_{N}^{0})^0&amp;(w_{N}^{0})^1&amp;\cdots &amp;(w_{N}^{0})^{N-1}\\
+(w_{N}^{1})^0&amp;(w_{N}^{1})^1&amp;\cdots &amp;(w_{N}^{1})^{N-1}\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+(w_{N}^{N-1})^0&amp;(w_{N}^{N-1})^1&amp;\cdots &amp;(w_{N}^{N-1})^{N-1}
+\end{pmatrix}
+\]</span></p>
+<p>Orthogonal basis : <span class="math inline">\(WW^\dagger=NI\)</span>
+, so <span class="math inline">\(W^{-1}=\frac{1}{N}W^\dagger\)</span> ,
+therefore , <span class="math display">\[
 \frac{1}{N}\begin{pmatrix}
-\overline{(w_{N}^{0})^0}&\overline{(w_{N}^{0})^1}&\cdots &\overline{(w_{N}^{0})^{N-1}}\\
-\overline{(w_{N}^{1})^0}&\overline{(w_{N}^{1})^1}&\cdots &\overline{(w_{N}^{1})^{N-1}}\\
-\vdots&\vdots&\ddots&\vdots\\
-\overline{(w_{N}^{N-1})^0}&\overline{(w_{N}^{N-1})^1}&\cdots &\overline{(w_{N}^{N-1})^{N-1}}
+\overline{(w_{N}^{0})^0}&amp;\overline{(w_{N}^{0})^1}&amp;\cdots
+&amp;\overline{(w_{N}^{0})^{N-1}}\\
+\overline{(w_{N}^{1})^0}&amp;\overline{(w_{N}^{1})^1}&amp;\cdots
+&amp;\overline{(w_{N}^{1})^{N-1}}\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+\overline{(w_{N}^{N-1})^0}&amp;\overline{(w_{N}^{N-1})^1}&amp;\cdots
+&amp;\overline{(w_{N}^{N-1})^{N-1}}
 \end{pmatrix}\begin{pmatrix}A(w_{N}^0)\\A(w_{N}^1)\\\vdots\\A(w_{N}^{N-1})
 \end{pmatrix}=\begin{pmatrix}a_0\\a_1\\\vdots\\a_{N-1}
-\end{pmatrix}</script></li>
+\end{pmatrix}
+\]</span></p></li>
 </ol>
 
     </div>
