@@ -660,8 +660,9 @@ using Dominated Convergence Theorem , <span class="math display">\[
 </ol></li>
 <li><p>THM [ <strong><em>WLLN in common</em></strong> ] :</p>
 <p>Let <span class="math inline">\(X_1,X_2,\cdots\)</span> be i.i.d. ,
-with <span class="math inline">\(\mu=E[|X_i|]&lt;\infty\)</span> , then
-as <span class="math inline">\(n\to\infty\)</span> , <span
+with <span class="math inline">\(E[|X_i|]&lt;\infty\)</span> , and <span
+class="math inline">\(\mu=E[X_i]\)</span> , then as <span
+class="math inline">\(n\to\infty\)</span> , <span
 class="math display">\[
 \frac{1}{n}\sum_{i=1}^n X_i\xrightarrow{P}\mu
 \]</span></p></li>
@@ -670,9 +671,9 @@ class="math display">\[
 (SLLN)</em></strong> ]</p>
 <p>Let <span class="math inline">\(X_1,X_2,\cdots\)</span> be
 <strong>pairwise independent</strong> and identically distributed ,
-<span class="math inline">\(\mu=E[|X_i|]&lt;\infty\)</span> , therefore,
-as <span class="math inline">\(n\to\infty\)</span>, <span
-class="math display">\[
+<span class="math inline">\(E[|X_i|]&lt;\infty\)</span> , and <span
+class="math inline">\(\mu=E[X_i]\)</span> , therefore, as <span
+class="math inline">\(n\to\infty\)</span>, <span class="math display">\[
 \frac{1}{n}\sum_{i=1}^n X_i\to\mu\qquad a.s.
 \]</span></p></li>
 </ol>
@@ -3011,9 +3012,9 @@ class="math inline">\(W=\sum\limits_{x=1}^{|X|}b^{x-1+|Y|+|Z|}+\sum\limits_{y=1}
       </categories>
       <tags>
         <tag>算法</tag>
+        <tag>算法-图论</tag>
         <tag>算法-动态规划</tag>
         <tag>算法-动态规划-背包</tag>
-        <tag>算法-图论</tag>
         <tag>计算理论</tag>
         <tag>计算理论-NPC</tag>
         <tag>计算理论-3SAT</tag>
