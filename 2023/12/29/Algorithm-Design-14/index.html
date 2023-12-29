@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar/avatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zigzagkmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm Design 14">
+<meta property="og:url" content="https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-14/index.html">
+<meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-29T14:50:02.000Z">
+<meta property="article:modified_time" content="2023-12-29T15:11:29.072Z">
+<meta property="article:author" content="ZigZagKmp">
+<meta property="article:tag" content="博弈论-纳什均衡">
+<meta property="article:tag" content="博弈论-纳什均衡-PoA">
+<meta property="article:tag" content="博弈论-纳什均衡-PoS">
+<meta property="article:tag" content="算法-斯坦纳树">
+<meta property="article:tag" content="博弈论-Shapley网络设计游戏">
+<meta property="article:tag" content="算法-势能分析">
+<meta property="article:tag" content="线性规划-TUM">
+<meta property="article:tag" content="线性规划-整数线性规划">
+<meta property="article:tag" content="线性规划-网络矩阵">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-14/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-14/","path":"2023/12/29/Algorithm-Design-14/","title":"Algorithm Design 14"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Algorithm Design 14 | ZigZagKmp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZigZagKmp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Mainly for study materials</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-10-local-search"><span class="nav-number">1.</span> <span class="nav-text">Chapter 10 Local Search</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#game-theory-local-search"><span class="nav-number">1.1.</span> <span class="nav-text">10.2 Game Theory &amp; Local
+Search</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-11-linear-programming"><span class="nav-number">2.</span> <span class="nav-text">Chapter 11 Linear
+Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#totally-unimodular-matrix"><span class="nav-number">2.1.</span> <span class="nav-text">11.1 Totally Unimodular Matrix</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZigZagKmp"
+      src="/images/avatar/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ZigZagKmp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ZigZagKmp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ZigZagKmp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zigzagkmp@qq.com" title="E-Mail → mailto:zigzagkmp@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/35871" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;35871" rel="noopener me" target="_blank"><i class="fa fa-code fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/ZigZagKmp/" title="cnblogs → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ZigZagKmp&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-blog fa-fw"></i>cnblogs</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com" rel="noopener" target="_blank">Github</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;www.tsinghua.edu.cn" rel="noopener" target="_blank">THU</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://iiis.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;iiis.tsinghua.edu.cn" rel="noopener" target="_blank">IIIS</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.luogu.com.cn/" title="https:&#x2F;&#x2F;www.luogu.com.cn" rel="noopener" target="_blank">Luogu</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/11/28/Algorithm-Design-10/" rel="bookmark">
+        <time class="popular-posts-time">2023-11-28</time>
+        <br>
+      Algorithm Design 10
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/09/Algorithm-Design-4/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-09</time>
+        <br>
+      Algorithm Design 4
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/11/21/Algorithm-Design-8/" rel="bookmark">
+        <time class="popular-posts-time">2023-11-21</time>
+        <br>
+      Algorithm Design 8
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/12/29/Algorithm-Design-12/" rel="bookmark">
+        <time class="popular-posts-time">2023-12-29</time>
+        <br>
+      Algorithm Design 12
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/12/29/Algorithm-Design-13/" rel="bookmark">
+        <time class="popular-posts-time">2023-12-29</time>
+        <br>
+      Algorithm Design 13
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.jpg">
+      <meta itemprop="name" content="ZigZagKmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZigZagKmp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Algorithm Design 14 | ZigZagKmp's Blog">
+      <meta itemprop="description" content="[2023 秋] 算法设计 第十四课课堂笔记 / [2023 Fall] Algorithm Design Lecture 14 Note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Algorithm Design 14
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-29 22:50:02 / 修改时间：23:11:29" itemprop="dateCreated datePublished" datetime="2023-12-29T22:50:02+08:00">2023-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">算法设计</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">[2023 秋] 算法设计 第十四课课堂笔记 / [2023 Fall] Algorithm Design Lecture 14 Note</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-10-local-search">Chapter 10 Local Search</h2>
+<h3 id="game-theory-local-search">10.2 Game Theory &amp; Local
+Search</h3>
+<ol type="1">
+<li><p>Shapley Network Design Game</p>
+<ol type="1">
+<li><p>Description</p>
+<ul>
+<li><p>Given a directed graph <span
+class="math inline">\(G(V,E)\)</span>, each edge <span
+class="math inline">\(e\in E\)</span> having cost <span
+class="math inline">\(c_e\)</span></p></li>
+<li><p><span class="math inline">\(k\)</span> players, each having
+source and target <span class="math inline">\((s_i,t_i)\)</span>. For
+simplicity, let <span class="math inline">\(s_i=s\)</span>.</p>
+<p>Player <span class="math inline">\(i\)</span> wants to go from <span
+class="math inline">\(s_i\)</span> to <span
+class="math inline">\(t_i\)</span>.</p></li>
+<li><p>Set strategy for player <span class="math inline">\(i\)</span>:
+<span class="math inline">\(\{\text{paths }s_i\to t_i\}\)</span></p>
+<p>Strategy profile: <span
+class="math inline">\(P=\{P_1,\cdots,P_k\}\)</span>, where <span
+class="math inline">\(P_i\)</span> denotes a path <span
+class="math inline">\(s_i\to t_i\)</span></p></li>
+<li><p>Cost of player <span class="math inline">\(i\)</span>: <span
+class="math display">\[
+C_i(P)=\sum_{e\in P_i}\frac{c_e}{|\{j\in [k]:e\in P_j\}|}
+\]</span></p></li>
+<li><p>Each player is selfish, and wants to minimize its own
+cost</p></li>
+</ul></li>
+<li><p>Nash Equilibrium (NE)</p>
+<ol type="1">
+<li><p>Def: We say a strategy profile <span
+class="math inline">\(P=(P_1,\cdots,P_k)\)</span> is a Nash Equilibrium,
+if <span class="math inline">\(\forall i\)</span>, <span
+class="math inline">\(\forall P_i&#39;\)</span> <span
+class="math display">\[
+C_i(P_1,\cdots,P_{i-1},P_i,P_{i+1},\cdots,P_n)\le
+C_i(P_1,\cdots,P_{i-1},P_i&#39;,P_{i+1},P_n)
+\]</span> Similar to "local minimum", any single player wants to change
+its strategy.</p>
+<p>But some players can collaborate to make their costs
+decrease.</p></li>
+<li><p>Social Optimal</p>
+<p>Def: Minimum Steiner Tree connecting <span
+class="math inline">\(s,t_1,\cdots,t_k\)</span></p>
+<ul>
+<li><p>Steiner Tree: Given a set <span class="math inline">\(S\subseteq
+V\)</span>, find a connected graph <span
+class="math inline">\((V&#39;,E&#39;)\)</span> that <span
+class="math inline">\(S\subseteq V&#39;\subseteq V\)</span>, and
+minimize the sum of cost of all edges in <span
+class="math inline">\(E&#39;\)</span>.</p>
+<p>Pollard Conjecture: <span class="math inline">\(\frac{\texttt{M
+Steriner T}}{\texttt{M Spanning T}}\ge \frac{\sqrt
+3}{2}\)</span></p></li>
+</ul></li>
+<li><p>THM: There is a game where the social cost of the unique NE is
+<span class="math inline">\(\Theta(\log k)\)</span> times the social
+optimum.</p>
+<ul>
+<li><p>Remark: this THM indicates that NE can be extremely bad.</p></li>
+<li><p>Example:</p>
+<p><span class="math inline">\(V=s\cup
+T\cup\{t_1,\cdots,t_k\}\)</span></p>
+<p><span class="math inline">\(E=\{(s,t_i,\frac{1}{i}):i\in
+[k]\}\cup\{(T,t_i,0):i\in [k]\}\cup(s,T,1+\epsilon)\)</span></p>
+<p>Social Optimal: All players use <span class="math inline">\(s\to T\to
+t_i\)</span>, with <span
+class="math inline">\(C_i=\frac{1+\epsilon}{k}\)</span>. Total Cost =
+<span class="math inline">\(1+\epsilon\)</span>.</p>
+<p>NE: the above state is not NE, finally NE would be player <span
+class="math inline">\(i\)</span> use <span class="math inline">\(s\to
+t_i\)</span>, with <span class="math inline">\(C_i=\frac{1}{i}\)</span>.
+Total Cost = <span class="math inline">\(H_k\)</span>.</p></li>
+</ul></li>
+<li><p>NE Properties</p>
+<ol type="1">
+<li><p>Existence: NE can be achieved by best response dynamics
+(BRP).</p>
+<p>If BRP terminates (no cycle), it must be a NE.</p></li>
+<li><p>Price of Anarchy(无政府主义): <span
+class="math inline">\(PoA=\frac{Cost(\texttt{worst
+NE})}{cost(\texttt{Social Optimal})}\)</span></p>
+<p>Price of Stability: <span
+class="math inline">\(PoS=\frac{Cost(\texttt{best
+NE})}{cost(\texttt{Social Optimal})}\)</span></p></li>
+</ol></li>
+<li><p>THM: <span class="math inline">\(PoS\le \mathcal O(\log
+k)\)</span></p>
+<p>Proof: [potential function method]</p>
+<p>Let <span class="math inline">\(H(k)=\sum_{i=1}^k
+\frac{1}{i}\)</span>, and <span class="math inline">\(X_e=|\{i\in
+[k]:e\in P_i\}|\)</span> <span class="math display">\[
+\Phi(P):=\sum_{e\in E}c_e H(X_e)
+\]</span></p>
+<ul>
+<li><p>Key Lemma: Suppose player <span class="math inline">\(i\)</span>
+wants to update from <span class="math inline">\(P_i\)</span> to <span
+class="math inline">\(P_i&#39;\)</span>, then <span
+class="math display">\[
+C_i(P_i,P\backslash P_i)-C_i(P_i&#39;,P\backslash
+P_i)=\Phi(P_i,P\backslash P_i)-\Phi(P_i&#39;,P\backslash P_i)
+\]</span> Proof: <span class="math display">\[
+\begin{aligned}
+&amp;\quad C_i(P_i,P\backslash P_i)-C_i(P_i&#39;,P\backslash P_i)\\
+&amp;=\sum_{e\in P_i}\frac{c_e}{X_e}-\sum_{e\in
+P_i&#39;}\frac{c_e}{X_e&#39;}\\
+&amp;=\sum_{e\in P_i\backslash P_i&#39;}\frac{c_e}{X_e}-\sum_{e\in
+P_i&#39;\backslash P_i}\frac{c_e}{X_e+1}\\
+&amp;=\left(\sum_{e\in P_i\backslash P_i&#39;}c_eH(X_e)-\sum_{e\in
+P_i\backslash P_i&#39;}c_eH(X_e-1)\right)-\left(\sum_{e\in
+P_i&#39;\backslash P_i}c_eH(X_e+1)-\sum_{e\in P_i&#39;\backslash
+P_i}c_eH(X_e)\right)\\
+&amp;=\left(\sum_{e\in P_i\backslash P_i&#39;}c_eH(X_e)-\sum_{e\in
+P_i\backslash P_i&#39;}c_eH(X_e&#39;)\right)-\left(\sum_{e\in
+P_i&#39;\backslash P_i}c_eH(X_e&#39;)-\sum_{e\in P_i&#39;\backslash
+P_i}c_eH(X_e)\right)\\
+&amp;=\left(\sum_{e\in P_i\backslash P_i&#39;}c_eH(X_e)+\sum_{e\in
+P_i&#39;\backslash P_i}c_eH(X_e)\right)-\left(\sum_{e\in
+P_i&#39;\backslash P_i}c_eH(X_e&#39;)+\sum_{e\in P_i\backslash
+P_i&#39;}c_eH(X_e&#39;)\right)\\
+&amp;=\Phi(P_i,P\backslash P_i)-\Phi(P_i&#39;,P\backslash P_i)
+\end{aligned}
+\]</span> <span class="math inline">\(\square\)</span></p></li>
+<li><p>Consider BRD, <span class="math inline">\(\Phi\)</span> decreases
+monotonically, and BRD is finite, so BRD will terminate and lead to
+NE.</p>
+<p>Let <span class="math inline">\(P^*\)</span> denote the social
+optimal potential, so, <span class="math display">\[
+H_k\cdot C(P^*)\ge \Phi(P^*)&gt;\Phi(P_{NE})\ge C(P_{NE})
+\]</span></p></li>
+</ul></li>
+<li><p>Undirected graph case</p>
+<p>Worst case Example not holds.</p>
+<p>Current best lower bound: <span
+class="math inline">\(PoA\ge1.8\)</span></p>
+<p>Current best upper bound:</p>
+<ul>
+<li><span class="math inline">\(PoS\le \mathcal O(\log\log n)\)</span>
+for broadcast game (each vertex has <span
+class="math inline">\(t_i\)</span>, and <span
+class="math inline">\(s_i=s\)</span>) [Fiat et.al.]</li>
+<li><span class="math inline">\(PoS\le \mathcal O(\log\log\log
+n)\)</span> for broadcast game [Lee, Ligett]</li>
+<li><span class="math inline">\(PoS\le \mathcal O(1)\)</span> for
+broadcast game [Bilo et.al. 20]</li>
+<li><span class="math inline">\(PoS\le \mathcal O(\frac{\log n}{\log
+\log n})\)</span> for multicast game</li>
+</ul></li>
+</ol></li>
+</ol></li>
+</ol>
+<h2 id="chapter-11-linear-programming">Chapter 11 Linear
+Programming</h2>
+<h3 id="totally-unimodular-matrix">11.1 Totally Unimodular Matrix</h3>
+<ol type="1">
+<li><p>Definitions</p>
+<ol type="1">
+<li>[ <strong><em>Totally Unimodular Matrix,TUM</em></strong> ] Matrix
+<span class="math inline">\(A\)</span> is TUM if the determinant of
+every square submatrix belongs to <span class="math inline">\(\{0,\pm
+1\}\)</span></li>
+<li>[ <strong><em>Integral Polytope/Polyhedron</em></strong> ] A
+polytope <span class="math inline">\(P\)</span> is integral if every
+vertex of <span class="math inline">\(P\)</span> is an integral
+vector</li>
+</ol></li>
+<li><p>Prop: If <span class="math inline">\(A\)</span> is TUM, for every
+invertible square submatrix <span class="math inline">\(U\)</span> (i.e.
+<span class="math inline">\(\det(U)=\pm 1\)</span>) , <span
+class="math inline">\(U^{-1}\)</span> is integral (every entry in <span
+class="math inline">\(U^{-1}\)</span> is integral)</p>
+<p>Proof: <span
+class="math inline">\(U_{ij}^{-1}=\frac{\det(U^*_{ji})}{\det(U)}=\frac{0,\pm
+1}{\pm 1}\)</span></p></li>
+<li><p>THM [ Hoffman, Kruscal ]: <span class="math inline">\(A\)</span>
+is TUM <span class="math inline">\(\iff\)</span> For any integral vector
+<span class="math inline">\(\vec b\)</span>, <span
+class="math inline">\(P=\{\vec x:A\vec x\le \vec b\}\)</span> is
+integral</p>
+<p>Proof: <span class="math inline">\(\Rightarrow\)</span></p>
+<p>A vertex is the solution of a linear system <span
+class="math inline">\(A&#39;\vec x=\vec b&#39;\)</span> ( <span
+class="math inline">\(A&#39;\)</span> consists of a subset of rows <span
+class="math inline">\(I\)</span> of <span
+class="math inline">\(A\)</span> and full rank, <span
+class="math inline">\(\vec b&#39;=\vec b_I\)</span> ).</p>
+<p>Therefore, <span class="math inline">\(A&#39;\)</span> is invertible,
+and <span class="math inline">\(\vec x=A&#39;^{-1}\vec b&#39;\)</span>.
+By Prop, <span class="math inline">\(A&#39;^{-1}\)</span> is integral,
+so <span class="math inline">\(\vec x\)</span> is integral.</p></li>
+<li><p>THM [ Judging TUM ]: <span class="math inline">\(A\in \mathbb
+R^{m\times n}\)</span> is TUM <span class="math inline">\(\iff\)</span>
+<span class="math inline">\(\forall R\subseteq [m]\)</span>, <span
+class="math inline">\(\exists R=R_1+R_2\)</span>, s.t. <span
+class="math inline">\(\forall j\in[n]\)</span>, <span
+class="math inline">\(\sum\limits_{i\in R_1}a_{i,j}-\sum\limits_{i\in
+R_2}a_{i,j}\in \{0,\pm 1\}\)</span>.</p>
+<p>Proof: OMITTED</p></li>
+<li><p>Example 1: Bipartite Matching</p>
+<p>Maximize <span class="math inline">\(\sum_{e} x_e\)</span> , s.t.
+<span class="math inline">\(\forall v,\sum_{v\in e}x_e\le 1\)</span>,
+<span class="math inline">\(\forall e, x_e\ge 0\)</span>.</p>
+<p><span class="math inline">\(A\in \mathbb R^{(|V|+|E|)\times
+|E|}\)</span>, <span class="math inline">\(A_{v,e}=\mathbf 1(v\in
+e)\)</span>, <span class="math inline">\(A_{|V|+e_i,e_j}=\mathbf
+1(i=j)\)</span></p></li>
+<li><p>Example 2: Consecutive "1" Matrix</p>
+<p><span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>,
+<span class="math inline">\(\forall i\in [m]\)</span>, <span
+class="math inline">\(\exist 1\le l_i\le r_i\le n\)</span>, <span
+class="math inline">\(A_{i,j}=\mathbf 1(j\in [l_i,r_i])\)</span></p>
+<p>Remark: Interval Scheduling</p></li>
+<li><p>Example 3: Network Matrix</p>
+<p>Given a directed tree <span class="math inline">\(T(V,E)\)</span>,
+<span class="math inline">\(|E|=m\)</span>, and a set of ordered pairs
+of vertices <span class="math inline">\(P\subseteq V\times V\)</span>,
+<span class="math inline">\(|P|=k\)</span>.</p>
+<p>Network Matrix: <span class="math inline">\(M\in \mathbb R^{m\times
+k}\)</span> , if <span class="math inline">\(e=(u,v)\)</span>, <span
+class="math inline">\(\bar e:=(v,u)\)</span> <span
+class="math display">\[
+M_{e,(v_1,v_2)}=\begin{cases}1&amp;e\in Path(v_1,v_2)\\
+-1&amp;\bar e\in Path(v_1,v_2)\\
+0&amp;e,\bar e\notin Path(v_1,v_2)\end{cases}
+\]</span> THM [ Tutte ]: A network matrix is TUM</p>
+<p>Remark:</p>
+<ul>
+<li><p>Reverse result almost correct, only <span
+class="math inline">\(2\)</span> classes of matrices are TUM but not
+network matrix</p>
+<p>TUM=Network Matrix+ (2 classes of matrices &amp; their
+operation)</p></li>
+</ul></li>
+<li><p>Remark: TDI, Matroid <span class="math inline">\(\sim\)</span>
+TUM</p></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ZigZagKmp
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-14/" title="Algorithm Design 14">https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-14/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/ZigZagKmp">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.luogu.com.cn/user/35871">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Luogu</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA-%E7%BA%B3%E4%BB%80%E5%9D%87%E8%A1%A1/" rel="tag"># 博弈论-纳什均衡</a>
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA-%E7%BA%B3%E4%BB%80%E5%9D%87%E8%A1%A1-PoA/" rel="tag"># 博弈论-纳什均衡-PoA</a>
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA-%E7%BA%B3%E4%BB%80%E5%9D%87%E8%A1%A1-PoS/" rel="tag"># 博弈论-纳什均衡-PoS</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/" rel="tag"># 算法-斯坦纳树</a>
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA-Shapley%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%B8%B8%E6%88%8F/" rel="tag"># 博弈论-Shapley网络设计游戏</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8A%BF%E8%83%BD%E5%88%86%E6%9E%90/" rel="tag"># 算法-势能分析</a>
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-TUM/" rel="tag"># 线性规划-TUM</a>
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E6%95%B4%E6%95%B0%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" rel="tag"># 线性规划-整数线性规划</a>
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E7%BD%91%E7%BB%9C%E7%9F%A9%E9%98%B5/" rel="tag"># 线性规划-网络矩阵</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/29/Algorithm-Design-13/" rel="prev" title="Algorithm Design 13">
+                  <i class="fa fa-angle-left"></i> Algorithm Design 13
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZigZagKmp</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">36k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:12</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/ZigZagKmp" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"ZigZagKmp/zigzagkmp.github.io","repo_id":"R_kgDOKcVJdQ","category":"Announcements","category_id":"DIC_kwDOKcVJdc4CZ58w","mapping":"pathname","reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

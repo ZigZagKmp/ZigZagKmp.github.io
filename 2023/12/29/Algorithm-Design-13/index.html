@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar/avatar.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar/avatar.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zigzagkmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default","show_result":true},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm Design 13">
+<meta property="og:url" content="https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-13/index.html">
+<meta property="og:site_name" content="ZigZagKmp&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-29T14:49:59.000Z">
+<meta property="article:modified_time" content="2023-12-29T15:11:19.839Z">
+<meta property="article:author" content="ZigZagKmp">
+<meta property="article:tag" content="算法-随机算法">
+<meta property="article:tag" content="算法-随机算法-近似计数问题">
+<meta property="article:tag" content="算法-随机算法-采样与计数">
+<meta property="article:tag" content="算法-随机算法-近似计数问题-KLM方法">
+<meta property="article:tag" content="算法-流算法-不同元素个数">
+<meta property="article:tag" content="算法-局部搜索-Metropolis算法">
+<meta property="article:tag" content="机器学习-马尔科夫链">
+<meta property="article:tag" content="算法-局部搜索-模拟退火">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-13/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-13/","path":"2023/12/29/Algorithm-Design-13/","title":"Algorithm Design 13"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Algorithm Design 13 | ZigZagKmp's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ZigZagKmp's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Mainly for study materials</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-9-randomized-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Chapter 9 Randomized
+Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#approximate-counting"><span class="nav-number">1.1.</span> <span class="nav-text">9.4 Approximate Counting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#streaming-algorithms"><span class="nav-number">1.2.</span> <span class="nav-text">9.5 Streaming Algorithms</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-10-local-search"><span class="nav-number">2.</span> <span class="nav-text">Chapter 10 Local Search</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#metropolis-algorithm"><span class="nav-number">2.1.</span> <span class="nav-text">10.1 Metropolis Algorithm</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ZigZagKmp"
+      src="/images/avatar/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ZigZagKmp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ZigZagKmp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ZigZagKmp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zigzagkmp@qq.com" title="E-Mail → mailto:zigzagkmp@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/35871" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;35871" rel="noopener me" target="_blank"><i class="fa fa-code fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/ZigZagKmp/" title="cnblogs → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ZigZagKmp&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-blog fa-fw"></i>cnblogs</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/" title="https:&#x2F;&#x2F;github.com" rel="noopener" target="_blank">Github</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;www.tsinghua.edu.cn" rel="noopener" target="_blank">THU</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://iiis.tsinghua.edu.cn/" title="https:&#x2F;&#x2F;iiis.tsinghua.edu.cn" rel="noopener" target="_blank">IIIS</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.luogu.com.cn/" title="https:&#x2F;&#x2F;www.luogu.com.cn" rel="noopener" target="_blank">Luogu</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/31/Algorithm-Design-6/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-31</time>
+        <br>
+      Algorithm Design 6
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/12/29/Algorithm-Design-12/" rel="bookmark">
+        <time class="popular-posts-time">2023-12-29</time>
+        <br>
+      Algorithm Design 12
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/10/31/Algorithm-Design-7/" rel="bookmark">
+        <time class="popular-posts-time">2023-10-31</time>
+        <br>
+      Algorithm Design 7
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/11/21/Algorithm-Design-8/" rel="bookmark">
+        <time class="popular-posts-time">2023-11-21</time>
+        <br>
+      Algorithm Design 8
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/11/28/Algorithm-Design-10/" rel="bookmark">
+        <time class="popular-posts-time">2023-11-28</time>
+        <br>
+      Algorithm Design 10
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.jpg">
+      <meta itemprop="name" content="ZigZagKmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZigZagKmp's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Algorithm Design 13 | ZigZagKmp's Blog">
+      <meta itemprop="description" content="[2023 秋] 算法设计 第十三课课堂笔记 / [2023 Fall] Algorithm Design Lecture 13 Note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Algorithm Design 13
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-29 22:49:59 / 修改时间：23:11:19" itemprop="dateCreated datePublished" datetime="2023-12-29T22:49:59+08:00">2023-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">算法设计</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>941</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">[2023 秋] 算法设计 第十三课课堂笔记 / [2023 Fall] Algorithm Design Lecture 13 Note</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="chapter-9-randomized-algorithm">Chapter 9 Randomized
+Algorithm</h2>
+<h3 id="approximate-counting">9.4 Approximate Counting</h3>
+<ol type="1">
+<li><p>Strategy : Rejection Selection</p>
+<p>Goal : estimate <span class="math inline">\(|G|\)</span></p>
+<p>Method : take <span class="math inline">\(U\)</span> s.t. <span
+class="math inline">\(G\subseteq U\)</span></p>
+<ul>
+<li>We can take uniform samples from <span
+class="math inline">\(U\)</span> efficiently</li>
+<li>There is a membership oracle <span class="math inline">\(\mathcal
+O\)</span> for <span class="math inline">\(G\)</span> : <span
+class="math inline">\(\forall x\in U,\mathcal O(x)=\mathbf 1(x\in
+G)\)</span></li>
+<li>We can easily compute/estimate <span
+class="math inline">\(|U|\)</span></li>
+</ul>
+<p>Theorem : Let <span
+class="math inline">\(\alpha=\frac{|G|}{|U|}\)</span>, so we need <span
+class="math inline">\(N\ge
+c\frac{1}{\epsilon^2\alpha}\log(\frac{1}{\delta})\)</span> samples, s.t.
+<span class="math display">\[
+\Pr\left\{\frac{\text{\# samples in }G}{N}\in (1\pm
+\epsilon)|G|\right\}\ge 1-\delta
+\]</span> Proof : Chernoff Bound</p></li>
+<li><p>Counting #DNF solutions</p>
+<ol type="1">
+<li><p>Description</p>
+<p>DNF : <span class="math inline">\(\lor_{i=1}^m C_i\)</span>, <span
+class="math inline">\(C_i=a_{i,1}\land \cdots\land a_{i,l_i}\)</span> ,
+<span class="math inline">\(a_{i,j}\in \{x_t,\bar x_t:1\le t\le
+n\}\)</span></p>
+<p>Goal : Estimate the number of satisfying assignments ( out of <span
+class="math inline">\(2^n\)</span> possibilities )</p>
+<p>#P Hard Problem</p></li>
+<li><p>Karp-Luby-Mardars Method</p>
+<p>If DNF has a clause of size <span
+class="math inline">\(3\)</span>:</p>
+<p><span class="math inline">\(U\)</span> : all <span
+class="math inline">\(2^n\)</span> assignments, <span
+class="math inline">\(G\)</span> : satisfying assignments</p>
+<p><span class="math inline">\(|G|\ge \frac{|U|}{8}\)</span>, so <span
+class="math inline">\(\alpha\ge \frac{1}{8}\)</span>, we only need <span
+class="math inline">\(\mathcal O(\frac{1}{\epsilon^2}\log
+\frac{1}{\delta})\)</span></p>
+<p>For general case:</p>
+<p>Considering a table, <span class="math inline">\(2^n\times
+m\)</span>, <span class="math inline">\(t_{i,j}=*\)</span> iff
+assignment <span class="math inline">\(i\)</span> can satisfy clause
+<span class="math inline">\(j\)</span>. <span
+class="math inline">\(t_{i,j}=\otimes\)</span> if clause <span
+class="math inline">\(j\)</span> is the first clause satisfied by
+assignment <span class="math inline">\(i\)</span></p>
+<p><span class="math inline">\(U\)</span> : All <span
+class="math inline">\(*\)</span> , <span
+class="math inline">\(G\)</span> : All <span
+class="math inline">\(\otimes\)</span></p>
+<ol type="1">
+<li><p>How to sample from <span class="math inline">\(U\)</span> :</p>
+<p><span class="math inline">\(|U|=\sum_{i=1}^m 2^{n-l_i}\)</span> .</p>
+<ul>
+<li>Firstly sample column <span class="math inline">\(i\)</span> w.p.
+<span class="math inline">\(\frac{2^{n-l_i}}{|U|}\)</span> ( this can be
+implemented in <span class="math inline">\(\mathcal O(1)\)</span> , or
+<span class="math inline">\(\mathcal O(m)\)</span> ?)</li>
+<li>Then, from column <span class="math inline">\(i\)</span>, choose
+<span class="math inline">\(*\)</span></li>
+</ul></li>
+<li><p>Check whether <span class="math inline">\(*\in G\)</span> :
+easily in <span class="math inline">\(\mathcal O(m)\)</span> , check all
+previous clauses</p></li>
+<li><p><span class="math inline">\(\alpha=\frac{|G|}{|U|}\ge
+\frac{1}{m}\)</span> : we have at least one <span
+class="math inline">\(*\)</span> in one satisfying assignment</p></li>
+</ol></li>
+</ol></li>
+</ol>
+<h3 id="streaming-algorithms">9.5 Streaming Algorithms</h3>
+<ol type="1">
+<li><p>Definition</p>
+<p>Input arrives in stream fashion, length of stream is <span
+class="math inline">\(n\)</span>.</p>
+<p>Goal: estimate some statistics of the stream.</p>
+<p>Setting: Space $ n$ . Typical size : <span
+class="math inline">\(\mathcal O(1),poly(\log n),\mathcal O(\sqrt
+n)\)</span> ( at least sublinear )</p>
+<p>Usually, we cannot give a precise solution due to space
+constraint.</p>
+<p><span class="math inline">\((\epsilon,\delta)\)</span>-solution:
+<span class="math inline">\(\Pr\{\mathtt{SOL}\in (1\pm \epsilon)\texttt{
+True Value}\}\ge 1-\delta\)</span>.</p></li>
+<li><p>Counting the distinct elements ( <span
+class="math inline">\(F_0\)</span>-estimation )</p>
+<ol type="1">
+<li><p>Description</p>
+<p><span class="math inline">\(n\)</span> elements, each element <span
+class="math inline">\(\in [m]\)</span> , <span
+class="math inline">\(n,m\)</span> are large</p>
+<p>Goal: output the number of distinct elements</p></li>
+<li><p>Google : HyperLogLog</p></li>
+<li><p>A simpler (idealized) algorithm with Hash function</p>
+<ol type="1">
+<li><p>deterministic hash function <span class="math inline">\(h:[m]\to
+[0,1]\)</span></p></li>
+<li><p>Take representative: maintain <span
+class="math inline">\(k=\mathcal O(\frac{1}{\epsilon^2})\)</span>-th
+smallest <span class="math inline">\(h\)</span> value ( suppose its
+value is <span class="math inline">\(t\)</span> )</p>
+<blockquote>
+<p>Not taking the smallest value: variance is large</p>
+</blockquote></li>
+<li><p>Estimation: <span
+class="math inline">\(\frac{t}{k}\)</span></p></li>
+</ol></li>
+<li><p>Can achieve <span
+class="math inline">\((\epsilon,\delta)\)</span>-approximation (Proof:
+Chernoff Bound)</p></li>
+<li><p>Real Implementation: <span class="math inline">\(h:[m]\to
+[m^2]\)</span>, only store smallest <span
+class="math inline">\(k\)</span> values</p></li>
+</ol></li>
+</ol>
+<h2 id="chapter-10-local-search">Chapter 10 Local Search</h2>
+<h3 id="metropolis-algorithm">10.1 Metropolis Algorithm</h3>
+<ol type="1">
+<li><p>From statistical mechanics</p>
+<p><span class="math inline">\(\Pr\{\text{a state with energy }E\}\sim
+\exp(-\frac{E}{kT})\)</span></p>
+<p><img
+src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20231218110241961.png" /></p>
+<p>(Purple: Small <span class="math inline">\(T\)</span>, Red: Large
+<span class="math inline">\(T\)</span>)</p></li>
+<li><p>Markov Chain</p>
+<p>Directed weighted graph <span class="math inline">\(G\)</span>, <span
+class="math inline">\(\forall u\in V,\sum_{(u,v)\in
+E}p(u,v)=1\)</span></p>
+<p>Transition matrix: <span
+class="math inline">\(P_{i,j}=p(i,j)=P(j|i)\)</span></p>
+<p><span class="math inline">\((P^k)_{i,j}\)</span>: probability that
+start from <span class="math inline">\(i\)</span> and end at <span
+class="math inline">\(j\)</span> with exactly <span
+class="math inline">\(k\)</span> steps</p>
+<p>Stationary distribution <span class="math inline">\(\bar x\)</span>:
+<span class="math inline">\(P^T\bar x=\bar x\)</span></p>
+<p>Finite space: must have stationary distribution</p></li>
+<li><p>Count # perfect matching in bipartite graph</p>
+<p><span class="math inline">\(\iff\)</span> Sampling problem <span
+class="math inline">\(\iff\)</span> Markov Chain ( matching <span
+class="math inline">\(\to\)</span> matching )</p>
+<p>Design MC s.t. stationary distribution of MC is uniformly distributed
+over all states</p>
+<p>Starting from one state, after <span class="math inline">\(k\)</span>
+steps we stop, consider the final state as a uniformly sampled
+stationary distribution</p>
+<p>Under certain condition (Ergodic), a random walk will converge to a
+<strong>unique</strong> stationary distribution</p>
+<p><span class="math inline">\(\forall
+x_0,\lim\limits_{k\to\infty}(P^T)^k x_0=\bar x\)</span></p>
+<p>Mix time: maximum ( consider all <span
+class="math inline">\(x_0\)</span> ) time to reach <span
+class="math inline">\(\bar x\)</span></p></li>
+<li><p>Metropolis Algorithm</p>
+<p><span class="math inline">\(\mathcal C\)</span>: set of all states,
+<span class="math inline">\(S\)</span>: current state, <span
+class="math inline">\(S&#39;\)</span>: a uniformly chosen neighbor of
+<span class="math inline">\(S\)</span>.</p>
+<p>If <span class="math inline">\(E(S&#39;)&lt;E(S)\)</span>, <span
+class="math inline">\(S\gets S&#39;\)</span>. Otherwise, <span
+class="math inline">\(S\gets S&#39;\)</span> with probability <span
+class="math inline">\(\exp(-\frac{E(S&#39;)-E(S)}{kT})\)</span>.</p>
+<p>Theorem: Let <span class="math inline">\(Z=\sum_{S\in \mathcal
+C}\exp(-\frac{E(S)}{kT})\)</span>, then <span class="math display">\[
+\Pr\{S\gets \mathcal C:S\in \text{stationary
+distribution}\}=\frac{1}{Z}\exp(-\frac{E(S)}{kT})
+\]</span> Application:</p>
+<ul>
+<li>Sampling: Bayesian Inference/ Graphical Models</li>
+<li>Optimization: minimize <span class="math inline">\(f(x)\)</span>:
+Let <span class="math inline">\(E(S)=f(S)\)</span> <span
+class="math inline">\(\to\)</span> Simulated Annealing</li>
+</ul></li>
+<li><p>Simulated Annealing</p>
+<p>Goal: minimize <span class="math inline">\(f\)</span></p>
+<ul>
+<li>High temperature: like uniform, Markov Chain converges quicker for
+larger <span class="math inline">\(T\)</span> (since the graph has good
+continuity)</li>
+<li>Low temperature: many local minimum, hard to sample (converges
+slower)</li>
+</ul>
+<p>Cooling scheduling <span class="math inline">\(T=T(i)\)</span>: <span
+class="math inline">\(i=1,2,\cdots\)</span></p>
+<ul>
+<li>$x_i$ run Metropolis Algorithm for <span
+class="math inline">\(T(i)\)</span> with initial state <span
+class="math inline">\(x_{i-1}\)</span></li>
+</ul></li>
+<li><p>Mixing Time</p>
+<p>Total variation distance: <span class="math inline">\(p,q\)</span>
+are two distributions, <span class="math display">\[
+d_{TV}(p,q)=\sum_{i}|p_i-q_i|=\left\|\vec p-\vec q\right\|_1
+\]</span> Let <span class="math inline">\(p_x^k=(P^T)^kx\)</span>, <span
+class="math inline">\(\pi\)</span> be the stationary distribution.
+Define mixing time as <span class="math display">\[
+\tau_x(\epsilon)=\min\{k:d_{TV}(p_x^k,\pi)\le \epsilon\}
+\]</span> Mixing time <span class="math inline">\(\sim\)</span>
+continuity</p>
+<ul>
+<li>MinCut very small <span class="math inline">\(\to\)</span> mixing
+time large</li>
+<li>Good continuity <span class="math inline">\(\to\)</span> mixing time
+small</li>
+</ul>
+<p>Theorem: Let <span class="math inline">\(P\)</span> be the transition
+matrix of Markov Chain, suppose <span class="math inline">\(P\)</span>
+is symmetric. Suppose <span class="math inline">\(\lambda_1\ge
+\lambda_2\ge \cdots\ge \lambda_N\)</span> be eigenvalues of <span
+class="math inline">\(P\)</span>, it is known that <span
+class="math inline">\(\lambda_1=1\)</span> and <span
+class="math inline">\(v_1=(\frac{1}{\sqrt n},\cdots,\frac{1}{\sqrt
+n})\)</span>. Then let <span
+class="math inline">\(\lambda_{\max}=\max\{|\lambda_2|,|\lambda_N|\}\)</span>,
+so <span class="math display">\[
+\tau(\epsilon)\le \mathcal O\left(\frac{\log n+\log
+\frac{1}{\epsilon}}{1-\lambda_{\max}}\right)
+\]</span> i.e. <span class="math inline">\(\lambda_2\to 1\)</span>,
+mixing time <span class="math inline">\(\to\)</span> large</p></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ZigZagKmp
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-13/" title="Algorithm Design 13">https://zigzagkmp.github.io/2023/12/29/Algorithm-Design-13/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/ZigZagKmp">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://www.luogu.com.cn/user/35871">
+            <span class="icon">
+              <i class=""></i>
+            </span>
+
+            <span class="label">Luogu</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95/" rel="tag"># 算法-随机算法</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95-%E8%BF%91%E4%BC%BC%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98/" rel="tag"># 算法-随机算法-近似计数问题</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95-%E9%87%87%E6%A0%B7%E4%B8%8E%E8%AE%A1%E6%95%B0/" rel="tag"># 算法-随机算法-采样与计数</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95-%E8%BF%91%E4%BC%BC%E8%AE%A1%E6%95%B0%E9%97%AE%E9%A2%98-KLM%E6%96%B9%E6%B3%95/" rel="tag"># 算法-随机算法-近似计数问题-KLM方法</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E6%B5%81%E7%AE%97%E6%B3%95-%E4%B8%8D%E5%90%8C%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0/" rel="tag"># 算法-流算法-不同元素个数</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2-Metropolis%E7%AE%97%E6%B3%95/" rel="tag"># 算法-局部搜索-Metropolis算法</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E9%93%BE/" rel="tag"># 机器学习-马尔科夫链</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95-%E5%B1%80%E9%83%A8%E6%90%9C%E7%B4%A2-%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB/" rel="tag"># 算法-局部搜索-模拟退火</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/29/Algorithm-Design-12/" rel="prev" title="Algorithm Design 12">
+                  <i class="fa fa-angle-left"></i> Algorithm Design 12
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/12/29/Algorithm-Design-14/" rel="next" title="Algorithm Design 14">
+                  Algorithm Design 14 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ZigZagKmp</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">36k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:12</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/ZigZagKmp" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"ZigZagKmp/zigzagkmp.github.io","repo_id":"R_kgDOKcVJdQ","category":"Announcements","category_id":"DIC_kwDOKcVJdc4CZ58w","mapping":"pathname","reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
